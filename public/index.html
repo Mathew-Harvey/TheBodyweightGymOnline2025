@@ -3,1298 +3,496 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Bodyweight Gym - Online | Free Virtual Fitness Classes</title>
-    <meta name="description" content="30+ hours of free follow-along bodyweight workouts. Build strength, mobility, and skills with no equipment needed.">
+    <title>The Bodyweight Gym - Free Fitness for Everyone, Forever</title>
+    <meta name="description" content="Your body and gravity are all you need. 47+ hours of free bodyweight workouts, no ads, no catch, no emails required. This is for you.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IiMwMDg4Q0MiLz4KPHBhdGggZD0iTTIwIDEwVjMwTTEwIDIwSDMwTTE1IDE1TDI1IDI1TTE1IDI1TDI1IDE1IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=">
+    <link rel="icon" type="image/png" href="/images/Bwglogo2.png">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #0088CC;
-            --primary-dark: #006699;
-            --secondary-color: #00C4FF;
-            --accent-color: #FF6B35;
-            --dark-bg: #0A0A0A;
-            --light-bg: #F8F9FA;
-            --text-primary: #333333;
-            --text-secondary: #666666;
-            --text-light: #FFFFFF;
-            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--light-bg);
-            overflow-x: hidden;
-        }
-
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading-content {
-            text-align: center;
-            color: var(--text-light);
-        }
-
-        .loading-logo {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: var(--transition);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .logo:hover {
-            transform: translateY(-2px);
-        }
-
-        .logo svg {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .user-menu {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            min-height: 70vh;
-            background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-bg-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: white;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 0.8s ease;
-            text-align: center;
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease 0.2s both;
-            text-align: center;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            animation: fadeInUp 0.8s ease 0.4s both;
-            justify-content: center;
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .stat-item {
-            text-align: center;
-            color: white;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .hero-video {
-            position: relative;
-            animation: fadeInRight 0.8s ease 0.4s both;
-        }
-
-        .video-preview {
-            width: 100%;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .play-button:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Video Grid Section */
-        .videos-section {
-            padding: 5rem 0;
-            background: white;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        /* Filters */
-        .filters-container {
-            max-width: 1400px;
-            margin: 0 auto 3rem;
-            padding: 0 2rem;
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
-
-        .filter-tab {
-            padding: 0.75rem 1.5rem;
-            background: var(--light-bg);
-            border: none;
-            border-radius: 30px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .filter-tab:hover {
-            background: #E8E9EA;
-        }
-
-        .filter-tab.active {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .search-bar {
-            display: flex;
-            align-items: center;
-            background: var(--light-bg);
-            border-radius: 50px;
-            padding: 0.75rem 1.5rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .search-bar input {
-            flex: 1;
-            border: none;
-            background: none;
-            outline: none;
-            font-size: 1rem;
-            color: var(--text-primary);
-        }
-
-        .search-bar button {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-        }
-
-        /* Video Grid */
-        .video-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .video-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .video-thumbnail {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-duration {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 5px;
-            font-size: 0.85rem;
-        }
-
-        .video-info {
-            padding: 1.5rem;
-        }
-
-        .video-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .video-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .video-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .video-level {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: var(--light-bg);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .video-category {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: #F3E5F5;
-            color: #7B1FA2;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-left: 0.5rem;
-        }
-
-        .level-beginner { background: #E8F5E9; color: #2E7D32; }
-        .level-intermediate { background: #FFF3E0; color: #E65100; }
-        .level-advanced { background: #FFEBEE; color: #C62828; }
-
-        .favorite-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-secondary);
-            transition: var(--transition);
-            padding: 0.5rem;
-        }
-
-        .favorite-btn:hover {
-            color: var(--accent-color);
-            transform: scale(1.1);
-        }
-
-        .favorite-btn.active {
-            color: var(--accent-color);
-        }
-
-        /* Video Player Page */
-        .video-player-container {
-            min-height: 100vh;
-            background: var(--dark-bg);
-            padding-top: 80px;
-        }
-
-        .video-player-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .video-player {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto 2rem;
-            background: black;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .video-player video {
-            width: 100%;
-            height: auto;
-        }
-
-        .video-controls {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .video-details {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            color: white;
-        }
-
-        .video-details h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .video-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-        }
-
-        /* Community Section */
-        .community-section {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .community-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .community-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .community-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-bg);
-            color: white;
-            padding: 3rem 0 2rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 80px;
-                flex-direction: column;
-                background: white;
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                padding: 2rem 0;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .hero-container {
-                text-align: center;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .video-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .filter-tabs {
-                justify-content: flex-start;
-            }
-        }
-
-        /* Mobile Menu Toggle */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-primary);
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-        }
-
-        /* Utilities */
-        .hidden {
-            display: none !important;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="/css/modern-style.css">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0088CC">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <svg class="loading-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="45" stroke="#0088CC" stroke-width="6" fill="none">
-                    <animate attributeName="stroke-dasharray" values="0 283;283 283" dur="1.5s" repeatCount="indefinite"/>
-                </circle>
-                <path d="M50 25V75M25 50H75M35 35L65 65M35 65L65 35" stroke="#0088CC" stroke-width="4" stroke-linecap="round"/>
-            </svg>
-            <h2>Loading Your Workout...</h2>
-        </div>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" style="height: 40px; margin-right: 10px;">
-                The Bodyweight Gym
-            </a>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#workouts" class="nav-link">Workouts</a></li>
-                <li><a href="#instructors" class="nav-link">Instructors</a></li>
-                <li><a href="#community" class="nav-link">Community</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-            </ul>
+    <!-- Hero Section with Philosophy -->
+    <section class="hero-section">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="/" class="logo-link">
+                    <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="logo-img">
+                    <span class="logo-text">The Bodyweight Gym</span>
+                </a>
+                
+                <div class="nav-menu">
+                    <a href="#philosophy" class="nav-link">Philosophy</a>
+                    <a href="#workouts" class="nav-link">Workouts</a>
+                    <a href="#story" class="nav-link">Our Story</a>
+                    <a href="#blog" class="nav-link">Blog</a>
+                    <a href="#community" class="nav-link">Community</a>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
 
-            <div class="user-menu">
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+        <div class="hero-content">
+            <!-- Hero Logo - Prominent and Central -->
+            <div class="hero-logo-section">
+                <div class="hero-logo-container">
+                    <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="hero-main-logo">
+                </div>
+                <h1 class="hero-brand-name">
+                    <span class="text-gradient">The Bodyweight Gym</span>
+                </h1>
+            </div>
+            
+            <!-- Hero Badge -->
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                Completely Free • No Catch • No Emails
+            </div>
+            
+            <!-- Hero Title -->
+            <div class="hero-title-section">
+                <h2 class="hero-title">
+                    <span class="text-gradient-alt">Your Body.</span><br>
+                    <span class="text-gradient-alt">Your Journey.</span>
+                </h2>
+                <p class="hero-subtitle">No Equipment Required.</p>
+            </div>
+            
+            <!-- Hero Description -->
+            <p class="hero-description">
+                47+ hours of professional bodyweight workouts, completely free. 
+                No pop-ups, no data collection, no email required. 
+                Simple, accessible fitness education for everyone.
+            </p>
+            
+            <!-- Hero Actions -->
+            <div class="hero-actions">
+                <button class="btn-primary btn-large" onclick="scrollToWorkouts()">
+                    Start Your Journey
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <button class="btn-ghost btn-large" onclick="playIntroVideo()">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5 3 19 12 5 21"></polygon>
+                    </svg>
+                    Watch Our Story (5 min)
+                </button>
+            </div>
+            
+            <!-- Hero Video - Now embedded inline -->
+            <div class="hero-video-section">
+                <div class="video-frame" id="introVideoFrame">
+                    <iframe 
+                        src="https://www.youtube.com/embed/IOpUVPaixjA?enablejsapi=1&modestbranding=1&rel=0" 
+                        title="The Bodyweight Gym Story"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                    <div class="video-overlay">
+                        <button class="play-overlay-btn" onclick="playIntroVideo()">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hero Stats -->
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number" data-count="47">0</div>
+                    <div class="stat-label">Hours of Content</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="79">0</div>
+                    <div class="stat-label">Workouts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="100">0</div>
+                    <div class="stat-label">% Free Forever</div>
                 </div>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg-pattern"></div>
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Transform Your Body<br>With Zero Equipment</h1>
-                <p>47+ hours of professional follow-along workouts. Build strength, mobility, and skills from anywhere. Completely free.</p>
-                <div class="hero-buttons">
-                    <a href="#workouts" class="btn btn-primary" style="background: white; color: var(--primary-color);">
-                        Start Training
-                    </a>
-                    <button class="btn btn-secondary" style="border-color: white; color: white;">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                            <polygon points="6,3 18,10 6,17"/>
-                        </svg>
-                        Watch Demo
-                    </button>
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="philosophy-section">
+        <div class="container">
+            <div class="philosophy-content">
+                <h2 class="section-title text-center">
+                    <span class="text-gradient">Our Philosophy</span>
+                </h2>
+                
+                <div class="philosophy-text">
+                    <p class="lead-text">
+                        In a fitness world dominated by machines, products, and endless upsells, 
+                        we believe in something different. <strong>Fitness doesn't need to be commercial.</strong>
+                    </p>
+                    
+                    <p>
+                        This website exists to share what we've learned about bodyweight fitness. 
+                        There's no catch. We don't collect emails, don't track you, and don't show ads. 
+                        Just straightforward fitness education, accessible to everyone.
+                    </p>
+                    
+                    <p>
+                        Your body and gravity are all you need. The process is simple. The long-term 
+                        application is what challenges us. But you're not alone in this journey.
+                    </p>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number" id="totalHours">47+</span>
-                        <span class="stat-label">Hours of Content</span>
+                
+                <div class="philosophy-cards">
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                            </svg>
+                        </div>
+                        <h3>No Data Collection</h3>
+                        <p>We don't track you, don't want your email, and don't use cookies. Your privacy matters.</p>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="totalWorkouts">79+</span>
-                        <span class="stat-label">Workouts</span>
+                    
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+                            </svg>
+                        </div>
+                        <h3>No Hidden Agenda</h3>
+                        <p>No upsells, no premium tiers, no "exclusive content." Everything is here, free, forever.</p>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number" id="totalViews">50K+</span>
-                        <span class="stat-label">Community Members</span>
+                    
+                    <div class="principle-card">
+                        <div class="principle-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                            </svg>
+                        </div>
+                        <h3>Community Spirit</h3>
+                        <p>A continuation of our physical gym that closed during COVID. The community and knowledge live on here.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Videos Section -->
-    <section class="videos-section" id="workouts">
-        <div class="section-header">
-            <h2 class="section-title">Choose Your Workout</h2>
-            <p class="section-subtitle">Filter by category, level, or instructor to find your perfect session</p>
-            <div id="filterCount" style="text-align: center; margin-top: 1rem; font-weight: 500; color: var(--text-secondary);">Loading workouts...</div>
-        </div>
-
-        <div class="filters-container">
-            <div class="filter-tabs" id="filterTabs">
-                <button class="filter-tab active" data-filter="all">All Workouts</button>
-                <button class="filter-tab" data-filter="Strength">Strength</button>
-                <button class="filter-tab" data-filter="Mobility">Mobility</button>
-                <button class="filter-tab" data-filter="Skills">Skills</button>
-                <button class="filter-tab" data-filter="Nutrition">Nutrition</button>
+    <!-- Founder's Story -->
+    <section id="story" class="story-section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content">
+                    <h2 class="section-title">
+                        <span class="text-gradient">The Story Behind The Gym</span>
+                    </h2>
+                    
+                    <div class="story-text">
+                        <p class="lead-text">
+                            I haven't always been into fitness. I started my adult life as a professional 
+                            Scientist and for 13 years enjoyed my career.
+                        </p>
+                        
+                        <p>
+                            I spent my 20's racing mountain bikes and rock climbing. My 30's brought about 
+                            a change where I decided to pursue my lifelong hobby of coaching and sport. I 
+                            began with CrossFit and for the last 4 years, I've rebuilt myself using 
+                            Calisthenic bodyweight training methods.
+                        </p>
+                        
+                        <blockquote class="story-quote">
+                            <p>
+                                "A few years ago I broke my back. Overnight I went from a ring routine and 
+                                handstand to not even one pushup. Now I'm back and stronger than ever."
+                            </p>
+                        </blockquote>
+                        
+                        <p>
+                            Through this experience, I've learned that the process is easy—it's the long-term 
+                            application that challenges us. I started The Bodyweight Gym to pursue an ideal: 
+                            That everyone can develop themselves physically with simple equipment, the right 
+                            education, and support.
+                        </p>
+                        
+                        <p>
+                            When COVID closed our physical gym, we transformed it into this digital space 
+                            to ensure that what we learned together wouldn't be lost. Now it's here for 
+                            anyone who wants to build a stronger, healthier body.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="story-visual">
+                    <div class="story-image-frame">
+                        <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym Logo" class="story-logo">
+                        <div class="story-stats">
+                            <div class="mini-stat">
+                                <span class="mini-stat-number">2020</span>
+                                <span class="mini-stat-label">Physical Gym Closed</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat-number">100s</span>
+                                <span class="mini-stat-label">People Helped</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat-number">∞</span>
+                                <span class="mini-stat-label">Free Forever</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="search-bar">
-                <input type="text" placeholder="Search workouts, instructors..." id="searchInput">
-                <button>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                        <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
-                        <path d="M14 14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <!-- Workouts Section -->
+    <section id="workouts" class="workouts-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-center">
+                    <span class="text-gradient">Choose Your Workout</span>
+                </h2>
+                <p class="section-subtitle text-center">
+                    No registration required. Just press play and start training.
+                </p>
+            </div>
+            
+            <!-- Beautiful Filter System -->
+            <div class="filter-system">
+                <div class="quick-filters">
+                    <button class="filter-pill active" data-filter="all">
+                        All Workouts
+                    </button>
+                    <button class="filter-pill" data-filter="strength">
+                        Strength
+                    </button>
+                    <button class="filter-pill" data-filter="mobility">
+                        Mobility
+                    </button>
+                    <button class="filter-pill" data-filter="skills">
+                        Skills
+                    </button>
+                    <button class="filter-pill" data-filter="beginner">
+                        Beginner
+                    </button>
+                </div>
+                
+                <div class="search-wrapper">
+                    <input type="text" class="search-input" placeholder="Search workouts, coaches, or keywords...">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
                     </svg>
+                </div>
+            </div>
+            
+            <!-- Workout Grid -->
+            <div class="workouts-grid" id="workoutsGrid">
+                <!-- Workouts will be loaded here -->
+            </div>
+            
+            <div class="load-more-wrapper">
+                <button class="btn-secondary" onclick="loadMoreWorkouts()">
+                    Load More Workouts
                 </button>
             </div>
         </div>
-
-        <div class="video-grid" id="videoGrid">
-            <!-- Videos will be loaded dynamically -->
-        </div>
     </section>
 
-    <!-- Instructors Section -->
-    <section class="videos-section" id="instructors">
-        <div class="section-header">
-            <h2 class="section-title">Meet Our Instructors</h2>
-            <p class="section-subtitle">Learn from experienced coaches who are passionate about bodyweight fitness</p>
-        </div>
-
-        <div class="video-grid" id="instructorsGrid">
-            <div class="video-card">
-                <div class="video-thumbnail" style="background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);">
-                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">C</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">Coach Corey</h3>
-                    <div class="video-meta">
-                        <span>Strength & Skills Specialist</span>
-                        <span>•</span>
-                        <span>25+ Videos</span>
-                    </div>
-                    <div class="video-stats">
-                        <span class="video-level level-intermediate">Advanced</span>
-                    </div>
-                </div>
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-center">
+                    <span class="text-gradient">Knowledge & Insights</span>
+                </h2>
+                <p class="section-subtitle text-center">
+                    Deep dives into bodyweight training, mobility, and living a healthier life.
+                </p>
             </div>
-
-            <div class="video-card">
-                <div class="video-thumbnail" style="background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);">
-                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">M</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">Coach Maisie</h3>
-                    <div class="video-meta">
-                        <span>Mobility & Flexibility Expert</span>
-                        <span>•</span>
-                        <span>30+ Videos</span>
+            
+            <div class="blog-grid">
+                <article class="blog-card featured">
+                    <div class="blog-image">
+                        <img src="/images/Bwglogo2.png" alt="Blog post">
                     </div>
-                    <div class="video-stats">
-                        <span class="video-level level-intermediate">All Levels</span>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Philosophy</span>
+                            <span class="blog-date">Coming Soon</span>
+                        </div>
+                        <h3 class="blog-title">Why Bodyweight Training Is All You Need</h3>
+                        <p class="blog-excerpt">
+                            Exploring the science and philosophy behind using your own body as the ultimate gym...
+                        </p>
+                        <a href="#" class="blog-link">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
                     </div>
-                </div>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Training</span>
+                            <span class="blog-date">Coming Soon</span>
+                        </div>
+                        <h3 class="blog-title">The Journey from Zero to Your First Handstand</h3>
+                        <p class="blog-excerpt">
+                            A comprehensive guide to achieving one of the most rewarding bodyweight skills...
+                        </p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Recovery</span>
+                            <span class="blog-date">Coming Soon</span>
+                        </div>
+                        <h3 class="blog-title">Mobility: The Missing Piece in Your Training</h3>
+                        <p class="blog-excerpt">
+                            Why flexibility and mobility work is crucial for long-term strength development...
+                        </p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </article>
             </div>
-
-            <div class="video-card">
-                <div class="video-thumbnail" style="background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);">
-                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">K</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">Coach Kelvin</h3>
-                    <div class="video-meta">
-                        <span>Strength & Conditioning</span>
-                        <span>•</span>
-                        <span>15+ Videos</span>
-                    </div>
-                    <div class="video-stats">
-                        <span class="video-level level-intermediate">Intermediate</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumbnail" style="background: linear-gradient(135deg, #C62828 0%, #EF5350 100%);">
-                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">O</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">Coach Oscar</h3>
-                    <div class="video-meta">
-                        <span>Handstand & Skills Coach</span>
-                        <span>•</span>
-                        <span>10+ Videos</span>
-                    </div>
-                    <div class="video-stats">
-                        <span class="video-level level-advanced">Advanced</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumbnail" style="background: linear-gradient(135deg, #6A1B9A 0%, #9C27B0 100%);">
-                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">R</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">Coach Ray</h3>
-                    <div class="video-meta">
-                        <span>Strength & Endurance</span>
-                        <span>•</span>
-                        <span>8+ Videos</span>
-                    </div>
-                    <div class="video-stats">
-                        <span class="video-level level-advanced">Advanced</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumbnail" style="background: linear-gradient(135deg, #1565C0 0%, #42A5F5 100%);">
-                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">M</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">Coach Mikhail</h3>
-                    <div class="video-meta">
-                        <span>Advanced Strength Development</span>
-                        <span>•</span>
-                        <span>12+ Videos</span>
-                    </div>
-                    <div class="video-stats">
-                        <span class="video-level level-advanced">Advanced</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="video-card">
-                <div class="video-thumbnail" style="background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);">
-                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">C</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">Coach Carla</h3>
-                    <div class="video-meta">
-                        <span>Nutrition & Wellness</span>
-                        <span>•</span>
-                        <span>5+ Videos</span>
-                    </div>
-                    <div class="video-stats">
-                        <span class="video-level level-intermediate">All Levels</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="videos-section" id="about">
-        <div class="section-header">
-            <h2 class="section-title">About The Bodyweight Gym</h2>
-            <p class="section-subtitle">Your journey to strength, mobility, and skills starts here</p>
-        </div>
-
-        <div class="video-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
-            <div class="video-card">
-                <div class="video-info">
-                    <h3 class="video-title">Our Mission</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
-                        The Bodyweight Gym was created during the 2020 pandemic to provide free, high-quality workout content to everyone, everywhere. 
-                        We believe that fitness should be accessible to all, regardless of equipment or gym access.
-                    </p>
-                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
-                        Our team of experienced coaches brings you over 30 hours of professional follow-along workouts, 
-                        covering strength training, mobility, flexibility, and skill development - all using only your bodyweight.
-                    </p>
-                    <p style="color: var(--text-secondary); line-height: 1.8;">
-                        Whether you're a complete beginner or an advanced athlete, our progressive approach ensures 
-                        you'll find workouts that challenge and inspire you to reach your fitness goals.
-                    </p>
-                </div>
+            
+            <div class="blog-cta">
+                <p>New articles coming soon. No email required to read them.</p>
             </div>
         </div>
     </section>
 
     <!-- Community Section -->
-    <section class="community-section" id="community">
-        <div class="community-content">
-            <h2>Join Our Community</h2>
-            <p>Connect with thousands of people on their bodyweight fitness journey. Share progress, get motivated, and grow together.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank" class="btn btn-primary" style="background: white; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                    Facebook Group
-                </a>
-                <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank" class="btn btn-secondary" style="border-color: white; color: white; display: flex; align-items: center; gap: 0.5rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                    YouTube Channel
-                </a>
-                <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank" class="btn btn-secondary" style="border-color: white; color: white; display: flex; align-items: center; gap: 0.5rem;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                    Instagram
-                </a>
+    <section id="community" class="community-section">
+        <div class="container">
+            <div class="community-content">
+                <h2 class="section-title text-center">
+                    <span class="text-gradient">You're Not Alone</span>
+                </h2>
+                
+                <p class="community-text">
+                    While this website asks nothing of you, we do have a community of people supporting 
+                    each other on their fitness journeys. If you'd like to connect, share progress, or 
+                    get motivated, you're welcome to join us. No pressure, no sales pitch. Just people 
+                    helping people.
+                </p>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank" class="social-card">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        <span>Facebook Community</span>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank" class="social-card">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        <span>YouTube Channel</span>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank" class="social-card">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About</h3>
-                <p>The Bodyweight Gym was created during the 2020 pandemic to provide free, high-quality workout content to everyone, everywhere.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#workouts">Browse Workouts</a></li>
-                    <li><a href="#instructors">Our Instructors</a></li>
-                    <li><a href="#community">Community</a></li>
-                    <li><a href="#about">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Categories</h3>
-                <ul>
-                    <li><a href="#">Strength Training</a></li>
-                    <li><a href="#">Mobility & Flexibility</a></li>
-                    <li><a href="#">Skill Development</a></li>
-                    <li><a href="#">Core Workouts</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <p>Stay updated with new workouts and fitness tips.</p>
-                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                    <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank" style="display: flex; align-items: center; gap: 0.5rem;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                        YouTube
-                    </a>
-                    <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                        Facebook
-                    </a>
-                    <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                        Instagram
-                    </a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-philosophy">
+                    <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="footer-logo">
+                    <p class="footer-quote">
+                        "The process is easy, it's the long-term application that challenges us."
+                    </p>
+                    <p class="footer-dedication">
+                        This website is dedicated to everyone who trained at The Bodyweight Gym 
+                        and to anyone, anywhere, who wants to build a stronger, healthier body.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <a href="#workouts">Workouts</a>
+                        <a href="#philosophy">Philosophy</a>
+                        <a href="#story">Our Story</a>
+                        <a href="#blog">Blog</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank">Facebook</a>
+                        <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank">YouTube</a>
+                        <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank">Instagram</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Remember</h4>
+                        <p>No emails required</p>
+                        <p>No data collection</p>
+                        <p>No hidden costs</p>
+                        <p>Free forever</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 The Bodyweight Gym. Created with ❤️ for the fitness community.</p>
+            
+            <div class="footer-bottom">
+                <p>© 2025 The Bodyweight Gym • Made with ❤️ for the world • Your privacy is sacred to us</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="#philosophy" class="mobile-nav-link">Philosophy</a>
+            <a href="#workouts" class="mobile-nav-link">Workouts</a>
+            <a href="#story" class="mobile-nav-link">Our Story</a>
+            <a href="#blog" class="mobile-nav-link">Blog</a>
+            <a href="#community" class="mobile-nav-link">Community</a>
+        </div>
+    </div>
 
-
-    <script>
-        // Global variables
-        let currentUser = null;
-        let favorites = [];
-        let videos = [];
-
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Hide loading screen
-            setTimeout(() => {
-                document.getElementById('loadingScreen').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loadingScreen').style.display = 'none';
-                }, 500);
-            }, 1500);
-
-            // Load videos
-            await loadVideos();
-
-            // Initialize event listeners
-            initializeEventListeners();
-
-            // Check for saved user
-            checkUser();
-
-            // Update stats
-            updateStats();
-        });
-
-        // Load videos from API
-        async function loadVideos(filter = 'all') {
-            try {
-                const response = await fetch(`/api/videos${filter !== 'all' ? `?category=${filter}` : ''}`);
-                videos = await response.json();
-                renderVideos(videos);
-                updateFilterCount(videos.length);
-            } catch (error) {
-                console.error('Error loading videos:', error);
-                // Fallback to client-side filtering if API fails
-                const allVideos = await fetch('/api/videos').then(r => r.json());
-                if (filter !== 'all') {
-                    videos = allVideos.filter(video => video.category.toLowerCase() === filter.toLowerCase());
-                } else {
-                    videos = allVideos;
-                }
-                renderVideos(videos);
-                updateFilterCount(videos.length);
-            }
-        }
-
-        // Render video grid
-        function renderVideos(videoList) {
-            const grid = document.getElementById('videoGrid');
-            grid.innerHTML = '';
-
-            videoList.forEach(video => {
-                const card = createVideoCard(video);
-                grid.appendChild(card);
-            });
-
-            // Add fade-in animation
-            grid.querySelectorAll('.video-card').forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add('fade-in');
-                }, index * 50);
-            });
-        }
-
-        // Create video card element
-        function createVideoCard(video) {
-            const card = document.createElement('div');
-            card.className = 'video-card';
-            
-            // Use actual thumbnail if available, otherwise use gradient with instructor initial
-            let thumbnailStyle;
-            if (video.thumbnail && video.thumbnail !== '/images/thumbnails/placeholder.jpg' && !video.thumbnail.includes('placeholder')) {
-                thumbnailStyle = `background-image: url('${video.thumbnail}'); background-size: cover; background-position: center;`;
-            } else {
-                // Create gradient based on instructor
-                const instructorInitial = video.instructor.split(' ')[1] || video.instructor.charAt(0);
-                const colors = {
-                    'Corey': 'linear-gradient(135deg, #0088CC 0%, #00C4FF 100%)',
-                    'Maisie': 'linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%)',
-                    'Kelvin': 'linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%)',
-                    'Oscar': 'linear-gradient(135deg, #C62828 0%, #EF5350 100%)',
-                    'Ray': 'linear-gradient(135deg, #6A1B9A 0%, #9C27B0 100%)',
-                    'Mikhail': 'linear-gradient(135deg, #1565C0 0%, #42A5F5 100%)',
-                    'Carla': 'linear-gradient(135deg, #FF9800 0%, #FFB74D 100%)'
-                };
-                const gradient = colors[video.instructor.split(' ')[1]] || 'linear-gradient(135deg, #0088CC 0%, #00C4FF 100%)';
-                thumbnailStyle = `background: ${gradient}; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; font-weight: bold;`;
-            }
-            
-            card.innerHTML = `
-                <div class="video-thumbnail" onclick="playVideo(${video.id})" style="${thumbnailStyle}">
-                    ${!video.thumbnail || video.thumbnail.includes('placeholder') ? 
-                        `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">${video.instructor.split(' ')[1] || video.instructor.charAt(0)}</div>` : 
-                        ''}
-                    <div class="video-duration">${video.duration}</div>
-                </div>
-                <div class="video-info">
-                    <h3 class="video-title">${video.title}</h3>
-                    <div class="video-meta">
-                        <span>${video.instructor}</span>
-                        <span>•</span>
-                        <span>${video.views.toLocaleString()} views</span>
-                    </div>
-                    <div class="video-stats">
-                        <span class="video-level level-${video.level.toLowerCase()}">${video.level}</span>
-                        <span class="video-category">${video.category}</span>
-                    </div>
-                </div>
-            `;
-            return card;
-        }
-
-        // Initialize event listeners
-        function initializeEventListeners() {
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            });
-
-            // Mobile menu toggle
-            document.getElementById('hamburger').addEventListener('click', () => {
-                document.getElementById('navMenu').classList.toggle('active');
-            });
-
-            // Filter tabs
-            document.querySelectorAll('.filter-tab').forEach(tab => {
-                tab.addEventListener('click', (e) => {
-                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                    e.target.classList.add('active');
-                    const filter = e.target.dataset.filter;
-                    loadVideos(filter);
-                });
-            });
-
-            // Search functionality
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase();
-                const filtered = videos.filter(video => 
-                    video.title.toLowerCase().includes(searchTerm) ||
-                    video.instructor.toLowerCase().includes(searchTerm) ||
-                    video.description.toLowerCase().includes(searchTerm) ||
-                    video.category.toLowerCase().includes(searchTerm) ||
-                    video.level.toLowerCase().includes(searchTerm)
-                );
-                renderVideos(filtered);
-                updateFilterCount(filtered.length);
-            });
-
-            // Smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                });
-            });
-        }
-
-        // Play video
-        function playVideo(videoId) {
-            window.location.href = `/video?id=${videoId}`;
-        }
-
-        // Toggle favorite (removed - no login functionality)
-        async function toggleFavorite(videoId) {
-            // Favorite functionality removed - no login system
-        }
-
-        // Check for saved user (removed login functionality)
-        function checkUser() {
-            // Login functionality removed
-        }
-
-        // Update stats
-        async function updateStats() {
-            try {
-                const response = await fetch('/api/stats');
-                const stats = await response.json();
-                
-                // Animate numbers
-                animateNumber(document.getElementById('totalHours'), stats.totalHours);
-                animateNumber(document.getElementById('totalWorkouts'), stats.totalVideos);
-                animateNumber(document.getElementById('totalViews'), stats.totalViews);
-            } catch (error) {
-                console.error('Error loading stats:', error);
-            }
-        }
-
-        // Animate number counting
-        function animateNumber(element, target) {
-            const duration = 2000;
-            const start = 0;
-            const increment = target / (duration / 16);
-            let current = start;
-
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current).toLocaleString() + (element.textContent.includes('+') ? '+' : '');
-            }, 16);
-        }
-
-        // Update filter count display
-        function updateFilterCount(count) {
-            const filterCount = document.getElementById('filterCount');
-            if (filterCount) {
-                filterCount.textContent = `${count} workout${count !== 1 ? 's' : ''}`;
-            }
-        }
-    </script>
+    <!-- Scripts -->
+    <script src="/js/modern-app.js"></script>
 </body>
 </html>

@@ -6,80 +6,105 @@
     <title>Video Player - The Bodyweight Gym</title>
     <link rel="stylesheet" href="main.css">
     <style>
-        .video-player-page {
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .video-page {
             min-height: 100vh;
-            background: var(--dark-bg);
-            padding-top: 80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-link {
+            color: #0088CC;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: #006699;
         }
 
         .video-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        .video-player-wrapper {
-            position: relative;
+        .video-wrapper {
             width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            background: black;
-            border-radius: 15px;
+            max-width: 900px;
+            background: #000;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .video-player {
             width: 100%;
             height: auto;
             display: block;
+            background: #000;
         }
 
         .video-info {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            color: white;
             margin-top: 2rem;
+            max-width: 900px;
+            width: 100%;
         }
 
         .video-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
             color: white;
         }
 
         .video-meta {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .video-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
+            line-height: 1.6;
         }
-
-        .back-button {
-            display: inline-flex;
+        
+        .video-start-info {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 136, 204, 0.1);
+            border: 1px solid rgba(0, 136, 204, 0.3);
+            border-radius: 6px;
+            color: #0088CC;
+            font-size: 0.9rem;
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            margin-bottom: 2rem;
-            transition: var(--transition);
-        }
-
-        .back-button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
         }
 
         .loading {
@@ -87,8 +112,7 @@
             align-items: center;
             justify-content: center;
             height: 400px;
-            color: white;
-            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .error {
@@ -97,7 +121,6 @@
             justify-content: center;
             height: 400px;
             color: #ff6b6b;
-            font-size: 1.2rem;
             text-align: center;
         }
 
@@ -107,64 +130,45 @@
             }
             
             .video-title {
-                font-size: 1.5rem;
-            }
-            
-            .video-meta {
-                flex-direction: column;
-                gap: 0.5rem;
+                font-size: 1.3rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" fill="#0088CC"/>
-                    <path d="M50 25V75M25 50H75M35 35L65 65M35 65L65 35" stroke="white" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-                The Bodyweight Gym
-            </a>
-        </div>
-    </nav>
-
-    <!-- Video Player Page -->
-    <div class="video-player-page">
-        <div class="video-container">
-            <a href="/" class="back-button">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+    <div class="video-page">
+        <header class="header">
+            <a href="/" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M15 10H5M10 5L5 10L10 15"/>
                 </svg>
                 Back to Workouts
             </a>
+        </header>
 
-            <div class="video-player-wrapper">
-                <video class="video-player bodyweight-gym-video" controls>
+        <main class="video-container">
+            <div class="video-wrapper">
+                <video class="video-player" controls preload="metadata">
                     <source id="videoSource" src="" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
 
             <div class="video-info" id="videoInfo">
-                <div class="loading">Loading video information...</div>
+                <div class="loading">Loading...</div>
             </div>
-        </div>
+        </main>
     </div>
 
     <script src="video-play.js"></script>
     <script>
-        // Get video ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         const videoId = urlParams.get('id');
 
         if (!videoId) {
-            document.querySelector('.video-player-wrapper').innerHTML = 
-                '<div class="error">No video ID provided. <a href="/" style="color: var(--primary-color);">Return to workouts</a></div>';
+            document.querySelector('.video-wrapper').innerHTML = 
+                '<div class="error">No video ID provided. <a href="/" style="color: #0088CC;">Return to workouts</a></div>';
         } else {
-            // Load video data
             fetch(`/api/videos/${videoId}`)
                 .then(response => response.json())
                 .then(video => {
@@ -172,40 +176,37 @@
                         throw new Error('Video not found');
                     }
                     
-                    // Set video source
                     const videoElement = document.querySelector('.video-player');
                     const videoSource = document.getElementById('videoSource');
                     videoSource.src = `/api/stream/${videoId}`;
+                    videoElement.dataset.videoId = videoId;
                     videoElement.load();
                     
-                    // Set video metadata
-                    videoElement.dataset.videoId = videoId;
+                    // Set the start time if available
+                    if (video.startTime && video.startTime > 0) {
+                        videoElement.addEventListener('loadedmetadata', function() {
+                            videoElement.currentTime = video.startTime;
+                        });
+                    }
                     
-                    // Update page title
                     document.title = `${video.title} - The Bodyweight Gym`;
                     
-                    // Update video info
                     document.getElementById('videoInfo').innerHTML = `
                         <h1 class="video-title">${video.title}</h1>
                         <div class="video-meta">
-                            <span>${video.instructor}</span>
-                            <span>•</span>
-                            <span>${video.duration}</span>
-                            <span>•</span>
-                            <span>${video.level}</span>
-                            <span>•</span>
-                            <span>${video.views.toLocaleString()} views</span>
+                            ${video.instructor} • ${video.duration} • ${video.level} • ${video.views.toLocaleString()} views
+                            ${video.startTimeFormatted ? `• Starts at ${video.startTimeFormatted}` : ''}
                         </div>
                         <div class="video-description">${video.description}</div>
+                        ${video.startTimeFormatted ? `<div class="video-start-info">⏰ Video starts at ${video.startTimeFormatted} to skip intro</div>` : ''}
                     `;
                     
-                    // Track view
                     fetch(`/api/videos/${videoId}/view`, { method: 'POST' });
                 })
                 .catch(error => {
                     console.error('Error loading video:', error);
-                    document.querySelector('.video-player-wrapper').innerHTML = 
-                        '<div class="error">Video not found or error loading video. <a href="/" style="color: var(--primary-color);">Return to workouts</a></div>';
+                    document.querySelector('.video-wrapper').innerHTML = 
+                        '<div class="error">Video not found. <a href="/" style="color: #0088CC;">Return to workouts</a></div>';
                     document.getElementById('videoInfo').innerHTML = 
                         '<div class="error">Unable to load video information</div>';
                 });
