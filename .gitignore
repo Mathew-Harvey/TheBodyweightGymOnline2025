@@ -79,9 +79,6 @@ typings/
 .nuxt
 dist
 
-# Gatsby files
-.cache/
-public
 
 # Storybook build outputs
 .out
@@ -167,9 +164,6 @@ web_modules/
 .nuxt
 dist
 
-# Gatsby files
-.cache/
-public
 
 # Storybook build outputs
 .out

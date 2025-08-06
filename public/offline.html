@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - The Bodyweight Gym</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .offline-container {
+            max-width: 600px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .offline-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .offline-icon svg {
+            width: 60px;
+            height: 60px;
+            fill: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .offline-workouts {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        .offline-workouts h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .workout-list {
+            list-style: none;
+        }
+
+        .workout-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .workout-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .workout-item-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .workout-item-info span {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .cached-badge {
+            background: rgba(76, 175, 80, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: white;
+            color: #0088CC;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #0088CC;
+        }
+
+        .offline-tips {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .offline-tips h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .offline-tips ul {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+
+        .offline-tips li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .offline-tips li::before {
+            content: '✓';
+            position: absolute;
+            left: -1.5rem;
+            color: #4CAF50;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+            }
+
+            .offline-workouts {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4c-1.48 0-2.85.43-4.01 1.17l1.46 1.46C10.21 6.23 11.08 6 12 6c3.04 0 5.5 2.46 5.5 5.5v.5H19c1.66 0 3 1.34 3 3 0 1.13-.64 2.11-1.56 2.62l1.45 1.45C23.16 18.16 24 16.68 24 15c0-2.64-2.05-4.78-4.65-4.96zM3 5.27l2.75 2.74C2.56 8.15 0 10.77 0 14c0 3.31 2.69 6 6 6h11.73l2 2L21 20.73 4.27 4 3 5.27zM7.73 10l8 8H6c-2.21 0-4-1.79-4-4s1.79-4 4-4h1.73z"/>
+            </svg>
+        </div>
+
+        <h1>You're Offline</h1>
+        <p>Don't worry! You can still access your downloaded workouts and continue training.</p>
+
+        <div class="offline-workouts" id="cachedWorkouts">
+            <h2>Available Offline Workouts</h2>
+            <div class="workout-list" id="workoutList">
+                <!-- Cached workouts will be displayed here -->
+            </div>
+        </div>
+
+        <div class="offline-tips">
+            <h3>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 4a1 1 0 10-2 0v5a1 1 0 002 0V6zm-1 8a1 1 0 100 2 1 1 0 000-2z"/>
+                </svg>
+                Quick Tips
+            </h3>
+            <ul>
+                <li>Download videos when you're online for offline access</li>
+                <li>Your progress will sync when you're back online</li>
+                <li>Try our no-equipment workouts that don't need video guidance</li>
+                <li>Check your internet connection and try again</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <a href="/" class="btn" onclick="location.reload()">Try Again</a>
+            <a href="#" class="btn btn-secondary" onclick="showCachedContent()">View Downloads</a>
+        </div>
+    </div>
+
+    <script>
+        // Check for cached workouts
+        async function loadCachedWorkouts() {
+            try {
+                const cache = await caches.open('bodyweight-gym-videos-v1');
+                const keys = await cache.keys();
+                
+                const workoutList = document.getElementById('workoutList');
+                
+                if (keys.length === 0) {
+                    workoutList.innerHTML = `
+                        <p style="text-align: center; opacity: 0.8;">
+                            No workouts downloaded yet. Connect to the internet to download workouts for offline use.
+                        </p>
+                    `;
+                    return;
+                }
+
+                // Mock data for demonstration - in real app, this would come from IndexedDB
+                const mockWorkouts = [
+                    { id: 1, title: "Morning Mobility Flow", instructor: "Jamie Sinclair", duration: "20 min" },
+                    { id: 2, title: "Core Crusher Challenge", instructor: "Andrew Kelleher", duration: "25 min" },
+                    { id: 3, title: "Full Body Strength", instructor: "Mat Harvey", duration: "30 min" }
+                ];
+
+                workoutList.innerHTML = mockWorkouts.map(workout => `
+                    <div class="workout-item" onclick="playOfflineWorkout(${workout.id})">
+                        <div class="workout-item-info">
+                            <h3>${workout.title}</h3>
+                            <span>${workout.instructor} • ${workout.duration}</span>
+                        </div>
+                        <div class="cached-badge">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm3.5 5.5l-4 4a.5.5 0 01-.7 0l-2-2a.5.5 0 11.7-.7L7 9.3l3.5-3.5a.5.5 0 01.7.7z"/>
+                            </svg>
+                            Cached
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading cached workouts:', error);
+            }
+        }
+
+        // Simulate playing an offline workout
+        function playOfflineWorkout(id) {
+            alert(`Playing offline workout ${id}. In a real app, this would open the cached video.`);
+        }
+
+        // Show cached content
+        function showCachedContent() {
+            const cachedSection = document.getElementById('cachedWorkouts');
+            cachedSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Check online status
+        window.addEventListener('online', () => {
+            location.reload();
+        });
+
+        // Load cached workouts on page load
+        loadCachedWorkouts();
+
+        // Register service worker update handler
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.ready.then(registration => {
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            // New content available
+                            console.log('New content available, refresh to update');
+                        }
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+</html>

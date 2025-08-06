@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bodyweight Gym - Online | Free Virtual Fitness Classes</title>
+    <meta name="description" content="30+ hours of free follow-along bodyweight workouts. Build strength, mobility, and skills with no equipment needed.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9IiMwMDg4Q0MiLz4KPHBhdGggZD0iTTIwIDEwVjMwTTEwIDIwSDMwTTE1IDE1TDI1IDI1TTE1IDI1TDI1IDE1IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4=">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0088CC;
+            --primary-dark: #006699;
+            --secondary-color: #00C4FF;
+            --accent-color: #FF6B35;
+            --dark-bg: #0A0A0A;
+            --light-bg: #F8F9FA;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-light: #FFFFFF;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .loading-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 70vh;
+            background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+            text-align: center;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            text-align: center;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+            justify-content: center;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .hero-video {
+            position: relative;
+            animation: fadeInRight 0.8s ease 0.4s both;
+        }
+
+        .video-preview {
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Video Grid Section */
+        .videos-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Filters */
+        .filters-container {
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .filter-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--light-bg);
+            border: none;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .filter-tab:hover {
+            background: #E8E9EA;
+        }
+
+        .filter-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--light-bg);
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .video-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .video-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-level {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--light-bg);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .video-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #F3E5F5;
+            color: #7B1FA2;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+
+        .level-beginner { background: #E8F5E9; color: #2E7D32; }
+        .level-intermediate { background: #FFF3E0; color: #E65100; }
+        .level-advanced { background: #FFEBEE; color: #C62828; }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            padding: 0.5rem;
+        }
+
+        .favorite-btn:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active {
+            color: var(--accent-color);
+        }
+
+        /* Video Player Page */
+        .video-player-container {
+            min-height: 100vh;
+            background: var(--dark-bg);
+            padding-top: 80px;
+        }
+
+        .video-player-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .video-player {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 2rem;
+            background: black;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-player video {
+            width: 100%;
+            height: auto;
+        }
+
+        .video-controls {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .video-details {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            color: white;
+        }
+
+        .video-details h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        /* Community Section */
+        .community-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .community-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .community-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .community-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-container {
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                justify-content: flex-start;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Utilities */
+        .hidden {
+            display: none !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <svg class="loading-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="45" stroke="#0088CC" stroke-width="6" fill="none">
+                    <animate attributeName="stroke-dasharray" values="0 283;283 283" dur="1.5s" repeatCount="indefinite"/>
+                </circle>
+                <path d="M50 25V75M25 50H75M35 35L65 65M35 65L65 35" stroke="#0088CC" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <h2>Loading Your Workout...</h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" style="height: 40px; margin-right: 10px;">
+                The Bodyweight Gym
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#workouts" class="nav-link">Workouts</a></li>
+                <li><a href="#instructors" class="nav-link">Instructors</a></li>
+                <li><a href="#community" class="nav-link">Community</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+
+            <div class="user-menu">
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Transform Your Body<br>With Zero Equipment</h1>
+                <p>47+ hours of professional follow-along workouts. Build strength, mobility, and skills from anywhere. Completely free.</p>
+                <div class="hero-buttons">
+                    <a href="#workouts" class="btn btn-primary" style="background: white; color: var(--primary-color);">
+                        Start Training
+                    </a>
+                    <button class="btn btn-secondary" style="border-color: white; color: white;">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <polygon points="6,3 18,10 6,17"/>
+                        </svg>
+                        Watch Demo
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalHours">47+</span>
+                        <span class="stat-label">Hours of Content</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalWorkouts">79+</span>
+                        <span class="stat-label">Workouts</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalViews">50K+</span>
+                        <span class="stat-label">Community Members</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="videos-section" id="workouts">
+        <div class="section-header">
+            <h2 class="section-title">Choose Your Workout</h2>
+            <p class="section-subtitle">Filter by category, level, or instructor to find your perfect session</p>
+            <div id="filterCount" style="text-align: center; margin-top: 1rem; font-weight: 500; color: var(--text-secondary);">Loading workouts...</div>
+        </div>
+
+        <div class="filters-container">
+            <div class="filter-tabs" id="filterTabs">
+                <button class="filter-tab active" data-filter="all">All Workouts</button>
+                <button class="filter-tab" data-filter="Strength">Strength</button>
+                <button class="filter-tab" data-filter="Mobility">Mobility</button>
+                <button class="filter-tab" data-filter="Skills">Skills</button>
+                <button class="filter-tab" data-filter="Nutrition">Nutrition</button>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search workouts, instructors..." id="searchInput">
+                <button>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M14 14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="video-grid" id="videoGrid">
+            <!-- Videos will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Instructors Section -->
+    <section class="videos-section" id="instructors">
+        <div class="section-header">
+            <h2 class="section-title">Meet Our Instructors</h2>
+            <p class="section-subtitle">Learn from experienced coaches who are passionate about bodyweight fitness</p>
+        </div>
+
+        <div class="video-grid" id="instructorsGrid">
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">C</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Coach Corey</h3>
+                    <div class="video-meta">
+                        <span>Strength & Skills Specialist</span>
+                        <span>•</span>
+                        <span>25+ Videos</span>
+                    </div>
+                    <div class="video-stats">
+                        <span class="video-level level-intermediate">Advanced</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">M</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Coach Maisie</h3>
+                    <div class="video-meta">
+                        <span>Mobility & Flexibility Expert</span>
+                        <span>•</span>
+                        <span>30+ Videos</span>
+                    </div>
+                    <div class="video-stats">
+                        <span class="video-level level-intermediate">All Levels</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">K</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Coach Kelvin</h3>
+                    <div class="video-meta">
+                        <span>Strength & Conditioning</span>
+                        <span>•</span>
+                        <span>15+ Videos</span>
+                    </div>
+                    <div class="video-stats">
+                        <span class="video-level level-intermediate">Intermediate</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #C62828 0%, #EF5350 100%);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">O</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Coach Oscar</h3>
+                    <div class="video-meta">
+                        <span>Handstand & Skills Coach</span>
+                        <span>•</span>
+                        <span>10+ Videos</span>
+                    </div>
+                    <div class="video-stats">
+                        <span class="video-level level-advanced">Advanced</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #6A1B9A 0%, #9C27B0 100%);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">R</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Coach Ray</h3>
+                    <div class="video-meta">
+                        <span>Strength & Endurance</span>
+                        <span>•</span>
+                        <span>8+ Videos</span>
+                    </div>
+                    <div class="video-stats">
+                        <span class="video-level level-advanced">Advanced</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #1565C0 0%, #42A5F5 100%);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">M</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Coach Mikhail</h3>
+                    <div class="video-meta">
+                        <span>Advanced Strength Development</span>
+                        <span>•</span>
+                        <span>12+ Videos</span>
+                    </div>
+                    <div class="video-stats">
+                        <span class="video-level level-advanced">Advanced</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);">
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">C</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">Coach Carla</h3>
+                    <div class="video-meta">
+                        <span>Nutrition & Wellness</span>
+                        <span>•</span>
+                        <span>5+ Videos</span>
+                    </div>
+                    <div class="video-stats">
+                        <span class="video-level level-intermediate">All Levels</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="videos-section" id="about">
+        <div class="section-header">
+            <h2 class="section-title">About The Bodyweight Gym</h2>
+            <p class="section-subtitle">Your journey to strength, mobility, and skills starts here</p>
+        </div>
+
+        <div class="video-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+            <div class="video-card">
+                <div class="video-info">
+                    <h3 class="video-title">Our Mission</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                        The Bodyweight Gym was created during the 2020 pandemic to provide free, high-quality workout content to everyone, everywhere. 
+                        We believe that fitness should be accessible to all, regardless of equipment or gym access.
+                    </p>
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                        Our team of experienced coaches brings you over 30 hours of professional follow-along workouts, 
+                        covering strength training, mobility, flexibility, and skill development - all using only your bodyweight.
+                    </p>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        Whether you're a complete beginner or an advanced athlete, our progressive approach ensures 
+                        you'll find workouts that challenge and inspire you to reach your fitness goals.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section" id="community">
+        <div class="community-content">
+            <h2>Join Our Community</h2>
+            <p>Connect with thousands of people on their bodyweight fitness journey. Share progress, get motivated, and grow together.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank" class="btn btn-primary" style="background: white; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Facebook Group
+                </a>
+                <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank" class="btn btn-secondary" style="border-color: white; color: white; display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    YouTube Channel
+                </a>
+                <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank" class="btn btn-secondary" style="border-color: white; color: white; display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <p>The Bodyweight Gym was created during the 2020 pandemic to provide free, high-quality workout content to everyone, everywhere.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#workouts">Browse Workouts</a></li>
+                    <li><a href="#instructors">Our Instructors</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Strength Training</a></li>
+                    <li><a href="#">Mobility & Flexibility</a></li>
+                    <li><a href="#">Skill Development</a></li>
+                    <li><a href="#">Core Workouts</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay updated with new workouts and fitness tips.</p>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        YouTube
+                    </a>
+                    <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        Facebook
+                    </a>
+                    <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 The Bodyweight Gym. Created with ❤️ for the fitness community.</p>
+        </div>
+    </footer>
+
+
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        let favorites = [];
+        let videos = [];
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Hide loading screen
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 1500);
+
+            // Load videos
+            await loadVideos();
+
+            // Initialize event listeners
+            initializeEventListeners();
+
+            // Check for saved user
+            checkUser();
+
+            // Update stats
+            updateStats();
+        });
+
+        // Load videos from API
+        async function loadVideos(filter = 'all') {
+            try {
+                const response = await fetch(`/api/videos${filter !== 'all' ? `?category=${filter}` : ''}`);
+                videos = await response.json();
+                renderVideos(videos);
+                updateFilterCount(videos.length);
+            } catch (error) {
+                console.error('Error loading videos:', error);
+                // Fallback to client-side filtering if API fails
+                const allVideos = await fetch('/api/videos').then(r => r.json());
+                if (filter !== 'all') {
+                    videos = allVideos.filter(video => video.category.toLowerCase() === filter.toLowerCase());
+                } else {
+                    videos = allVideos;
+                }
+                renderVideos(videos);
+                updateFilterCount(videos.length);
+            }
+        }
+
+        // Render video grid
+        function renderVideos(videoList) {
+            const grid = document.getElementById('videoGrid');
+            grid.innerHTML = '';
+
+            videoList.forEach(video => {
+                const card = createVideoCard(video);
+                grid.appendChild(card);
+            });
+
+            // Add fade-in animation
+            grid.querySelectorAll('.video-card').forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, index * 50);
+            });
+        }
+
+        // Create video card element
+        function createVideoCard(video) {
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            
+            // Use actual thumbnail if available, otherwise use gradient with instructor initial
+            let thumbnailStyle;
+            if (video.thumbnail && video.thumbnail !== '/images/thumbnails/placeholder.jpg' && !video.thumbnail.includes('placeholder')) {
+                thumbnailStyle = `background-image: url('${video.thumbnail}'); background-size: cover; background-position: center;`;
+            } else {
+                // Create gradient based on instructor
+                const instructorInitial = video.instructor.split(' ')[1] || video.instructor.charAt(0);
+                const colors = {
+                    'Corey': 'linear-gradient(135deg, #0088CC 0%, #00C4FF 100%)',
+                    'Maisie': 'linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%)',
+                    'Kelvin': 'linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%)',
+                    'Oscar': 'linear-gradient(135deg, #C62828 0%, #EF5350 100%)',
+                    'Ray': 'linear-gradient(135deg, #6A1B9A 0%, #9C27B0 100%)',
+                    'Mikhail': 'linear-gradient(135deg, #1565C0 0%, #42A5F5 100%)',
+                    'Carla': 'linear-gradient(135deg, #FF9800 0%, #FFB74D 100%)'
+                };
+                const gradient = colors[video.instructor.split(' ')[1]] || 'linear-gradient(135deg, #0088CC 0%, #00C4FF 100%)';
+                thumbnailStyle = `background: ${gradient}; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; font-weight: bold;`;
+            }
+            
+            card.innerHTML = `
+                <div class="video-thumbnail" onclick="playVideo(${video.id})" style="${thumbnailStyle}">
+                    ${!video.thumbnail || video.thumbnail.includes('placeholder') ? 
+                        `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 3rem; font-weight: bold;">${video.instructor.split(' ')[1] || video.instructor.charAt(0)}</div>` : 
+                        ''}
+                    <div class="video-duration">${video.duration}</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">${video.title}</h3>
+                    <div class="video-meta">
+                        <span>${video.instructor}</span>
+                        <span>•</span>
+                        <span>${video.views.toLocaleString()} views</span>
+                    </div>
+                    <div class="video-stats">
+                        <span class="video-level level-${video.level.toLowerCase()}">${video.level}</span>
+                        <span class="video-category">${video.category}</span>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Initialize event listeners
+        function initializeEventListeners() {
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            document.getElementById('hamburger').addEventListener('click', () => {
+                document.getElementById('navMenu').classList.toggle('active');
+            });
+
+            // Filter tabs
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    e.target.classList.add('active');
+                    const filter = e.target.dataset.filter;
+                    loadVideos(filter);
+                });
+            });
+
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filtered = videos.filter(video => 
+                    video.title.toLowerCase().includes(searchTerm) ||
+                    video.instructor.toLowerCase().includes(searchTerm) ||
+                    video.description.toLowerCase().includes(searchTerm) ||
+                    video.category.toLowerCase().includes(searchTerm) ||
+                    video.level.toLowerCase().includes(searchTerm)
+                );
+                renderVideos(filtered);
+                updateFilterCount(filtered.length);
+            });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        }
+
+        // Play video
+        function playVideo(videoId) {
+            window.location.href = `/video?id=${videoId}`;
+        }
+
+        // Toggle favorite (removed - no login functionality)
+        async function toggleFavorite(videoId) {
+            // Favorite functionality removed - no login system
+        }
+
+        // Check for saved user (removed login functionality)
+        function checkUser() {
+            // Login functionality removed
+        }
+
+        // Update stats
+        async function updateStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+                
+                // Animate numbers
+                animateNumber(document.getElementById('totalHours'), stats.totalHours);
+                animateNumber(document.getElementById('totalWorkouts'), stats.totalVideos);
+                animateNumber(document.getElementById('totalViews'), stats.totalViews);
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Animate number counting
+        function animateNumber(element, target) {
+            const duration = 2000;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString() + (element.textContent.includes('+') ? '+' : '');
+            }, 16);
+        }
+
+        // Update filter count display
+        function updateFilterCount(count) {
+            const filterCount = document.getElementById('filterCount');
+            if (filterCount) {
+                filterCount.textContent = `${count} workout${count !== 1 ? 's' : ''}`;
+            }
+        }
+    </script>
+</body>
+</html>

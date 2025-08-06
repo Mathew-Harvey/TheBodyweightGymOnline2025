@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player - The Bodyweight Gym</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .video-player-page {
+            min-height: 100vh;
+            background: var(--dark-bg);
+            padding-top: 80px;
+        }
+
+        .video-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .video-player-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: black;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-player {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-info {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        .video-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .video-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                padding: 1rem;
+            }
+            
+            .video-title {
+                font-size: 1.5rem;
+            }
+            
+            .video-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#0088CC"/>
+                    <path d="M50 25V75M25 50H75M35 35L65 65M35 65L65 35" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+                The Bodyweight Gym
+            </a>
+        </div>
+    </nav>
+
+    <!-- Video Player Page -->
+    <div class="video-player-page">
+        <div class="video-container">
+            <a href="/" class="back-button">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M15 10H5M10 5L5 10L10 15"/>
+                </svg>
+                Back to Workouts
+            </a>
+
+            <div class="video-player-wrapper">
+                <video class="video-player bodyweight-gym-video" controls>
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="video-info" id="videoInfo">
+                <div class="loading">Loading video information...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="video-play.js"></script>
+    <script>
+        // Get video ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('id');
+
+        if (!videoId) {
+            document.querySelector('.video-player-wrapper').innerHTML = 
+                '<div class="error">No video ID provided. <a href="/" style="color: var(--primary-color);">Return to workouts</a></div>';
+        } else {
+            // Load video data
+            fetch(`/api/videos/${videoId}`)
+                .then(response => response.json())
+                .then(video => {
+                    if (video.error) {
+                        throw new Error('Video not found');
+                    }
+                    
+                    // Set video source
+                    const videoElement = document.querySelector('.video-player');
+                    const videoSource = document.getElementById('videoSource');
+                    videoSource.src = `/api/stream/${videoId}`;
+                    videoElement.load();
+                    
+                    // Set video metadata
+                    videoElement.dataset.videoId = videoId;
+                    
+                    // Update page title
+                    document.title = `${video.title} - The Bodyweight Gym`;
+                    
+                    // Update video info
+                    document.getElementById('videoInfo').innerHTML = `
+                        <h1 class="video-title">${video.title}</h1>
+                        <div class="video-meta">
+                            <span>${video.instructor}</span>
+                            <span>•</span>
+                            <span>${video.duration}</span>
+                            <span>•</span>
+                            <span>${video.level}</span>
+                            <span>•</span>
+                            <span>${video.views.toLocaleString()} views</span>
+                        </div>
+                        <div class="video-description">${video.description}</div>
+                    `;
+                    
+                    // Track view
+                    fetch(`/api/videos/${videoId}/view`, { method: 'POST' });
+                })
+                .catch(error => {
+                    console.error('Error loading video:', error);
+                    document.querySelector('.video-player-wrapper').innerHTML = 
+                        '<div class="error">Video not found or error loading video. <a href="/" style="color: var(--primary-color);">Return to workouts</a></div>';
+                    document.getElementById('videoInfo').innerHTML = 
+                        '<div class="error">Unable to load video information</div>';
+                });
+        }
+    </script>
+</body>
+</html> 
