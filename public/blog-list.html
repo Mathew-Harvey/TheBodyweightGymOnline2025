@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge & Insights - The Bodyweight Gym</title>
+    <meta name="description" content="Deep dives into bodyweight training, mobility, nutrition, and living a healthier life.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/Bwglogo2.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="/css/modern-style.css">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0088CC">
+</head>
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="logo-img">
+                <span class="logo-text">The Bodyweight Gym</span>
+            </a>
+            
+            <div class="nav-menu">
+                <a href="/#philosophy" class="nav-link">Philosophy</a>
+                <a href="/#workouts" class="nav-link">Workouts</a>
+                <a href="/#story" class="nav-link">Our Story</a>
+                <a href="/blog" class="nav-link active">Blog</a>
+                <a href="/#community" class="nav-link">Community</a>
+            </div>
+            
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <div class="blog-header-content">
+                <h1 class="blog-header-title">
+                    <span class="text-gradient">Knowledge & Insights</span>
+                </h1>
+                <p class="blog-header-subtitle">
+                    Deep dives into bodyweight training, mobility, nutrition, and living a healthier life.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="blog-content">
+        <div class="container">
+            <div class="blog-grid" id="blogGrid">
+                <!-- Blog posts will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-philosophy">
+                    <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="footer-logo">
+                    <p class="footer-quote">
+                        "The process is easy, it's the long-term application that challenges us."
+                    </p>
+                    <p class="footer-dedication">
+                        This website is dedicated to everyone who trained at The Bodyweight Gym 
+                        and to anyone, anywhere, who wants to build a stronger, healthier body.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <a href="/#workouts">Workouts</a>
+                        <a href="/#philosophy">Philosophy</a>
+                        <a href="/#story">Our Story</a>
+                        <a href="/blog">Blog</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank">Facebook</a>
+                        <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank">YouTube</a>
+                        <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank">Instagram</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Remember</h4>
+                        <p>No emails required</p>
+                        <p>No data collection</p>
+                        <p>No hidden costs</p>
+                        <p>Free forever</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 The Bodyweight Gym • Made with ❤️ for the world • Your privacy is sacred to us</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Load blog posts
+        async function loadBlogs() {
+            try {
+                const response = await fetch('/api/blogs');
+                const blogs = await response.json();
+                renderBlogs(blogs);
+            } catch (error) {
+                console.error('Error loading blogs:', error);
+                document.getElementById('blogGrid').innerHTML = 
+                    '<div class="error-message">Unable to load blog posts. Please try again later.</div>';
+            }
+        }
+
+        function renderBlogs(blogs) {
+            const grid = document.getElementById('blogGrid');
+            
+            grid.innerHTML = blogs.map(blog => `
+                <article class="blog-post-card ${blog.featured ? 'featured' : ''}" onclick="window.location.href='/blog/${blog.id}'">
+                    <div class="blog-post-image">
+                        <img src="${blog.image}" alt="${blog.title}" loading="lazy">
+                        <div class="blog-post-category">${blog.category}</div>
+                    </div>
+                    <div class="blog-post-content">
+                        <div class="blog-post-meta">
+                            <span class="blog-post-author">By ${blog.author}</span>
+                            <span class="blog-post-date">${formatDate(blog.date)}</span>
+                            <span class="blog-post-read-time">${blog.readTime} read</span>
+                        </div>
+                        <h2 class="blog-post-title">${blog.title}</h2>
+                        <p class="blog-post-excerpt">${blog.excerpt}</p>
+                        <div class="blog-post-link">
+                            Read More
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+
+        // Mobile menu functionality
+        document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+
+        // Load blogs on page load
+        document.addEventListener('DOMContentLoaded', loadBlogs);
+    </script>
+</body>
+</html>

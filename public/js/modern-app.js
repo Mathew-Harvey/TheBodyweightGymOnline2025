@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeFilters();
     initializeSearch();
     loadWorkouts();
+    loadHomeBlogPosts();
     animateStats();
     observeElements();
 });
@@ -365,6 +366,77 @@ function observeElements() {
     });
     
     elements.forEach(el => observer.observe(el));
+}
+
+// ===== Blog Functions =====
+async function loadHomeBlogPosts() {
+    const blogGrid = document.getElementById('homeBlogGrid');
+    if (!blogGrid) return;
+
+    try {
+        const response = await fetch('/api/blogs');
+        const blogs = await response.json();
+        
+        // Show first 6 blog posts on homepage (or all if less than 6)
+        const homeBlogPosts = blogs.slice(0, 6);
+        renderHomeBlogPosts(homeBlogPosts, blogs.length);
+    } catch (error) {
+        console.error('Error loading blog posts:', error);
+        blogGrid.innerHTML = `
+            <div class="blog-error">
+                <p>Unable to load articles. <a href="/blog">View all articles →</a></p>
+            </div>
+        `;
+    }
+}
+
+function renderHomeBlogPosts(blogs, totalCount) {
+    const blogGrid = document.getElementById('homeBlogGrid');
+    
+    blogGrid.innerHTML = blogs.map((blog, index) => `
+        <article class="blog-card ${index === 0 ? 'featured' : ''}" onclick="window.location.href='/blog/${blog.id}'" style="animation-delay: ${index * 0.1}s">
+            <div class="blog-image">
+                <img src="${blog.image}" alt="${blog.title}" loading="lazy">
+                <div class="blog-category-badge">${blog.category}</div>
+            </div>
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span class="blog-author">By ${blog.author}</span>
+                    <span class="blog-divider">•</span>
+                    <span class="blog-date">${formatBlogDate(blog.date)}</span>
+                    <span class="blog-divider">•</span>
+                    <span class="blog-read-time">${blog.readTime} read</span>
+                </div>
+                <h3 class="blog-title">${blog.title}</h3>
+                <p class="blog-excerpt">${blog.excerpt}</p>
+                <div class="blog-link">
+                    Read Article
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+        </article>
+    `).join('');
+    
+    // Add post count indicator if there are more posts
+    if (totalCount > blogs.length) {
+        const remaining = totalCount - blogs.length;
+        blogGrid.innerHTML += `
+            <div class="blog-more-indicator">
+                <p class="blog-more-text">+${remaining} more article${remaining > 1 ? 's' : ''} available</p>
+            </div>
+        `;
+    }
+}
+
+function formatBlogDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+    });
 }
 
 // ===== Add Workout Card Styles =====

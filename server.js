@@ -1285,6 +1285,165 @@ app.get('/video', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'video.html'));
 });
 
+// Blog routes
+const blogPosts = [
+  {
+    id: 'buildingfoundations',
+    title: 'Building Your Foundation',
+    author: 'Mat Harvey',
+    date: '2018-07-09',
+    excerpt: 'Basic motor patterns lay the foundations of all physical performance and health. Developing sound basic movement patterns takes persistence and often a temporary reduction in intensity.',
+    category: 'Training',
+    readTime: '3 min',
+    featured: false,
+    image: '/blogs/buildingfoundations/7232a3_61a2937ef0da41959310619a04e7c9dd~mv2.avif'
+  },
+  {
+    id: 'firstmu',
+    title: 'The Road to My First Ring Muscle Up',
+    author: 'Mat Harvey',
+    date: '2018-08-08',
+    excerpt: 'I didn\'t do gymnastics as a child, I learned all this stuff as an adult. Now I can complete a ring muscle up, cold, anytime. The process takes dedication, consistency and patience.',
+    category: 'Skills',
+    readTime: '4 min',
+    featured: true,
+    image: '/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif'
+  },
+  {
+    id: 'trainingandpain',
+    title: 'Training and Pain',
+    author: 'Mat Harvey',
+    date: '2018-08-12',
+    excerpt: 'Training should not hurt. Nope, not ever. Training should certainly be uncomfortable, often. But training should not ever cause acute or chronic pain.',
+    category: 'Recovery',
+    readTime: '5 min',
+    featured: false,
+    image: '/blogs/trainingandpain/7232a3_25e94771b1354afa9c299724982bbd0a~mv2.avif'
+  },
+  {
+    id: 'strengthtrainingandrecovery',
+    title: 'Strength Training and Recovery',
+    author: 'Mat Harvey',
+    date: '2018-08-26',
+    excerpt: 'You don\'t get strong in the gym. You get strong while you are in bed – asleep with a full stomach, otherwise known as recovery.',
+    category: 'Recovery',
+    readTime: '5 min',
+    featured: false,
+    image: '/blogs/strengthtrainingandrecovery/7232a3_d7ed5d42d3ea4f2b9c6f5ef859c228a3~mv2.avif'
+  },
+  {
+    id: 'thebodyweightteam',
+    title: 'The Bodyweight Team',
+    author: 'Mat Harvey',
+    date: '2019-05-13',
+    excerpt: 'I started The Bodyweight Gym to pursue an ideal: That everyone can develop themselves physically with simple equipment, the right education and support.',
+    category: 'Team',
+    readTime: '3 min',
+    featured: false,
+    image: '/blogs/thebodyweightteam/7232a3_af157a93d82b41bf99fd79aa85d73456~mv2.avif'
+  },
+  {
+    id: 'goalsetting',
+    title: '8 Tips for Healthy Goal Setting',
+    author: 'Mat Harvey',
+    date: '2019-07-28',
+    excerpt: 'Do you work out to get high? Does that progress towards your goals? Many people enjoy the runner\'s high but this style of training must align with your goals.',
+    category: 'Philosophy',
+    readTime: '3 min',
+    featured: false,
+    image: '/blogs/goalsetting/7232a3_50c1f3f2a31e4959a21a4caab8059798~mv2.avif'
+  },
+  {
+    id: 'fiveprinicipalsofstrengthtraining',
+    title: '5 Principles of Strength Training',
+    author: 'Mat Harvey',
+    date: '2019-10-14',
+    excerpt: 'Bodyweight strength training is a noble pursuit, it requires patience, understanding of your own body and mental fortitude.',
+    category: 'Training',
+    readTime: '4 min',
+    featured: false,
+    image: '/blogs/fiveprinicipalsofstrengthtraining/7232a3_e6014ec37bc445f58c1478ae17100901~mv2_d_3135_3740_s_4_2.avif'
+  },
+  {
+    id: 'weightliftingtokungfu',
+    title: 'From Weightlifting to Chinese Kungfu - A Dance with Corey',
+    author: 'Corey',
+    date: '2021-04-12',
+    excerpt: 'My training journey started at probably the age of 19. I started boxing, and the environment I was in, was one of a lot of young men punishing themselves.',
+    category: 'Philosophy',
+    readTime: '3 min',
+    featured: false,
+    image: '/blogs/weightliftingtokungfu/7232a3_a84400a71a0d44a19618ab82b5e834b3~mv2.avif'
+  },
+  {
+    id: 'wellrested',
+    title: 'Well Rested on the Subject?',
+    author: 'Corey',
+    date: '2021-06-10',
+    excerpt: 'How well are we sleeping? How well rested are we? What compensations are we making due to lack of sleep, poor sleep quality, irregular routine?',
+    category: 'Recovery',
+    readTime: '4 min',
+    featured: false,
+    image: '/blogs/wellrested/7232a3_048147207994444cabf2e922f5c15d04~mv2.avif'
+  },
+  {
+    id: 'suppliments',
+    title: 'Can Supplements Help? Spotlight - Creatine',
+    author: 'Carla Duncan',
+    date: '2021-08-07',
+    excerpt: 'Creatine is one of the most recognized and researched supplements to help increase training quality, intensity, strength and recovery.',
+    category: 'Nutrition',
+    readTime: '4 min',
+    featured: true,
+    image: '/blogs/suppliments/7232a3_6ae46569796f4d0ca23670a4af1377fa~mv2.avif'
+  },
+  {
+    id: 'gettingoutofcomfort',
+    title: 'Getting Out of Your Comfort Zone',
+    author: 'Coach Ana',
+    date: '2024-12-15',
+    excerpt: 'How do you get out of your comfort zone and keep growing? The answer: take the right direction and stay motivated.',
+    category: 'Philosophy',
+    readTime: '3 min',
+    featured: false,
+    image: '/blogs/gettingoutofcomfort/1.jpeg'
+  }
+];
+
+app.get('/api/blogs', (req, res) => {
+  res.json(blogPosts);
+});
+
+app.get('/api/blogs/:id', (req, res) => {
+  const blog = blogPosts.find(b => b.id === req.params.id);
+  if (!blog) {
+    return res.status(404).json({ error: 'Blog post not found' });
+  }
+  
+  // Load markdown content
+  const markdownPath = path.join(__dirname, 'public', 'blogs', blog.id, `${blog.id}.md`);
+  try {
+    const content = fs.readFileSync(markdownPath, 'utf8');
+    res.json({ ...blog, content });
+  } catch (error) {
+    console.error('Error loading blog content:', error);
+    res.status(500).json({ error: 'Error loading blog content' });
+  }
+});
+
+app.get('/blog', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'blog-list.html'));
+});
+
+app.get('/blog/:id', (req, res) => {
+  const blogId = req.params.id;
+  const blog = blogPosts.find(b => b.id === blogId);
+  if (!blog) {
+    return res.status(404).send('Blog post not found');
+  }
+  res.sendFile(path.join(__dirname, 'public', 'blog-post.html'));
+});
+
 // Serve the main app for all other routes (SPA)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

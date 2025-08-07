@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Blog Post - The Bodyweight Gym</title>
+    <meta name="description" content="Deep insights into bodyweight training, mobility, nutrition, and living a healthier life." id="pageDescription">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/Bwglogo2.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="/css/modern-style.css">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0088CC">
+</head>
+<body>
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="logo-img">
+                <span class="logo-text">The Bodyweight Gym</span>
+            </a>
+            
+            <div class="nav-menu">
+                <a href="/#philosophy" class="nav-link">Philosophy</a>
+                <a href="/#workouts" class="nav-link">Workouts</a>
+                <a href="/#story" class="nav-link">Our Story</a>
+                <a href="/blog" class="nav-link active">Blog</a>
+                <a href="/#community" class="nav-link">Community</a>
+            </div>
+            
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Blog Post Header -->
+    <section class="blog-post-header">
+        <div class="container">
+            <div class="blog-breadcrumb">
+                <a href="/blog" class="breadcrumb-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Back to Blog
+                </a>
+            </div>
+            <div class="blog-post-hero">
+                <div class="blog-post-category" id="postCategory">Category</div>
+                <h1 class="blog-post-title" id="postTitle">Loading...</h1>
+                <div class="blog-post-meta">
+                    <div class="blog-post-author" id="postAuthor">Author</div>
+                    <div class="blog-post-date" id="postDate">Date</div>
+                    <div class="blog-post-read-time" id="postReadTime">Read Time</div>
+                </div>
+                <div class="blog-post-featured-image" id="postFeaturedImage">
+                    <!-- Featured image will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <section class="blog-post-content">
+        <div class="container">
+            <article class="blog-article">
+                <div class="blog-content-wrapper" id="blogContent">
+                    <!-- Blog content will be loaded here -->
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="related-posts">
+        <div class="container">
+            <h2>More Insights</h2>
+            <div class="related-posts-grid" id="relatedPosts">
+                <!-- Related posts will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-philosophy">
+                    <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="footer-logo">
+                    <p class="footer-quote">
+                        "The process is easy, it's the long-term application that challenges us."
+                    </p>
+                    <p class="footer-dedication">
+                        This website is dedicated to everyone who trained at The Bodyweight Gym 
+                        and to anyone, anywhere, who wants to build a stronger, healthier body.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <a href="/#workouts">Workouts</a>
+                        <a href="/#philosophy">Philosophy</a>
+                        <a href="/#story">Our Story</a>
+                        <a href="/blog">Blog</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank">Facebook</a>
+                        <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank">YouTube</a>
+                        <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank">Instagram</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Remember</h4>
+                        <p>No emails required</p>
+                        <p>No data collection</p>
+                        <p>No hidden costs</p>
+                        <p>Free forever</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 The Bodyweight Gym • Made with ❤️ for the world • Your privacy is sacred to us</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get blog post ID from URL
+        const urlParts = window.location.pathname.split('/');
+        const postId = urlParts[urlParts.length - 1];
+
+        // Load blog post
+        async function loadBlogPost() {
+            try {
+                const response = await fetch(`/api/blogs/${postId}`);
+                const post = await response.json();
+                
+                if (post.error) {
+                    showError('Blog post not found');
+                    return;
+                }
+
+                renderBlogPost(post);
+                loadRelatedPosts(postId);
+            } catch (error) {
+                console.error('Error loading blog post:', error);
+                showError('Unable to load blog post. Please try again later.');
+            }
+        }
+
+        function renderBlogPost(post) {
+            // Update page title and meta
+            document.getElementById('pageTitle').textContent = `${post.title} - The Bodyweight Gym`;
+            document.getElementById('pageDescription').setAttribute('content', post.excerpt);
+            
+            // Update post header
+            document.getElementById('postCategory').textContent = post.category;
+            document.getElementById('postTitle').textContent = post.title;
+            document.getElementById('postAuthor').textContent = `By ${post.author}`;
+            document.getElementById('postDate').textContent = formatDate(post.date);
+            document.getElementById('postReadTime').textContent = `${post.readTime} read`;
+            
+            // Update featured image
+            if (post.image) {
+                document.getElementById('postFeaturedImage').innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" loading="eager">
+                `;
+            }
+            
+            // Render markdown content
+            renderMarkdownContent(post.content, post.id);
+        }
+
+        function renderMarkdownContent(content, postId) {
+            const contentDiv = document.getElementById('blogContent');
+            
+            // Simple markdown parsing
+            let html = content
+                // Headers
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+                // Bold
+                .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+                // Italic
+                .replace(/\*(.*)\*/gim, '<em>$1</em>')
+                // Paragraphs
+                .replace(/\n\n/gim, '</p><p>')
+                // Line breaks
+                .replace(/\n/gim, '<br>');
+            
+            // Wrap in paragraphs
+            html = '<p>' + html + '</p>';
+            
+            // Clean up empty paragraphs
+            html = html.replace(/<p><\/p>/gim, '');
+            html = html.replace(/<p><br><\/p>/gim, '');
+            
+            // Insert contextual images based on post ID
+            html = insertContextualImages(html, postId);
+            
+            contentDiv.innerHTML = html;
+        }
+
+        function insertContextualImages(html, postId) {
+            // Insert images contextually based on content and post ID
+            if (postId === 'gettingoutofcomfort') {
+                // Insert image after Nike mention
+                html = html.replace(
+                    /powerful three-word combination that motivates us to succeed/,
+                    `powerful three-word combination that motivates us to succeed</p>
+                    <div class="blog-image">
+                        <img src="/blogs/gettingoutofcomfort/1.jpeg" alt="Taking action and stepping out of comfort zone" loading="lazy">
+                    </div><p>`
+                );
+            } else if (postId === 'suppliments') {
+                // Insert image after creatine introduction
+                html = html.replace(
+                    /Enter \*\*Creatine Monohydrate\*\*\./,
+                    `Enter **Creatine Monohydrate**.</p>
+                    <div class="blog-image">
+                        <img src="/blogs/suppliments/7232a3_6ae46569796f4d0ca23670a4af1377fa~mv2.avif" alt="Creatine supplement and training" loading="lazy">
+                    </div><p>`
+                );
+                
+                // Insert image in dosage section
+                html = html.replace(
+                    /How Much Should I Take\?/,
+                    `</p><div class="blog-image">
+                        <img src="/blogs/suppliments/7232a3_a2a7ad48bb13447481ee84473686e90b~mv2.avif" alt="Supplement dosage and timing" loading="lazy">
+                    </div><p>How Much Should I Take?`
+                );
+            }
+            
+            return html;
+        }
+
+        async function loadRelatedPosts(currentPostId) {
+            try {
+                const response = await fetch('/api/blogs');
+                const allPosts = await response.json();
+                const relatedPosts = allPosts.filter(post => post.id !== currentPostId).slice(0, 2);
+                
+                const relatedPostsGrid = document.getElementById('relatedPosts');
+                relatedPostsGrid.innerHTML = relatedPosts.map(post => `
+                    <article class="related-post-card" onclick="window.location.href='/blog/${post.id}'">
+                        <div class="related-post-image">
+                            <img src="${post.image}" alt="${post.title}" loading="lazy">
+                        </div>
+                        <div class="related-post-content">
+                            <div class="related-post-category">${post.category}</div>
+                            <h3 class="related-post-title">${post.title}</h3>
+                            <p class="related-post-excerpt">${post.excerpt}</p>
+                            <div class="related-post-meta">
+                                <span>By ${post.author}</span>
+                                <span>${post.readTime} read</span>
+                            </div>
+                        </div>
+                    </article>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading related posts:', error);
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+
+        function showError(message) {
+            document.getElementById('blogContent').innerHTML = `
+                <div class="error-message">
+                    <h2>Oops!</h2>
+                    <p>${message}</p>
+                    <a href="/blog" class="btn-primary">Back to Blog</a>
+                </div>
+            `;
+        }
+
+        // Mobile menu functionality
+        document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+
+        // Load blog post on page load
+        document.addEventListener('DOMContentLoaded', loadBlogPost);
+    </script>
+</body>
+</html>
