@@ -1421,7 +1421,15 @@ app.get('/api/blogs/:id', (req, res) => {
   }
   
   // Load markdown content
-  const markdownPath = path.join(__dirname, 'public', 'blogs', blog.id, `${blog.id}.md`);
+  let markdownPath = path.join(__dirname, 'public', 'blogs', blog.id, `${blog.id}.md`);
+  
+  // Handle special cases where the file name doesn't match the blog ID
+  if (blog.id === 'fiveprinicipalsofstrengthtraining') {
+    markdownPath = path.join(__dirname, 'public', 'blogs', blog.id, 'fiveprincipalsofstrenghttraining.md');
+  } else if (blog.id === 'strengthtrainingandrecovery') {
+    markdownPath = path.join(__dirname, 'public', 'blogs', blog.id, 'strengthtrainingandrecover.md');
+  }
+  
   try {
     const content = fs.readFileSync(markdownPath, 'utf8');
     res.json({ ...blog, content });
@@ -1442,6 +1450,11 @@ app.get('/blog/:id', (req, res) => {
     return res.status(404).send('Blog post not found');
   }
   res.sendFile(path.join(__dirname, 'public', 'blog-post.html'));
+});
+
+// Ebook route
+app.get('/ebook', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'ebook.html'));
 });
 
 // Serve the main app for all other routes (SPA)

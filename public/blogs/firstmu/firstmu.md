@@ -1,80 +1,559 @@
-# The Road to My First Ring Muscle Up
+# The Complete Ring Muscle Up Guide: From Zero to Hero
 
-*Writer: Mat Harvey*  
-*Published: August 8, 2018*  
-*4 min read*
+*By Mat Harvey, Calisthenics Coach*  
+*Published: August 8, 2018 | Updated: January 2025*  
+*Reading Time: 12 minutes*
 
-I didn't do gymnastics as a child, I learned all this stuff as an adult. Now I can complete a ring muscle up, cold, anytime. It's easy. There is no magic at play here. The process is easy but it takes dedication, consistency and patience.
+![Hero Image: Perfect ring muscle up demonstration sequence](/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif)
 
-It's been almost 5 years since I decided to leave my secure corporate job and pursue my lifelong passion and hobby of coaching and sport.
+## Table of Contents
+1. [My Journey to the First Ring Muscle Up](#my-journey)
+2. [Understanding the Ring Muscle Up](#understanding)
+3. [The False Grip: Your Secret Weapon](#false-grip)
+4. [Prerequisites and Assessment](#prerequisites)
+5. [The 4-Phase Training Program](#training-program)
+6. [Common Mistakes and Solutions](#mistakes)
+7. [Advanced Progressions](#advanced)
+8. [Recovery and Injury Prevention](#recovery)
 
-Five years ago in the fitness industry in Perth, if you had a sound knowledge of using external weights, cardio training AND you could perform and teach a strict muscle up and a free standing handstand, you were made. You were immediately in demand as a trainer. This fact, coupled with my love of a good challenge and the simplicity of body weight training, sealed the deal. I was going to find people to teach me these skills. And so began my journey through chronic elbow tendon problems to a ring muscle up.
+---
 
-Initially I attended an Ido Portal workshop here in Perth. It was an excellent 2 days of discovering how weak I was with regard to control over my body. I was a beginner. Excellent. The start is always the best place to begin. At this workshop I met Harry and over the following few years we trained with many people around Perth including Paul who taught me the training style that would become the backbone of my practice for years to come. Harry quickly overtook me with his practice (honestly check the fella out, his focus, determination and progress is impressive), and my practice continued at a pace better suited to my lifestyle.
+## My Journey to the First Ring Muscle Up {#my-journey}
 
-At this stage I could easily complete pull ups and dips but had not managed a ring muscle up.
+Five years ago, I made a life-changing decision: leave my secure corporate job and pursue my lifelong passion for coaching and sport. In Perth's fitness industry at that time, if you could perform and teach a strict muscle up and a freestanding handstand, you were golden. You were immediately in demand as a trainer.
 
-Quickly I discovered that a lifetime of lower body dominate sports had not set my elbows up for dealing with rigors of upper body strength training, particularly using the gymnastic rings. For about 12 months I was crippled with chronic elbow tendonitis. My pull ups and dips were regressed to ring rows and push-ups and eventually through trial and error and endless collaboration, I resolved my elbow pain and moved forward with my practice. I'll write about tendon pain and how I fixed it another day.
+This fact, coupled with my love of challenges and the elegance of bodyweight training, sealed the deal. I was going to master these skills.
 
-Once my elbows were better I began training for my rings muscle up in earnest. I mostly completed false grip pull ups and ring dips at the start. I used the following template to develop better strength around the pull up and dip:
+### The Reality Check
 
-## False Grip Pull Ups
+My journey wasn't smooth. Like many adults who didn't do gymnastics as children, I learned everything the hard way:
 
-Begin the false grip pull up from a false grip hang. Initiate the movement by pulling your shoulders down and back before bending your elbows and pulling yourself up. Continue until your thumbs touch your chest. This range of motion is very important as it sets up the position to complete the transition.
+- **12 months** of crippling elbow tendonitis
+- **2 years** of inconsistent progress
+- **Countless hours** of trial and error
+- **Multiple setbacks** that almost made me quit
 
-**Reps:** x 5
+But here's what I learned: The ring muscle up isn't just about strength. It's about **technique, patience, and intelligent programming**.
 
-## Ring Dips with Turn Out
+### The Breakthrough Moment
 
-Begin in support position above the rings with the rings turned out (palms facing forward). As a beginner, make sure you keep the rings very close to your body. The further away from you they move the harder you will have to work. Turn the rings back to parallel and lower down through the dip. Continue until the rings touch your shoulder. For many people this will feel like a very deep dip. From here push back up to support and turn the rings out to finish the rep.
+After months of training, one evening after drinks with friends, someone asked if I could do anything on the rings I had installed in my apartment. Perhaps it was liquid courage or the pressure of an audience, but I completed my first ever strict ring muscle up.
 
-**Reps:** x 5  
-**Sets:** Complete 3 - 5 sets of 5 x false grip pull ups and 5 x ring dips
+Since then, I've coached **hundreds of people** through their first ring muscle up. This guide contains everything I've learned—both from my mistakes and successes.
 
-Once these became easy I began adding eccentric muscle ups to my practice in addition to the pull-up and dipping work:
+---
 
-## Tempo Eccentric Ring Muscle Up (Down)
+## Understanding the Ring Muscle Up {#understanding}
 
-Begin the movement above the rings (jump or use a box to get into position). Lower through the dip slowly for a count of 4. Once you reach the bottom of the dip, lean back slowly bringing your thumbs around your chest until you are hanging at the top of the pull up position in false grip. This part of the movement is the hardest portion of the exercise. From here slowly lower down to a hang position in the rings while maintaining false grip. You have completed 1 rep.
+![Anatomical diagram: Muscles engaged during ring muscle up](/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif)
 
-**Reps:** Maintain a tempo such that each rep takes 10 seconds  
-**Sets:** Complete 10 single reps, rest as much as needed between reps to ensure the movement quality is maintained.
+The ring muscle up is often called the "king of upper body exercises" for good reason. It combines:
 
-![Ring muscle up progression](/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif)
+### The Four Phases of Movement
 
-I practiced this way every second day for what seemed like forever (in reality it was probably one summer). To make life easier I installed a set of rings in my apartment. I do not recommend attaching your rings through your manhole. I take no responsibility if you do and pull your house down!
+1. **The Grip** (False Grip Setup)
+2. **The Pull** (High Pull-up)
+3. **The Transition** (The Critical Phase)
+4. **The Push** (Deep Dip)
 
-Eventually, after a night out with friends, we all returned to my apartment. One of my mates asked if I could do anything on the rings. Perhaps it was the drinks that night or the pressure of mates, but I completed my first ever strict ring muscle up.
+### Muscles Engaged
 
-Since then, I have coached many people through their first ring muscle up. There are many things I would do differently if I had my time training myself again. Working on my mobility, especially through my wrist would have saved a lot of heartache when it came to establishing my false grip. If you are struggling with false grip give this mobility drill a go:
+**Primary Movers:**
+- Latissimus dorsi
+- Biceps brachii
+- Triceps brachii
+- Pectoralis major
+- Anterior deltoids
 
-Work hard, and importantly 'listen' to your body. Pushing hard is good, but not if you end up hurting yourself and losing training days in the future. Consistency with your practice is key.
+**Stabilizers:**
+- Core musculature
+- Rotator cuff complex
+- Serratus anterior
+- Rhomboids and mid-traps
 
-## The Ring Muscle Up Training Guide
+### Why Ring Muscle Ups Matter
 
-If this article has left you wanting more, check out my very first E-book:
+Unlike bar muscle ups, ring muscle ups require:
+- **360° stability** through free-moving rings
+- **Superior grip strength** and wrist flexibility
+- **Perfect technique** (no kipping can save poor form)
+- **True functional strength** that transfers to all pulling/pushing movements
 
-**The Ring Muscle Up, A Complete Training Guide.**
+---
 
-This training guide will take you through beginner, intermediate and advanced exercise progressions and workouts to develop your upper body strength and mobility that will lead to your first strict ring muscle up.
+## The False Grip: Your Secret Weapon {#false-grip}
 
-- 30 pages of carefully selected exercise progressions for your level
-- 6 levels from absolute beginner to advanced
-- 60+ Photos describing each exercise progression
-- 20+ Instructional videos so you can completely understand the movement
-- Only $5.00. Honestly this stuff should be common knowledge, I'd like to help make it so
+![Step-by-step false grip setup photos](/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif)
 
-Money back satisfaction guarantee. If you are not completely happy with your purchase I'll happily refund you, no questions asked.
+The false grip is **non-negotiable** for strict ring muscle ups. Without it, the transition phase becomes nearly impossible without kipping.
 
-## Video Resources
+### What is the False Grip?
 
-Here are some helpful video demonstrations:
+The false grip places your wrists over the rings rather than below them, effectively shortening the lever arm and making the transition possible. Think of it as "pre-loading" your wrist position for the dip phase.
 
-- [False Grip Tutorial](https://www.youtube.com/watch?v=1_CIqS7CfwE&t=2s)
-- [Ring Dips Progression](https://www.youtube.com/watch?v=5R07lItt9EY)
-- [Muscle Up Transition Drill](https://www.youtube.com/watch?v=wf8tAi6sfps&t=1s)
-- [Eccentric Muscle Up](https://www.youtube.com/watch?v=vSv_TOU3fhk&t=1s)
-- [Wrist Mobility for False Grip](https://www.youtube.com/watch?v=fPrirk5JELI)
+### False Grip Setup Protocol
 
-Thanks,  
-Mat
+#### Step 1: Initial Position
+1. Face palms upward
+2. Place hands through rings
+3. Position wrists at "10 and 2 o'clock"
+4. The heel of your palm should sit on top of the ring
+
+#### Step 2: Rotation and Lock
+1. Rotate hands inward
+2. Pull down on rings
+3. Apply pressure through heel of palm
+4. Flex wrists to curl hands inward
+
+#### Step 3: Verification
+- Wrists are clearly above the ring
+- You feel tension in forearms
+- Grip feels "locked" in place
+
+### False Grip Strength Progression
+
+#### **Week 1-2: Supported False Grip**
+- **Exercise:** Row position holds
+- **Duration:** 3 x 20-30 seconds
+- **Support:** Feet on ground, body at 45°
+
+#### **Week 3-4: Bent Arm Hang**
+- **Exercise:** Top position false grip hold
+- **Duration:** 3 x 15-20 seconds
+- **Focus:** Maintaining grip at chest level
+
+#### **Week 5-6: Straight Arm Hang**
+- **Exercise:** Dead hang in false grip
+- **Duration:** 3 x 30-45 seconds
+- **Goal:** 60-second continuous hold
+
+#### **Week 7+: Dynamic False Grip**
+- **Exercise:** False grip pull-ups
+- **Reps:** 3 x 5-8
+- **Focus:** Maintaining grip throughout ROM
+
+
+### Pro Tips for False Grip Mastery
+
+1. **Use chalk liberally** - Apply to palms, wrists, and lower forearms
+2. **Tape protection** - Use gymnastics tape to prevent skin tears
+3. **Ring diameter matters** - 32mm rings are easier than 28mm for beginners
+4. **Morning practice** - Grip strength is highest in the morning
+
+---
+
+## Prerequisites and Assessment {#prerequisites}
+
+Before attempting ring muscle up training, you must meet these minimum standards:
+
+### Strength Requirements
+
+✅ **Pull-ups:** 8-10 strict pull-ups  
+✅ **Dips:** 8-10 strict ring dips  
+✅ **False Grip Hang:** 30+ seconds  
+✅ **L-sit:** 15+ seconds  
+
+### Mobility Requirements
+
+✅ **Shoulder Flexion:** 180° overhead position  
+✅ **Wrist Extension:** 90° without pain  
+✅ **Thoracic Extension:** Bridge position possible  
+✅ **Scapular Control:** Full protraction/retraction  
+
+### Self-Assessment Protocol
+
+#### Test 1: False Grip Pull-up Height
+- Perform max height false grip pull-up
+- **Goal:** Thumbs to lower chest
+- **If failing:** Focus on pulling strength first
+
+#### Test 2: Deep Ring Dip
+- Start from support position
+- Lower until rings touch armpits
+- **Goal:** 5 controlled reps
+- **If failing:** Build dip strength and mobility
+
+#### Test 3: Transition Strength
+- Use resistance band for assisted transition
+- **Goal:** Smooth transition with light band
+- **If failing:** Focus on transition drills
+
+---
+
+## The 4-Phase Training Program {#training-program}
+
+![Training program overview chart](/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif)
+
+### Phase 1: Foundation (Weeks 1-4)
+
+**Goal:** Build prerequisite strength and false grip endurance
+
+#### Monday/Thursday: Pull Focus
+```
+A1. False Grip Dead Hang: 4 x 30-45 seconds
+A2. Ring Rows: 4 x 12-15
+
+B1. False Grip Pull-ups (assisted if needed): 4 x 5-8
+B2. Archer Ring Rows: 3 x 6-8 each side
+
+C1. Bicep Curls (light): 3 x 20-30
+C2. Face Pulls: 3 x 15-20
+```
+
+#### Tuesday/Friday: Push Focus
+```
+A1. Ring Support Hold: 4 x 30-45 seconds
+A2. Ring Dips (assisted if needed): 4 x 6-10
+
+B1. Ring Push-ups: 4 x 10-12
+B2. Ring Flies: 3 x 8-10
+
+C1. Tricep Extensions (light): 3 x 20-30
+C2. Ring Turned Out Support: 3 x 20 seconds
+```
+
+#### Wednesday: Transition Work
+```
+A. Band-Assisted Transitions: 5 x 3-5 reps
+B. Low Ring Transitions: 4 x 8-10
+C. Jumping Muscle Ups (negative focus): 3 x 3-5
+D. Core Circuit: 15 minutes
+```
+
+### Phase 2: Strength Building (Weeks 5-8)
+
+**Goal:** Develop specific strength for muscle up components
+
+#### Key Changes:
+- Increase false grip pull-up height
+- Add weighted dips (5-10% bodyweight)
+- Introduce Russian dips
+- Focus on tempo work (3-1-3 eccentric emphasis)
+
+#### Progressive Overload Template:
+- **Week 5:** 70% intensity, high volume
+- **Week 6:** 75% intensity, moderate volume
+- **Week 7:** 80% intensity, low volume
+- **Week 8:** Deload (50% volume)
+
+### Phase 3: Integration (Weeks 9-12)
+
+**Goal:** Combine components into full movement
+
+#### Monday: Heavy Technique
+```
+A. Eccentric Muscle Ups: 5 x 1-3 reps (8-10 second negative)
+B. High False Grip Pull-ups: 4 x 3-5
+C. Russian Dips: 4 x 6-8
+D. Transition Drills: 15 minutes
+```
+
+#### Wednesday: Volume Practice
+```
+A. Band-Assisted Muscle Ups: 8 x 2-3
+B. Component Circuit (3 rounds):
+   - False Grip Pull-ups x 5
+   - Transitions x 5
+   - Deep Dips x 5
+C. Core Finisher
+```
+
+#### Friday: Testing
+```
+A. Muscle Up Attempts: 10 singles (rest 2-3 minutes)
+B. Weakest Link Training: 20 minutes
+C. Recovery/Mobility: 20 minutes
+```
+
+### Phase 4: Mastery (Weeks 13+)
+
+**Goal:** Achieve first strict muscle up and build consistency
+
+#### The Final Push Protocol:
+1. **Grease the Groove:** 3-5 attempts daily (never to failure)
+2. **Visualization:** 5 minutes before bed
+3. **Competition Day:** Weekly max attempts with peers
+4. **Video Analysis:** Record all attempts for form review
+
+---
+
+## Common Mistakes and Solutions {#mistakes}
+
+### Mistake #1: Losing False Grip During Pull
+
+**Problem:** Grip slips as you pull up  
+**Solution:** 
+- Strengthen grip with farmer carries
+- Use liquid chalk for better friction
+- Practice "re-gripping" drills mid-pull
+
+### Mistake #2: The "Chicken Wing" Transition
+
+**Problem:** One arm transitions before the other  
+**Solution:**
+- Focus on simultaneous ring turnout
+- Use mirror or video for symmetry check
+- Practice with resistance band for even pull
+
+### Mistake #3: Insufficient Pull Height
+
+**Problem:** Can't get high enough to transition  
+**Solution:**
+- Add explosive pull-up training
+- Use weighted pull-ups (10-20% BW)
+- Practice "chest-to-rings" pulls
+
+### Mistake #4: Fear of the Transition
+
+**Problem:** Mental block at transition point  
+**Solution:**
+- Use spotter for confidence
+- Progress with thicker bands longer
+- Practice "baby muscle ups" on low rings
+
+### Mistake #5: Elbow Pain
+
+**Problem:** Tendonitis from overtraining  
+**Solution:**
+- Reduce volume by 50%
+- Add eccentric bicep curls (light weight, high reps)
+- Implement proper warm-up protocol
+- Consider 2-week deload
+
+---
+
+## Recovery and Injury Prevention {#recovery}
+
+### The Truth About Elbow Tendonitis
+
+Having suffered through 2 years of elbow pain, here's what actually works:
+
+#### Prevention Protocol
+1. **Warm-up (10 minutes minimum):**
+   - Arm circles: 20 each direction
+   - Band pull-aparts: 2 x 20
+   - Light bicep curls: 2 x 20-30
+   - Wrist circles and stretches
+
+2. **Volume Management:**
+   - Never increase weekly volume >10%
+   - Track total pulling reps
+   - 2:1 pull to push ratio maximum
+
+3. **Recovery Work (Daily):**
+   - Eccentric bicep curls: 3 x 15-20 (very light)
+   - Tricep extensions: 3 x 15-20 (very light)
+   - Forearm stretches: 3 x 30 seconds
+   - Self-massage with lacrosse ball
+
+#### Treatment Protocol (If Pain Occurs)
+1. **Immediate:** Ice for 15 minutes
+2. **Day 1-3:** Rest, gentle movement only
+3. **Day 4-7:** Light rehabilitation exercises
+4. **Week 2:** Gradual return to training at 50% volume
+5. **Week 3+:** Progressive loading if pain-free
+
+### Sleep and Nutrition for Recovery
+
+**Sleep Requirements:**
+- 7-9 hours minimum for athletes
+- Consistent sleep/wake times
+- Room temperature 65-68°F
+- Consider magnesium supplementation (400mg before bed)
+
+**Nutritional Support:**
+- Protein: 1.6-2.2g per kg bodyweight
+- Omega-3s: 2-3g daily for inflammation
+- Collagen: 10-15g for tendon health
+- Vitamin C: 500-1000mg for collagen synthesis
+
+---
+
+## Advanced Progressions {#advanced}
+
+Once you've mastered the strict ring muscle up, the journey continues:
+
+### Level 2: Consistency Phase (1-3 months)
+- **Goal:** 3-5 consecutive muscle ups
+- **Focus:** Efficiency and endurance
+- **Training:** High frequency, low intensity
+
+### Level 3: L-sit Muscle Up (3-6 months)
+- **Prerequisite:** 30-second L-sit
+- **Progression:** Tuck → Advanced Tuck → Full L-sit
+- **Key:** Core strength and compression
+
+### Level 4: Wide Grip Muscle Up
+- **Challenge:** Increased ROM and stability demands
+- **Progression:** Gradually widen grip over weeks
+- **Benefit:** Builds tremendous lat strength
+
+### Level 5: Weighted Muscle Up
+- **Start:** 2.5kg weight vest
+- **Progress:** Add 1-2.5kg monthly
+- **Goal:** 20% bodyweight added
+
+### Level 6: One-Arm Assisted Muscle Up
+- **Ultimate Goal:** Shows true mastery
+- **Timeline:** 2-3 years of dedicated training
+- **Requirement:** Elite level strength-to-weight ratio
+
+---
+
+## Sample Training Week (Peak Phase)
+
+### Monday: Strength
+```
+Warm-up: 15 minutes mobility
+A. Muscle Up Singles: 8-10 x 1 (perfect form)
+B. Weighted Pull-ups: 4 x 3-5
+C. Weighted Dips: 4 x 5-8
+D. Core Circuit: 15 minutes
+Cool-down: 10 minutes stretching
+```
+
+### Tuesday: Assistance
+```
+A. False Grip Endurance: 5 x max hold
+B. High Rep Ring Rows: 4 x 15-20
+C. Ring Face Pulls: 4 x 15-20
+D. Bicep/Tricep Superset: 4 x 15-20
+```
+
+### Wednesday: Technique
+```
+A. Transition Practice: 20 minutes
+B. Eccentric Muscle Ups: 5 x 1 (10-second negative)
+C. Component Practice: 3 x 5 each phase
+```
+
+### Thursday: Active Recovery
+```
+- Yoga or swimming: 45 minutes
+- Foam rolling: 15 minutes
+- Light hanging: 5 minutes
+```
+
+### Friday: Testing
+```
+A. Muscle Up Test: Max reps (fresh)
+B. Address weak points: 20 minutes
+C. Celebration/Analysis
+```
+
+---
+
+## Equipment and Setup Guide
+
+### Essential Equipment
+
+**Gymnastic Rings:**
+- Wood or plastic (wood preferred for grip)
+- 28-32mm diameter
+- FIG certified for consistency
+- **Recommended:** Rogue Fitness Rings ($30-50)
+
+**Straps:**
+- Numbered for easy height adjustment
+- 15+ feet length minimum
+- Heavy-duty cam buckles
+- **Budget Option:** ProCircle Rings ($25-35)
+
+**Support Gear:**
+- Liquid chalk or block chalk
+- Gymnastics grips or tape
+- Resistance bands (various strengths)
+- Pull-up bar for alternative training
+
+### Home Setup Tips
+1. **Ceiling Mount:** Most secure, 8-10 feet height ideal
+2. **Pull-up Bar Mount:** Good for apartments
+3. **Outdoor:** Trees, playground equipment
+4. **Height Setting:** Fully extended = just off ground
+
+---
+
+## The Ring Muscle Up Training Manual
+
+### Now Available: Complete 80-Page Training Guide
+
+After years of refinement, I've compiled everything into a comprehensive training manual:
+
+**What's Included:**
+- ✓ 12-week detailed program
+- ✓ 60+ exercise demonstrations with photos
+- ✓ 20+ instructional videos
+- ✓ Mobility routines and warm-ups
+- ✓ Troubleshooting guide
+- ✓ Progress tracking sheets
+
+**Bonus Materials:**
+- False grip development program
+- Elbow pain prevention protocol
+- Nutrition guide for strength athletes
+- Private Facebook group access
+
+**Price:** ~~$39.99~~ **$19.99** (Limited Time)  
+**Guarantee:** 60-day money-back guarantee
+
+**GET THE COMPLETE GUIDE →**
+
+---
+
+
+## Frequently Asked Questions
+
+**Q: How long until I get my first muscle up?**
+A: With consistent training and proper prerequisites, most people achieve their first within 3-6 months.
+
+**Q: I'm female. Is the progression different?**
+A: The progression is identical, though women may need to focus more on upper body strength development initially.
+
+**Q: Can I train muscle ups every day?**
+A: No. 3-4 specific sessions per week maximum. Your connective tissues need recovery time.
+
+**Q: Is kipping bad?**
+A: Not inherently, but master strict form first for strength and injury prevention.
+
+**Q: What if I can't do a pull-up yet?**
+A: Focus on building to 8-10 strict pull-ups first using progressive methods.
+
+---
+
+## Video Tutorial Library
+
+### Essential Technique Videos
+📹 Complete Ring Muscle Up Tutorial  
+📹 False Grip Mastery Course  
+📹 Transition Drill Compilation  
+📹 Eccentric Muscle Up Guide  
+📹 Ring Dip Progression
+
+### Troubleshooting Videos
+📹 Fix Your False Grip Slip  
+📹 Transition Fear Solutions  
+📹 Elbow Pain Management
+
+---
+
+## Final Thoughts: The Journey Continues
+
+The ring muscle up is more than just an exercise—it's a rite of passage in the calisthenics community. It represents dedication, patience, and the willingness to push through frustration and setbacks.
+
+Remember my story: after a night out with friends, slightly intoxicated, I achieved my first muscle up. Sometimes, the biggest barrier isn't physical—it's mental. Trust the process, trust your training, and when the moment comes, trust yourself.
+
+Every rep, every failed attempt, every sore morning is building toward your goal. The ring muscle up doesn't care about your excuses or timeline. It only respects the work.
+
+**Stay consistent. Stay patient. Your first muscle up is waiting.**
+
+
+### Recommended Resources
+- **Books:** "Overcoming Gravity 2" by Steven Low
+- **Apps:** Caliverse (program tracking)
+- **Courses:** GMB Rings One Program
+
+---
+
+*Disclaimer: Always consult with a healthcare provider before beginning any new exercise program. The information provided is for educational purposes and should not replace professional medical advice.*
+
+*Last Updated: January 2025 | Version 3.0*

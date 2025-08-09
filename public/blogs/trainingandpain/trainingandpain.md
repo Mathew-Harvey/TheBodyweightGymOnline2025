@@ -16,7 +16,7 @@ It's worth noting at the start of this blog – I currently have no elbow pain! 
 
 So after a night of partying I returned home to my share house, where we had a climbing rope permanently installed in the lounge. After very little encouragement a climbing competition ensued and after exhausting myself climbing up and down the rope I noticed that my elbows hurt. As I may have been intoxicated a little at the time I thought nothing of it. Fast forward a few more weeks and I was training at my local CrossFit affiliate, knocking out an absurd number of pull ups when bang my elbow was on fire again. This was the start. As all young men know, if something hurts it's best to ignore it and push on hoping it will go away.
 
-![Elbow pain and training](/blogs/trainingandpain/7232a3_25e94771b1354afa9c299724982bbd0a~mv2.avif)
+![Elbow pain and training - the reality of ignoring pain signals](/blogs/trainingandpain/7232a3_25e94771b1354afa9c299724982bbd0a~mv2.avif)
 
 ## Total Rest is a Mistake
 
@@ -50,7 +50,7 @@ So what this actually meant to my training in daily life is that instead of knoc
 
 It was at this point I saw this graph:
 
-![Training volume and tissue adaptation](/blogs/trainingandpain/7232a3_51138d685fc94ee6b00dbb00cb4dff39~mv2.avif)
+![Training volume and tissue adaptation - understanding the science behind recovery](/blogs/trainingandpain/7232a3_51138d685fc94ee6b00dbb00cb4dff39~mv2.avif)
 
 ## Don't Ignore Light Load, High Rep Basics Work
 
