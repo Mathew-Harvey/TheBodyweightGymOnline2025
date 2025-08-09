@@ -36,6 +36,58 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Specific route for serving PDF files with proper headers
+app.get('/ebook/:filename', (req, res) => {
+  const filename = req.params.filename;
+  
+  // Only handle PDF files
+  if (!filename.endsWith('.pdf')) {
+    return res.status(404).json({ error: 'Not a PDF file' });
+  }
+  
+  const pdfPath = path.join(__dirname, 'public', 'ebook', filename);
+  
+  // Check if file exists
+  if (!fs.existsSync(pdfPath)) {
+    return res.status(404).json({ error: 'PDF not found' });
+  }
+  
+  // Set proper headers for PDF files
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', 'inline; filename="' + filename + '"');
+  res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD');
+  res.setHeader('Access-Control-Allow-Headers', 'Range');
+  
+  // Handle range requests for PDF streaming
+  const stat = fs.statSync(pdfPath);
+  const fileSize = stat.size;
+  const range = req.headers.range;
+  
+  if (range) {
+    const parts = range.replace(/bytes=/, "").split("-");
+    const start = parseInt(parts[0], 10);
+    const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+    const chunksize = (end - start) + 1;
+    const file = fs.createReadStream(pdfPath, { start, end });
+    
+    res.writeHead(206, {
+      'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+      'Accept-Ranges': 'bytes',
+      'Content-Length': chunksize,
+      'Content-Type': 'application/pdf',
+    });
+    file.pipe(res);
+  } else {
+    res.writeHead(200, {
+      'Content-Length': fileSize,
+      'Content-Type': 'application/pdf',
+    });
+    fs.createReadStream(pdfPath).pipe(res);
+  }
+});
+
 // Video metadata - Based on actual video files in public/videos
 const videoDatabase = [
   {

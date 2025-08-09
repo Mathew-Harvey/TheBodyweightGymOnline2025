@@ -158,63 +158,138 @@ async function viewEbook(ebookId) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Show loading state
-    const pdfViewerContainer = document.querySelector('.pdf-viewer-container');
-    pdfViewerContainer.innerHTML = `
-        <div class="pdf-loading">
-            <div class="loading-spinner"></div>
-            <p>Loading PDF...</p>
-        </div>
-    `;
+    // Check if PDF.js is available
+    if (typeof pdfjsLib === 'undefined') {
+        // PDF.js not loaded, show fallback
+        const pdfViewerContainer = document.querySelector('.pdf-viewer-container');
+        if (pdfViewerContainer) {
+            pdfViewerContainer.innerHTML = `
+                <div class="pdf-error">
+                    <h3>PDF Viewer Not Available</h3>
+                    <p>PDF.js library is not loaded. You can download the ebook to view it on your device.</p>
+                    <button class="btn-primary" onclick="downloadEbook()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Download Ebook
+                    </button>
+                </div>
+            `;
+        }
+        return;
+    }
 
     // Load PDF
     try {
         await loadPdf(ebook.filepath);
     } catch (error) {
         console.error('Error loading PDF:', error);
-        // Show error message and provide download option
-        pdfViewerContainer.innerHTML = `
-            <div class="pdf-error">
-                <h3>Unable to load PDF viewer</h3>
-                <p>The PDF viewer is temporarily unavailable. You can still download the ebook to view it on your device.</p>
-                <button class="btn-primary" onclick="downloadEbook()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
-                    </svg>
-                    Download Ebook
-                </button>
-            </div>
-        `;
+        // Error handling is now done in loadPdf function
     }
 }
 
 // ===== Load PDF =====
 async function loadPdf(filepath) {
     try {
+        console.log('Loading PDF from:', filepath);
+        
         // Check if PDF.js is loaded
         if (typeof pdfjsLib === 'undefined') {
             throw new Error('PDF.js library not loaded');
         }
         
-        const loadingTask = pdfjsLib.getDocument(filepath);
+        // Show loading state
+        const pdfViewerContainer = document.querySelector('.pdf-viewer-container');
+        if (pdfViewerContainer) {
+            pdfViewerContainer.innerHTML = `
+                <div class="pdf-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading PDF...</p>
+                </div>
+            `;
+        }
+        
+        // Configure PDF.js worker if not already configured
+        if (!pdfjsLib.GlobalWorkerOptions.workerSrc) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+        
+        // Load the PDF with proper error handling
+        const loadingTask = pdfjsLib.getDocument({
+            url: filepath,
+            httpHeaders: {
+                'Accept': 'application/pdf',
+                'Cache-Control': 'no-cache'
+            },
+            withCredentials: false
+        });
+        
+        console.log('PDF loading task created');
         currentPdf = await loadingTask.promise;
+        console.log('PDF loaded successfully, pages:', currentPdf.numPages);
+        
         totalPages = currentPdf.numPages;
         
         // Replace loading state with the PDF viewer
-        const pdfViewerContainer = document.querySelector('.pdf-viewer-container');
-        pdfViewerContainer.innerHTML = `<canvas id="pdfCanvas"></canvas>`;
+        if (pdfViewerContainer) {
+            pdfViewerContainer.innerHTML = `<canvas id="pdfCanvas"></canvas>`;
+        }
         
         // Update page info
-        document.getElementById('totalPages').textContent = totalPages;
-        document.getElementById('currentPage').textContent = currentPage;
+        const totalPagesElement = document.getElementById('totalPages');
+        const currentPageElement = document.getElementById('currentPage');
+        if (totalPagesElement) totalPagesElement.textContent = totalPages;
+        if (currentPageElement) currentPageElement.textContent = currentPage;
         
         await renderPage(currentPage);
         updateNavigationButtons();
     } catch (error) {
         console.error('Error loading PDF:', error);
+        
+        // Show user-friendly error message
+        const pdfViewerContainer = document.querySelector('.pdf-viewer-container');
+        if (pdfViewerContainer) {
+            pdfViewerContainer.innerHTML = `
+                <div class="pdf-error">
+                    <h3>Unable to load PDF viewer</h3>
+                    <p>The PDF viewer is temporarily unavailable. This could be due to:</p>
+                    <ul>
+                        <li>Network connectivity issues</li>
+                        <li>PDF file being temporarily unavailable</li>
+                        <li>Browser compatibility issues</li>
+                    </ul>
+                    <p>You can still download the ebook to view it on your device.</p>
+                    <button class="btn-primary" onclick="downloadEbook()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Download Ebook
+                    </button>
+                    <button class="btn-secondary" onclick="retryLoadPdf()" style="margin-left: 10px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                            <path d="M21 3v5h-5"/>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                            <path d="M3 21v-5h5"/>
+                        </svg>
+                        Try Again
+                    </button>
+                </div>
+            `;
+        }
+        
         throw error;
+    }
+}
+
+// ===== Retry PDF Loading =====
+async function retryLoadPdf() {
+    if (currentEbook) {
+        await viewEbook(currentEbook.id);
     }
 }
 
