@@ -119,9 +119,9 @@ function playIntroVideo() {
         const src = iframe.src;
         iframe.src = src.includes('?') ? src + '&autoplay=1' : src + '?autoplay=1';
         
-        // Hide overlay
+        // Hide overlay with smooth transition
         if (overlay) {
-            overlay.style.display = 'none';
+            overlay.classList.add('hidden');
         }
     }
 }

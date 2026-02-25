@@ -12,14 +12,14 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Main Styles -->
     <link rel="stylesheet" href="/css/modern-style.css">
     
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0088CC">
+    <meta name="theme-color" content="#0a0f1a">
 </head>
 <body>
     <!-- Ambient Background -->
@@ -56,87 +56,98 @@
         </nav>
 
         <div class="hero-content">
-            <!-- Hero Logo - Prominent and Central -->
-            <div class="hero-logo-section">
-                <div class="hero-logo-container">
-                    <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="hero-main-logo">
-                </div>
-                <h1 class="hero-brand-name">
-                    <span class="text-gradient">The Bodyweight Gym</span>
-                </h1>
-            </div>
-            
-            <!-- Hero Badge -->
-            <div class="hero-badge">
-                <span class="pulse-dot"></span>
-                Completely Free • No Catch • No Emails
+            <!-- Clean Hero - Elite UI/UX -->
+            <div class="hero-badge-clean">
+                <span class="badge-pill">🎯 100% Free Forever</span>
             </div>
             
             <!-- Hero Title -->
-            <div class="hero-title-section">
-                <h2 class="hero-title">
-                    <span class="text-gradient-alt">Your Body.</span><br>
-                    <span class="text-gradient-alt">Your Journey.</span>
-                </h2>
-                <p class="hero-subtitle">No Equipment Required.</p>
-            </div>
+            <h1 class="hero-title-clean">
+                Your Body.<br>
+                <span class="text-gradient">Your Journey.</span>
+            </h1>
             
             <!-- Hero Description -->
-            <p class="hero-description">
-                47+ hours of professional bodyweight workouts, completely free. 
-                No pop-ups, no data collection, no email required. 
-                Simple, accessible fitness education for everyone.
+            <p class="hero-description-clean">
+                47+ hours of professional bodyweight workouts. No ads. No sign-up. No catch.<br>
+                Just pure fitness education — accessible to everyone, forever.
             </p>
             
-            <!-- Hero Actions -->
-            <div class="hero-actions">
-                <button class="btn-primary btn-large" onclick="scrollToWorkouts()">
-                    Start Your Journey
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <!-- Hero Actions - Clean & Focused -->
+            <div class="hero-actions-clean">
+                <a href="#workouts" class="btn-primary-clean">
+                    Start Free Training
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
-                </button>
-                <button class="btn-ghost btn-large" onclick="playIntroVideo()">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5 3 19 12 5 21"></polygon>
-                    </svg>
-                    Watch Our Story (5 min)
-                </button>
+                </a>
             </div>
             
-            <!-- Hero Video - Now embedded inline -->
-            <div class="hero-video-section">
-                <div class="video-frame" id="introVideoFrame">
-                    <iframe 
-                        src="https://www.youtube.com/embed/IOpUVPaixjA?enablejsapi=1&modestbranding=1&rel=0" 
-                        title="The Bodyweight Gym Story"
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                    <div class="video-overlay">
-                        <button class="play-overlay-btn" onclick="playIntroVideo()">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <polygon points="5 3 19 12 5 21"></polygon>
-                            </svg>
-                        </button>
+            <!-- YouTube Video Embed - Facade Pattern -->
+            <div class="youtube-embed-section">
+                <div class="youtube-facade" id="youtubeFacade" onclick="loadYouTubeVideo()">
+                    <img src="https://img.youtube.com/vi/IOpUVPaixjA/maxresdefault.jpg" alt="The Bodyweight Gym Story" class="youtube-thumbnail">
+                    <div class="youtube-play-button">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21"></polygon>
+                        </svg>
                     </div>
+                    <div class="youtube-label">Watch Our Story (5 min)</div>
+                </div>
+                <div class="youtube-iframe-container" id="youtubeContainer"></div>
+            </div>
+            
+            <script>
+                function loadYouTubeVideo() {
+                    const container = document.getElementById('youtubeContainer');
+                    const facade = document.getElementById('youtubeFacade');
+                    container.innerHTML = '<iframe src="https://www.youtube.com/embed/IOpUVPaixjA?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                    facade.style.display = 'none';
+                }
+            </script>
+            
+            <!-- Social Proof Stats -->
+            <div class="hero-stats-clean">
+                <div class="stat-clean">
+                    <span class="stat-number-clean">47+</span>
+                    <span class="stat-label-clean">Hours of Workouts</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-clean">
+                    <span class="stat-number-clean">79</span>
+                    <span class="stat-label-clean">Professional Classes</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-clean">
+                    <span class="stat-number-clean">0</span>
+                    <span class="stat-label-clean">Cost to You</span>
                 </div>
             </div>
             
-            <!-- Hero Stats -->
-            <div class="hero-stats">
-                <div class="stat-card">
-                    <div class="stat-number" data-count="47">0</div>
-                    <div class="stat-label">Hours of Content</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-count="79">0</div>
-                    <div class="stat-label">Workouts</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" data-count="100">0</div>
-                    <div class="stat-label">% Free Forever</div>
+            <!-- Ebook CTAs - Elegant & Non-intrusive -->
+            <div class="ebook-cta-clean">
+                <p class="ebook-cta-label-clean">Take your training further with our guided programs:</p>
+                <div class="ebook-cards-clean">
+                    <a href="https://muscleup-landing.onrender.com" target="_blank" class="ebook-card-clean muscle-up">
+                        <div class="ebook-card-content">
+                            <span class="ebook-emoji">💪</span>
+                            <div class="ebook-text">
+                                <span class="ebook-name">Ring Muscle Up</span>
+                                <span class="ebook-desc">Complete guide + tracker app</span>
+                            </div>
+                            <span class="ebook-price-clean">$19</span>
+                        </div>
+                    </a>
+                    <a href="https://handstand-landingpage.onrender.com" target="_blank" class="ebook-card-clean handstand">
+                        <div class="ebook-card-content">
+                            <span class="ebook-emoji">🤸</span>
+                            <div class="ebook-text">
+                                <span class="ebook-name">Freestanding Handstand</span>
+                                <span class="ebook-desc">Complete guide + tracker app</span>
+                            </div>
+                            <span class="ebook-price-clean">$19</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
