@@ -443,19 +443,19 @@ function formatBlogDate(dateString) {
 const workoutStyles = `
 <style>
 .workout-card {
-    background: white;
-    border-radius: 1rem;
+    background: #161d2f;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.04);
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s;
     opacity: 0;
     transform: translateY(20px);
 }
 
 .workout-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+    border-color: #2d8bc9;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 .workout-thumbnail {
@@ -474,57 +474,58 @@ const workoutStyles = `
     font-size: 3rem;
     font-weight: 700;
     color: white;
-    opacity: 0.5;
+    opacity: 0.3;
 }
 
 .workout-duration {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.25rem 0.75rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.2rem 0.6rem;
     background: rgba(0, 0, 0, 0.7);
     color: white;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .workout-play {
     position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    width: 48px;
-    height: 48px;
-    background: white;
-    border-radius: 50%;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    width: 44px;
+    height: 44px;
+    background: #2d8bc9;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.3s;
     opacity: 0;
 }
 
 .workout-card:hover .workout-play {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .workout-play svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     margin-left: 2px;
-    fill: #0088CC;
+    fill: white;
 }
 
 .workout-info {
-    padding: 1.5rem;
+    padding: 1.25rem;
 }
 
 .workout-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #1A1A1C;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #e2e8f0;
     margin-bottom: 0.5rem;
     line-height: 1.3;
 }
@@ -537,38 +538,41 @@ const workoutStyles = `
 }
 
 .workout-instructor {
-    font-size: 0.875rem;
-    color: #71717A;
+    font-size: 0.8rem;
+    color: #94a3b8;
 }
 
 .workout-level {
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
 }
 
 .level-beginner,
 .level-all-levels {
-    background: #E8F5E9;
-    color: #2E7D32;
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .level-intermediate {
-    background: #FFF3E0;
-    color: #E65100;
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
 .level-advanced {
-    background: #FFEBEE;
-    color: #C62828;
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 .workout-description {
-    font-size: 0.875rem;
-    color: #71717A;
+    font-size: 0.82rem;
+    color: #94a3b8;
     line-height: 1.5;
 }
 
@@ -585,6 +589,14 @@ const workoutStyles = `
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@media (max-width: 480px) {
+    .workout-thumbnail { height: 180px; }
+    .workout-info { padding: 1rem; }
+    .workout-title { font-size: 0.95rem; }
+    .workout-description { font-size: 0.8rem; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+    .workout-meta { flex-wrap: wrap; gap: 0.5rem; }
 }
 </style>
 `;

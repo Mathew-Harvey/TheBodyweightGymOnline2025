@@ -4,7 +4,7 @@
 *Published: July 9, 2018 | Updated: January 2025*  
 *Reading Time: 8 minutes*
 
-![Hero Image: Athlete performing foundational movements in outdoor training space](/blogs/buildingfoundations/7232a3_f9b192cafbf04b1799a61050f76517d0~mv2.avif)
+![Hero Image: Athlete performing foundational movements in outdoor training space](/images/guides/muscleup/ringhang.png)
 
 ## Introduction: Why Foundations Matter More Than Ever
 
@@ -29,7 +29,7 @@ These three positions form the bedrock of human movement. Together, they develop
 
 ## The Hollow Body: Your Core's Secret Weapon
 
-![Demonstration: Proper hollow body position with progression stages](/blogs/buildingfoundations/7232a3_61a2937ef0da41959310619a04e7c9dd~mv2.avif)
+![Demonstration: Proper hollow body position with progression stages](/images/guides/muscleup/fgringhang.png)
 
 The hollow body position is far more than just another ab exercise. It's an isometric compound exercise that engages the rectus abdominis, transverse abdominis, obliques, hip flexors, and erector spinae muscles, creating full-body tension that transfers to nearly every athletic movement.
 
@@ -74,7 +74,7 @@ The hollow body hold forces your entire core to become stronger, providing a bru
 
 ## The Deep Squat: Reclaiming Your Birthright
 
-![Comparison: Natural toddler squat vs adult compensation patterns](/blogs/buildingfoundations/7232a3_fb372b39a6eb4632bb8ea5c0077051d3~mv2.avif)
+![Comparison: Natural toddler squat vs adult compensation patterns](/images/guides/muscleup/bardiptop.png)
 
 For most of human history, the squat was our natural resting position. Today, exercises focusing on the legs and abdomen such as squats are recommended to increase leg and core strength, reducing the risk of falling in elderly populations.
 
@@ -133,7 +133,7 @@ Recent research shows that maintaining squat mobility:
 
 ## The Active Hang: Bulletproofing Your Shoulders
 
-![Progression series: From passive to active hang positions](/blogs/buildingfoundations/7232a3_ae1f7705d23044b1bf6c7287befdd48c~mv2.avif)
+![Progression series: From passive to active hang positions](/images/guides/muscleup/fgringstretch.png)
 
 Shoulder dysfunction affects up to 70% of adults at some point in their lives. The solution? Return to our evolutionary roots through hanging.
 

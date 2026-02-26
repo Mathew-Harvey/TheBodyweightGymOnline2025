@@ -8,7 +8,7 @@ As human beings, we love seeing ourselves get better, achieve small victories, a
 
 We often avoid change through the fear that this change will be for the worse. We tend to stay in our comfort zone as we know it as our safe place. We even are designed biologically to do the minimum, just to save up our energy! Ironically, our survival instinct makes us lazy.
 
-![Stepping out of your comfort zone - the first step to growth](/blogs/gettingoutofcomfort/1.jpeg)
+![Stepping out of your comfort zone - the first step to growth](/images/guides/muscleup/ringpullupscapdownmiddle.png)
 
 So how do we get out of our comfort zone? Here's a little tip. You may be familiar with Nike's slogan: Just do it. Well, the Just Do It campaign revolves around a powerful three-word combination that motivates us to succeed.
 

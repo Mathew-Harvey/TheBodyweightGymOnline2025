@@ -6,13 +6,13 @@
 
 Bodyweight strength training is a noble pursuit, it requires patience, understanding of your own body and mental fortitude. It's a pursuit with no end, many moments of frustration and anguish and many moments of achievement and fulfillment.
 
-![The foundation of bodyweight strength training - building from the ground up](/blogs/fiveprinicipalsofstrengthtraining/7232a3_8df751af1b3749aab9a2351f3ec88db2~mv2.avif)
+![The foundation of bodyweight strength training - building from the ground up](/images/guides/muscleup/ringpulluptop.png)
 
 Many cultures throughout history - The Ancient Greek spartan warriors, the Roman gladiators, Mongolian horse warriors, Indian club swingers and Kung fu monks and now - you. (among many others) - all use bodyweight strength training to better themselves physically, emotionally and mentally.
 
 I want to tell you about my experience with bodyweight training.
 
-![Historical strength training methods across cultures](/blogs/fiveprinicipalsofstrengthtraining/7232a3_eab74e907cf84c54b0250425eb20a459~mv2.avif)
+![Historical strength training methods across cultures](/images/guides/muscleup/ringhang.png)
 
 When I first started my fitness journey my goals were simple:
 
@@ -42,7 +42,7 @@ Each movement can be scaled to suit your current level and ability, not sure how
 
 ### Generalise before you specify
 
-![Building a solid foundation before advancing to specific skills](/blogs/fiveprinicipalsofstrengthtraining/7232a3_ee70a934e8a445e08550242f9d96a9f3~mv2.avif)
+![Building a solid foundation before advancing to specific skills](/images/guides/handstand/hollowbodyAdv.png)
 
 Before you start getting to the cool stuff you've got to work the basics. Every house needs a good foundation before it gets a roof, wall or a chandelier. The purpose of functional training after all - to improve the function of your entire body. The athlete who generalises first has a better base to work from and is going to be more resilient as a whole.
 
@@ -80,7 +80,7 @@ Life doesn't really care about your plan.
 
 You might get sick or exhausted, you might have your mums birthday you forgot to put down. What happens when you put too much pressure on yourself and something falls through?
 
-![Adapting your training to life's challenges and changes](/blogs/fiveprinicipalsofstrengthtraining/7232a3_bc52c9bedab444a98e842941e4b7ad72~mv2_d_6000_4000_s_4_2.avif)
+![Adapting your training to life's challenges and changes](/images/guides/muscleup/bardiptop.png)
 
 You need to be able to adapt. Take a break if you need one, maybe do a different exercise if you feel like it. Maybe you today you just feel like having a play! I'm telling you do it.
 
@@ -90,5 +90,5 @@ Eat when your hungry, sleep when your tired. Being adaptable is about being able
 
 The limitations of your strength are only made by the ones you decide to create! The only absolutely necessary aspect of strength training is action, so get out there and do some exercise!
 
-![The journey of strength training - continuous improvement and growth](/blogs/fiveprinicipalsofstrengthtraining/7232a3_e6014ec37bc445f58c1478ae17100901~mv2_d_3135_3740_s_4_2.avif)
+![The journey of strength training - continuous improvement and growth](/images/guides/muscleup/ringmu1.png)
 

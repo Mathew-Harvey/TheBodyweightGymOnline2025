@@ -8,7 +8,7 @@ I started The Bodyweight Gym to pursue an ideal: That everyone can develop thems
 
 ## Mat - Founder, Director and Coach
 
-![Mat Harvey - Founder and Director of The Bodyweight Gym](/blogs/thebodyweightteam/7232a3_2e9ccef536b64011936acbce4013196a~mv2.avif)
+![Mat Harvey - Founder and Director of The Bodyweight Gym](/images/guides/muscleup/ringmu1.png)
 
 I took my first ever coaching job at the age of 15, for 20 years coaching has been a weekend hobby of passion. 5 years ago I left my corporate job with a clear vision - to help people move and feel better. Opening my own studio gym has given me the opportunity to work with larger groups of people.
 
@@ -24,7 +24,7 @@ I have a bachelor of science with a double major in human movement and marine sc
 
 ## Maisie Hughes - Strength and mobility coach, Lyra performance and coaching
 
-![Maisie Hughes - Strength and mobility coach](/blogs/thebodyweightteam/7232a3_af157a93d82b41bf99fd79aa85d73456~mv2.avif)
+![Maisie Hughes - Strength and mobility coach](/images/guides/muscleup/coverpage.png)
 
 Maisie brings with her 5 years of experience, building her own strength, mobility and artistry. From developing her first chin up to making ring routines look easy, Maisie teaches bodyweight and mobility classes and runs her own lyra and circus aerial classes in between preparing and performing her circus art.
 
@@ -40,7 +40,7 @@ Maisie loves to share her passion for the circus and giving people the knowledge
 
 ## Nevio Roselli - Strength and mobility coach
 
-![Nevio Roselli - Strength and mobility coach](/blogs/thebodyweightteam/7232a3_7c0f55056cb548b59e088ac6b524fb93~mv2_d_3716_3293_s_4_2.avif)
+![Nevio Roselli - Strength and mobility coach](/images/guides/handstand/freestandinghandstand1.png)
 
 Nevio Roselli is a strength and nutrition coach certified through the International Sport Science Association. His mission is to help people achieve a healthier lifestyle through nutrition and science based training. Over the past 10 years he has undergone multiple certifications and seminars relating to the topics of strength, mobility, nutrition, injury management and sport performance.
 
@@ -55,7 +55,7 @@ Since moving to Perth in 2014, he started to become passionate about Handstand a
 
 ## Oscar Harris - Calisthenics and Strength Coach
 
-![Oscar Harris - Calisthenics and Strength Coach](/blogs/thebodyweightteam/7232a3_f48a6d2cae2b466eb44d462bed600792~mv2_d_1367_2048_s_2.avif)
+![Oscar Harris - Calisthenics and Strength Coach](/images/guides/handstand/handstand01.png)
 
 Starting his fitness journey as an actor, Oscar Harris developed a passion for movement, physicality and fitness. Oscar has trained with the Kavadlo brothers under their progressive calisthenics certification and has gone on to develop his calisthenics and bodyweight practice over the last 7 years.
 

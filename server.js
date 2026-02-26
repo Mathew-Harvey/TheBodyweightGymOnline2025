@@ -1351,7 +1351,7 @@ const blogPosts = [
     category: 'Training',
     readTime: '3 min',
     featured: false,
-    image: '/blogs/buildingfoundations/7232a3_61a2937ef0da41959310619a04e7c9dd~mv2.avif'
+    image: '/images/guides/muscleup/ringhang.png'
   },
   {
     id: 'firstmu',
@@ -1362,7 +1362,7 @@ const blogPosts = [
     category: 'Skills',
     readTime: '4 min',
     featured: true,
-    image: '/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif'
+    image: '/images/guides/muscleup/ringmu1.png'
   },
   {
     id: 'trainingandpain',
@@ -1373,7 +1373,7 @@ const blogPosts = [
     category: 'Recovery',
     readTime: '5 min',
     featured: false,
-    image: '/blogs/trainingandpain/7232a3_25e94771b1354afa9c299724982bbd0a~mv2.avif'
+    image: '/images/guides/handstand/hang.png'
   },
   {
     id: 'strengthtrainingandrecovery',
@@ -1384,7 +1384,7 @@ const blogPosts = [
     category: 'Recovery',
     readTime: '5 min',
     featured: false,
-    image: '/blogs/strengthtrainingandrecovery/7232a3_d7ed5d42d3ea4f2b9c6f5ef859c228a3~mv2.avif'
+    image: '/images/guides/handstand/hollowbodyAdv.png'
   },
   {
     id: 'thebodyweightteam',
@@ -1395,7 +1395,7 @@ const blogPosts = [
     category: 'Team',
     readTime: '3 min',
     featured: false,
-    image: '/blogs/thebodyweightteam/7232a3_af157a93d82b41bf99fd79aa85d73456~mv2.avif'
+    image: '/images/guides/muscleup/coverpage.png'
   },
   {
     id: 'goalsetting',
@@ -1406,7 +1406,7 @@ const blogPosts = [
     category: 'Philosophy',
     readTime: '3 min',
     featured: false,
-    image: '/blogs/goalsetting/7232a3_50c1f3f2a31e4959a21a4caab8059798~mv2.avif'
+    image: '/images/guides/handstand/freestandinghandstand1.png'
   },
   {
     id: 'fiveprinicipalsofstrengthtraining',
@@ -1417,7 +1417,7 @@ const blogPosts = [
     category: 'Training',
     readTime: '4 min',
     featured: false,
-    image: '/blogs/fiveprinicipalsofstrengthtraining/7232a3_e6014ec37bc445f58c1478ae17100901~mv2_d_3135_3740_s_4_2.avif'
+    image: '/images/guides/muscleup/ringpulluptop.png'
   },
   {
     id: 'weightliftingtokungfu',
@@ -1428,7 +1428,7 @@ const blogPosts = [
     category: 'Philosophy',
     readTime: '3 min',
     featured: false,
-    image: '/blogs/weightliftingtokungfu/7232a3_a84400a71a0d44a19618ab82b5e834b3~mv2.avif'
+    image: '/images/guides/muscleup/ringfalsegrip.png'
   },
   {
     id: 'wellrested',
@@ -1439,7 +1439,7 @@ const blogPosts = [
     category: 'Recovery',
     readTime: '4 min',
     featured: false,
-    image: '/blogs/wellrested/7232a3_048147207994444cabf2e922f5c15d04~mv2.avif'
+    image: '/images/guides/handstand/chesttowallhandstand01.png'
   },
   {
     id: 'suppliments',
@@ -1450,7 +1450,7 @@ const blogPosts = [
     category: 'Nutrition',
     readTime: '4 min',
     featured: true,
-    image: '/blogs/suppliments/7232a3_6ae46569796f4d0ca23670a4af1377fa~mv2.avif'
+    image: '/images/guides/handstand/finpushups.png'
   },
   {
     id: 'gettingoutofcomfort',
@@ -1461,7 +1461,7 @@ const blogPosts = [
     category: 'Philosophy',
     readTime: '3 min',
     featured: false,
-    image: '/blogs/gettingoutofcomfort/1.jpeg'
+    image: '/images/guides/muscleup/ringpullupscapdownmiddle.png'
   }
 ];
 

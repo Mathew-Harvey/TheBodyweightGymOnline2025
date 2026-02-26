@@ -4,7 +4,7 @@
 *Published: August 8, 2018 | Updated: January 2025*  
 *Reading Time: 12 minutes*
 
-![Hero Image: Perfect ring muscle up demonstration sequence](/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif)
+![Hero Image: Perfect ring muscle up demonstration sequence](/images/guides/muscleup/ringmu1.png)
 
 ## Table of Contents
 1. [My Journey to the First Ring Muscle Up](#my-journey)
@@ -45,7 +45,7 @@ Since then, I've coached **hundreds of people** through their first ring muscle 
 
 ## Understanding the Ring Muscle Up {#understanding}
 
-![Anatomical diagram: Muscles engaged during ring muscle up](/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif)
+![Anatomical diagram: Muscles engaged during ring muscle up](/images/guides/muscleup/ringmu1.png)
 
 The ring muscle up is often called the "king of upper body exercises" for good reason. It combines:
 
@@ -83,7 +83,7 @@ Unlike bar muscle ups, ring muscle ups require:
 
 ## The False Grip: Your Secret Weapon {#false-grip}
 
-![Step-by-step false grip setup photos](/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif)
+![Step-by-step false grip setup photos](/images/guides/muscleup/ringmu1.png)
 
 The false grip is **non-negotiable** for strict ring muscle ups. Without it, the transition phase becomes nearly impossible without kipping.
 
@@ -182,7 +182,7 @@ Before attempting ring muscle up training, you must meet these minimum standards
 
 ## The 4-Phase Training Program {#training-program}
 
-![Training program overview chart](/blogs/firstmu/7232a3_0e1c3d96773a4825a139d995c4e2f581~mv2.avif)
+![Training program overview chart](/images/guides/muscleup/ringmu1.png)
 
 ### Phase 1: Foundation (Weeks 1-4)
 

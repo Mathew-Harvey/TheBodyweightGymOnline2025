@@ -4,7 +4,7 @@
 *Published: August 26, 2018 | Updated: January 2025*  
 *Reading Time: 10 minutes*
 
-![Hero Image: Athlete in recovery phase - ice bath, sleep, nutrition collage](/blogs/strengthtrainingandrecovery/7232a3_d7ed5d42d3ea4f2b9c6f5ef859c228a3~mv2.avif)
+![Hero Image: Athlete in recovery phase - ice bath, sleep, nutrition collage](/images/guides/handstand/hollowbodyAdv.png)
 
 ## The Ultimate Truth About Strength
 
@@ -28,7 +28,7 @@ This isn't just a catchy phrase—it's backed by decades of sports science resea
 
 ## The Recovery Equation {#recovery-equation}
 
-![Infographic: Energy balance system showing credits and debits](/blogs/strengthtrainingandrecovery/7232a3_6259c7b555bf443ab782a4886bbd1a89~mv2.avif)
+![Infographic: Energy balance system showing credits and debits](/images/guides/muscleup/ringpulluptop.png)
 
 Think of your body as having an energy bank account. Every activity either deposits or withdraws from this account.
 
@@ -67,7 +67,7 @@ Research shows that athletes sleeping less than 7 hours per night are **1.7 time
 
 ## Sleep: Your #1 Performance Enhancer {#sleep}
 
-![Chart: Sleep stages and recovery hormones throughout the night](/blogs/strengthtrainingandrecovery/7232a3_6635daf10da742698fc0cd8e5492641b~mv2.avif)
+![Chart: Sleep stages and recovery hormones throughout the night](/images/guides/handstand/chesttowallhandstand01.png)
 
 ### The Science of Athletic Sleep
 
@@ -149,7 +149,7 @@ Base Sleep (7-8 hours)
 
 ## Nutrition for Recovery {#nutrition}
 
-![Meal timing chart for optimal recovery](/blogs/strengthtrainingandrecovery/7232a3_b4abe1d641f84b0c860358ba84e786e9~mv2_d_2048_1367_s_2.avif)
+![Meal timing chart for optimal recovery](/images/guides/muscleup/bardiptop.png)
 
 ### The Recovery Nutrition Timeline
 
@@ -216,7 +216,7 @@ Calories: Maintenance + 200-500 for muscle growth
 
 ## Stress Management {#stress}
 
-![Stress response and recovery chart](/blogs/strengthtrainingandrecovery/7232a3_6259c7b555bf443ab782a4886bbd1a89~mv2.avif)
+![Stress response and recovery chart](/images/guides/muscleup/ringpulluptop.png)
 
 ### Understanding Stress Types
 
@@ -261,7 +261,7 @@ Chronic elevated cortisol leads to:
 
 ## Active Recovery Strategies {#active-recovery}
 
-![Active recovery activities and their benefits](/blogs/strengthtrainingandrecovery/7232a3_6635daf10da742698fc0cd8e5492641b~mv2.avif)
+![Active recovery activities and their benefits](/images/guides/handstand/chesttowallhandstand01.png)
 
 ### The Active Recovery Spectrum
 

@@ -6,7 +6,7 @@
 
 Cute title but a pretty heavy subject. How well are we sleeping? How well rested are we? What compensations are we making due to lack of sleep, poor sleep quality, irregular routine, unfavourable conditions etc.
 
-![The importance of quality sleep for overall health and performance](/blogs/wellrested/7232a3_b31cce0b88fe417d9b00b9204e6e33ed~mv2.avif)
+![The importance of quality sleep for overall health and performance](/images/guides/muscleup/ringpulluptop.png)
 
 Here's a story that may sound familiar.
 
@@ -18,7 +18,7 @@ And so, sleep is and has been somewhat fractured, supplemented with medication, 
 
 I can say I'm appreciative for what having a consistent physical training regime has provided me. It has meant showing up, trusting the process, and being continuously surprised along the way. There's always been hurdles (fatigue, boredom, injuries, repetitive periods, distractions) but it's remained a reliable support system for me. Now with a robust and fairly maintainable physical attributes and the wisdom of patience, I'm finally willing to examine the mountain of sleep debt I have likely incurred. This table sit down with myself is long overdue.
 
-![The journey from poor sleep habits to sleep optimization](/blogs/wellrested/7232a3_253345769c4041dcb677e5f6db97847b~mv2.avif)
+![The journey from poor sleep habits to sleep optimization](/images/guides/handstand/hollowbodyAdv.png)
 
 How this came about, was simply lack of awareness and education on sleep. Using my phone at night, playing video games until the early hours of the morning, sleeping in but not really sleeping well. Caffeine consumption with no forethought (pre-workout at night for workouts), and then that period of my life where late nights, alcohol and parties, fed into a lingering lethargy days after. Years, of compound conditioning. Knowing I didn't know any better, makes it easier to look back, and toward the future, kindly. That I believe, is critical.
 
@@ -54,7 +54,7 @@ Here is a broad overview of effective treatment options for improving sleep:
 - a separate sleep area than that of living/eating/study/recreation area(s). even just adjusting furniture can have a psychological response.
 - suitable mattress, though more research is how too much of soft bedding cause influence poor sleep posture.
 
-![Creating the optimal sleep environment for better rest](/blogs/wellrested/7232a3_f09a0c4992dc43319ce14fe89a703496~mv2.avif)
+![Creating the optimal sleep environment for better rest](/images/guides/handstand/handstand01.png)
 
 There is a lot of evidence available online if you're interested, and I'll link some articles and sources to help guide your own research.
 
@@ -66,7 +66,7 @@ The second part of this journey of self-examination, is looking at how I treat /
 
 And then, the sleepless hours crept past. Wide eyed, elevated heartbeat, and frustrated state, I peer to my phone. 1:30am.
 
-![The reality of sleep struggles and the journey to better rest](/blogs/wellrested/7232a3_f93f1d2c1ae44b8584dcc7f30bf3d1ce~mv2.avif)
+![The reality of sleep struggles and the journey to better rest](/images/guides/muscleup/ringhang.png)
 
 This expectation that because I did everything right, therefore I will/should fall asleep, became quite harmful. So aiming to shift my perspective, I now know talk to myself, and soothe my expectations, acknowledging that I have a lengthy history of unideal sleep behaviours, and it will be a long process to heal this. That the activities done before bed, like journaling, meditation, early into bed, were still inherently valuable to my wellbeing.
 
@@ -94,4 +94,4 @@ https://www.healthline.com/nutrition/9-foods-to-help-you-sleep
 https://www.sleepfoundation.org/nutrition/food-and-drink-promote-good-nights-sleep
 https://chriskresser.com/sleep-eating-connection/
 
-![The journey to better sleep - a comprehensive approach to rest and recovery](/blogs/wellrested/7232a3_048147207994444cabf2e922f5c15d04~mv2.avif)
+![The journey to better sleep - a comprehensive approach to rest and recovery](/images/guides/handstand/chesttowallhandstand01.png)

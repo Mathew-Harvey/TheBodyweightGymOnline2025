@@ -4,7 +4,7 @@
 *Published: August 7, 2021 | Updated: January 2025*  
 *Reading Time: 12 minutes*
 
-![Hero Image: Molecular structure of creatine with athletic performance collage](/blogs/suppliments/7232a3_a2a7ad48bb13447481ee84473686e90b~mv2.avif)
+![Hero Image: Molecular structure of creatine with athletic performance collage](/images/guides/muscleup/ringmu1.png)
 
 ## Quick Facts
 - 📊 **Most researched supplement** after protein
@@ -30,7 +30,7 @@
 
 ## What is Creatine and How Does It Work? {#what-is-creatine}
 
-![Diagram: ATP-PCr energy system in muscle cells](/blogs/suppliments/7232a3_6ae46569796f4d0ca23670a4af1377fa~mv2.avif)
+![Diagram: ATP-PCr energy system in muscle cells](/images/guides/handstand/finpushups.png)
 
 ### The Energy Currency of Your Muscles
 
@@ -120,7 +120,7 @@ Recent studies have revealed:
 
 ## Benefits Beyond Muscle {#benefits}
 
-![Infographic: Creatine benefits for brain, bones, and recovery](/blogs/suppliments/7232a3_fb06f57b10a54c828154fdecb476bac7~mv2.avif)
+![Infographic: Creatine benefits for brain, bones, and recovery](/images/guides/handstand/hollowbodyAdv.png)
 
 ### 🧠 Cognitive Function
 
@@ -165,7 +165,7 @@ Recent studies have revealed:
 
 ## Dosing Strategies That Work {#dosing}
 
-![Chart: Loading vs maintenance dosing protocols](/blogs/suppliments/7232a3_a2a7ad48bb13447481ee84473686e90b~mv2.avif)
+![Chart: Loading vs maintenance dosing protocols](/images/guides/muscleup/ringmu1.png)
 
 ### Option 1: Fast Loading Protocol (5-7 Days)
 
@@ -285,7 +285,7 @@ Repeat Cycle
 
 ## Side Effects and Safety {#safety}
 
-![Safety profile comparison chart](/blogs/suppliments/7232a3_6ae46569796f4d0ca23670a4af1377fa~mv2.avif)
+![Safety profile comparison chart](/images/guides/handstand/finpushups.png)
 
 ### The Truth About Side Effects
 
@@ -396,7 +396,7 @@ Repeat Cycle
 
 ## Maximizing Results {#maximizing}
 
-![Synergy chart: Creatine with other supplements](/blogs/suppliments/7232a3_fb06f57b10a54c828154fdecb476bac7~mv2.avif)
+![Synergy chart: Creatine with other supplements](/images/guides/handstand/hollowbodyAdv.png)
 
 ### Supplement Stacking
 

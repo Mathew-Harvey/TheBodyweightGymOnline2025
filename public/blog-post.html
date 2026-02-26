@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     
     <!-- Main Styles -->
-    <link rel="stylesheet" href="/css/modern-style.css">
+    <link rel="stylesheet" href="/css/modern-style.css?v=3">
     
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
@@ -213,6 +213,8 @@
             
             // Simple markdown parsing
             let html = content
+                // Images - must be before other parsing
+                .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<div class="blog-image"><img src="$2" alt="$1" loading="lazy"></div>')
                 // Headers
                 .replace(/^### (.*$)/gim, '<h3>$1</h3>')
                 .replace(/^## (.*$)/gim, '<h2>$1</h2>')
