@@ -89,7 +89,14 @@
                 function loadYouTubeVideo() {
                     const container = document.getElementById('youtubeContainer');
                     const facade = document.getElementById('youtubeFacade');
-                    container.innerHTML = '<iframe src="https://www.youtube.com/embed/IOpUVPaixjA?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                    var iframe = document.createElement('iframe');
+                    iframe.src = 'https://www.youtube.com/embed/IOpUVPaixjA?autoplay=1';
+                    iframe.setAttribute('frameborder', '0');
+                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                    iframe.setAttribute('allowfullscreen', '');
+                    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                    container.innerHTML = '';
+                    container.appendChild(iframe);
                     facade.style.display = 'none';
                 }
             </script>
@@ -162,8 +169,8 @@
             </div>
             
             <div class="load-more-wrapper">
-                <button class="btn-secondary" onclick="loadMoreWorkouts()">
-                    Load More Workouts
+                <button class="btn-secondary" id="showMoreWorkoutsBtn" onclick="loadMoreWorkouts()">
+                    Show more
                 </button>
             </div>
         </div>
@@ -189,10 +196,8 @@
             <div class="guide-cards">
                 <div class="guide-card">
                     <div class="guide-card-header">
-                        <div class="guide-icon guide-icon-red">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-                            </svg>
+                        <div class="guide-icon guide-icon-photo">
+                            <img src="/images/guides/muscleup/ringmu1.png" alt="Ring muscle up" width="56" height="56" loading="lazy">
                         </div>
                         <div class="guide-price">$19</div>
                     </div>
@@ -215,12 +220,8 @@
                 
                 <div class="guide-card">
                     <div class="guide-card-header">
-                        <div class="guide-icon guide-icon-teal">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="5" r="3"/>
-                                <line x1="12" y1="8" x2="12" y2="21"/>
-                                <path d="M6 14l6 6 6-6"/>
-                            </svg>
+                        <div class="guide-icon guide-icon-photo">
+                            <img src="/images/guides/handstand/freestandinghandstand1.png" alt="Freestanding handstand" width="56" height="56" loading="lazy">
                         </div>
                         <div class="guide-price">$19</div>
                     </div>

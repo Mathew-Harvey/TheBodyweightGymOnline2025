@@ -13,17 +13,67 @@ const PORT = process.env.PORT || 3004;
 // Trust proxy for rate limiting behind reverse proxy
 app.set('trust proxy', 1);
 
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+if (allowedOrigins.length === 0) {
+  console.warn('[security] ALLOWED_ORIGINS not set. CORS is permissive.');
+}
+
+const corsOptions = {
+  origin(origin, callback) {
+    // Allow non-browser and same-origin requests with no Origin header.
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    // Keep compatibility until ALLOWED_ORIGINS is configured.
+    if (allowedOrigins.length === 0) {
+      return callback(null, true);
+    }
+
+    return callback(null, allowedOrigins.includes(origin));
+  },
+  methods: ['GET', 'HEAD', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Range']
+};
+
+// Enforce HTTPS behind reverse proxies/tunnels.
+app.use((req, res, next) => {
+  const forwardedProto = req.headers['x-forwarded-proto'];
+  const secureFromProxy =
+    typeof forwardedProto === 'string' &&
+    forwardedProto.split(',').map((value) => value.trim()).includes('https');
+
+  if (req.secure || secureFromProxy) {
+    return next();
+  }
+
+  if (!req.headers.host) {
+    return res.status(400).send('Bad Request');
+  }
+
+  return res.redirect(301, `https://${req.headers.host}${req.originalUrl}`);
+});
+
 // Security middleware
 app.use(helmet({
   contentSecurityPolicy: false, // Disable for video streaming
-  crossOriginEmbedderPolicy: false
+  crossOriginEmbedderPolicy: false,
+  hsts: {
+    maxAge: 15552000, // 180 days
+    includeSubDomains: true,
+    preload: false
+  }
 }));
 
 // Compression for better performance
 app.use(compression());
 
 // CORS for API access
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Rate limiting
 const limiter = rateLimit({
@@ -59,9 +109,6 @@ app.get('/ebook/:filename', (req, res) => {
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Disposition', 'inline; filename="' + filename + '"');
   res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD');
-  res.setHeader('Access-Control-Allow-Headers', 'Range');
   
   // Handle range requests for PDF streaming
   const stat = fs.statSync(pdfPath);
@@ -1385,17 +1432,6 @@ const blogPosts = [
     readTime: '5 min',
     featured: false,
     image: '/images/guides/handstand/hollowbodyAdv.png'
-  },
-  {
-    id: 'thebodyweightteam',
-    title: 'The Bodyweight Team',
-    author: 'Mat Harvey',
-    date: '2019-05-13',
-    excerpt: 'I started The Bodyweight Gym to pursue an ideal: That everyone can develop themselves physically with simple equipment, the right education and support.',
-    category: 'Team',
-    readTime: '3 min',
-    featured: false,
-    image: '/images/guides/muscleup/coverpage.png'
   },
   {
     id: 'goalsetting',

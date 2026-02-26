@@ -230,7 +230,12 @@ PORT=3000
 VIDEO_PATH=/home/user/videos
 MAX_CONCURRENT_STREAMS=50
 CACHE_DURATION=3600
+ALLOWED_ORIGINS=https://your-tunnel-domain.example
 ```
+
+Notes:
+- Separate multiple origins with commas in `ALLOWED_ORIGINS`.
+- Ensure your tunnel/reverse proxy forwards `X-Forwarded-Proto` so HTTP requests are correctly redirected to HTTPS.
 
 ## 📊 Monitoring Setup
 

@@ -4,7 +4,8 @@
 let workouts = [];
 let currentFilter = 'all';
 let currentSearch = '';
-let workoutsLoaded = 12;
+const INITIAL_WORKOUTS_SHOWN = 6;
+let workoutsLoaded = INITIAL_WORKOUTS_SHOWN;
 
 // ===== Initialize App =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -284,12 +285,13 @@ function getFilteredWorkouts() {
 }
 
 function filterWorkouts() {
-    workoutsLoaded = 12; // Reset to initial load
+    workoutsLoaded = INITIAL_WORKOUTS_SHOWN; // Reset to initial load
     renderWorkouts();
 }
 
 function loadMoreWorkouts() {
-    workoutsLoaded += 12;
+    const filtered = getFilteredWorkouts();
+    workoutsLoaded = filtered.length; // Show all (search/filter already runs across full list)
     renderWorkouts();
 }
 
@@ -374,7 +376,7 @@ async function loadHomeBlogPosts() {
     if (!blogGrid) return;
 
     try {
-        const response = await fetch('/api/blogs');
+        const response = await fetch('/api/blogs?_=' + Date.now());
         const blogs = await response.json();
         
         // Show first 6 blog posts on homepage (or all if less than 6)

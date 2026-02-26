@@ -1,7 +1,7 @@
 // service-worker.js - The Bodyweight Gym Online PWA
 
 const CACHE_NAME = 'bodyweight-gym-v1';
-const DYNAMIC_CACHE = 'bodyweight-gym-dynamic-v1';
+const DYNAMIC_CACHE = 'bodyweight-gym-dynamic-v2';
 
 // Assets to cache on install
 const STATIC_ASSETS = [
@@ -156,19 +156,22 @@ async function handleVideoStream(request) {
 
 // Handle API requests with network-first strategy
 async function handleApiRequest(request) {
+  const url = new URL(request.url);
+  const isBlogsApi = url.pathname === '/api/blogs' || url.pathname.startsWith('/api/blogs/');
+
   try {
     const response = await fetch(request);
-    
-    // Cache successful GET requests
-    if (request.method === 'GET' && response.status === 200) {
+
+    // Don't cache blogs API so list updates (add/remove posts) show immediately
+    if (request.method === 'GET' && response.status === 200 && !isBlogsApi) {
       const cache = await caches.open(DYNAMIC_CACHE);
       cache.put(request, response.clone());
     }
-    
+
     return response;
   } catch (error) {
-    // If network fails, try cache for GET requests
-    if (request.method === 'GET') {
+    // If network fails, try cache for GET requests (except blogs - avoid stale list)
+    if (request.method === 'GET' && !isBlogsApi) {
       const cachedResponse = await caches.match(request);
       if (cachedResponse) {
         console.log('Service Worker: Serving API response from cache');
