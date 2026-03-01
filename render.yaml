@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: thebodyweightgym
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ALLOWED_ORIGINS
+        value: "https://thebodyweightgym.org,https://www.thebodyweightgym.org"
+      - key: PORT
+        value: "3004"
+    healthCheckPath: /
+    plan: free
