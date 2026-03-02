@@ -141,22 +141,6 @@ app.get('/ebook/:filename', (req, res) => {
 // Video metadata - Based on actual video files in public/videos
 const videoDatabase = [
   {
-    id: 1,
-    title: "Coach Carla - Lockdown Nutrition",
-    instructor: "Coach Carla",
-    duration: "58 min",
-    level: "Intermediate",
-    category: "Nutrition",
-    equipment: "None",
-    description: "Coach Carla - Lockdown Nutrition - Transform your body with this powerful workout.",
-    thumbnail: "/images/thumbnails/Coach Carla - Lockdown Nutrition-1280x720-avc1-mp4a.jpg",
-    filename: "Coach Carla - Lockdown Nutrition-1280x720-avc1-mp4a.mp4",
-    views: 0,
-    rating: 4.645629501442182,
-    startTime: 274,
-    startTimeFormatted: "00:04:34"
-  },
-  {
     id: 2,
     title: "Coach Corey - Bodyweight Class",
     instructor: "Coach Corey",
@@ -1476,17 +1460,6 @@ const blogPosts = [
     readTime: '4 min',
     featured: false,
     image: '/images/guides/handstand/chesttowallhandstand01.png'
-  },
-  {
-    id: 'suppliments',
-    title: 'Can Supplements Help? Spotlight - Creatine',
-    author: 'Carla Duncan',
-    date: '2021-08-07',
-    excerpt: 'Creatine is one of the most recognized and researched supplements to help increase training quality, intensity, strength and recovery.',
-    category: 'Nutrition',
-    readTime: '4 min',
-    featured: true,
-    image: '/images/guides/handstand/finpushups.png'
   },
   {
     id: 'gettingoutofcomfort',
