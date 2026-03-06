@@ -13,12 +13,26 @@ const PORT = process.env.PORT || 3004;
 // Trust proxy for rate limiting behind reverse proxy
 app.set('trust proxy', 1);
 
+// Default to localhost in development when ALLOWED_ORIGINS is unset
+const isProduction = process.env.NODE_ENV === 'production';
+const defaultDevOrigins = [
+  `http://localhost:${PORT}`,
+  `http://127.0.0.1:${PORT}`
+];
+
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
 
-if (allowedOrigins.length === 0) {
+const effectiveOrigins =
+  allowedOrigins.length > 0
+    ? allowedOrigins
+    : isProduction
+      ? []
+      : defaultDevOrigins;
+
+if (effectiveOrigins.length === 0) {
   console.warn('[security] ALLOWED_ORIGINS not set. CORS is permissive.');
 }
 
@@ -29,19 +43,25 @@ const corsOptions = {
       return callback(null, true);
     }
 
-    // Keep compatibility until ALLOWED_ORIGINS is configured.
-    if (allowedOrigins.length === 0) {
+    // Permissive only when no origins configured (production without ALLOWED_ORIGINS).
+    if (effectiveOrigins.length === 0) {
       return callback(null, true);
     }
 
-    return callback(null, allowedOrigins.includes(origin));
+    return callback(null, effectiveOrigins.includes(origin));
   },
   methods: ['GET', 'HEAD', 'POST', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Range']
 };
 
-// Enforce HTTPS behind reverse proxies/tunnels.
+// Enforce HTTPS behind reverse proxies/tunnels (skip on localhost for local dev).
 app.use((req, res, next) => {
+  const host = (req.headers.host || '').split(':')[0];
+  const isLocalhost = host === 'localhost' || host === '127.0.0.1';
+  if (isLocalhost) {
+    return next();
+  }
+
   const forwardedProto = req.headers['x-forwarded-proto'];
   const secureFromProxy =
     typeof forwardedProto === 'string' &&
@@ -58,16 +78,25 @@ app.use((req, res, next) => {
   return res.redirect(301, `https://${req.headers.host}${req.originalUrl}`);
 });
 
-// Security middleware
+// Security middleware (HSTS handled separately so it is never sent to localhost)
 app.use(helmet({
   contentSecurityPolicy: false, // Disable for video streaming
   crossOriginEmbedderPolicy: false,
-  hsts: {
-    maxAge: 15552000, // 180 days
-    includeSubDomains: true,
-    preload: false
-  }
+  hsts: false // managed below
 }));
+
+// Send HSTS only for non-localhost requests (tunnel / production)
+app.use((req, res, next) => {
+  const host = (req.headers.host || '').split(':')[0];
+  const isLocalhost = host === 'localhost' || host === '127.0.0.1';
+  if (!isLocalhost) {
+    res.setHeader(
+      'Strict-Transport-Security',
+      'max-age=15552000; includeSubDomains'
+    );
+  }
+  next();
+});
 
 // Compression for better performance
 app.use(compression());
