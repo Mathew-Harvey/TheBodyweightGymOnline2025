@@ -54,11 +54,23 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization', 'Range']
 };
 
-// Enforce HTTPS behind reverse proxies/tunnels (skip on localhost for local dev).
+// Enforce HTTPS behind reverse proxies/tunnels (skip on localhost and internal networks).
 app.use((req, res, next) => {
   const host = (req.headers.host || '').split(':')[0];
-  const isLocalhost = host === 'localhost' || host === '127.0.0.1';
-  if (isLocalhost) {
+  
+  // Allow localhost
+  const isLocalhost = host === 'localhost' || host === '127.0.0.1' || host === '::1';
+  
+  // Allow Docker/private networks (RFC 1918 + Docker default ranges)
+  const isPrivateNetwork = 
+    host.startsWith('10.') ||           // 10.0.0.0/8
+    host.startsWith('172.') ||          // Docker bridge (172.16.0.0/12 + wider range)
+    host.startsWith('192.168.') ||      // 192.168.0.0/16
+    host === 'tbg-app' ||               // Docker internal hostname
+    host.startsWith('127.') ||          // Loopback range
+    host.startsWith('169.254.');        // Link-local
+  
+  if (isLocalhost || isPrivateNetwork) {
     return next();
   }
 
