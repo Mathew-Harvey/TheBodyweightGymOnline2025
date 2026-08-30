@@ -1210,6 +1210,66 @@ section { padding: 6rem 2rem; position: relative; }
 }
 .footer-bottom p { font-size: 0.75rem; color: var(--sub); }
 
+/* ===== "Also by Mat Harvey" ===== */
+.also-by {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem clamp(1.5rem, 4vw, 2.75rem);
+    padding: 1.75rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.also-by-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sub);
+}
+.also-by-label::after {
+    content: '';
+    width: 26px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.also-by-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem clamp(1.5rem, 3.5vw, 2.5rem);
+}
+
+.also-by-row a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity var(--transition);
+}
+.also-by-row a:hover,
+.also-by-row a:focus-visible { opacity: 1; }
+
+/* The marks are different shapes, so a shared height is what makes them read
+   as one row. 32px, because AppHub's chevron carries its name underneath. */
+.also-by-row img { height: 32px; width: auto; }
+
+.also-by-mark {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--light);
+}
+/* webfpv's own accent, so the wordmark belongs to that site, not this one. */
+.also-by-mark span { color: #4da3ff; }
+
 /* ===== Mobile Menu ===== */
 .mobile-menu {
     position: fixed;
