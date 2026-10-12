@@ -9,7 +9,8 @@
     "category": "Training",
     "readTime": "3 min",
     "featured": false,
-    "image": "/images/guides/muscleup/ringhang.png"
+    "image": "/images/blog/buildingfoundations-800.webp",
+    "imageSource": "/images/guides/muscleup/ringhang.png"
   },
   {
     "slug": "firstmu",
@@ -21,7 +22,8 @@
     "category": "Skills",
     "readTime": "4 min",
     "featured": true,
-    "image": "/images/guides/muscleup/ringmu1.png"
+    "image": "/images/blog/firstmu-800.webp",
+    "imageSource": "/images/guides/muscleup/ringmu1.png"
   },
   {
     "slug": "trainingandpain",
@@ -33,7 +35,8 @@
     "category": "Recovery",
     "readTime": "5 min",
     "featured": false,
-    "image": "/images/guides/handstand/hang.png"
+    "image": "/images/blog/trainingandpain-800.webp",
+    "imageSource": "/images/guides/handstand/hang.png"
   },
   {
     "slug": "strengthtrainingandrecovery",
@@ -45,7 +48,8 @@
     "category": "Recovery",
     "readTime": "5 min",
     "featured": false,
-    "image": "/images/guides/handstand/hollowbodyAdv.png"
+    "image": "/images/blog/strengthtrainingandrecovery-800.webp",
+    "imageSource": "/images/guides/handstand/hollowbodyAdv.png"
   },
   {
     "slug": "goalsetting",
@@ -57,7 +61,8 @@
     "category": "Philosophy",
     "readTime": "3 min",
     "featured": false,
-    "image": "/images/guides/handstand/freestandinghandstand1.png"
+    "image": "/images/blog/goalsetting-800.webp",
+    "imageSource": "/images/guides/handstand/freestandinghandstand1.png"
   },
   {
     "slug": "fiveprinicipalsofstrengthtraining",
@@ -69,7 +74,8 @@
     "category": "Training",
     "readTime": "4 min",
     "featured": false,
-    "image": "/images/guides/muscleup/ringpulluptop.png"
+    "image": "/images/blog/fiveprinicipalsofstrengthtraining-800.webp",
+    "imageSource": "/images/guides/muscleup/ringpulluptop.png"
   },
   {
     "slug": "weightliftingtokungfu",
@@ -81,7 +87,8 @@
     "category": "Philosophy",
     "readTime": "3 min",
     "featured": false,
-    "image": "/images/guides/muscleup/ringfalsegrip.png"
+    "image": "/images/blog/weightliftingtokungfu-800.webp",
+    "imageSource": "/images/guides/muscleup/ringfalsegrip.png"
   },
   {
     "slug": "wellrested",
@@ -93,7 +100,8 @@
     "category": "Recovery",
     "readTime": "4 min",
     "featured": false,
-    "image": "/images/guides/handstand/chesttowallhandstand01.png"
+    "image": "/images/blog/wellrested-800.webp",
+    "imageSource": "/images/guides/handstand/chesttowallhandstand01.png"
   },
   {
     "slug": "gettingoutofcomfort",
@@ -105,6 +113,7 @@
     "category": "Philosophy",
     "readTime": "3 min",
     "featured": false,
-    "image": "/images/guides/muscleup/ringpullupscapdownmiddle.png"
+    "image": "/images/blog/gettingoutofcomfort-800.webp",
+    "imageSource": "/images/guides/muscleup/ringpullupscapdownmiddle.png"
   }
 ]

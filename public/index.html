@@ -3,175 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Bodyweight Gym - Free Bodyweight Workouts & Training Guides</title>
-    <meta name="description" content="Your body and gravity are all you need. 47+ hours of free bodyweight workouts, no ads, no sign-up. Plus structured guides when you're ready to go further.">
-    
-    <!-- Favicon -->
+    <title>The Bodyweight Gym: Free Bodyweight Classes and Skill Books</title>
+    <meta name="description" content="Free bodyweight classes with no sign-up, plus the Bodyweight Skills books: six-level training guides to the handstand and the ring muscle up by coach Mat Harvey.">
+    <link rel="canonical" href="https://thebodyweightgym.org/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="The Bodyweight Gym">
+    <meta property="og:title" content="The Bodyweight Gym: Free Bodyweight Classes and Skill Books">
+    <meta property="og:description" content="Free bodyweight classes with no sign-up, plus the Bodyweight Skills books: six-level training guides to the handstand and the ring muscle up by coach Mat Harvey.">
+    <meta property="og:url" content="https://thebodyweightgym.org/">
+    <meta property="og:image" content="https://thebodyweightgym.org/images/books/handstand-cover-1200.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/png" href="/images/ringLogo.png">
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Main Styles -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600&amp;display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600&amp;display=swap"></noscript>
+    <link rel="preload" as="image" type="image/webp" imagesrcset="/images/books/handstand-art-800.webp 800w, /images/books/handstand-art-1400.webp 1400w" imagesizes="(max-width: 960px) 100vw, 58vw">
     <link rel="stylesheet" href="/css/modern-style.css?v=5">
-    <link rel="stylesheet" href="/css/books.css?v=1">
-    
-    <!-- PWA -->
+    <link rel="stylesheet" href="/css/books.css?v=2">
+    <link rel="stylesheet" href="/css/brand.css?v=1">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0a0f1a">
+    <meta name="theme-color" content="#111214">
 </head>
 <body>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="/" class="logo-link">
-                    <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="logo-img">
-                </a>
-                
-                <div class="nav-menu">
-                    <a href="#workouts" class="nav-link">Free Workouts</a>
-                    <a href="/books" class="nav-link nav-link-books">Books</a>
-                    <a href="#story" class="nav-link">Our Story</a>
-                    <a href="/blog" class="nav-link">Blog</a>
-                    <a href="#community" class="nav-link">Community</a>
-                </div>
-                
-                <button class="mobile-menu-toggle" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+    <nav class="navbar" aria-label="Main">
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym" class="logo-img" width="160" height="40">
+            </a>
+            <div class="nav-menu">
+                <a href="#workouts" class="nav-link">Free Classes</a>
+                <a href="/books" class="nav-link nav-link-books">Books</a>
+                <a href="#story" class="nav-link">Our Story</a>
+                <a href="/blog" class="nav-link">Blog</a>
+                <a href="/books" class="btn-primary nav-cta">Get the books</a>
             </div>
-        </nav>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
-        <div class="hero-content">
-            <div class="hero-badge-clean">
-                <span class="badge-pill">47+ Hours of Free Workouts</span>
-            </div>
-            
-            <h1 class="hero-title-clean">
-                Your Body.<br>
-                <span class="text-gradient">Your Journey.</span>
-            </h1>
-            
-            <p class="hero-description-clean">
-                47+ hours of professional bodyweight workouts. No ads. No sign-up.<br>
-                Just press play and start training.
-            </p>
-            
-            <div class="hero-actions-clean">
-                <a href="#workouts" class="btn-primary">
-                    Start Free Training
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+    <main>
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-art" aria-hidden="true">
+            <picture><source type="image/webp" srcset="/images/books/handstand-art-800.webp 800w, /images/books/handstand-art-1400.webp 1400w" sizes="(max-width: 960px) 100vw, 58vw"><img src="/images/books/handstand-art-800.jpg" srcset="/images/books/handstand-art-800.jpg 800w, /images/books/handstand-art-1400.jpg 1400w" sizes="(max-width: 960px) 100vw, 58vw" width="1400" height="1313" alt="" fetchpriority="high" decoding="async"></picture>
+        </div>
+        <div class="hero-copy">
+            <span class="eyebrow">Bodyweight Skills &middot; by Mat Harvey</span>
+            <h1 id="hero-title">One level<br>at a <em class="hl">time.</em></h1>
+            <p class="hero-lead">Two training books that take you from your first plank to a freestanding handstand, and from your first ring hang to a strict ring muscle up. Start with the free classes. Follow the plan when you want structure.</p>
+            <div class="hero-ctas">
+                <a href="/books" class="btn-primary">Get the books
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="/books" class="btn-secondary">
-                    Get the books
+                <a href="#workouts" class="btn-secondary">Train free</a>
+            </div>
+            <div class="hero-books">
+                <a class="hero-book" href="/books/handstand">
+                    <picture><source type="image/webp" srcset="/images/books/handstand-cover-400.webp 400w" sizes="56px"><img src="/images/books/handstand-cover-400.jpg" srcset="/images/books/handstand-cover-400.jpg 400w" sizes="56px" width="400" height="640" alt="The Handstand book cover" decoding="async"></picture>
+                    <span><small class="hl">Book 1</small><strong>The Handstand</strong><span class="from">Kindle from US$4.99</span></span>
                 </a>
-            </div>
-            
-            <!-- YouTube Video Embed -->
-            <div class="youtube-embed-section">
-                <div class="youtube-facade" id="youtubeFacade" onclick="loadYouTubeVideo()">
-                    <img src="https://img.youtube.com/vi/IOpUVPaixjA/maxresdefault.jpg" alt="The Bodyweight Gym Story" class="youtube-thumbnail">
-                    <div class="youtube-play-button">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <polygon points="5 3 19 12 5 21"></polygon>
-                        </svg>
-                    </div>
-                    <div class="youtube-label">Watch Our Story (5 min)</div>
-                </div>
-                <div class="youtube-iframe-container" id="youtubeContainer"></div>
-            </div>
-            
-            <script>
-                function loadYouTubeVideo() {
-                    const container = document.getElementById('youtubeContainer');
-                    const facade = document.getElementById('youtubeFacade');
-                    var iframe = document.createElement('iframe');
-                    iframe.src = 'https://www.youtube.com/embed/IOpUVPaixjA?autoplay=1';
-                    iframe.setAttribute('frameborder', '0');
-                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-                    iframe.setAttribute('allowfullscreen', '');
-                    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-                    container.innerHTML = '';
-                    container.appendChild(iframe);
-                    facade.style.display = 'none';
-                }
-            </script>
-            
-            <!-- Stats -->
-            <div class="hero-stats-clean">
-                <div class="stat-clean">
-                    <span class="stat-number-clean">47+</span>
-                    <span class="stat-label-clean">Hours of Workouts</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-clean">
-                    <span class="stat-number-clean">79</span>
-                    <span class="stat-label-clean">Professional Classes</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-clean">
-                    <span class="stat-number-clean">$0</span>
-                    <span class="stat-label-clean">For All Workouts</span>
-                </div>
-            </div>
-            
+                <a class="hero-book" href="/books/ring-muscle-up">
+                    <picture><source type="image/webp" srcset="/images/books/muscleup-cover-400.webp 400w" sizes="56px"><img src="/images/books/muscleup-cover-400.jpg" srcset="/images/books/muscleup-cover-400.jpg 400w" sizes="56px" width="400" height="640" alt="The Ring Muscle Up book cover" decoding="async"></picture>
+                    <span><small class="hl-teal">Book 2</small><strong>The Ring Muscle Up</strong><span class="from">Kindle from US$4.99</span></span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Free Workouts Section -->
-    <section id="workouts" class="workouts-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag section-tag-centered">
-                    <span class="free-badge">100% Free</span>
-                    Free Workouts
-                </div>
-                <h2 class="section-title text-center">
-                    <span class="text-gradient">47+ Hours. Zero Cost. Press Play.</span>
-                </h2>
-                <p class="section-subtitle text-center">
-                    79 professional classes across strength, mobility, and skills. No sign-up. No ads. No catch.
-                </p>
-            </div>
-            
-            <div class="filter-system">
-                <div class="quick-filters">
-                    <button class="filter-pill active" data-filter="all">
-                        All Workouts
-                    </button>
-                    <button class="filter-pill" data-filter="strength">
-                        Strength
-                    </button>
-                    <button class="filter-pill" data-filter="mobility">
-                        Mobility
-                    </button>
-                    <button class="filter-pill" data-filter="skills">
-                        Skills
-                    </button>
-                    <button class="filter-pill" data-filter="favourites">
-                        ♥ Favourites
-                    </button>
-                </div>
-                
-                <div class="search-wrapper">
-                    <input type="text" class="search-input" placeholder="Search workouts, coaches, or keywords...">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
-                    </svg>
-                </div>
+    <!-- Proof strip: real numbers only (class and coach counts come from videos.json) -->
+    <section class="proof" aria-label="At a glance">
+        <ul>
+            <li><strong data-stat="videos">66</strong><span>Free classes</span></li>
+            <li><strong>47+</strong><span>Hours of video</span></li>
+            <li><strong data-stat="instructors">6</strong><span>Coaches</span></li>
+            <li><strong>$0</strong><span>No sign-up, no ads</span></li>
+        </ul>
+    </section>
 
+    <!-- Free class library -->
+    <section id="workouts" class="section" aria-labelledby="workouts-title">
+        <div class="section-inner">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow">Free classes</span>
+                    <h2 id="workouts-title">Press play.<br>No sign-up.</h2>
+                </div>
+                <p>Full-length classes from the coaches of The Bodyweight Gym: strength, mobility, skills and conditioning. Save the ones you like with the heart.</p>
+            </div>
+
+            <div class="library-tools filter-system">
+                <div class="quick-filters" role="group" aria-label="Filter classes">
+                    <button class="filter-pill active" data-filter="all">All</button>
+                    <button class="filter-pill" data-filter="strength">Strength</button>
+                    <button class="filter-pill" data-filter="mobility">Mobility</button>
+                    <button class="filter-pill" data-filter="skills">Skills</button>
+                    <button class="filter-pill" data-filter="conditioning">Conditioning</button>
+                    <button class="filter-pill" data-filter="favourites">&#9829; Saved</button>
+                </div>
+                <div class="search-wrapper">
+                    <label class="visually-hidden" for="workoutSearch">Search classes</label>
+                    <input type="search" id="workoutSearch" class="search-input" placeholder="Search classes or coaches">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                </div>
                 <div class="sort-wrapper">
-                    <label for="sortSelect">Sort by</label>
+                    <label for="sortSelect">Sort</label>
                     <select id="sortSelect" class="sort-select">
                         <option value="default">Featured</option>
                         <option value="rating">Highest rated</option>
@@ -179,86 +122,92 @@
                     </select>
                 </div>
             </div>
-            
-            <div class="workouts-grid" id="workoutsGrid">
-                <!-- Workouts loaded via JS -->
-            </div>
-            
+
+            <div class="workouts-grid" id="workoutsGrid" aria-live="polite"></div>
+
             <div class="load-more-wrapper">
-                <button class="btn-secondary" id="showMoreWorkoutsBtn" onclick="loadMoreWorkouts()">
-                    Show more
-                </button>
+                <button class="btn-secondary" id="showMoreWorkoutsBtn" onclick="loadMoreWorkouts()">Show all classes</button>
             </div>
         </div>
     </section>
 
-    <!-- Books Section -->
-    <section id="guides" class="guides-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag section-tag-centered">
-                    <span class="paid-badge">Books</span>
-                    Go Further
+    <!-- Books -->
+    <section id="guides" class="section section-alt" aria-labelledby="books-title">
+        <div class="section-inner">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow">The Bodyweight Skills series</span>
+                    <h2 id="books-title">Ready for a<br>structured plan?</h2>
                 </div>
-                <h2 class="section-title text-center">
-                    <span class="text-gradient">Ready for a Structured Program?</span>
-                </h2>
-                <p class="section-subtitle text-center">
-                    The free workouts are yours forever. When you want a step by step plan with clear levels
-                    and tests, these books lay it out.
-                </p>
+                <p>The free classes are yours forever. When you want a clear path to a specific skill, each book lays it out in six levels.</p>
             </div>
 
-            <div class="book-cards">
-                <article class="book-card">
-                    <div class="book-cover">
-                        <div class="book-cover-fallback" aria-hidden="true"><strong>The Handstand</strong><span>Bodyweight Skills &middot; Mat Harvey</span></div>
-                        <picture>
-                            <source type="image/webp" srcset="/images/books/handstand-cover-400.webp 400w, /images/books/handstand-cover-800.webp 800w" sizes="(max-width: 480px) 180px, 140px">
-                            <img src="/images/books/handstand-cover-400.jpg" srcset="/images/books/handstand-cover-400.jpg 400w, /images/books/handstand-cover-800.jpg 800w" sizes="(max-width: 480px) 180px, 140px" width="400" height="640" alt="Cover of The Handstand by Mat Harvey" loading="lazy" decoding="async" onerror="this.closest('picture').remove()">
-                        </picture>
-                    </div>
-                    <div class="book-card-info">
-                        <p class="book-series">Bodyweight Skills</p>
-                        <h3 class="book-card-title"><a href="/books/handstand">The Handstand</a></h3>
-                        <p class="book-card-desc">Six levels to a 60 second freestanding handstand.</p>
-                        <p class="book-facts">36 pages, photos, video links</p>
-                        <ul class="book-prices">
-                        <li>Kindle ebook: US$4.99 <span>(&pound;3.99, A$7.99)</span></li>
-                        <li>Paperback: US$9.99 <span>(&pound;7.99, A$14.99)</span></li>
+            <article class="book-feature">
+                <a class="book-feature-media" href="/books/handstand" aria-label="The Handstand book">
+                    <picture class="art-wrap"><source type="image/webp" srcset="/images/books/handstand-art-800.webp 800w" sizes="(max-width: 960px) 100vw, 50vw"><img src="/images/books/handstand-art-800.jpg" srcset="/images/books/handstand-art-800.jpg 800w" sizes="(max-width: 960px) 100vw, 50vw" width="800" height="750" alt="" class="art" loading="lazy" decoding="async"></picture>
+                    <picture><source type="image/webp" srcset="/images/books/handstand-cover-400.webp 400w, /images/books/handstand-cover-800.webp 800w" sizes="250px"><img src="/images/books/handstand-cover-400.jpg" srcset="/images/books/handstand-cover-400.jpg 400w, /images/books/handstand-cover-800.jpg 800w" sizes="250px" width="400" height="640" alt="Cover of The Handstand by Mat Harvey" class="book-3d" loading="lazy" decoding="async"></picture>
+                </a>
+                <div>
+                    <span class="book-label">Book 1</span>
+                    <h3>The Handstand<em>Six levels to a 60 second freestanding handstand</em></h3>
+                    <p class="lead">From your first protracted plank to holding a freestanding handstand for a full minute.</p>
+                    <ul class="ticks">
+                        <li>A benchmark test to find your starting level</li>
+                        <li>Chest to wall holds, hollow body, heel pulls and toe pulls</li>
+                        <li>The box assisted balance game for learning to balance</li>
+                        <li>Kick ups, shoulder taps and freestanding work</li>
                     </ul>
-                        <div class="buy-buttons">
-                        <span class="btn-buy is-disabled" data-buy="handstand:kindle" data-label="Get the Kindle ebook">Kindle ebook: coming soon on Amazon</span>
-                        <span class="btn-buy btn-buy-secondary is-disabled" data-buy="handstand:paperback" data-label="Get the paperback">Paperback: coming soon on Amazon</span>
-                    </div>
-                        <a class="book-more" href="/books/handstand">More about this book</a>
-                    </div>
-                </article>
-                <article class="book-card">
-                    <div class="book-cover">
-                        <div class="book-cover-fallback" aria-hidden="true"><strong>The Ring Muscle Up</strong><span>Bodyweight Skills &middot; Mat Harvey</span></div>
-                        <picture>
-                            <source type="image/webp" srcset="/images/books/muscleup-cover-400.webp 400w, /images/books/muscleup-cover-800.webp 800w" sizes="(max-width: 480px) 180px, 140px">
-                            <img src="/images/books/muscleup-cover-400.jpg" srcset="/images/books/muscleup-cover-400.jpg 400w, /images/books/muscleup-cover-800.jpg 800w" sizes="(max-width: 480px) 180px, 140px" width="400" height="640" alt="Cover of The Ring Muscle Up by Mat Harvey" loading="lazy" decoding="async" onerror="this.closest('picture').remove()">
-                        </picture>
-                    </div>
-                    <div class="book-card-info">
-                        <p class="book-series">Bodyweight Skills</p>
-                        <h3 class="book-card-title"><a href="/books/ring-muscle-up">The Ring Muscle Up</a></h3>
-                        <p class="book-card-desc">Six levels to a strict ring muscle up, with no kipping.</p>
-                        <p class="book-facts">36 pages, photos, video links</p>
-                        <ul class="book-prices">
-                        <li>Kindle ebook: US$4.99 <span>(&pound;3.99, A$7.99)</span></li>
-                        <li>Paperback: US$9.99 <span>(&pound;7.99, A$14.99)</span></li>
+                    <p class="price-line">Kindle US$4.99 <span>(&pound;3.99, A$7.99)</span> Paperback US$9.99 <span>(&pound;7.99, A$14.99)</span></p>
+                    <div class="buy-buttons">
+                            <span class="btn-buy is-disabled" data-buy="handstand:kindle" data-label="Get the Kindle ebook">Kindle ebook: coming soon on Amazon</span>
+                            <span class="btn-buy btn-buy-secondary is-disabled" data-buy="handstand:paperback" data-label="Get the paperback">Paperback: coming soon on Amazon</span>
+                        </div>
+                    <a class="book-more" href="/books/handstand">See what&rsquo;s inside</a>
+                </div>
+            </article>
+
+            <article class="book-feature is-teal is-flipped">
+                <a class="book-feature-media" href="/books/ring-muscle-up" aria-label="The Ring Muscle Up book">
+                    <picture class="art-wrap"><source type="image/webp" srcset="/images/books/muscleup-art-800.webp 800w" sizes="(max-width: 960px) 100vw, 50vw"><img src="/images/books/muscleup-art-800.jpg" srcset="/images/books/muscleup-art-800.jpg 800w" sizes="(max-width: 960px) 100vw, 50vw" width="800" height="650" alt="" class="art" loading="lazy" decoding="async"></picture>
+                    <picture><source type="image/webp" srcset="/images/books/muscleup-cover-400.webp 400w, /images/books/muscleup-cover-800.webp 800w" sizes="250px"><img src="/images/books/muscleup-cover-400.jpg" srcset="/images/books/muscleup-cover-400.jpg 400w, /images/books/muscleup-cover-800.jpg 800w" sizes="250px" width="400" height="640" alt="Cover of The Ring Muscle Up by Mat Harvey" class="book-3d" loading="lazy" decoding="async"></picture>
+                </a>
+                <div>
+                    <span class="book-label">Book 2</span>
+                    <h3>The Ring Muscle Up<em>Six levels to a strict ring muscle up, with no kipping</em></h3>
+                    <p class="lead">From your first ring hang to strict, controlled muscle ups.</p>
+                    <ul class="ticks">
+                        <li>A benchmark test to find your starting level</li>
+                        <li>False grip and arm extension mobility</li>
+                        <li>Ring rows, transition rows, pull ups and dips</li>
+                        <li>Tempo eccentric muscle ups to own the transition</li>
                     </ul>
-                        <div class="buy-buttons">
-                        <span class="btn-buy is-disabled" data-buy="ring-muscle-up:kindle" data-label="Get the Kindle ebook">Kindle ebook: coming soon on Amazon</span>
-                        <span class="btn-buy btn-buy-secondary is-disabled" data-buy="ring-muscle-up:paperback" data-label="Get the paperback">Paperback: coming soon on Amazon</span>
-                    </div>
-                        <a class="book-more" href="/books/ring-muscle-up">More about this book</a>
-                    </div>
-                </article>
+                    <p class="price-line">Kindle US$4.99 <span>(&pound;3.99, A$7.99)</span> Paperback US$9.99 <span>(&pound;7.99, A$14.99)</span></p>
+                    <div class="buy-buttons">
+                            <span class="btn-buy is-disabled" data-buy="ring-muscle-up:kindle" data-label="Get the Kindle ebook">Kindle ebook: coming soon on Amazon</span>
+                            <span class="btn-buy btn-buy-secondary is-disabled" data-buy="ring-muscle-up:paperback" data-label="Get the paperback">Paperback: coming soon on Amazon</span>
+                        </div>
+                    <a class="book-more" href="/books/ring-muscle-up">See what&rsquo;s inside</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- How the books work -->
+    <section class="section" aria-labelledby="how-title">
+        <div class="section-inner">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow eyebrow-teal">How each book works</span>
+                    <h2 id="how-title">You always know<br>what to do next.</h2>
+                </div>
+                <p>About 36 pages per book, with photos of every exercise and links to demonstration videos.</p>
             </div>
+            <ol class="steps">
+                <li><h3>Find your level</h3><p>Start with a benchmark test to find where you are.</p></li>
+                <li><h3>Follow the workout</h3><p>Each of the six levels gives you a clear workout with photos of the exercises.</p></li>
+                <li><h3>Watch the demos</h3><p>Links to demonstration videos show how each exercise should look.</p></li>
+                <li><h3>Pass the test</h3><p>A graduation test tells you when you are ready to move up a level.</p></li>
+            </ol>
 
             <div class="book-videos">
                 <figure class="book-video">
@@ -276,137 +225,66 @@
                     <figcaption>Anatomy of a muscle up<br><a href="/books/ring-muscle-up">Want the full six-level plan? Get the book</a></figcaption>
                 </figure>
             </div>
-
             <p class="book-note">Train within your limits. The books and videos are general training information, not medical advice.</p>
         </div>
     </section>
 
-    <!-- Founder's Story -->
-    <section id="story" class="story-section">
-        <div class="container">
-            <div class="story-grid">
-                <div class="story-content">
-                    <div class="section-tag">The Story</div>
-                    <h2 class="section-title">
-                        <span class="text-gradient">Behind The Gym</span>
-                    </h2>
-                    
-                    <div class="story-text">
-                        <p class="lead-text">
-                            I started my adult life as a scientist. My 30's brought a change 
-                            where I decided to pursue coaching and sport full-time.
-                        </p>
-                        
-                        <blockquote class="story-quote">
-                            <p>
-                                "A few years ago I broke my back. Overnight I went from a ring routine and 
-                                handstand to not even one pushup. Now I'm back and stronger than ever."
-                            </p>
-                        </blockquote>
-                        
-                        <p>
-                            I started The Bodyweight Gym to pursue an ideal: 
-                            that everyone can develop themselves physically with simple equipment, the right 
-                            education, and support. When COVID closed our physical gym, we transformed it into this digital space.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="story-visual">
-                    <div class="story-image-frame">
-                        <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym Logo" class="story-logo">
-                        <div class="story-stats">
-                            <div class="mini-stat">
-                                <span class="mini-stat-number">2020</span>
-                                <span class="mini-stat-label">Gym Closed</span>
-                            </div>
-                            <div class="mini-stat">
-                                <span class="mini-stat-number">100s</span>
-                                <span class="mini-stat-label">People Helped</span>
-                            </div>
-                            <div class="mini-stat">
-                                <span class="mini-stat-number">∞</span>
-                                <span class="mini-stat-label">Free Workouts</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Founder story -->
+    <section id="story" class="section section-alt" aria-labelledby="story-title">
+        <div class="section-inner story">
+            <div>
+                <span class="eyebrow">The story</span>
+                <h2 id="story-title" class="visually-hidden">Behind the gym</h2>
+                <blockquote>
+                    A few years ago I broke my back. Overnight I went from a ring routine and handstand to not even one pushup. Now I&rsquo;m back and stronger than ever.
+                    <cite>Mat Harvey, founder of The Bodyweight Gym</cite>
+                </blockquote>
+            </div>
+            <div class="story-body">
+                <p>I started my adult life as a scientist. My 30s brought a change where I decided to pursue coaching and sport full-time.</p>
+                <p>I started The Bodyweight Gym to pursue an ideal: that everyone can develop themselves physically with simple equipment, the right education, and support. When COVID closed our physical gym, we turned it into this digital space.</p>
+                <p>The classes stay free. The books are for when you want a step by step plan for one skill.</p>
+                <a href="/books" class="btn-secondary">See the books</a>
             </div>
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="blog-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-tag section-tag-centered">
-                    <span class="free-badge">Free</span>
-                    Knowledge
+    <!-- Blog -->
+    <section id="blog" class="section" aria-labelledby="blog-title">
+        <div class="section-inner">
+            <div class="section-head">
+                <div>
+                    <span class="eyebrow">From the blog</span>
+                    <h2 id="blog-title">Training notes</h2>
                 </div>
-                <h2 class="section-title text-center">
-                    <span class="text-gradient">Knowledge &amp; Insights</span>
-                </h2>
-                <p class="section-subtitle text-center">
-                    Deep dives into bodyweight training, mobility, and living a healthier life.
-                </p>
+                <a href="/blog" class="btn-secondary">All articles</a>
             </div>
-            
-            <div class="blog-grid" id="homeBlogGrid">
-                <!-- Blog posts loaded via JS -->
-            </div>
-            
-            <div class="blog-cta">
-                <p>Discover insights that transform your training.</p>
-                <a href="/blog" class="btn-primary">
-                    View All Articles
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-            </div>
+            <div class="post-grid" id="homeBlogGrid"></div>
         </div>
     </section>
 
-    <!-- Community Section -->
-    <section id="community" class="community-section">
-        <div class="container">
-            <div class="community-content">
-                <div class="section-tag section-tag-centered">Connect</div>
-                <h2 class="section-title text-center">
-                    <span class="text-gradient">You're Not Alone</span>
-                </h2>
-                
-                <p class="community-text">
-                    We have a community of people supporting each other on their fitness journeys. 
-                    If you'd like to connect, share progress, or get motivated, you're welcome to join us. 
-                    No pressure.
-                </p>
-                
-                <div class="social-links">
-                    <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank" class="social-card">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                        </svg>
-                        <span>Facebook</span>
-                    </a>
-                    
-                    <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank" class="social-card">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                        <span>YouTube</span>
-                    </a>
-                    
-                    <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank" class="social-card">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                        <span>Instagram</span>
-                    </a>
+    <!-- Signup + community -->
+    <section id="community" class="section" aria-labelledby="community-title">
+        <div class="section-inner cta-band">
+            <div>
+                <span class="eyebrow">Stay in the loop</span>
+                <h2 id="community-title">New books first.</h2>
+                <div class="signup" data-signup="home">
+                    <p>Hear when the next Bodyweight Skills book comes out. No spam, just the occasional note.</p>
+                    <div class="signup-action"><p class="signup-pending">Email updates are coming soon.</p></div>
+                </div>
+            </div>
+            <div>
+                <p>Share progress, ask questions or just follow along.</p>
+                <div class="social-row">
+                    <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>YouTube</a>
+                    <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.18 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>Instagram</a>
+                    <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07"/></svg>Facebook</a>
                 </div>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -424,26 +302,26 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h4>Explore</h4>
-                    <a href="#workouts">Free Workouts</a>
+                    <h3>Explore</h3>
+                    <a href="#workouts">Free Classes</a>
                     <a href="/books">Books</a>
                     <a href="#story">Our Story</a>
                     <a href="/blog">Blog</a>
                 </div>
                 
                 <div class="footer-column">
-                    <h4>Connect</h4>
+                    <h3>Connect</h3>
                     <a href="https://www.facebook.com/thebodyweightgym.com.au/" target="_blank">Facebook</a>
                     <a href="https://www.youtube.com/@thebodyweightgym8512" target="_blank">YouTube</a>
                     <a href="https://www.instagram.com/the_bodyweight_gym/" target="_blank">Instagram</a>
                 </div>
                 
                 <div class="footer-column">
-                    <h4>Promise</h4>
-                    <p>No emails required</p>
-                    <p>No data collection</p>
+                    <h3>Promise</h3>
+                    <p>No sign-up for classes</p>
+                    <p>No ads</p>
                     <p>No paywalls on workouts</p>
-                    <p>Free workouts forever</p>
+                    <p>Free classes forever</p>
                 </div>
             </div>
             
@@ -471,7 +349,7 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
-            <a href="#workouts" class="mobile-nav-link">Free Workouts</a>
+            <a href="#workouts" class="mobile-nav-link">Free Classes</a>
             <a href="/books" class="mobile-nav-link nav-link-books">Books</a>
             <a href="#story" class="mobile-nav-link">Our Story</a>
             <a href="/blog" class="mobile-nav-link">Blog</a>
@@ -479,7 +357,6 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="/js/data.js"></script>
     <script src="/js/modern-app.js"></script>
     <script src="/js/books-config.js"></script>

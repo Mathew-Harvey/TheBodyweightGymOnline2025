@@ -83,7 +83,26 @@
         });
     }
 
+    // Phones: show the sticky buy bar once the main buy buttons have scrolled out of view.
+    function initBuyBar() {
+        const bar = document.querySelector('.buy-bar');
+        const target = document.getElementById('buy');
+        if (!bar || !target || !('IntersectionObserver' in window)) return;
+        new IntersectionObserver(([entry]) => {
+            const below = entry.boundingClientRect.top < 0;
+            const show = !entry.isIntersecting && below;
+            bar.classList.toggle('is-visible', show);
+            bar.setAttribute('aria-hidden', String(!show));
+            bar.querySelector('a')?.setAttribute('tabindex', show ? '0' : '-1');
+        }).observe(target);
+        bar.querySelector('a')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    }
+
     function init() {
+        initBuyBar();
         initBuyButtons();
         initVideos();
         initSignup();

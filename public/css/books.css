@@ -340,3 +340,176 @@
     .buy-buttons { flex-direction: column; }
     .btn-buy { width: 100%; }
 }
+
+/* ===================================================================
+   Brand layer (matches the covers). --book is the per-book accent:
+   orange for The Handstand, teal for The Ring Muscle Up.
+   =================================================================== */
+:root { --book: var(--orange, #e87727); }
+.book-teal { --book: var(--teal, #28aaa0); }
+.book-orange { --book: var(--orange, #e87727); }
+
+.book-cover {
+    border: 0;
+    border-radius: 2px 4px 4px 2px;
+    background: #191a1e;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6);
+}
+
+.book-series,
+.book-card .book-series { color: var(--book); font-family: var(--font-display); font-weight: 700; letter-spacing: 0.14em; }
+
+.btn-buy {
+    min-height: 48px;
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius, 4px);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--book);
+    border: 2px solid var(--book);
+    color: #111214;
+}
+
+.btn-buy.btn-buy-secondary {
+    background: transparent;
+    color: var(--text);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-buy.btn-buy-secondary:hover { border-color: var(--text); }
+
+.btn-buy.is-disabled {
+    font-size: 0.95rem;
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: var(--font-body);
+    font-weight: 500;
+}
+
+.book-more { color: var(--book); font-weight: 600; }
+
+/* Book cards on /books */
+.book-card {
+    grid-template-columns: 160px 1fr;
+    border: 1px solid var(--line, rgba(255,255,255,0.08));
+    border-top: 3px solid var(--book);
+    padding: 1.75rem;
+}
+
+.book-card .book-cover { max-width: 160px; }
+.book-card-title { font-size: 2.2rem; line-height: 0.95; text-transform: uppercase; }
+.book-card-title a:hover { color: var(--book); }
+.book-card-desc { color: var(--text); font-size: 1.05rem; }
+
+/* Book page hero */
+.book-page { position: relative; padding-top: 6.5rem; }
+
+.book-hero-art {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 720px;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.book-hero-art picture { display: contents; }
+
+.book-hero-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 25%;
+    opacity: 0.22;
+    -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+}
+
+.book-page .container { position: relative; z-index: 1; max-width: 1140px; }
+
+.book-hero { padding: 2rem 0 1rem; }
+
+.book-hero h1 {
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.book-subtitle { font-size: 1.25rem; color: var(--text); opacity: 0.85; max-width: 34rem; }
+
+.book-prices { font-size: 1.05rem; }
+.book-prices li { font-family: var(--font-display); font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.book-prices span { font-family: var(--font-body); font-size: 0.9rem; text-transform: none; letter-spacing: 0; }
+
+.book-body h2,
+.book-page-section h2,
+.signup h2 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.book-body ul { list-style: none; padding-left: 0; }
+
+.book-body li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: 0.6rem;
+}
+
+.book-body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.75rem;
+    height: 0.42rem;
+    border-left: 2px solid var(--book);
+    border-bottom: 2px solid var(--book);
+    transform: rotate(-45deg);
+}
+
+.book-note { border-left-color: var(--book); background: rgba(255, 255, 255, 0.04); }
+
+.signup { border-top: 3px solid var(--book); }
+
+.yt-lite-play { background: var(--book); }
+.yt-lite-play::after { border-color: transparent transparent transparent #111214; }
+.book-video figcaption a { color: var(--book); }
+
+/* Sticky buy bar: phones only, appears once the main buttons scroll away (books.js) */
+.buy-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 1rem calc(0.6rem + env(safe-area-inset-bottom));
+    background: rgba(17, 18, 20, 0.97);
+    border-top: 1px solid var(--line, rgba(255,255,255,0.08));
+    transform: translateY(100%);
+    transition: transform 0.25s;
+}
+
+.buy-bar span { font-size: 0.85rem; color: var(--sub); line-height: 1.3; }
+.buy-bar strong { display: block; font-family: var(--font-display); font-size: 1.15rem; color: var(--text); text-transform: uppercase; }
+.buy-bar .btn-buy { min-width: 96px; }
+
+@media (max-width: 768px) {
+    .buy-bar { display: flex; }
+    .buy-bar.is-visible { transform: translateY(0); }
+    .book-hero-art { height: 520px; }
+    .book-hero { text-align: left; }
+}
+
+@media (max-width: 480px) {
+    .book-card { grid-template-columns: 1fr; }
+    .book-card .book-cover { max-width: 180px; }
+}

@@ -7,7 +7,8 @@
     "category": "Training",
     "readTime": "3 min",
     "featured": false,
-    "image": "/images/guides/muscleup/ringhang.png"
+    "image": "/images/blog/buildingfoundations-800.webp",
+    "imageSource": "/images/guides/muscleup/ringhang.png"
   },
   "firstmu": {
     "title": "The Road to My First Ring Muscle Up",
@@ -17,7 +18,8 @@
     "category": "Skills",
     "readTime": "4 min",
     "featured": true,
-    "image": "/images/guides/muscleup/ringmu1.png"
+    "image": "/images/blog/firstmu-800.webp",
+    "imageSource": "/images/guides/muscleup/ringmu1.png"
   },
   "trainingandpain": {
     "title": "Training and Pain",
@@ -27,7 +29,8 @@
     "category": "Recovery",
     "readTime": "5 min",
     "featured": false,
-    "image": "/images/guides/handstand/hang.png"
+    "image": "/images/blog/trainingandpain-800.webp",
+    "imageSource": "/images/guides/handstand/hang.png"
   },
   "strengthtrainingandrecovery": {
     "title": "Strength Training and Recovery",
@@ -37,7 +40,8 @@
     "category": "Recovery",
     "readTime": "5 min",
     "featured": false,
-    "image": "/images/guides/handstand/hollowbodyAdv.png"
+    "image": "/images/blog/strengthtrainingandrecovery-800.webp",
+    "imageSource": "/images/guides/handstand/hollowbodyAdv.png"
   },
   "goalsetting": {
     "title": "8 Tips for Healthy Goal Setting",
@@ -47,7 +51,8 @@
     "category": "Philosophy",
     "readTime": "3 min",
     "featured": false,
-    "image": "/images/guides/handstand/freestandinghandstand1.png"
+    "image": "/images/blog/goalsetting-800.webp",
+    "imageSource": "/images/guides/handstand/freestandinghandstand1.png"
   },
   "fiveprinicipalsofstrengthtraining": {
     "title": "5 Principles of Strength Training",
@@ -57,7 +62,8 @@
     "category": "Training",
     "readTime": "4 min",
     "featured": false,
-    "image": "/images/guides/muscleup/ringpulluptop.png"
+    "image": "/images/blog/fiveprinicipalsofstrengthtraining-800.webp",
+    "imageSource": "/images/guides/muscleup/ringpulluptop.png"
   },
   "weightliftingtokungfu": {
     "title": "From Weightlifting to Chinese Kungfu - A Dance with Corey",
@@ -67,7 +73,8 @@
     "category": "Philosophy",
     "readTime": "3 min",
     "featured": false,
-    "image": "/images/guides/muscleup/ringfalsegrip.png"
+    "image": "/images/blog/weightliftingtokungfu-800.webp",
+    "imageSource": "/images/guides/muscleup/ringfalsegrip.png"
   },
   "wellrested": {
     "title": "Well Rested on the Subject?",
@@ -77,7 +84,8 @@
     "category": "Recovery",
     "readTime": "4 min",
     "featured": false,
-    "image": "/images/guides/handstand/chesttowallhandstand01.png"
+    "image": "/images/blog/wellrested-800.webp",
+    "imageSource": "/images/guides/handstand/chesttowallhandstand01.png"
   },
   "gettingoutofcomfort": {
     "title": "Getting Out of Your Comfort Zone",
@@ -87,6 +95,7 @@
     "category": "Philosophy",
     "readTime": "3 min",
     "featured": false,
-    "image": "/images/guides/muscleup/ringpullupscapdownmiddle.png"
+    "image": "/images/blog/gettingoutofcomfort-800.webp",
+    "imageSource": "/images/guides/muscleup/ringpullupscapdownmiddle.png"
   }
 }

@@ -5,7 +5,7 @@ let workouts = [];
 let currentFilter = 'all';
 let currentSearch = '';
 let currentSort = 'default';
-const INITIAL_WORKOUTS_SHOWN = 6;
+const INITIAL_WORKOUTS_SHOWN = 8;
 let workoutsLoaded = INITIAL_WORKOUTS_SHOWN;
 
 // ===== Initialize App =====
@@ -169,6 +169,7 @@ function initializeSort() {
 async function loadWorkouts() {
     try {
         workouts = await BWG.getVideos();
+        fillStats(workouts);
         applyInitialFilterFromUrl();
         renderWorkouts();
     } catch (error) {
@@ -176,6 +177,14 @@ async function loadWorkouts() {
         const grid = document.getElementById('workoutsGrid');
         if (grid) grid.innerHTML = '<p class="workouts-error">Unable to load workouts. Please refresh the page.</p>';
     }
+}
+
+function fillStats(videos) {
+    const stats = BWG.computeStats(videos);
+    document.querySelectorAll('[data-stat]').forEach(el => {
+        const value = stats[el.dataset.stat === 'videos' ? 'totalVideos' : el.dataset.stat];
+        if (value) el.textContent = value;
+    });
 }
 
 // Supports links like /?filter=favourites#workouts (used by the PWA shortcuts)
@@ -195,23 +204,8 @@ function renderWorkouts() {
     grid.innerHTML = workoutsToShow.length
         ? workoutsToShow.map(workout => createWorkoutCard(workout)).join('')
         : `<p class="workouts-empty">${currentFilter === 'favourites' && !currentSearch
-            ? 'No favourites yet. Tap the heart on a workout to save it here.'
-            : 'No workouts match your search.'}</p>`;
-    
-    // Animate cards on load
-    const cards = grid.querySelectorAll('.workout-card');
-    cards.forEach((card, index) => {
-        setTimeout(() => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            
-            requestAnimationFrame(() => {
-                card.style.transition = 'all 0.5s ease-out';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            });
-        }, index * 50);
-    });
+            ? 'Nothing saved yet. Tap the heart on a class to keep it here.'
+            : 'No classes match your search.'}</p>`;
     
     // Update load more button visibility
     const loadMoreBtn = document.querySelector('.load-more-wrapper button');
@@ -220,40 +214,45 @@ function renderWorkouts() {
     }
 }
 
+// "Coach Corey - Handstand class" -> "Handstand class" (the coach is shown separately)
+function displayTitle(workout) {
+    const prefix = `${workout.instructor} - `;
+    return workout.title.startsWith(prefix) ? workout.title.slice(prefix.length) : workout.title;
+}
+
 function createWorkoutCard(workout) {
+    const esc = BWG.escapeHtml;
     const levelClass = workout.level.toLowerCase().replace(' ', '-');
-    const thumbnail = workout.thumbnail && !workout.thumbnail.includes('placeholder') 
-        ? `background-image: url('${encodeURI(workout.thumbnail).replace(/'/g, '%27')}');`
-        : `background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);`;
-    
+    const fav = BWG.isFavourite(workout.id);
+    const thumb = workout.thumbnail && !workout.thumbnail.includes('placeholder')
+        ? `<img src="${esc(encodeURI(workout.thumbnail))}" alt="" width="350" height="200" loading="lazy" decoding="async">`
+        : '';
+
     return `
-        <div class="workout-card" onclick="playWorkout(${workout.id})">
-            <div class="workout-thumbnail" style="${thumbnail}">
-                ${!workout.thumbnail || workout.thumbnail.includes('placeholder') 
-                    ? `<div class="workout-initial">${workout.instructor.split(' ')[1]?.[0] || 'W'}</div>` 
-                    : ''}
-                <div class="workout-duration">${workout.duration}</div>
-                <button type="button" class="workout-fav${BWG.isFavourite(workout.id) ? ' active' : ''}"
-                    onclick="toggleFavourite(event, ${workout.id})"
-                    aria-pressed="${BWG.isFavourite(workout.id)}"
-                    aria-label="${BWG.isFavourite(workout.id) ? 'Remove from favourites' : 'Add to favourites'}">${BWG.isFavourite(workout.id) ? '♥' : '♡'}</button>
-                <div class="workout-play">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5 3 19 12 5 21"></polygon>
-                    </svg>
+        <article class="workout-card">
+            <a class="workout-link" href="${BWG.videoUrl(workout.id)}">
+                <div class="workout-thumbnail">
+                    ${thumb}
+                    <span class="workout-duration">${esc(workout.duration)}</span>
+                    <span class="workout-play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"></polygon></svg>
+                    </span>
                 </div>
-            </div>
-            <div class="workout-info">
-                <h3 class="workout-title">${workout.title}</h3>
-                <div class="workout-meta">
-                    <span class="workout-instructor">${workout.instructor}</span>
-                    <span class="workout-level level-${levelClass}">${workout.level}</span>
-                    ${workout.views > 0 ? `<span class="workout-views">${formatViews(workout.views)}</span>` : ''}
-                    ${workout.startTimeFormatted ? `<span class="workout-start-time">⏰ ${workout.startTimeFormatted}</span>` : ''}
+                <div class="workout-info">
+                    <span class="workout-category">${esc(workout.category)}</span>
+                    <h3 class="workout-title">${esc(displayTitle(workout))}</h3>
+                    <div class="workout-meta">
+                        <span class="workout-instructor">${esc(workout.instructor)}</span>
+                        <span class="workout-level level-${levelClass}">${esc(workout.level)}</span>
+                        ${workout.views > 0 ? `<span class="workout-views">${formatViews(workout.views)}</span>` : ''}
+                    </div>
                 </div>
-                <p class="workout-description">${workout.description || 'Transform your body with this powerful workout.'}</p>
-            </div>
-        </div>
+            </a>
+            <button type="button" class="workout-fav${fav ? ' active' : ''}"
+                onclick="toggleFavourite(event, ${workout.id})"
+                aria-pressed="${fav}"
+                aria-label="${fav ? 'Remove from saved' : 'Save'}: ${esc(displayTitle(workout))}">${fav ? '&#9829;' : '&#9825;'}</button>
+        </article>
     `;
 }
 
@@ -401,278 +400,169 @@ async function loadHomeBlogPosts() {
 
     try {
         const blogs = await BWG.getBlogs();
-        
-        // Show first 6 blog posts on homepage (or all if less than 6)
-        const homeBlogPosts = blogs.slice(0, 6);
-        renderHomeBlogPosts(homeBlogPosts, blogs.length);
+        const latest = [...blogs].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
+        const esc = BWG.escapeHtml;
+        blogGrid.innerHTML = latest.map(blog => `
+            <a class="post-card" href="${BWG.blogUrl(blog.slug)}">
+                <img src="${esc(blog.image)}" alt="" loading="lazy" decoding="async">
+                <div>
+                    <small>${esc(blog.category)} &middot; ${esc(blog.readTime)} read</small>
+                    <h3>${esc(blog.title)}</h3>
+                    <p>${esc(blog.excerpt)}</p>
+                </div>
+            </a>
+        `).join('');
     } catch (error) {
         console.error('Error loading blog posts:', error);
-        blogGrid.innerHTML = `
-            <div class="blog-error">
-                <p>Unable to load articles. <a href="/blog">View all articles →</a></p>
-            </div>
-        `;
+        blogGrid.innerHTML = '<p><a href="/blog">Read the blog</a></p>';
     }
-}
-
-function renderHomeBlogPosts(blogs, totalCount) {
-    const blogGrid = document.getElementById('homeBlogGrid');
-    
-    blogGrid.innerHTML = blogs.map((blog, index) => `
-        <article class="blog-card ${index === 0 ? 'featured' : ''}" onclick="window.location.href='${BWG.blogUrl(blog.slug)}'" style="animation-delay: ${index * 0.1}s">
-            <div class="blog-image">
-                <img src="${blog.image}" alt="${blog.title}" loading="lazy">
-                <div class="blog-category-badge">${blog.category}</div>
-            </div>
-            <div class="blog-content">
-                <div class="blog-meta">
-                    <span class="blog-author">By ${blog.author}</span>
-                    <span class="blog-divider">•</span>
-                    <span class="blog-date">${formatBlogDate(blog.date)}</span>
-                    <span class="blog-divider">•</span>
-                    <span class="blog-read-time">${blog.readTime} read</span>
-                </div>
-                <h3 class="blog-title">${blog.title}</h3>
-                <p class="blog-excerpt">${blog.excerpt}</p>
-                <div class="blog-link">
-                    Read Article
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </div>
-            </div>
-        </article>
-    `).join('');
-    
-    // Add post count indicator if there are more posts
-    if (totalCount > blogs.length) {
-        const remaining = totalCount - blogs.length;
-        blogGrid.innerHTML += `
-            <div class="blog-more-indicator">
-                <p class="blog-more-text">+${remaining} more article${remaining > 1 ? 's' : ''} available</p>
-            </div>
-        `;
-    }
-}
-
-function formatBlogDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
-    });
 }
 
 // ===== Add Workout Card Styles =====
 const workoutStyles = `
 <style>
 .workout-card {
-    background: #161d2f;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-    cursor: pointer;
-    transition: all 0.4s;
-    opacity: 0;
-    transform: translateY(20px);
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    transition: transform 0.2s, border-color 0.2s;
 }
 
-.workout-card:hover {
-    transform: translateY(-3px);
-    border-color: #2d8bc9;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-}
+.workout-card:hover { transform: translateY(-3px); border-color: rgba(255, 255, 255, 0.22); }
+
+.workout-link { display: block; color: inherit; text-decoration: none; }
+.workout-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 
 .workout-thumbnail {
     position: relative;
-    width: 100%;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #24262c, #16171b);
     overflow: hidden;
 }
 
-.workout-initial {
-    font-size: 3rem;
-    font-weight: 700;
-    color: white;
-    opacity: 0.3;
-}
+.workout-thumbnail img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.workout-card:hover .workout-thumbnail img { transform: scale(1.04); }
 
 .workout-duration {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    padding: 0.2rem 0.6rem;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
+    right: 0.6rem;
+    bottom: 0.6rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 
-.sort-wrapper {
+.workout-play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--orange);
+    color: #111214;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    color: #94a3b8;
-    font-size: 0.9rem;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.2s, transform 0.2s;
 }
 
-.sort-select {
-    min-height: 44px;
-    padding: 0 0.75rem;
-    background: #161d2f;
-    color: #e2e8f0;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    font: inherit;
-}
-
-.workout-views {
-    font-size: 0.75rem;
-    color: #94a3b8;
-}
+.workout-play svg { width: 20px; height: 20px; margin-left: 3px; }
+.workout-card:hover .workout-play,
+.workout-link:focus-visible .workout-play { opacity: 1; transform: scale(1); }
 
 .workout-fav {
     position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    width: 36px;
-    height: 36px;
+    top: 0.6rem;
+    left: 0.6rem;
+    width: 44px;
+    height: 44px;
     border: 0;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.7);
-    color: white;
-    font-size: 1.1rem;
+    color: #fff;
+    font-size: 1.2rem;
     line-height: 1;
     cursor: pointer;
 }
 
-.workout-fav.active {
-    color: #f87171;
+.workout-fav.active { color: var(--orange); }
+
+.workout-info { padding: 1rem 1.1rem 1.2rem; }
+
+.workout-category {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
 }
+
+.workout-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.05;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0.2rem 0 0.6rem;
+}
+
+.workout-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    color: var(--sub);
+}
+
+.workout-level {
+    padding: 0.1rem 0.5rem;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid currentColor;
+}
+
+.level-beginner, .level-all-levels { color: #5fd3a5; }
+.level-intermediate { color: #f3b35a; }
+.level-advanced { color: #ff8a80; }
 
 .workouts-empty,
 .workouts-error {
     grid-column: 1 / -1;
     text-align: center;
-    color: #94a3b8;
+    color: var(--sub);
     padding: 2rem 0;
 }
 
-.workout-play {
-    position: absolute;
-    bottom: 0.75rem;
-    right: 0.75rem;
-    width: 44px;
-    height: 44px;
-    background: #2d8bc9;
+.sort-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    opacity: 0;
+    gap: 0.5rem;
+    color: var(--sub);
+    font-size: 0.95rem;
 }
 
-.workout-card:hover .workout-play {
-    opacity: 1;
-    transform: scale(1.05);
-}
-
-.workout-play svg {
-    width: 16px;
-    height: 16px;
-    margin-left: 2px;
-    fill: white;
-}
-
-.workout-info {
-    padding: 1.25rem;
-}
-
-.workout-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #e2e8f0;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-}
-
-.workout-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.75rem;
-}
-
-.workout-instructor {
-    font-size: 0.8rem;
-    color: #94a3b8;
-}
-
-.workout-level {
-    padding: 0.2rem 0.6rem;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.level-beginner,
-.level-all-levels {
-    background: rgba(16, 185, 129, 0.15);
-    color: #34d399;
-    border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.level-intermediate {
-    background: rgba(245, 158, 11, 0.15);
-    color: #fbbf24;
-    border: 1px solid rgba(245, 158, 11, 0.2);
-}
-
-.level-advanced {
-    background: rgba(239, 68, 68, 0.15);
-    color: #f87171;
-    border: 1px solid rgba(239, 68, 68, 0.2);
-}
-
-.workout-description {
-    font-size: 0.82rem;
-    color: #94a3b8;
-    line-height: 1.5;
-}
-
-.animate-in {
-    animation: fadeInUp 0.6s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 480px) {
-    .workout-thumbnail { height: 180px; }
-    .workout-info { padding: 1rem; }
-    .workout-title { font-size: 0.95rem; }
-    .workout-description { font-size: 0.8rem; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
-    .workout-meta { flex-wrap: wrap; gap: 0.5rem; }
+.sort-select {
+    min-height: 44px;
+    padding: 0 0.75rem;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font: inherit;
 }
 </style>
 `;
