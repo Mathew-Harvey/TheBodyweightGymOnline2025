@@ -1,6 +1,6 @@
 // service-worker.js - The Bodyweight Gym Online PWA (static site)
 
-const CACHE_NAME = 'bodyweight-gym-v2';
+const CACHE_NAME = 'bodyweight-gym-v3';
 
 // Shell cached on install; everything else is fetched from the network.
 const STATIC_ASSETS = [

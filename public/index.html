@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Main Styles -->
-    <link rel="stylesheet" href="/css/modern-style.css?v=4">
+    <link rel="stylesheet" href="/css/modern-style.css?v=5">
+    <link rel="stylesheet" href="/css/books.css?v=1">
     
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
@@ -33,7 +34,7 @@
                 
                 <div class="nav-menu">
                     <a href="#workouts" class="nav-link">Free Workouts</a>
-                    <a href="#guides" class="nav-link">Guides</a>
+                    <a href="/books" class="nav-link nav-link-books">Books</a>
                     <a href="#story" class="nav-link">Our Story</a>
                     <a href="/blog" class="nav-link">Blog</a>
                     <a href="#community" class="nav-link">Community</a>
@@ -68,6 +69,9 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
+                </a>
+                <a href="/books" class="btn-secondary">
+                    Get the books
                 </a>
             </div>
             
@@ -188,81 +192,92 @@
         </div>
     </section>
 
-    <!-- Paid Guides Section -->
+    <!-- Books Section -->
     <section id="guides" class="guides-section">
         <div class="container">
             <div class="section-header">
                 <div class="section-tag section-tag-centered">
-                    <span class="paid-badge">Paid Guides</span>
+                    <span class="paid-badge">Books</span>
                     Go Further
                 </div>
                 <h2 class="section-title text-center">
                     <span class="text-gradient">Ready for a Structured Program?</span>
                 </h2>
                 <p class="section-subtitle text-center">
-                    The free workouts are yours forever. When you want a step-by-step program 
-                    with clear progressions, video tutorials, and a tracker app — that's what these guides are for.
+                    The free workouts are yours forever. When you want a step by step plan with clear levels
+                    and tests, these books lay it out.
                 </p>
             </div>
-            
-            <div class="guide-cards">
-                <div class="guide-card">
-                    <div class="guide-card-header">
-                        <div class="guide-icon guide-icon-photo">
-                            <img src="/images/guides/muscleup/ringmu1.png" alt="Ring muscle up" width="56" height="56" loading="lazy">
-                        </div>
-                        <div class="guide-price">$19</div>
+
+            <div class="book-cards">
+                <article class="book-card">
+                    <div class="book-cover">
+                        <div class="book-cover-fallback" aria-hidden="true"><strong>The Handstand</strong><span>Bodyweight Skills &middot; Mat Harvey</span></div>
+                        <picture>
+                            <source type="image/webp" srcset="/images/books/handstand-cover-400.webp 400w, /images/books/handstand-cover-800.webp 800w" sizes="(max-width: 480px) 180px, 140px">
+                            <img src="/images/books/handstand-cover-400.jpg" srcset="/images/books/handstand-cover-400.jpg 400w, /images/books/handstand-cover-800.jpg 800w" sizes="(max-width: 480px) 180px, 140px" width="400" height="640" alt="Cover of The Handstand by Mat Harvey" loading="lazy" decoding="async" onerror="this.closest('picture').remove()">
+                        </picture>
                     </div>
-                    <h3 class="guide-title">Ring Muscle Up Guide</h3>
-                    <p class="guide-desc">From dead hang to muscle up in 6 progressive levels.</p>
-                    <ul class="guide-features">
-                        <li><strong>31-page comprehensive guide</strong></li>
-                        <li><strong>Video tutorials</strong> for every exercise</li>
-                        <li><strong>Loading &amp; deload protocols</strong></li>
-                        <li><strong>5-week training blocks</strong></li>
-                        <li><strong>Tracker app</strong> to log your progress</li>
+                    <div class="book-card-info">
+                        <p class="book-series">Bodyweight Skills</p>
+                        <h3 class="book-card-title"><a href="/books/handstand">The Handstand</a></h3>
+                        <p class="book-card-desc">Six levels to a 60 second freestanding handstand.</p>
+                        <p class="book-facts">36 pages, photos, video links</p>
+                        <ul class="book-prices">
+                        <li>Kindle ebook: US$4.99 <span>(&pound;3.99, A$7.99)</span></li>
+                        <li>Paperback: US$9.99 <span>(&pound;7.99, A$14.99)</span></li>
                     </ul>
-                    <a href="https://muscleup-landing.onrender.com" target="_blank" class="btn-primary">
-                        Get the Guide — $19
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-                
-                <div class="guide-card">
-                    <div class="guide-card-header">
-                        <div class="guide-icon guide-icon-photo">
-                            <img src="/images/guides/handstand/freestandinghandstand1.png" alt="Freestanding handstand" width="56" height="56" loading="lazy">
-                        </div>
-                        <div class="guide-price">$19</div>
+                        <div class="buy-buttons">
+                        <span class="btn-buy is-disabled" data-buy="handstand:kindle" data-label="Get the Kindle ebook">Kindle ebook: coming soon on Amazon</span>
+                        <span class="btn-buy btn-buy-secondary is-disabled" data-buy="handstand:paperback" data-label="Get the paperback">Paperback: coming soon on Amazon</span>
                     </div>
-                    <h3 class="guide-title">Handstand Guide</h3>
-                    <p class="guide-desc">Zero to 60-second freestanding handstand. Master balance, strength, and body awareness.</p>
-                    <ul class="guide-features">
-                        <li><strong>24-page complete program</strong></li>
-                        <li><strong>12+ video tutorials</strong></li>
-                        <li><strong>6 progressive levels</strong></li>
-                        <li><strong>Clear graduation tests</strong></li>
-                        <li><strong>Tracker app</strong> included</li>
+                        <a class="book-more" href="/books/handstand">More about this book</a>
+                    </div>
+                </article>
+                <article class="book-card">
+                    <div class="book-cover">
+                        <div class="book-cover-fallback" aria-hidden="true"><strong>The Ring Muscle Up</strong><span>Bodyweight Skills &middot; Mat Harvey</span></div>
+                        <picture>
+                            <source type="image/webp" srcset="/images/books/muscleup-cover-400.webp 400w, /images/books/muscleup-cover-800.webp 800w" sizes="(max-width: 480px) 180px, 140px">
+                            <img src="/images/books/muscleup-cover-400.jpg" srcset="/images/books/muscleup-cover-400.jpg 400w, /images/books/muscleup-cover-800.jpg 800w" sizes="(max-width: 480px) 180px, 140px" width="400" height="640" alt="Cover of The Ring Muscle Up by Mat Harvey" loading="lazy" decoding="async" onerror="this.closest('picture').remove()">
+                        </picture>
+                    </div>
+                    <div class="book-card-info">
+                        <p class="book-series">Bodyweight Skills</p>
+                        <h3 class="book-card-title"><a href="/books/ring-muscle-up">The Ring Muscle Up</a></h3>
+                        <p class="book-card-desc">Six levels to a strict ring muscle up, with no kipping.</p>
+                        <p class="book-facts">36 pages, photos, video links</p>
+                        <ul class="book-prices">
+                        <li>Kindle ebook: US$4.99 <span>(&pound;3.99, A$7.99)</span></li>
+                        <li>Paperback: US$9.99 <span>(&pound;7.99, A$14.99)</span></li>
                     </ul>
-                    <a href="https://handstand-landingpage.onrender.com" target="_blank" class="btn-primary">
-                        Get the Guide — $19
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
+                        <div class="buy-buttons">
+                        <span class="btn-buy is-disabled" data-buy="ring-muscle-up:kindle" data-label="Get the Kindle ebook">Kindle ebook: coming soon on Amazon</span>
+                        <span class="btn-buy btn-buy-secondary is-disabled" data-buy="ring-muscle-up:paperback" data-label="Get the paperback">Paperback: coming soon on Amazon</span>
+                    </div>
+                        <a class="book-more" href="/books/ring-muscle-up">More about this book</a>
+                    </div>
+                </article>
             </div>
-            
-            <div class="guide-bonus">
-                <h3 class="guide-bonus-title">Every guide includes a free tracker web app</h3>
-                <p class="guide-bonus-desc">
-                    No downloads needed. Open the link, log your sets and reps, 
-                    track your progress across levels, and know when you're ready to advance. 
-                    Works on any device.
-                </p>
+
+            <div class="book-videos">
+                <figure class="book-video">
+                    <button type="button" class="yt-lite" data-yt="7defUKA3D3w" aria-label="Play video: Handstand kick up">
+                        <img src="https://i.ytimg.com/vi/7defUKA3D3w/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                        <span class="yt-lite-play" aria-hidden="true"></span>
+                    </button>
+                    <figcaption>Handstand kick up<br><a href="/books/handstand">Want the full six-level plan? Get the book</a></figcaption>
+                </figure>
+                <figure class="book-video">
+                    <button type="button" class="yt-lite" data-yt="1_CIqS7CfwE" aria-label="Play video: Anatomy of a muscle up">
+                        <img src="https://i.ytimg.com/vi/1_CIqS7CfwE/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async">
+                        <span class="yt-lite-play" aria-hidden="true"></span>
+                    </button>
+                    <figcaption>Anatomy of a muscle up<br><a href="/books/ring-muscle-up">Want the full six-level plan? Get the book</a></figcaption>
+                </figure>
             </div>
+
+            <p class="book-note">Train within your limits. The books and videos are general training information, not medical advice.</p>
         </div>
     </section>
 
@@ -411,7 +426,7 @@
                 <div class="footer-column">
                     <h4>Explore</h4>
                     <a href="#workouts">Free Workouts</a>
-                    <a href="#guides">Training Guides</a>
+                    <a href="/books">Books</a>
                     <a href="#story">Our Story</a>
                     <a href="/blog">Blog</a>
                 </div>
@@ -457,7 +472,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
             <a href="#workouts" class="mobile-nav-link">Free Workouts</a>
-            <a href="#guides" class="mobile-nav-link">Guides</a>
+            <a href="/books" class="mobile-nav-link nav-link-books">Books</a>
             <a href="#story" class="mobile-nav-link">Our Story</a>
             <a href="/blog" class="mobile-nav-link">Blog</a>
             <a href="#community" class="mobile-nav-link">Community</a>
@@ -467,5 +482,7 @@
     <!-- Scripts -->
     <script src="/js/data.js"></script>
     <script src="/js/modern-app.js"></script>
+    <script src="/js/books-config.js"></script>
+    <script src="/js/books.js"></script>
 </body>
 </html>
