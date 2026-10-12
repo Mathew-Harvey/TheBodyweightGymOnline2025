@@ -76,8 +76,8 @@
     });
 
     // Old links into the home page's class list (/?filter=favourites#workouts) now go to /classes.
-    if (location.pathname === '/' && new URLSearchParams(location.search).has('filter')) {
-        location.replace(`/classes${location.search}`);
+    if (location.href.split(/[?#]/)[0] === bwgUrl('/') && new URLSearchParams(location.search).has('filter')) {
+        location.replace(bwgUrl(`/classes${location.search}`));
     }
 
     // ---- Hero parallax: at most 6% of the photo's height ----

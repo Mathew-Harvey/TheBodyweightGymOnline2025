@@ -46,8 +46,8 @@ node generate-thumbnails.js
 
 ## What the script does
 
-1. **Scans the videos directory**: Looks for all `.mp4` files in `public/videos/`
-2. **Creates thumbnails directory**: Ensures `public/images/thumbnails/` exists
+1. **Scans the videos directory**: Looks for all `.mp4` files in `docs/videos/`
+2. **Creates thumbnails directory**: Ensures `docs/images/thumbnails/` exists
 3. **Generates thumbnails**: For each video, extracts a frame at 30% of the video duration
 4. **Resizes thumbnails**: Scales them to 350x200 pixels with proper aspect ratio
 5. **Skips existing thumbnails**: Won't regenerate thumbnails that already exist
@@ -62,7 +62,7 @@ node generate-thumbnails.js
 
 ## Output
 
-Thumbnails are saved to `public/images/thumbnails/` with the same name as the video file but with `.jpg` extension.
+Thumbnails are saved to `docs/images/thumbnails/` with the same name as the video file but with `.jpg` extension.
 
 Example:
 - Video: `Coach Corey - Full Body Workout-1280x720-avc1-mp4a.mp4`

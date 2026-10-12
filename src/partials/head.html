@@ -5,4 +5,4 @@
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#F3F1EC">
-    <script>document.documentElement.classList.add('js')</script>
+    <script>document.documentElement.classList.add('js'); window.bwgUrl = (p) => new URL(String(p).replace(/^\//, ''), new URL('{{root}}', document.baseURI)).href;</script>

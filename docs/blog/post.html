@@ -9,14 +9,14 @@
     <meta property="og:site_name" content="The Bodyweight Gym">
     <meta property="og:image" content="https://thebodyweightgym.org/images/photos/og-rings-1080.jpg">
     <!-- build:head -->
-    <link rel="preload" href="/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/css/brand.css?v=fd962ab4">
-    <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png">
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" href="../fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../css/brand.css?v=5bf53fd5">
+    <link rel="icon" href="../icons/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#F3F1EC">
-    <script>document.documentElement.classList.add('js')</script>
+    <script>document.documentElement.classList.add('js'); window.bwgUrl = (p) => new URL(String(p).replace(/^\//, ''), new URL('../', document.baseURI)).href;</script>
 <!-- /build:head -->
     <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" defer></script>
 </head>
@@ -25,35 +25,35 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="wrap nav__inner">
-    <a class="nav__logo" href="/" aria-label="The Bodyweight Gym, home">
-      <img src="/images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
+    <a class="nav__logo" href="../" aria-label="The Bodyweight Gym, home">
+      <img src="../images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
     </a>
     <nav class="nav__links" aria-label="Main">
-      <a href="/classes" data-nav="classes">Classes</a>
-      <a href="/books" data-nav="books">Books</a>
-      <a href="/#story" data-nav="story">Story</a>
-      <a href="/blog" data-nav="blog" aria-current="page">Blog</a>
+      <a href="../classes" data-nav="classes">Classes</a>
+      <a href="../books" data-nav="books">Books</a>
+      <a href="../#story" data-nav="story">Story</a>
+      <a href="../blog" data-nav="blog" aria-current="page">Blog</a>
     </nav>
-    <a class="btn nav__cta" href="/books">Get the books</a>
+    <a class="btn nav__cta" href="../books">Get the books</a>
     <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
 </header>
 <div class="menu" id="menu" hidden>
   <div class="menu__top">
-    <a class="nav__logo" href="/" aria-label="The Bodyweight Gym, home">
-      <img src="/images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
+    <a class="nav__logo" href="../" aria-label="The Bodyweight Gym, home">
+      <img src="../images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
     </a>
     <button class="nav__menu" type="button" data-menu-close>Close</button>
   </div>
   <nav aria-label="Menu">
     <ul class="menu__links">
-      <li><a class="display" href="/classes">Classes</a></li>
-      <li><a class="display" href="/books">Books</a></li>
-      <li><a class="display" href="/#story">Story</a></li>
-      <li><a class="display" href="/blog">Blog</a></li>
+      <li><a class="display" href="../classes">Classes</a></li>
+      <li><a class="display" href="../books">Books</a></li>
+      <li><a class="display" href="../#story">Story</a></li>
+      <li><a class="display" href="../blog">Blog</a></li>
     </ul>
   </nav>
-  <a class="btn menu__cta" href="/books">Get the books</a>
+  <a class="btn menu__cta" href="../books">Get the books</a>
 </div>
 <!-- /build:nav -->
 
@@ -61,7 +61,7 @@
     <article class="section post" aria-labelledby="post-title">
         <div class="wrap">
             <nav class="label crumbs" aria-label="Breadcrumb">
-                <a href="/blog">Training notes</a>
+                <a href="../blog">Training notes</a>
                 <span aria-hidden="true">/</span>
                 <span id="post-crumb">Article</span>
             </nav>
@@ -73,15 +73,15 @@
                 <figure class="post-head__photo" id="post-photo" hidden></figure>
             </header>
             <div class="prose" id="post-body" aria-busy="true">
-                <noscript><p>This page needs JavaScript to show the article. <a href="/blog">See all articles</a>.</p></noscript>
+                <noscript><p>This page needs JavaScript to show the article. <a href="../blog">See all articles</a>.</p></noscript>
             </div>
 
             <aside class="post-books ruled" aria-labelledby="post-books-title">
                 <h2 class="label section-label" id="post-books-title">From the author</h2>
                 <ul class="rows">
                     <li class="row other-book book--orange">
-                        <a class="row__link" href="/books/handstand">
-                            <span class="other-book__cover"><img src="/images/books/handstand-cover-400.webp" width="400" height="640" alt="" loading="lazy" decoding="async"></span>
+                        <a class="row__link" href="../books/handstand">
+                            <span class="other-book__cover"><img src="../images/books/handstand-cover-400.webp" width="400" height="640" alt="" loading="lazy" decoding="async"></span>
                             <span class="label book-num">Book 1</span>
                             <span class="other-book__text">
                                 <span class="display other-book__title">The Handstand</span>
@@ -91,8 +91,8 @@
                         </a>
                     </li>
                     <li class="row other-book book--teal">
-                        <a class="row__link" href="/books/ring-muscle-up">
-                            <span class="other-book__cover"><img src="/images/books/muscleup-cover-400.webp" width="400" height="640" alt="" loading="lazy" decoding="async"></span>
+                        <a class="row__link" href="../books/ring-muscle-up">
+                            <span class="other-book__cover"><img src="../images/books/muscleup-cover-400.webp" width="400" height="640" alt="" loading="lazy" decoding="async"></span>
                             <span class="label book-num">Book 2</span>
                             <span class="other-book__text">
                                 <span class="display other-book__title">The Ring Muscle Up</span>
@@ -128,17 +128,17 @@
       <div>
         <h2 class="label">Explore</h2>
         <ul>
-          <li><a href="/classes">Classes</a></li>
-          <li><a href="/books">Books</a></li>
-          <li><a href="/#story">Story</a></li>
-          <li><a href="/blog">Blog</a></li>
+          <li><a href="../classes">Classes</a></li>
+          <li><a href="../books">Books</a></li>
+          <li><a href="../#story">Story</a></li>
+          <li><a href="../blog">Blog</a></li>
         </ul>
       </div>
       <div>
         <h2 class="label">Books</h2>
         <ul>
-          <li><a href="/books/handstand">The Handstand</a></li>
-          <li><a href="/books/ring-muscle-up">The Ring Muscle Up</a></li>
+          <li><a href="../books/handstand">The Handstand</a></li>
+          <li><a href="../books/ring-muscle-up">The Ring Muscle Up</a></li>
         </ul>
       </div>
       <div>
@@ -158,7 +158,7 @@
     <div class="footer__base">
       <div class="also-by">
         <span class="label">Also by Mat Harvey</span>
-        <a href="https://my-app-hub.com/" rel="noopener" aria-label="AppHub"><img src="/images/also-by/apphub.png" width="98" height="66" alt="AppHub" loading="lazy" decoding="async"></a>
+        <a href="https://my-app-hub.com/" rel="noopener" aria-label="AppHub"><img src="../images/also-by/apphub.png" width="98" height="66" alt="AppHub" loading="lazy" decoding="async"></a>
         <a href="https://webfpv.org/" rel="noopener" aria-label="webfpv"><span class="also-by__mark">web<span>fpv</span></span></a>
       </div>
       <p class="label">&copy; 2026 The Bodyweight Gym</p>
@@ -167,10 +167,10 @@
 </footer>
 <!-- /build:footer -->
 
-<script src="/js/site.js" defer></script>
-<script src="/js/data.js" defer></script>
-<script src="/js/post.js" defer></script>
-<script src="/js/books-config.js" defer></script>
-<script src="/js/books.js" defer></script>
+<script src="../js/site.js" defer></script>
+<script src="../js/data.js" defer></script>
+<script src="../js/post.js" defer></script>
+<script src="../js/books-config.js" defer></script>
+<script src="../js/books.js" defer></script>
 </body>
 </html>

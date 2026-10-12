@@ -14,14 +14,14 @@
     <meta property="og:image" content="https://thebodyweightgym.org/images/photos/stream-set-1008.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <!-- build:head -->
-    <link rel="preload" href="/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/css/brand.css?v=fd962ab4">
-    <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png">
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" href="./fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./css/brand.css?v=5bf53fd5">
+    <link rel="icon" href="./icons/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#F3F1EC">
-    <script>document.documentElement.classList.add('js')</script>
+    <script>document.documentElement.classList.add('js'); window.bwgUrl = (p) => new URL(String(p).replace(/^\//, ''), new URL('./', document.baseURI)).href;</script>
 <!-- /build:head -->
 </head>
 <body>
@@ -29,35 +29,35 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="wrap nav__inner">
-    <a class="nav__logo" href="/" aria-label="The Bodyweight Gym, home">
-      <img src="/images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
+    <a class="nav__logo" href="./" aria-label="The Bodyweight Gym, home">
+      <img src="./images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
     </a>
     <nav class="nav__links" aria-label="Main">
-      <a href="/classes" data-nav="classes" aria-current="page">Classes</a>
-      <a href="/books" data-nav="books">Books</a>
-      <a href="/#story" data-nav="story">Story</a>
-      <a href="/blog" data-nav="blog">Blog</a>
+      <a href="./classes" data-nav="classes" aria-current="page">Classes</a>
+      <a href="./books" data-nav="books">Books</a>
+      <a href="./#story" data-nav="story">Story</a>
+      <a href="./blog" data-nav="blog">Blog</a>
     </nav>
-    <a class="btn nav__cta" href="/books">Get the books</a>
+    <a class="btn nav__cta" href="./books">Get the books</a>
     <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
 </header>
 <div class="menu" id="menu" hidden>
   <div class="menu__top">
-    <a class="nav__logo" href="/" aria-label="The Bodyweight Gym, home">
-      <img src="/images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
+    <a class="nav__logo" href="./" aria-label="The Bodyweight Gym, home">
+      <img src="./images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
     </a>
     <button class="nav__menu" type="button" data-menu-close>Close</button>
   </div>
   <nav aria-label="Menu">
     <ul class="menu__links">
-      <li><a class="display" href="/classes">Classes</a></li>
-      <li><a class="display" href="/books">Books</a></li>
-      <li><a class="display" href="/#story">Story</a></li>
-      <li><a class="display" href="/blog">Blog</a></li>
+      <li><a class="display" href="./classes">Classes</a></li>
+      <li><a class="display" href="./books">Books</a></li>
+      <li><a class="display" href="./#story">Story</a></li>
+      <li><a class="display" href="./blog">Blog</a></li>
     </ul>
   </nav>
-  <a class="btn menu__cta" href="/books">Get the books</a>
+  <a class="btn menu__cta" href="./books">Get the books</a>
 </div>
 <!-- /build:nav -->
 
@@ -66,8 +66,8 @@
     <section class="page-head band" aria-labelledby="page-title">
         <figure class="page-head__photo">
             <picture>
-                <source type="image/webp" srcset="/images/photos/stream-set-480.webp 480w, /images/photos/stream-set-1008.webp 1008w" sizes="(max-width: 860px) 100vw, 62vw">
-                <img src="/images/photos/stream-set-1008.jpg" width="1008" height="720" alt="Mat Harvey in a crow pose on the gym floor, with the lights, camera and screens used to stream the classes behind him" fetchpriority="high" decoding="async">
+                <source type="image/webp" srcset="./images/photos/stream-set-480.webp 480w, ./images/photos/stream-set-1008.webp 1008w" sizes="(max-width: 860px) 100vw, 62vw">
+                <img src="./images/photos/stream-set-1008.jpg" width="1008" height="720" alt="Mat Harvey in a crow pose on the gym floor, with the lights, camera and screens used to stream the classes behind him" fetchpriority="high" decoding="async">
             </picture>
             <figcaption class="label photo__tag">From the 2020 announcement video, watched more than 58,000&nbsp;times</figcaption>
         </figure>
@@ -107,8 +107,8 @@
             <ol class="rows library" id="library">
 <!-- build:library -->
         <li class="row class-row class-row--saveable" data-id="54" data-category="mobility" data-minutes="69" data-views="222" data-text="strength &amp; mobility mobility intermediate">
-          <a class="row__link" href="/video?id=54">
-            <span class="class-row__thumb"><img src="/images/classes/54-400.webp" srcset="/images/classes/54-400.webp 400w, /images/classes/54-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=54">
+            <span class="class-row__thumb"><img src="./images/classes/54-400.webp" srcset="./images/classes/54-400.webp 400w, ./images/classes/54-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>69 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength &amp; Mobility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -116,8 +116,8 @@
           <button class="save label" type="button" data-save="54" aria-pressed="false">Save<span class="visually-hidden">: Strength &amp; Mobility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="6" data-category="skills" data-minutes="89" data-views="160" data-text="handstand class skills advanced">
-          <a class="row__link" href="/video?id=6">
-            <span class="class-row__thumb"><img src="/images/classes/6-400.webp" srcset="/images/classes/6-400.webp 400w, /images/classes/6-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=6">
+            <span class="class-row__thumb"><img src="./images/classes/6-400.webp" srcset="./images/classes/6-400.webp 400w, ./images/classes/6-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Skills</span><span>89 min · Advanced</span></span>
             <h3 class="display class-row__title">Handstand class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -125,8 +125,8 @@
           <button class="save label" type="button" data-save="6" aria-pressed="false">Save<span class="visually-hidden">: Handstand class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="22" data-category="mobility" data-minutes="68" data-views="120" data-text="flexibility and mobility class mobility intermediate">
-          <a class="row__link" href="/video?id=22">
-            <span class="class-row__thumb"><img src="/images/classes/22-400.webp" srcset="/images/classes/22-400.webp 400w, /images/classes/22-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=22">
+            <span class="class-row__thumb"><img src="./images/classes/22-400.webp" srcset="./images/classes/22-400.webp 400w, ./images/classes/22-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>68 min · Intermediate</span></span>
             <h3 class="display class-row__title">Flexibility and Mobility class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -134,8 +134,8 @@
           <button class="save label" type="button" data-save="22" aria-pressed="false">Save<span class="visually-hidden">: Flexibility and Mobility class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="44" data-category="strength" data-minutes="57" data-views="98" data-text="calisthenics strength intermediate">
-          <a class="row__link" href="/video?id=44">
-            <span class="class-row__thumb"><img src="/images/classes/44-400.webp" srcset="/images/classes/44-400.webp 400w, /images/classes/44-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=44">
+            <span class="class-row__thumb"><img src="./images/classes/44-400.webp" srcset="./images/classes/44-400.webp 400w, ./images/classes/44-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>57 min · Intermediate</span></span>
             <h3 class="display class-row__title">Calisthenics</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -143,8 +143,8 @@
           <button class="save label" type="button" data-save="44" aria-pressed="false">Save<span class="visually-hidden">: Calisthenics</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="31" data-category="mobility" data-minutes="67" data-views="97" data-text="mobility class mobility intermediate">
-          <a class="row__link" href="/video?id=31">
-            <span class="class-row__thumb"><img src="/images/classes/31-400.webp" srcset="/images/classes/31-400.webp 400w, /images/classes/31-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=31">
+            <span class="class-row__thumb"><img src="./images/classes/31-400.webp" srcset="./images/classes/31-400.webp 400w, ./images/classes/31-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>67 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -152,8 +152,8 @@
           <button class="save label" type="button" data-save="31" aria-pressed="false">Save<span class="visually-hidden">: Mobility Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="35" data-category="mobility" data-minutes="69" data-views="95" data-text="mobility mobility intermediate">
-          <a class="row__link" href="/video?id=35">
-            <span class="class-row__thumb"><img src="/images/classes/35-400.webp" srcset="/images/classes/35-400.webp 400w, /images/classes/35-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=35">
+            <span class="class-row__thumb"><img src="./images/classes/35-400.webp" srcset="./images/classes/35-400.webp 400w, ./images/classes/35-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>69 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -161,8 +161,8 @@
           <button class="save label" type="button" data-save="35" aria-pressed="false">Save<span class="visually-hidden">: Mobility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="30" data-category="mobility" data-minutes="64" data-views="80" data-text="mobility and strength mobility intermediate">
-          <a class="row__link" href="/video?id=30">
-            <span class="class-row__thumb"><img src="/images/classes/30-400.webp" srcset="/images/classes/30-400.webp 400w, /images/classes/30-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=30">
+            <span class="class-row__thumb"><img src="./images/classes/30-400.webp" srcset="./images/classes/30-400.webp 400w, ./images/classes/30-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>64 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility and Strength</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -170,8 +170,8 @@
           <button class="save label" type="button" data-save="30" aria-pressed="false">Save<span class="visually-hidden">: Mobility and Strength</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="67" data-category="strength" data-minutes="58" data-views="77" data-text="upper body strength strength intermediate">
-          <a class="row__link" href="/video?id=67">
-            <span class="class-row__thumb"><img src="/images/classes/67-400.webp" srcset="/images/classes/67-400.webp 400w, /images/classes/67-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=67">
+            <span class="class-row__thumb"><img src="./images/classes/67-400.webp" srcset="./images/classes/67-400.webp 400w, ./images/classes/67-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>58 min · Intermediate</span></span>
             <h3 class="display class-row__title">Upper Body Strength</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -179,8 +179,8 @@
           <button class="save label" type="button" data-save="67" aria-pressed="false">Save<span class="visually-hidden">: Upper Body Strength</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="66" data-category="conditioning" data-minutes="71" data-views="75" data-text="strength &amp; conditioning conditioning intermediate">
-          <a class="row__link" href="/video?id=66">
-            <span class="class-row__thumb"><img src="/images/classes/66-400.webp" srcset="/images/classes/66-400.webp 400w, /images/classes/66-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=66">
+            <span class="class-row__thumb"><img src="./images/classes/66-400.webp" srcset="./images/classes/66-400.webp 400w, ./images/classes/66-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Conditioning</span><span>71 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength &amp; conditioning</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -188,8 +188,8 @@
           <button class="save label" type="button" data-save="66" aria-pressed="false">Save<span class="visually-hidden">: Strength &amp; conditioning</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="26" data-category="mobility" data-minutes="52" data-views="62" data-text="mobility &amp; flexibility mobility intermediate">
-          <a class="row__link" href="/video?id=26">
-            <span class="class-row__thumb"><img src="/images/classes/26-400.webp" srcset="/images/classes/26-400.webp 400w, /images/classes/26-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=26">
+            <span class="class-row__thumb"><img src="./images/classes/26-400.webp" srcset="./images/classes/26-400.webp 400w, ./images/classes/26-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>52 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility &amp; Flexibility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -197,8 +197,8 @@
           <button class="save label" type="button" data-save="26" aria-pressed="false">Save<span class="visually-hidden">: Mobility &amp; Flexibility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="29" data-category="mobility" data-minutes="72" data-views="52" data-text="mobility and flexibility class mobility intermediate">
-          <a class="row__link" href="/video?id=29">
-            <span class="class-row__thumb"><img src="/images/classes/29-400.webp" srcset="/images/classes/29-400.webp 400w, /images/classes/29-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=29">
+            <span class="class-row__thumb"><img src="./images/classes/29-400.webp" srcset="./images/classes/29-400.webp 400w, ./images/classes/29-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>72 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility and Flexibility Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -206,8 +206,8 @@
           <button class="save label" type="button" data-save="29" aria-pressed="false">Save<span class="visually-hidden">: Mobility and Flexibility Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="28" data-category="mobility" data-minutes="72" data-views="51" data-text="mobility and flexibility class mobility intermediate">
-          <a class="row__link" href="/video?id=28">
-            <span class="class-row__thumb"><img src="/images/classes/28-400.webp" srcset="/images/classes/28-400.webp 400w, /images/classes/28-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=28">
+            <span class="class-row__thumb"><img src="./images/classes/28-400.webp" srcset="./images/classes/28-400.webp 400w, ./images/classes/28-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>72 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility and Flexibility Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -215,8 +215,8 @@
           <button class="save label" type="button" data-save="28" aria-pressed="false">Save<span class="visually-hidden">: Mobility and Flexibility Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="33" data-category="mobility" data-minutes="73" data-views="48" data-text="mobility class mobility intermediate">
-          <a class="row__link" href="/video?id=33">
-            <span class="class-row__thumb"><img src="/images/classes/33-400.webp" srcset="/images/classes/33-400.webp 400w, /images/classes/33-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=33">
+            <span class="class-row__thumb"><img src="./images/classes/33-400.webp" srcset="./images/classes/33-400.webp 400w, ./images/classes/33-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>73 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -224,8 +224,8 @@
           <button class="save label" type="button" data-save="33" aria-pressed="false">Save<span class="visually-hidden">: Mobility Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="38" data-category="strength" data-minutes="64" data-views="47" data-text="upper body strength strength intermediate">
-          <a class="row__link" href="/video?id=38">
-            <span class="class-row__thumb"><img src="/images/classes/38-400.webp" srcset="/images/classes/38-400.webp 400w, /images/classes/38-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=38">
+            <span class="class-row__thumb"><img src="./images/classes/38-400.webp" srcset="./images/classes/38-400.webp 400w, ./images/classes/38-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>64 min · Intermediate</span></span>
             <h3 class="display class-row__title">Upper body strength</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -233,8 +233,8 @@
           <button class="save label" type="button" data-save="38" aria-pressed="false">Save<span class="visually-hidden">: Upper body strength</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="45" data-category="skills" data-minutes="70" data-views="47" data-text="handstand class skills advanced">
-          <a class="row__link" href="/video?id=45">
-            <span class="class-row__thumb"><img src="/images/classes/45-400.webp" srcset="/images/classes/45-400.webp 400w, /images/classes/45-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=45">
+            <span class="class-row__thumb"><img src="./images/classes/45-400.webp" srcset="./images/classes/45-400.webp 400w, ./images/classes/45-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Skills</span><span>70 min · Advanced</span></span>
             <h3 class="display class-row__title">Handstand Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -242,8 +242,8 @@
           <button class="save label" type="button" data-save="45" aria-pressed="false">Save<span class="visually-hidden">: Handstand Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="37" data-category="strength" data-minutes="63" data-views="45" data-text="strength strength intermediate">
-          <a class="row__link" href="/video?id=37">
-            <span class="class-row__thumb"><img src="/images/classes/37-400.webp" srcset="/images/classes/37-400.webp 400w, /images/classes/37-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=37">
+            <span class="class-row__thumb"><img src="./images/classes/37-400.webp" srcset="./images/classes/37-400.webp 400w, ./images/classes/37-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>63 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -251,8 +251,8 @@
           <button class="save label" type="button" data-save="37" aria-pressed="false">Save<span class="visually-hidden">: Strength</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="3" data-category="mobility" data-minutes="57" data-views="40" data-text="flexibility, mobility, straight arm strength mobility intermediate">
-          <a class="row__link" href="/video?id=3">
-            <span class="class-row__thumb"><img src="/images/classes/3-400.webp" srcset="/images/classes/3-400.webp 400w, /images/classes/3-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=3">
+            <span class="class-row__thumb"><img src="./images/classes/3-400.webp" srcset="./images/classes/3-400.webp 400w, ./images/classes/3-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>57 min · Intermediate</span></span>
             <h3 class="display class-row__title">Flexibility, Mobility, Straight arm strength</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -260,8 +260,8 @@
           <button class="save label" type="button" data-save="3" aria-pressed="false">Save<span class="visually-hidden">: Flexibility, Mobility, Straight arm strength</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="27" data-category="mobility" data-minutes="54" data-views="38" data-text="mobility &amp; flexibility mobility intermediate">
-          <a class="row__link" href="/video?id=27">
-            <span class="class-row__thumb"><img src="/images/classes/27-400.webp" srcset="/images/classes/27-400.webp 400w, /images/classes/27-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=27">
+            <span class="class-row__thumb"><img src="./images/classes/27-400.webp" srcset="./images/classes/27-400.webp 400w, ./images/classes/27-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>54 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility &amp; Flexibility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -269,8 +269,8 @@
           <button class="save label" type="button" data-save="27" aria-pressed="false">Save<span class="visually-hidden">: Mobility &amp; Flexibility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="32" data-category="mobility" data-minutes="69" data-views="38" data-text="mobility class mobility intermediate">
-          <a class="row__link" href="/video?id=32">
-            <span class="class-row__thumb"><img src="/images/classes/32-400.webp" srcset="/images/classes/32-400.webp 400w, /images/classes/32-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=32">
+            <span class="class-row__thumb"><img src="./images/classes/32-400.webp" srcset="./images/classes/32-400.webp 400w, ./images/classes/32-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>69 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -278,8 +278,8 @@
           <button class="save label" type="button" data-save="32" aria-pressed="false">Save<span class="visually-hidden">: Mobility class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="7" data-category="skills" data-minutes="83" data-views="37" data-text="handstand class skills advanced">
-          <a class="row__link" href="/video?id=7">
-            <span class="class-row__thumb"><img src="/images/classes/7-400.webp" srcset="/images/classes/7-400.webp 400w, /images/classes/7-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=7">
+            <span class="class-row__thumb"><img src="./images/classes/7-400.webp" srcset="./images/classes/7-400.webp 400w, ./images/classes/7-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Skills</span><span>83 min · Advanced</span></span>
             <h3 class="display class-row__title">Handstand Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -287,8 +287,8 @@
           <button class="save label" type="button" data-save="7" aria-pressed="false">Save<span class="visually-hidden">: Handstand Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="20" data-category="mobility" data-minutes="52" data-views="36" data-text="flexibility &amp; mobility mobility intermediate">
-          <a class="row__link" href="/video?id=20">
-            <span class="class-row__thumb"><img src="/images/classes/20-400.webp" srcset="/images/classes/20-400.webp 400w, /images/classes/20-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=20">
+            <span class="class-row__thumb"><img src="./images/classes/20-400.webp" srcset="./images/classes/20-400.webp 400w, ./images/classes/20-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>52 min · Intermediate</span></span>
             <h3 class="display class-row__title">Flexibility &amp; Mobility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -296,8 +296,8 @@
           <button class="save label" type="button" data-save="20" aria-pressed="false">Save<span class="visually-hidden">: Flexibility &amp; Mobility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="52" data-category="skills" data-minutes="58" data-views="36" data-text="handstand 2 skills advanced">
-          <a class="row__link" href="/video?id=52">
-            <span class="class-row__thumb"><img src="/images/classes/52-400.webp" srcset="/images/classes/52-400.webp 400w, /images/classes/52-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=52">
+            <span class="class-row__thumb"><img src="./images/classes/52-400.webp" srcset="./images/classes/52-400.webp 400w, ./images/classes/52-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Skills</span><span>58 min · Advanced</span></span>
             <h3 class="display class-row__title">Handstand 2</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -305,8 +305,8 @@
           <button class="save label" type="button" data-save="52" aria-pressed="false">Save<span class="visually-hidden">: Handstand 2</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="19" data-category="mobility" data-minutes="50" data-views="32" data-text="flexibility &amp; mobility mobility intermediate">
-          <a class="row__link" href="/video?id=19">
-            <span class="class-row__thumb"><img src="/images/classes/19-400.webp" srcset="/images/classes/19-400.webp 400w, /images/classes/19-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=19">
+            <span class="class-row__thumb"><img src="./images/classes/19-400.webp" srcset="./images/classes/19-400.webp 400w, ./images/classes/19-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>50 min · Intermediate</span></span>
             <h3 class="display class-row__title">Flexibility &amp; Mobility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -314,8 +314,8 @@
           <button class="save label" type="button" data-save="19" aria-pressed="false">Save<span class="visually-hidden">: Flexibility &amp; Mobility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="12" data-category="strength" data-minutes="72" data-views="31" data-text="strength and movement strength intermediate">
-          <a class="row__link" href="/video?id=12">
-            <span class="class-row__thumb"><img src="/images/classes/12-400.webp" srcset="/images/classes/12-400.webp 400w, /images/classes/12-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=12">
+            <span class="class-row__thumb"><img src="./images/classes/12-400.webp" srcset="./images/classes/12-400.webp 400w, ./images/classes/12-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>72 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength and Movement</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -323,8 +323,8 @@
           <button class="save label" type="button" data-save="12" aria-pressed="false">Save<span class="visually-hidden">: Strength and Movement</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="18" data-category="mobility" data-minutes="58" data-views="31" data-text="flexibility  and mobility mobility intermediate">
-          <a class="row__link" href="/video?id=18">
-            <span class="class-row__thumb"><img src="/images/classes/18-400.webp" srcset="/images/classes/18-400.webp 400w, /images/classes/18-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=18">
+            <span class="class-row__thumb"><img src="./images/classes/18-400.webp" srcset="./images/classes/18-400.webp 400w, ./images/classes/18-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>58 min · Intermediate</span></span>
             <h3 class="display class-row__title">Flexibility  and Mobility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -332,8 +332,8 @@
           <button class="save label" type="button" data-save="18" aria-pressed="false">Save<span class="visually-hidden">: Flexibility  and Mobility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="23" data-category="mobility" data-minutes="52" data-views="28" data-text="flexibility and mobility mobility intermediate">
-          <a class="row__link" href="/video?id=23">
-            <span class="class-row__thumb"><img src="/images/classes/23-400.webp" srcset="/images/classes/23-400.webp 400w, /images/classes/23-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=23">
+            <span class="class-row__thumb"><img src="./images/classes/23-400.webp" srcset="./images/classes/23-400.webp 400w, ./images/classes/23-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>52 min · Intermediate</span></span>
             <h3 class="display class-row__title">Flexibility and mobility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -341,8 +341,8 @@
           <button class="save label" type="button" data-save="23" aria-pressed="false">Save<span class="visually-hidden">: Flexibility and mobility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="50" data-category="conditioning" data-minutes="50" data-views="28" data-text="conditioning 2 conditioning intermediate">
-          <a class="row__link" href="/video?id=50">
-            <span class="class-row__thumb"><img src="/images/classes/50-400.webp" srcset="/images/classes/50-400.webp 400w, /images/classes/50-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=50">
+            <span class="class-row__thumb"><img src="./images/classes/50-400.webp" srcset="./images/classes/50-400.webp 400w, ./images/classes/50-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Conditioning</span><span>50 min · Intermediate</span></span>
             <h3 class="display class-row__title">Conditioning 2</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -350,8 +350,8 @@
           <button class="save label" type="button" data-save="50" aria-pressed="false">Save<span class="visually-hidden">: Conditioning 2</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="11" data-category="strength" data-minutes="76" data-views="27" data-text="strength and movement strength intermediate">
-          <a class="row__link" href="/video?id=11">
-            <span class="class-row__thumb"><img src="/images/classes/11-400.webp" srcset="/images/classes/11-400.webp 400w, /images/classes/11-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=11">
+            <span class="class-row__thumb"><img src="./images/classes/11-400.webp" srcset="./images/classes/11-400.webp 400w, ./images/classes/11-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>76 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength and Movement</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -359,8 +359,8 @@
           <button class="save label" type="button" data-save="11" aria-pressed="false">Save<span class="visually-hidden">: Strength and Movement</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="13" data-category="strength" data-minutes="53" data-views="27" data-text="strength training (legs, knees, shoulder focus) strength intermediate">
-          <a class="row__link" href="/video?id=13">
-            <span class="class-row__thumb"><img src="/images/classes/13-400.webp" srcset="/images/classes/13-400.webp 400w, /images/classes/13-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=13">
+            <span class="class-row__thumb"><img src="./images/classes/13-400.webp" srcset="./images/classes/13-400.webp 400w, ./images/classes/13-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>53 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength training (legs, knees, shoulder focus)</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -368,8 +368,8 @@
           <button class="save label" type="button" data-save="13" aria-pressed="false">Save<span class="visually-hidden">: Strength training (legs, knees, shoulder focus)</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="25" data-category="mobility" data-minutes="70" data-views="27" data-text="flexibiltiy and mobility mobility intermediate">
-          <a class="row__link" href="/video?id=25">
-            <span class="class-row__thumb"><img src="/images/classes/25-400.webp" srcset="/images/classes/25-400.webp 400w, /images/classes/25-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=25">
+            <span class="class-row__thumb"><img src="./images/classes/25-400.webp" srcset="./images/classes/25-400.webp 400w, ./images/classes/25-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>70 min · Intermediate</span></span>
             <h3 class="display class-row__title">Flexibiltiy and Mobility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -377,8 +377,8 @@
           <button class="save label" type="button" data-save="25" aria-pressed="false">Save<span class="visually-hidden">: Flexibiltiy and Mobility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="42" data-category="strength" data-minutes="25" data-views="27" data-text="strength development with progressions and regressions strength intermediate">
-          <a class="row__link" href="/video?id=42">
-            <span class="class-row__thumb"><img src="/images/classes/42-400.webp" srcset="/images/classes/42-400.webp 400w, /images/classes/42-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=42">
+            <span class="class-row__thumb"><img src="./images/classes/42-400.webp" srcset="./images/classes/42-400.webp 400w, ./images/classes/42-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>25 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength development with progressions and regressions</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -386,8 +386,8 @@
           <button class="save label" type="button" data-save="42" aria-pressed="false">Save<span class="visually-hidden">: Strength development with progressions and regressions</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="48" data-category="conditioning" data-minutes="56" data-views="25" data-text="strength endurance class conditioning intermediate">
-          <a class="row__link" href="/video?id=48">
-            <span class="class-row__thumb"><img src="/images/classes/48-400.webp" srcset="/images/classes/48-400.webp 400w, /images/classes/48-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=48">
+            <span class="class-row__thumb"><img src="./images/classes/48-400.webp" srcset="./images/classes/48-400.webp 400w, ./images/classes/48-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Conditioning</span><span>56 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength Endurance class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -395,8 +395,8 @@
           <button class="save label" type="button" data-save="48" aria-pressed="false">Save<span class="visually-hidden">: Strength Endurance class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="21" data-category="mobility" data-minutes="55" data-views="24" data-text="flexibility &amp; mobility mobility intermediate">
-          <a class="row__link" href="/video?id=21">
-            <span class="class-row__thumb"><img src="/images/classes/21-400.webp" srcset="/images/classes/21-400.webp 400w, /images/classes/21-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=21">
+            <span class="class-row__thumb"><img src="./images/classes/21-400.webp" srcset="./images/classes/21-400.webp 400w, ./images/classes/21-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>55 min · Intermediate</span></span>
             <h3 class="display class-row__title">Flexibility &amp; Mobility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -404,8 +404,8 @@
           <button class="save label" type="button" data-save="21" aria-pressed="false">Save<span class="visually-hidden">: Flexibility &amp; Mobility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="46" data-category="skills" data-minutes="66" data-views="23" data-text="handstand class skills advanced">
-          <a class="row__link" href="/video?id=46">
-            <span class="class-row__thumb"><img src="/images/classes/46-400.webp" srcset="/images/classes/46-400.webp 400w, /images/classes/46-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=46">
+            <span class="class-row__thumb"><img src="./images/classes/46-400.webp" srcset="./images/classes/46-400.webp 400w, ./images/classes/46-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Skills</span><span>66 min · Advanced</span></span>
             <h3 class="display class-row__title">Handstand Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -413,8 +413,8 @@
           <button class="save label" type="button" data-save="46" aria-pressed="false">Save<span class="visually-hidden">: Handstand Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="34" data-category="mobility" data-minutes="56" data-views="22" data-text="mobility class mobility intermediate">
-          <a class="row__link" href="/video?id=34">
-            <span class="class-row__thumb"><img src="/images/classes/34-400.webp" srcset="/images/classes/34-400.webp 400w, /images/classes/34-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=34">
+            <span class="class-row__thumb"><img src="./images/classes/34-400.webp" srcset="./images/classes/34-400.webp 400w, ./images/classes/34-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>56 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -422,8 +422,8 @@
           <button class="save label" type="button" data-save="34" aria-pressed="false">Save<span class="visually-hidden">: Mobility Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="10" data-category="mobility" data-minutes="56" data-views="21" data-text="mobility class mobility intermediate">
-          <a class="row__link" href="/video?id=10">
-            <span class="class-row__thumb"><img src="/images/classes/10-400.webp" srcset="/images/classes/10-400.webp 400w, /images/classes/10-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=10">
+            <span class="class-row__thumb"><img src="./images/classes/10-400.webp" srcset="./images/classes/10-400.webp 400w, ./images/classes/10-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>56 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -431,8 +431,8 @@
           <button class="save label" type="button" data-save="10" aria-pressed="false">Save<span class="visually-hidden">: Mobility class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="39" data-category="strength" data-minutes="74" data-views="21" data-text="strength development strength intermediate">
-          <a class="row__link" href="/video?id=39">
-            <span class="class-row__thumb"><img src="/images/classes/39-400.webp" srcset="/images/classes/39-400.webp 400w, /images/classes/39-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=39">
+            <span class="class-row__thumb"><img src="./images/classes/39-400.webp" srcset="./images/classes/39-400.webp 400w, ./images/classes/39-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>74 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength Development</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -440,8 +440,8 @@
           <button class="save label" type="button" data-save="39" aria-pressed="false">Save<span class="visually-hidden">: Strength Development</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="62" data-category="strength" data-minutes="47" data-views="20" data-text="strength 5 strength intermediate">
-          <a class="row__link" href="/video?id=62">
-            <span class="class-row__thumb"><img src="/images/classes/62-400.webp" srcset="/images/classes/62-400.webp 400w, /images/classes/62-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=62">
+            <span class="class-row__thumb"><img src="./images/classes/62-400.webp" srcset="./images/classes/62-400.webp 400w, ./images/classes/62-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>47 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength 5</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -449,8 +449,8 @@
           <button class="save label" type="button" data-save="62" aria-pressed="false">Save<span class="visually-hidden">: Strength 5</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="24" data-category="mobility" data-minutes="55" data-views="19" data-text="flexibility and mobility mobility intermediate">
-          <a class="row__link" href="/video?id=24">
-            <span class="class-row__thumb"><img src="/images/classes/24-400.webp" srcset="/images/classes/24-400.webp 400w, /images/classes/24-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=24">
+            <span class="class-row__thumb"><img src="./images/classes/24-400.webp" srcset="./images/classes/24-400.webp 400w, ./images/classes/24-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>55 min · Intermediate</span></span>
             <h3 class="display class-row__title">Flexibility and Mobility</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -458,8 +458,8 @@
           <button class="save label" type="button" data-save="24" aria-pressed="false">Save<span class="visually-hidden">: Flexibility and Mobility</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="40" data-category="strength" data-minutes="76" data-views="19" data-text="strength development strength intermediate">
-          <a class="row__link" href="/video?id=40">
-            <span class="class-row__thumb"><img src="/images/classes/40-400.webp" srcset="/images/classes/40-400.webp 400w, /images/classes/40-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=40">
+            <span class="class-row__thumb"><img src="./images/classes/40-400.webp" srcset="./images/classes/40-400.webp 400w, ./images/classes/40-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>76 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength Development</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -467,8 +467,8 @@
           <button class="save label" type="button" data-save="40" aria-pressed="false">Save<span class="visually-hidden">: Strength Development</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="15" data-category="conditioning" data-minutes="69" data-views="18" data-text="strength &amp; conditioning conditioning intermediate">
-          <a class="row__link" href="/video?id=15">
-            <span class="class-row__thumb"><img src="/images/classes/15-400.webp" srcset="/images/classes/15-400.webp 400w, /images/classes/15-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=15">
+            <span class="class-row__thumb"><img src="./images/classes/15-400.webp" srcset="./images/classes/15-400.webp 400w, ./images/classes/15-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Conditioning</span><span>69 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength &amp; Conditioning</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -476,8 +476,8 @@
           <button class="save label" type="button" data-save="15" aria-pressed="false">Save<span class="visually-hidden">: Strength &amp; Conditioning</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="55" data-category="strength" data-minutes="65" data-views="18" data-text="upper body strength strength intermediate">
-          <a class="row__link" href="/video?id=55">
-            <span class="class-row__thumb"><img src="/images/classes/55-400.webp" srcset="/images/classes/55-400.webp 400w, /images/classes/55-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=55">
+            <span class="class-row__thumb"><img src="./images/classes/55-400.webp" srcset="./images/classes/55-400.webp 400w, ./images/classes/55-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>65 min · Intermediate</span></span>
             <h3 class="display class-row__title">Upper body strength</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -485,8 +485,8 @@
           <button class="save label" type="button" data-save="55" aria-pressed="false">Save<span class="visually-hidden">: Upper body strength</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="57" data-category="mobility" data-minutes="46" data-views="18" data-text="mobility 5 mobility intermediate">
-          <a class="row__link" href="/video?id=57">
-            <span class="class-row__thumb"><img src="/images/classes/57-400.webp" srcset="/images/classes/57-400.webp 400w, /images/classes/57-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=57">
+            <span class="class-row__thumb"><img src="./images/classes/57-400.webp" srcset="./images/classes/57-400.webp 400w, ./images/classes/57-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>46 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility 5</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -494,8 +494,8 @@
           <button class="save label" type="button" data-save="57" aria-pressed="false">Save<span class="visually-hidden">: Mobility 5</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="56" data-category="mobility" data-minutes="49" data-views="17" data-text="mobility 4 mobility intermediate">
-          <a class="row__link" href="/video?id=56">
-            <span class="class-row__thumb"><img src="/images/classes/56-400.webp" srcset="/images/classes/56-400.webp 400w, /images/classes/56-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=56">
+            <span class="class-row__thumb"><img src="./images/classes/56-400.webp" srcset="./images/classes/56-400.webp 400w, ./images/classes/56-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Mobility</span><span>49 min · Intermediate</span></span>
             <h3 class="display class-row__title">Mobility 4</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -503,8 +503,8 @@
           <button class="save label" type="button" data-save="56" aria-pressed="false">Save<span class="visually-hidden">: Mobility 4</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="16" data-category="conditioning" data-minutes="70" data-views="16" data-text="strength and conditioning class conditioning intermediate">
-          <a class="row__link" href="/video?id=16">
-            <span class="class-row__thumb"><img src="/images/classes/16-400.webp" srcset="/images/classes/16-400.webp 400w, /images/classes/16-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=16">
+            <span class="class-row__thumb"><img src="./images/classes/16-400.webp" srcset="./images/classes/16-400.webp 400w, ./images/classes/16-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Conditioning</span><span>70 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength and conditioning class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -512,8 +512,8 @@
           <button class="save label" type="button" data-save="16" aria-pressed="false">Save<span class="visually-hidden">: Strength and conditioning class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="17" data-category="conditioning" data-minutes="68" data-views="16" data-text="strength and conditioning conditioning intermediate">
-          <a class="row__link" href="/video?id=17">
-            <span class="class-row__thumb"><img src="/images/classes/17-400.webp" srcset="/images/classes/17-400.webp 400w, /images/classes/17-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=17">
+            <span class="class-row__thumb"><img src="./images/classes/17-400.webp" srcset="./images/classes/17-400.webp 400w, ./images/classes/17-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Conditioning</span><span>68 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength and Conditioning</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -521,8 +521,8 @@
           <button class="save label" type="button" data-save="17" aria-pressed="false">Save<span class="visually-hidden">: Strength and Conditioning</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="59" data-category="strength" data-minutes="70" data-views="16" data-text="strength 2 strength intermediate">
-          <a class="row__link" href="/video?id=59">
-            <span class="class-row__thumb"><img src="/images/classes/59-400.webp" srcset="/images/classes/59-400.webp 400w, /images/classes/59-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=59">
+            <span class="class-row__thumb"><img src="./images/classes/59-400.webp" srcset="./images/classes/59-400.webp 400w, ./images/classes/59-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>70 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength 2</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -530,8 +530,8 @@
           <button class="save label" type="button" data-save="59" aria-pressed="false">Save<span class="visually-hidden">: Strength 2</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="8" data-category="skills" data-minutes="63" data-views="15" data-text="handstand conditioning skills advanced">
-          <a class="row__link" href="/video?id=8">
-            <span class="class-row__thumb"><img src="/images/classes/8-400.webp" srcset="/images/classes/8-400.webp 400w, /images/classes/8-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=8">
+            <span class="class-row__thumb"><img src="./images/classes/8-400.webp" srcset="./images/classes/8-400.webp 400w, ./images/classes/8-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Skills</span><span>63 min · Advanced</span></span>
             <h3 class="display class-row__title">Handstand Conditioning</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -539,8 +539,8 @@
           <button class="save label" type="button" data-save="8" aria-pressed="false">Save<span class="visually-hidden">: Handstand Conditioning</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="47" data-category="conditioning" data-minutes="89" data-views="15" data-text="strength and conditioning conditioning intermediate">
-          <a class="row__link" href="/video?id=47">
-            <span class="class-row__thumb"><img src="/images/classes/47-400.webp" srcset="/images/classes/47-400.webp 400w, /images/classes/47-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=47">
+            <span class="class-row__thumb"><img src="./images/classes/47-400.webp" srcset="./images/classes/47-400.webp 400w, ./images/classes/47-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Conditioning</span><span>89 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength and Conditioning</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -548,8 +548,8 @@
           <button class="save label" type="button" data-save="47" aria-pressed="false">Save<span class="visually-hidden">: Strength and Conditioning</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="43" data-category="strength" data-minutes="54" data-views="14" data-text="calisthenics strength intermediate">
-          <a class="row__link" href="/video?id=43">
-            <span class="class-row__thumb"><img src="/images/classes/43-400.webp" srcset="/images/classes/43-400.webp 400w, /images/classes/43-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=43">
+            <span class="class-row__thumb"><img src="./images/classes/43-400.webp" srcset="./images/classes/43-400.webp 400w, ./images/classes/43-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>54 min · Intermediate</span></span>
             <h3 class="display class-row__title">Calisthenics</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -557,8 +557,8 @@
           <button class="save label" type="button" data-save="43" aria-pressed="false">Save<span class="visually-hidden">: Calisthenics</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="2" data-category="strength" data-minutes="56" data-views="13" data-text="bodyweight class strength intermediate">
-          <a class="row__link" href="/video?id=2">
-            <span class="class-row__thumb"><img src="/images/classes/2-400.webp" srcset="/images/classes/2-400.webp 400w, /images/classes/2-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=2">
+            <span class="class-row__thumb"><img src="./images/classes/2-400.webp" srcset="./images/classes/2-400.webp 400w, ./images/classes/2-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>56 min · Intermediate</span></span>
             <h3 class="display class-row__title">Bodyweight Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -566,8 +566,8 @@
           <button class="save label" type="button" data-save="2" aria-pressed="false">Save<span class="visually-hidden">: Bodyweight Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="9" data-category="skills" data-minutes="66" data-views="13" data-text="handstand development skills advanced">
-          <a class="row__link" href="/video?id=9">
-            <span class="class-row__thumb"><img src="/images/classes/9-400.webp" srcset="/images/classes/9-400.webp 400w, /images/classes/9-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=9">
+            <span class="class-row__thumb"><img src="./images/classes/9-400.webp" srcset="./images/classes/9-400.webp 400w, ./images/classes/9-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Skills</span><span>66 min · Advanced</span></span>
             <h3 class="display class-row__title">Handstand Development</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -575,8 +575,8 @@
           <button class="save label" type="button" data-save="9" aria-pressed="false">Save<span class="visually-hidden">: Handstand Development</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="51" data-category="conditioning" data-minutes="51" data-views="12" data-text="conditioning 3 conditioning intermediate">
-          <a class="row__link" href="/video?id=51">
-            <span class="class-row__thumb"><img src="/images/classes/51-400.webp" srcset="/images/classes/51-400.webp 400w, /images/classes/51-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=51">
+            <span class="class-row__thumb"><img src="./images/classes/51-400.webp" srcset="./images/classes/51-400.webp 400w, ./images/classes/51-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Conditioning</span><span>51 min · Intermediate</span></span>
             <h3 class="display class-row__title">Conditioning 3</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -584,8 +584,8 @@
           <button class="save label" type="button" data-save="51" aria-pressed="false">Save<span class="visually-hidden">: Conditioning 3</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="5" data-category="strength" data-minutes="60" data-views="11" data-text="full bodyweight class strength intermediate">
-          <a class="row__link" href="/video?id=5">
-            <span class="class-row__thumb"><img src="/images/classes/5-400.webp" srcset="/images/classes/5-400.webp 400w, /images/classes/5-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=5">
+            <span class="class-row__thumb"><img src="./images/classes/5-400.webp" srcset="./images/classes/5-400.webp 400w, ./images/classes/5-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>60 min · Intermediate</span></span>
             <h3 class="display class-row__title">Full Bodyweight Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -593,8 +593,8 @@
           <button class="save label" type="button" data-save="5" aria-pressed="false">Save<span class="visually-hidden">: Full Bodyweight Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="14" data-category="strength" data-minutes="78" data-views="10" data-text="full body workout strength intermediate">
-          <a class="row__link" href="/video?id=14">
-            <span class="class-row__thumb"><img src="/images/classes/14-400.webp" srcset="/images/classes/14-400.webp 400w, /images/classes/14-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=14">
+            <span class="class-row__thumb"><img src="./images/classes/14-400.webp" srcset="./images/classes/14-400.webp 400w, ./images/classes/14-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>78 min · Intermediate</span></span>
             <h3 class="display class-row__title">Full Body Workout</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -602,8 +602,8 @@
           <button class="save label" type="button" data-save="14" aria-pressed="false">Save<span class="visually-hidden">: Full Body Workout</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="36" data-category="strength" data-minutes="67" data-views="10" data-text="strength class strength intermediate">
-          <a class="row__link" href="/video?id=36">
-            <span class="class-row__thumb"><img src="/images/classes/36-400.webp" srcset="/images/classes/36-400.webp 400w, /images/classes/36-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=36">
+            <span class="class-row__thumb"><img src="./images/classes/36-400.webp" srcset="./images/classes/36-400.webp 400w, ./images/classes/36-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Strength</span><span>67 min · Intermediate</span></span>
             <h3 class="display class-row__title">Strength Class</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -611,8 +611,8 @@
           <button class="save label" type="button" data-save="36" aria-pressed="false">Save<span class="visually-hidden">: Strength Class</span></button>
         </li>
         <li class="row class-row class-row--saveable" data-id="41" data-category="skills" data-minutes="58" data-views="9" data-text="handstand development (live from russia) skills advanced">
-          <a class="row__link" href="/video?id=41">
-            <span class="class-row__thumb"><img src="/images/classes/41-400.webp" srcset="/images/classes/41-400.webp 400w, /images/classes/41-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
+          <a class="row__link" href="./video?id=41">
+            <span class="class-row__thumb"><img src="./images/classes/41-400.webp" srcset="./images/classes/41-400.webp 400w, ./images/classes/41-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
             <span class="label class-row__meta"><span>Skills</span><span>58 min · Advanced</span></span>
             <h3 class="display class-row__title">Handstand Development (live from Russia)</h3>
             <span class="row__arrow" aria-hidden="true"></span>
@@ -646,17 +646,17 @@
       <div>
         <h2 class="label">Explore</h2>
         <ul>
-          <li><a href="/classes">Classes</a></li>
-          <li><a href="/books">Books</a></li>
-          <li><a href="/#story">Story</a></li>
-          <li><a href="/blog">Blog</a></li>
+          <li><a href="./classes">Classes</a></li>
+          <li><a href="./books">Books</a></li>
+          <li><a href="./#story">Story</a></li>
+          <li><a href="./blog">Blog</a></li>
         </ul>
       </div>
       <div>
         <h2 class="label">Books</h2>
         <ul>
-          <li><a href="/books/handstand">The Handstand</a></li>
-          <li><a href="/books/ring-muscle-up">The Ring Muscle Up</a></li>
+          <li><a href="./books/handstand">The Handstand</a></li>
+          <li><a href="./books/ring-muscle-up">The Ring Muscle Up</a></li>
         </ul>
       </div>
       <div>
@@ -676,7 +676,7 @@
     <div class="footer__base">
       <div class="also-by">
         <span class="label">Also by Mat Harvey</span>
-        <a href="https://my-app-hub.com/" rel="noopener" aria-label="AppHub"><img src="/images/also-by/apphub.png" width="98" height="66" alt="AppHub" loading="lazy" decoding="async"></a>
+        <a href="https://my-app-hub.com/" rel="noopener" aria-label="AppHub"><img src="./images/also-by/apphub.png" width="98" height="66" alt="AppHub" loading="lazy" decoding="async"></a>
         <a href="https://webfpv.org/" rel="noopener" aria-label="webfpv"><span class="also-by__mark">web<span>fpv</span></span></a>
       </div>
       <p class="label">&copy; 2026 The Bodyweight Gym</p>
@@ -685,8 +685,8 @@
 </footer>
 <!-- /build:footer -->
 
-<script src="/js/site.js" defer></script>
-<script src="/js/data.js" defer></script>
-<script src="/js/classes.js" defer></script>
+<script src="./js/site.js" defer></script>
+<script src="./js/data.js" defer></script>
+<script src="./js/classes.js" defer></script>
 </body>
 </html>

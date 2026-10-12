@@ -6,8 +6,8 @@ const util = require('util');
 const execAsync = util.promisify(exec);
 
 // Configuration
-const VIDEOS_DIR = path.join(__dirname, 'public', 'videos');
-const THUMBNAILS_DIR = path.join(__dirname, 'public', 'images', 'thumbnails');
+const VIDEOS_DIR = path.join(__dirname, 'docs', 'videos');
+const THUMBNAILS_DIR = path.join(__dirname, 'docs', 'images', 'thumbnails');
 const THUMBNAIL_WIDTH = 350;
 const THUMBNAIL_HEIGHT = 200;
 
