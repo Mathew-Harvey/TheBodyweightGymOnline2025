@@ -40,15 +40,15 @@ NODE_ENV=production
 
 4. Create necessary directories:
 ```bash
-mkdir -p public/images/thumbnails
-mkdir -p public/videos
+mkdir -p docs/images/thumbnails
+mkdir -p docs/videos
 mkdir -p videos
 ```
 
 5. Add your video files:
    - Place your workout videos in the `videos` directory
    - Name them as `video-1.mp4`, `video-2.mp4`, etc.
-   - Add thumbnail images in `public/images/thumbnails`
+   - Add thumbnail images in `docs/images/thumbnails`
 
 ## 🏃 Running the Application
 
@@ -70,7 +70,7 @@ The server will start on `http://localhost:3000`
 the-bodyweight-gym-online/
 ├── server.js              # Express server and API routes
 ├── package.json           # Project dependencies
-├── public/               # Static files
+├── docs/               # Static files
 │   ├── index.html        # Main application
 │   ├── images/           # Images and thumbnails
 │   └── videos/           # Public video assets
@@ -83,7 +83,7 @@ the-bodyweight-gym-online/
 The application expects videos in the following format:
 
 1. **File Naming**: `video-{id}.mp4` where `{id}` matches the video ID in the database
-2. **Thumbnails**: Place thumbnail images in `public/images/thumbnails/`
+2. **Thumbnails**: Place thumbnail images in `docs/images/thumbnails/`
 3. **Video Metadata**: Update the `videoDatabase` array in `server.js` with your video information
 
 Example video metadata:

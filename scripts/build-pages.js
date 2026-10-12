@@ -1,6 +1,13 @@
 #!/usr/bin/env node
-// Fills the shared and data-driven parts of the static pages in public/ (run by
+// Fills the shared and data-driven parts of the static pages in docs/ (run by
 // `npm run build`, after build-data.js). Uses only Node built-ins.
+//
+// The site is served from docs/ on the main branch, either at a domain root
+// (thebodyweightgym.org) or under a project path (<user>.github.io/<repo>/), so
+// pages must not use root-relative URLs. Partials and renderers write "/css/..."
+// for readability; relativise() turns every root-relative href/src/srcset into
+// one relative to the page ("css/..." or "../css/..."). Scripts use bwgUrl(),
+// defined in the head partial, for the same reason.
 //
 // Pages keep their own content and mark the generated regions with comments:
 //   <!-- build:head -->        ... <!-- /build:head -->       src/partials/head.html
@@ -18,7 +25,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const ROOT = path.join(__dirname, '..');
-const PUB = path.join(ROOT, 'public');
+const PUB = path.join(ROOT, 'docs');
 const PARTIALS = path.join(ROOT, 'src', 'partials');
 
 const read = (f) => fs.readFileSync(f, 'utf8');
@@ -114,10 +121,21 @@ function renderNav({ current }) {
   return NAV.replace(/data-nav="([a-z]+)"/g, (m, key) => (key === current ? `${m} aria-current="page"` : m));
 }
 
+// "./" for pages in docs/, "../" for docs/books/*, docs/blog/*.
+// 404.html is served at any depth, so it sets a <base> itself and uses "./".
+const rootFor = (file) => (path.basename(file) === '404.html' ? './' : '../'.repeat(path.relative(PUB, path.dirname(file)).split(path.sep).filter(Boolean).length) || './');
+
+// Root-relative URLs in attributes become page-relative; "//host" and "https:" stay.
+function relativise(html, root) {
+  return html.replace(/(\s(?:href|src|srcset|imagesrcset|action|poster)=")([^"]*)"/g, (m, attr, value) =>
+    `${attr}${value.replace(/(^|,\s*)\/(?!\/)/g, `$1${root}`)}"`);
+}
+
 function processPage(file) {
   const before = read(file);
+  const root = rootFor(file);
   let html = before;
-  html = region(html, 'head', () => HEAD);
+  html = region(html, 'head', () => HEAD.replace('{{root}}', root));
   html = region(html, 'nav', renderNav);
   html = region(html, 'footer', () => FOOTER);
   html = region(html, 'featured', () => '        ' + featured().map(classRow).join('\n        '));
@@ -128,6 +146,7 @@ function processPage(file) {
     if (!(key in STATS)) throw new Error(`${path.relative(ROOT, file)}: unknown data-stat "${key}"`);
     return `${open}${STATS[key]}${close}`;
   });
+  html = relativise(html, root);
   if (html !== before) {
     fs.writeFileSync(file, html);
     console.log(`updated ${path.relative(ROOT, file)}`);

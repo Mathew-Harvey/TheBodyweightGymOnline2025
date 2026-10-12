@@ -6,21 +6,25 @@
     <title>Page not found | The Bodyweight Gym</title>
     <meta name="robots" content="noindex">
     <script>
+        // This page is served for any missing path, at any depth, so its relative links
+        // need a <base>: the site root is "/" on the custom domain and "/<repo>/" on github.io.
         // Old server-rendered blog URLs (/blog/<slug>) now live at /blog/post?slug=<slug>.
         (function () {
-            var m = location.pathname.match(/^\/blog\/([\w-]+)\/?$/);
-            if (m && m[1] !== 'post') location.replace('/blog/post?slug=' + m[1]);
+            var root = /\.github\.io$/.test(location.hostname) ? location.pathname.split('/').slice(0, 2).join('/') + '/' : '/';
+            document.write('<base href="' + root + '">');
+            var m = location.pathname.slice(root.length - 1).match(/^\/blog\/([\w-]+)\/?$/);
+            if (m && m[1] !== 'post') location.replace(root + 'blog/post?slug=' + m[1]);
         })();
     </script>
     <!-- build:head -->
-    <link rel="preload" href="/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/css/brand.css?v=fd962ab4">
-    <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png">
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="preload" href="./fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./css/brand.css?v=5bf53fd5">
+    <link rel="icon" href="./icons/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#F3F1EC">
-    <script>document.documentElement.classList.add('js')</script>
+    <script>document.documentElement.classList.add('js'); window.bwgUrl = (p) => new URL(String(p).replace(/^\//, ''), new URL('./', document.baseURI)).href;</script>
 <!-- /build:head -->
 </head>
 <body>
@@ -28,35 +32,35 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="wrap nav__inner">
-    <a class="nav__logo" href="/" aria-label="The Bodyweight Gym, home">
-      <img src="/images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
+    <a class="nav__logo" href="./" aria-label="The Bodyweight Gym, home">
+      <img src="./images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
     </a>
     <nav class="nav__links" aria-label="Main">
-      <a href="/classes" data-nav="classes">Classes</a>
-      <a href="/books" data-nav="books">Books</a>
-      <a href="/#story" data-nav="story">Story</a>
-      <a href="/blog" data-nav="blog">Blog</a>
+      <a href="./classes" data-nav="classes">Classes</a>
+      <a href="./books" data-nav="books">Books</a>
+      <a href="./#story" data-nav="story">Story</a>
+      <a href="./blog" data-nav="blog">Blog</a>
     </nav>
-    <a class="btn nav__cta" href="/books">Get the books</a>
+    <a class="btn nav__cta" href="./books">Get the books</a>
     <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
 </header>
 <div class="menu" id="menu" hidden>
   <div class="menu__top">
-    <a class="nav__logo" href="/" aria-label="The Bodyweight Gym, home">
-      <img src="/images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
+    <a class="nav__logo" href="./" aria-label="The Bodyweight Gym, home">
+      <img src="./images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
     </a>
     <button class="nav__menu" type="button" data-menu-close>Close</button>
   </div>
   <nav aria-label="Menu">
     <ul class="menu__links">
-      <li><a class="display" href="/classes">Classes</a></li>
-      <li><a class="display" href="/books">Books</a></li>
-      <li><a class="display" href="/#story">Story</a></li>
-      <li><a class="display" href="/blog">Blog</a></li>
+      <li><a class="display" href="./classes">Classes</a></li>
+      <li><a class="display" href="./books">Books</a></li>
+      <li><a class="display" href="./#story">Story</a></li>
+      <li><a class="display" href="./blog">Blog</a></li>
     </ul>
   </nav>
-  <a class="btn menu__cta" href="/books">Get the books</a>
+  <a class="btn menu__cta" href="./books">Get the books</a>
 </div>
 <!-- /build:nav -->
 
@@ -68,16 +72,16 @@
                 <h1 id="lost-title" class="display t-hero lost__title">Not here.</h1>
                 <p class="statement statement--s">The page may have moved when the site was rebuilt. These still work.</p>
                 <div class="actions lost__links">
-                    <a class="arrow" href="/classes"><span>Free classes</span></a>
-                    <a class="arrow" href="/books"><span>The books</span></a>
-                    <a class="arrow" href="/blog"><span>Training notes</span></a>
+                    <a class="arrow" href="./classes"><span>Free classes</span></a>
+                    <a class="arrow" href="./books"><span>The books</span></a>
+                    <a class="arrow" href="./blog"><span>Training notes</span></a>
                 </div>
             </div>
             <div>
                 <figure class="photo lost__photo" data-reveal>
                     <picture>
-                        <source type="image/webp" srcset="/images/photos/lsit-beach-480.webp 480w, /images/photos/lsit-beach-960.webp 960w" sizes="(max-width: 860px) 100vw, 50vw">
-                        <img src="/images/photos/lsit-beach-960.jpg" width="1200" height="1200" alt="Mat Harvey holding an L-sit on a railing by the sea at sunset" decoding="async">
+                        <source type="image/webp" srcset="./images/photos/lsit-beach-480.webp 480w, ./images/photos/lsit-beach-960.webp 960w" sizes="(max-width: 860px) 100vw, 50vw">
+                        <img src="./images/photos/lsit-beach-960.jpg" width="1200" height="1200" alt="Mat Harvey holding an L-sit on a railing by the sea at sunset" decoding="async">
                     </picture>
                 </figure>
             </div>
@@ -101,17 +105,17 @@
       <div>
         <h2 class="label">Explore</h2>
         <ul>
-          <li><a href="/classes">Classes</a></li>
-          <li><a href="/books">Books</a></li>
-          <li><a href="/#story">Story</a></li>
-          <li><a href="/blog">Blog</a></li>
+          <li><a href="./classes">Classes</a></li>
+          <li><a href="./books">Books</a></li>
+          <li><a href="./#story">Story</a></li>
+          <li><a href="./blog">Blog</a></li>
         </ul>
       </div>
       <div>
         <h2 class="label">Books</h2>
         <ul>
-          <li><a href="/books/handstand">The Handstand</a></li>
-          <li><a href="/books/ring-muscle-up">The Ring Muscle Up</a></li>
+          <li><a href="./books/handstand">The Handstand</a></li>
+          <li><a href="./books/ring-muscle-up">The Ring Muscle Up</a></li>
         </ul>
       </div>
       <div>
@@ -131,7 +135,7 @@
     <div class="footer__base">
       <div class="also-by">
         <span class="label">Also by Mat Harvey</span>
-        <a href="https://my-app-hub.com/" rel="noopener" aria-label="AppHub"><img src="/images/also-by/apphub.png" width="98" height="66" alt="AppHub" loading="lazy" decoding="async"></a>
+        <a href="https://my-app-hub.com/" rel="noopener" aria-label="AppHub"><img src="./images/also-by/apphub.png" width="98" height="66" alt="AppHub" loading="lazy" decoding="async"></a>
         <a href="https://webfpv.org/" rel="noopener" aria-label="webfpv"><span class="also-by__mark">web<span>fpv</span></span></a>
       </div>
       <p class="label">&copy; 2026 The Bodyweight Gym</p>
@@ -140,8 +144,8 @@
 </footer>
 <!-- /build:footer -->
 
-<script src="/js/site.js" defer></script>
-<script src="/js/books-config.js" defer></script>
-<script src="/js/books.js" defer></script>
+<script src="./js/site.js" defer></script>
+<script src="./js/books-config.js" defer></script>
+<script src="./js/books.js" defer></script>
 </body>
 </html>

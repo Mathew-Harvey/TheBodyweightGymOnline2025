@@ -13,7 +13,7 @@ Everything on the site should serve one of those two jobs or be removed.
 
 ## 1. Why the current site reads as AI-generated, and the rules that follow
 
-Mat's words: "these strips are really sloppy AI, I don't want this to come across as an AI generated site." He is right. The current `public/index.html` (branch `redesign`) and the previous version both use the patterns that every template and every generated landing page uses. The build must not contain any of the following.
+Mat's words: "these strips are really sloppy AI, I don't want this to come across as an AI generated site." He is right. The current `docs/index.html` (branch `redesign`) and the previous version both use the patterns that every template and every generated landing page uses. The build must not contain any of the following.
 
 **Banned patterns (hard rules):**
 
@@ -174,10 +174,10 @@ This is the part that most decides whether the site reads as real. Rule: **only 
 
 | File | Shows | Notes |
 | --- | --- | --- |
-| `public/images/books/handstand-kindle-cover-1600x2560.jpg` | Mat, freestanding handstand against a brick wall, studio lighting | Book 1 cover. The photo area above the title crops to 1600x1500 (`handstand-art-*.{webp,jpg}` already generated). |
-| `public/images/books/muscleup-kindle-cover-1600x2560.jpg` | Mat inverted on a rope/ring against black | Book 2 cover. Crop 1600x1300 (`muscleup-art-*`). |
+| `docs/images/books/handstand-kindle-cover-1600x2560.jpg` | Mat, freestanding handstand against a brick wall, studio lighting | Book 1 cover. The photo area above the title crops to 1600x1500 (`handstand-art-*.{webp,jpg}` already generated). |
+| `docs/images/books/muscleup-kindle-cover-1600x2560.jpg` | Mat inverted on a rope/ring against black | Book 2 cover. Crop 1600x1300 (`muscleup-art-*`). |
 
-**Real photographs, Wix-era, low resolution (438px wide unless noted). Use at or below 440px CSS width, or larger in black and white with grain, which hides the resolution gap.** Paths are under `public/blogs/`; filenames shortened to the first 13 characters of the Wix id (all end `~mv2.avif`).
+**Real photographs, Wix-era, low resolution (438px wide unless noted). Use at or below 440px CSS width, or larger in black and white with grain, which hides the resolution gap.** Paths are under `docs/blogs/`; filenames shortened to the first 13 characters of the Wix id (all end `~mv2.avif`).
 
 | File (folder / id prefix) | Shows | Suggested use |
 | --- | --- | --- |
@@ -203,15 +203,15 @@ This is the part that most decides whether the site reads as real. Rule: **only 
 
 **Not photographs (never use outside their own blog post):** `goalsetting/…50c1f3f…` (cartoon), `strengthtrainingandrecovery/…6635daf…` (food pyramid), `suppliments/…6ae4656…` and `…fb06f57…` (diagrams), `trainingandpain/…25e9477…` (cartoon), `…51138d6…` (chart), everything in `wellrested/` except Corey's portrait (stock: dumbbell, notebook, bottles, sleeper).
 
-**Renders, banned from marketing surfaces:** `public/images/guides/handstand/*` and `public/images/guides/muscleup/*` are pencil-sketch renders except `handstand/finpushups.png` (a photo). The current book pages use two of them as "photos" (`public/images/books/handstand-photo-800.*` from `freestandinghandstand1.png`, `muscleup-photo-800.*` from `ringmu1.png`) and the blog cards use several more. Replace all of these. Delete `handstand-photo-800.*` and `muscleup-photo-800.*`; stop generating them in `scripts/build-images.js`. Blog card images in `scripts/blog-meta.json` currently point at guide renders for 9 posts; replace with the real photo from each post's own folder, or run the blog list without images (preferred; see section 6.8).
+**Renders, banned from marketing surfaces:** `docs/images/guides/handstand/*` and `docs/images/guides/muscleup/*` are pencil-sketch renders except `handstand/finpushups.png` (a photo). The current book pages use two of them as "photos" (`docs/images/books/handstand-photo-800.*` from `freestandinghandstand1.png`, `muscleup-photo-800.*` from `ringmu1.png`) and the blog cards use several more. Replace all of these. Delete `handstand-photo-800.*` and `muscleup-photo-800.*`; stop generating them in `scripts/build-images.js`. Blog card images in `scripts/blog-meta.json` currently point at guide renders for 9 posts; replace with the real photo from each post's own folder, or run the blog list without images (preferred; see section 6.8).
 
-**Class thumbnails:** `public/images/thumbnails/*.jpg` are 350x200 and only a fallback. Classes with a `youtubeId` (most of them, see section 8) use the stream frame at `https://i.ytimg.com/vi/<id>/maxresdefault.jpg` (1280x720), with `hqdefault.jpg` as the fallback before the local file.
+**Class thumbnails:** `docs/images/thumbnails/*.jpg` are 350x200 and only a fallback. Classes with a `youtubeId` (most of them, see section 8) use the stream frame at `https://i.ytimg.com/vi/<id>/maxresdefault.jpg` (1280x720), with `hqdefault.jpg` as the fallback before the local file.
 
-**Logo:** `public/images/Bwglogo2.png` (648x174) is blue, which fights the orange/black system. Ask Mat for the vector source. Until then, use it with `filter: brightness(0)` on paper and `filter: brightness(0) invert(1)` on black (it is a flat-colour PNG, so this gives a clean black or paper version). The ring mark on its own is the favicon and PWA icon (icons are already generated by `npm run images`).
+**Logo:** `docs/images/Bwglogo2.png` (648x174) is blue, which fights the orange/black system. Ask Mat for the vector source. Until then, use it with `filter: brightness(0)` on paper and `filter: brightness(0) invert(1)` on black (it is a flat-colour PNG, so this gives a clean black or paper version). The ring mark on its own is the favicon and PWA icon (icons are already generated by `npm run images`).
 
 **Video and stream frames (the best news in this inventory):** the 2020 classes were **streamed live from the gym** and sit under the channel's Live tab (62 streams titled "Coach X - ..."). Every matched class therefore has a real 1280x720 frame at `https://i.ytimg.com/vi/<youtubeId>/maxresdefault.jpg`: the coach on the mat, the wall bars and rig behind, a "Coach / Class" lower-third from the stream overlay. These are honest, consistent, and far better than the 350px local thumbnails; the class list should use them wherever a `youtubeId` exists (58 of 66 as of this brief; see section 8).
 
-The channel also has the 2020 announcement video "FREE live fitness classes" (`_UARrLERb2k`, **58K views**, the gym's most-watched upload). Its frame (Mat in a crow pose under studio lights, the streaming rig behind him) is saved at `public/images/gym/2020-live-classes-frame.jpg` (1280x720) and is a legitimate hero candidate alongside the cover photos, because it shows the real gym and the real setup the classes came from. Ask Mat for the source footage: a 6 to 10 second muted loop from it would make the hero.
+The channel also has the 2020 announcement video "FREE live fitness classes" (`_UARrLERb2k`, **58K views**, the gym's most-watched upload). Its frame (Mat in a crow pose under studio lights, the streaming rig behind him) is saved at `docs/images/gym/2020-live-classes-frame.jpg` (1280x720) and is a legitimate hero candidate alongside the cover photos, because it shows the real gym and the real setup the classes came from. Ask Mat for the source footage: a 6 to 10 second muted loop from it would make the hero.
 
 "The Bodyweight Gym flythrough" (`1OxqgPVjmIA`) is a hand-held, overexposed GoPro walk past the wall bars; not usable without grading.
 
@@ -249,7 +249,7 @@ Mobile: wordmark + "Menu" (full-screen paper panel with the same five items set 
 Keep the home short. Six sections plus footer. The full class library moves to `/classes`.
 
 **1. Hero (black band, full viewport height on desktop, natural height on mobile).**
-Photo: the handstand cover crop (`handstand-art-1400.webp`) full-bleed, anchored right, fading to black on the left so the type sits on black, not on the figure. Alternative if Mat prefers the gym over the studio: the 2020 live-classes frame (`public/images/gym/2020-live-classes-frame.jpg`), which shows the real floor and rig; it is 1280px, so use it at full bleed only on screens up to 1440px wide and ask for the source footage for larger.
+Photo: the handstand cover crop (`handstand-art-1400.webp`) full-bleed, anchored right, fading to black on the left so the type sits on black, not on the figure. Alternative if Mat prefers the gym over the studio: the 2020 live-classes frame (`docs/images/gym/2020-live-classes-frame.jpg`), which shows the real floor and rig; it is 1280px, so use it at full bleed only on screens up to 1440px wide and ask for the source footage for larger.
 Left column, bottom-aligned:
 - mono label: `BODYWEIGHT SKILLS · BOOKS 1 AND 2 · MAT HARVEY`
 - h1: `LEARN THE HANDSTAND. EARN THE MUSCLE UP.` (two lines; "EARN" in orange is the one accent word on the page)
@@ -268,9 +268,9 @@ No badge, no stat strip, no second button, no scroll-down arrow.
 - Below the list: text link `All 66 classes →` to `/classes`.
 
 **4. The books (paper).** Two ruled rows, each the full content width, alternating image side.
-Row 1: left 5 columns: the cover photograph (not the cover with title, the photo crop) 4:5, flat. Right 7 columns: mono `BOOK 1`, h2 `THE HANDSTAND`, statement `Six levels to a 60 second freestanding handstand.`, two short paragraphs from the approved copy (already in `public/books/handstand.html`), mono price line `KINDLE US$4.99 · PAPERBACK US$9.99 · ABOUT 36 PAGES`, buy buttons, text link `What's inside →`.
+Row 1: left 5 columns: the cover photograph (not the cover with title, the photo crop) 4:5, flat. Right 7 columns: mono `BOOK 1`, h2 `THE HANDSTAND`, statement `Six levels to a 60 second freestanding handstand.`, two short paragraphs from the approved copy (already in `docs/books/handstand.html`), mono price line `KINDLE US$4.99 · PAPERBACK US$9.99 · ABOUT 36 PAGES`, buy buttons, text link `What's inside →`.
 Row 2 mirrors it for The Ring Muscle Up with the `--teal` label and rule.
-Approved book copy is in `public/books/*.html`; use it verbatim, trimmed, never extended.
+Approved book copy is in `docs/books/*.html`; use it verbatim, trimmed, never extended.
 
 **5. Story (paper).** Two columns with a vertical rule. Left: the photo of Mat coaching the older client (B&W, 5:4). Right: mono `MAT HARVEY · FOUNDER`, the existing quote in statement type (`A few years ago I broke my back. Overnight I went from a ring routine and handstand to not even one pushup. Now I'm back and stronger than ever.`), then the two existing paragraphs (scientist → coaching; gym closed in COVID). No mini-stats, no logo in a frame.
 
@@ -332,9 +332,9 @@ Rules (Mat's, plus mine):
 
 ## 8. Technical constraints (do not change)
 
-- Fully static site on GitHub Pages; deploy from `public/` by `.github/workflows/pages.yml`. No server, no `/api/*`.
-- Data: `public/data/videos.json` is hand-maintained; `npm run build` regenerates `categories.json`, `instructors.json`, `blogs.json` and (with `YOUTUBE_API_KEY`) view counts. `scripts/blog-meta.json` controls the blog list.
-- `public/js/data.js` (`window.BWG`): JSON loading, favourites, stats, URL helpers. `public/js/modern-app.js`: filters, search, sort, cards. `public/js/books-config.js` + `books.js`: Amazon URL config (TODO → disabled state), AU store switch, click-to-load YouTube (`youtube-nocookie.com`), signup modes, sticky buy bar. Keep these contracts; change markup and CSS.
+- Fully static site on GitHub Pages; served from `docs/` on `main` (Pages: deploy from a branch, `/docs`). No server, no `/api/*`.
+- Data: `docs/data/videos.json` is hand-maintained; `npm run build` regenerates `categories.json`, `instructors.json`, `blogs.json` and (with `YOUTUBE_API_KEY`) view counts. `scripts/blog-meta.json` controls the blog list.
+- `docs/js/data.js` (`window.BWG`): JSON loading, favourites, stats, URL helpers. `docs/js/modern-app.js`: filters, search, sort, cards. `docs/js/books-config.js` + `books.js`: Amazon URL config (TODO → disabled state), AU store switch, click-to-load YouTube (`youtube-nocookie.com`), signup modes, sticky buy bar. Keep these contracts; change markup and CSS.
 - **YouTube IDs.** The 66 classes are the gym's 2020 live streams (channel `@thebodyweightgym8512`, id `UCsmQBMATmOL14n-v53jug8Q`; the full listing of 245 uploads and streams is in `scripts/youtube-channel.json`). On this branch `videos.json` now carries a `youtubeId` for 58 classes: 46 matched the stream title exactly, 12 matched by coach and class type where the local file only had a short name (`strength3_corey` and the like). 8 remain `TODO` (Coach Kelvin - Full Body Workout, Coach Oscar - Handstand 3, Coach Maisie - Mobility 6, Coach Corey - Strength 3, Coach Corey - Strength 4, Coach Corey - Strength 6, Coach Maisie - Strength 6, Coach Corey - Strength 7).
   Caveat for Mat to spot-check: where the same title exists several times on both sides ("coach corey handstand class", "coach corey strength and movement", "coach corey strength training legs knees shoulder focus", "coach kelvin strength conditioning", "coach maisie flexibility and mobility", "coach maisie flexibility mobility", "coach maisie mobility and flexibility class", "coach maisie mobility and strength", "coach maisie mobility class", "coach maisie mobility flexibility", "coach maisie upper body strength", "coach mikhail mik strength development", "coach mikhail nazaryev mik strength development with progressions and regressions", "coach oscar calisthenics", "coach oscar handstand class", "coach ray strength and conditioning"), the pairing inside that group is by upload order, so a card may open a different session of the same class with the same coach. The title and coach are right either way; swap IDs in `videos.json` if a class should point at a specific session. To redo the matching after new uploads, refresh `scripts/youtube-channel.json` (`yt-dlp --flat-playlist -J` on the channel's `/videos` and `/streams` tabs) and match on the local `filename` with the size suffix stripped (`-1280x720-avc1-mp4a.mp4`, ` (720p)`), case- and punctuation-insensitive.
   Thumbnails: prefer `https://i.ytimg.com/vi/<youtubeId>/maxresdefault.jpg`, fall back to `hqdefault.jpg`, then the local 350px file. With the IDs in place, `npm run build` with `YOUTUBE_API_KEY` also fills real view counts.
@@ -356,13 +356,13 @@ Checklist before the branch is handed back:
 - [ ] Home, `/classes`, `/video?id=2`, both book pages, `/books`, `/blog`, one post, `/404` render at 360, 768 and 1440 with no horizontal scroll and no console errors.
 - [ ] Filters, search, sort, favourites across reload, the buy-button disabled state, the AU store switch and both signup modes still pass the checks in `scratchpad` scripts (re-create: they are listed in the PR #2 description).
 - [ ] Lighthouse and transfer budgets above met; `npm run build` and `npm run images` succeed.
-- [ ] `docs/DESIGN_BRIEF.md` updated with anything you decided differently, and why.
+- [ ] `design/DESIGN_BRIEF.md` updated with anything you decided differently, and why.
 
 ---
 
 ## 10. Build order (suggested)
 
-1. Tokens and type: new `public/css/brand.css` from section 4 (replace the current file entirely; keep `modern-style.css` only for what the blog post body still needs, then trim it).
+1. Tokens and type: new `docs/css/brand.css` from section 4 (replace the current file entirely; keep `modern-style.css` only for what the blog post body still needs, then trim it).
 2. Image pipeline: extend `scripts/build-images.js` with the grade, the B&W variant and the 480/960/1440/2000 srcset sizes; remove the guide-render outputs; add `scripts/featured-classes.json` if hand-picking.
 3. Nav + footer as shared markup (copy into each page; there is no templating).
 4. Home (section 6.2) and `/classes` (6.3).
@@ -387,7 +387,7 @@ The rebuild follows sections 1 to 9. These are the deliberate differences, plus 
 
 **Facts confirmed by Mat**
 - The gym opened in **2016** (not 2017). The Sunday Times Magazine cover is dated **10 April 2016** ("WA's most unusual new gym"); the scan is `assets/photos/stm-cover-2016-04-10.jpg`.
-- **Only Mat Harvey is named on the site.** Coach names are stripped from class titles in the UI (`displayTitle()` in `scripts/build-pages.js` and `public/js/video.js`), are not in any description, and the stream lower-thirds that carried them are cropped out of every class frame. "More from Coach X" became "More strength classes". The three guest posts (`weightliftingtokungfu`, `wellrested`, `gettingoutofcomfort`) are unpublished in `scripts/blog-meta.json`; their markdown stays in the repo.
+- **Only Mat Harvey is named on the site.** Coach names are stripped from class titles in the UI (`displayTitle()` in `scripts/build-pages.js` and `docs/js/video.js`), are not in any description, and the stream lower-thirds that carried them are cropped out of every class frame. "More from Coach X" became "More strength classes". The three guest posts (`weightliftingtokungfu`, `wellrested`, `gettingoutofcomfort`) are unpublished in `scripts/blog-meta.json`; their markdown stays in the repo.
 - Client photos may be used (members signed a waiver), so the coaching photo is in the story section.
 
 **Numbers**
@@ -397,8 +397,8 @@ The rebuild follows sections 1 to 9. These are the deliberate differences, plus 
 
 **Build and markup**
 - Shared nav, head and footer live in `src/partials/` and are written into every page by `scripts/build-pages.js` (Node built-ins only, part of `npm run build`), instead of being copied by hand. The same step pre-renders the featured classes, the full class library on `/classes`, and the blog lists, so those pages work without JavaScript and do not shift when scripts run.
-- Fonts are self-hosted (`public/fonts/`, latin subset, OFL licences alongside) rather than loaded from Google Fonts: one fewer origin, and both files are preloaded. Local fallbacks are size-matched to Archivo (measured against Arial) so nothing moves when the web font arrives.
-- `modern-app.js`, `modern-style.css` and `books.css` are replaced by `public/js/classes.js`, `video.js`, `post.js`, `site.js` and the single `public/css/brand.css`. The `books.js` contracts (TODO URL stays disabled, AU store switch, signup modes, buy bar) are unchanged; click-to-play moved to `site.js` so the class page uses it too.
+- Fonts are self-hosted (`docs/fonts/`, latin subset, OFL licences alongside) rather than loaded from Google Fonts: one fewer origin, and both files are preloaded. Local fallbacks are size-matched to Archivo (measured against Arial) so nothing moves when the web font arrives.
+- `modern-app.js`, `modern-style.css` and `books.css` are replaced by `docs/js/classes.js`, `video.js`, `post.js`, `site.js` and the single `docs/css/brand.css`. The `books.js` contracts (TODO URL stays disabled, AU store switch, signup modes, buy bar) are unchanged; click-to-play moved to `site.js` so the class page uses it too.
 
 **Colour and accessibility**
 - Orange and teal fail 4.5:1 as text on paper, so text uses darker ink versions (`--orange-ink #A84D17`, `--teal-ink #1B766F`); the bright values are kept for black bands, rules and fills.
@@ -418,7 +418,7 @@ The rebuild follows sections 1 to 9. These are the deliberate differences, plus 
 - The post bodies themselves are unedited. They still contain hype words, em dashes and an "About the Author" line with credentials the repo cannot back ("certified", "over 10 years", in `buildingfoundations.md`). They need Mat's edit; that is content work, outside this rebuild.
 
 **Not done, or left as it was**
-- No page registers `public/service-worker.js` (none did before either). Its cache name is bumped to v5 so it is ready if registration is added.
+- No page registers `docs/service-worker.js` (none did before either). Its cache name is bumped to v5 so it is ready if registration is added.
 - Assets still wanted from section 5.2: the photoshoot originals, the logo source, coach photos (not needed while only Mat is named).
 
 **Checks run (Oct 2026)**

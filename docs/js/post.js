@@ -49,7 +49,7 @@
         document.title = `${title} | The Bodyweight Gym`;
         $('post-title').textContent = title;
         $('post-crumb').textContent = title;
-        $('post-body').innerHTML = `<p>${esc(text)} <a href="/blog">See all articles</a>.</p>`;
+        $('post-body').innerHTML = `<p>${esc(text)} <a href="${bwgUrl('/blog')}">See all articles</a>.</p>`;
     }
 
     async function load() {
@@ -74,7 +74,8 @@
         $('post-meta').textContent = `${post.author} · ${post.readTime} read · ${fmtDate(post.date)}`;
         if (post.image) {
             const photo = $('post-photo');
-            photo.innerHTML = `<img src="${post.image}-480.webp" srcset="${post.image}-320.webp 320w, ${post.image}-480.webp 480w" sizes="(max-width: 860px) 100vw, 440px" width="480" height="320" alt="" decoding="async">`;
+            const image = bwgUrl(post.image);
+            photo.innerHTML = `<img src="${image}-480.webp" srcset="${image}-320.webp 320w, ${image}-480.webp 480w" sizes="(max-width: 860px) 100vw, 440px" width="480" height="320" alt="" decoding="async">`;
             photo.hidden = false;
         }
 
@@ -87,13 +88,16 @@
         }
 
         try {
-            const res = await fetch(post.file);
+            const res = await fetch(bwgUrl(post.file));
             if (!res.ok) throw new Error(`${post.file}: HTTP ${res.status}`);
             const md = await res.text();
             if (!window.marked) throw new Error('marked did not load');
             marked.setOptions({ breaks: true, gfm: true });
             const body = $('post-body');
             body.innerHTML = marked.parse(clean(md));
+            // The markdown links and images are root-relative ("/images/guides/...").
+            body.querySelectorAll('img[src^="/"]:not([src^="//"])').forEach((img) => { img.src = bwgUrl(img.getAttribute('src')); });
+            body.querySelectorAll('a[href^="/"]:not([href^="//"])').forEach((a) => { a.href = bwgUrl(a.getAttribute('href')); });
             const ids = new Map(anchors);
             body.querySelectorAll('h2, h3, h4').forEach((h) => {
                 const id = ids.get(h.textContent.trim());

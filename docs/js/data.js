@@ -6,7 +6,7 @@
     const cache = {};
     function loadJson(path) {
         if (!cache[path]) {
-            cache[path] = fetch(path).then((res) => {
+            cache[path] = fetch(bwgUrl(path)).then((res) => {
                 if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
                 return res.json();
             });
@@ -74,8 +74,8 @@
         toggleFavourite,
         computeStats,
         escapeHtml,
-        videoUrl: (id) => `/video?id=${encodeURIComponent(id)}`,
-        blogUrl: (slug) => `/blog/post?slug=${encodeURIComponent(slug)}`,
+        videoUrl: (id) => bwgUrl(`/video?id=${encodeURIComponent(id)}`),
+        blogUrl: (slug) => bwgUrl(`/blog/post?slug=${encodeURIComponent(slug)}`),
         hasYoutubeId: (v) => /^[\w-]{11}$/.test(v.youtubeId || '')
     };
 })();

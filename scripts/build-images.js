@@ -3,17 +3,17 @@
 // `npm run images`; needs `npm install` for sharp). Outputs are committed; the deploy
 // does not run this script.
 //
-//   public/images/photos/<name>-<width>.webp (+ <name>-<width>.jpg fallback)
+//   docs/images/photos/<name>-<width>.webp (+ <name>-<width>.jpg fallback)
 //       graded photographs (see scripts/lib/grade.js), sizes from PHOTOS below
-//   public/images/books/<book>-cover-{400,800}.{webp,jpg}, <book>-cover-1200.jpg
+//   docs/images/books/<book>-cover-{400,800}.{webp,jpg}, <book>-cover-1200.jpg
 //       the Kindle covers, ungraded (product shots must match Amazon); 1200 is og:image
-//   public/images/classes/<id>-{400,800}.webp
+//   docs/images/classes/<id>-{400,800}.webp
 //       one graded frame per class, cropped clear of the live-stream overlays
-//   public/images/demos/<youtubeId>-{320,640}.webp
+//   docs/images/demos/<youtubeId>-{320,640}.webp
 //       posters for the demonstration videos on the book pages
-//   public/images/blog/<slug>-{320,480}.webp
+//   docs/images/blog/<slug>-{320,480}.webp
 //       black and white thumbnails from each post's own photo (scripts/blog-meta.json)
-//   public/images/brand/logo-{ink,paper}.png, public/icons/*
+//   docs/images/brand/logo-{ink,paper}.png, docs/icons/*
 //       the wordmark in page black and paper white, the PWA icons and favicon
 //
 // Class frames come from YouTube's auto-generated frames at 25/50/75% of each stream
@@ -27,7 +27,7 @@ const sharp = require('sharp');
 const { grade, INK } = require('./lib/grade');
 
 const ROOT = path.join(__dirname, '..');
-const PUB = path.join(ROOT, 'public');
+const PUB = path.join(ROOT, 'docs');
 const IMG = path.join(PUB, 'images');
 const CACHE = path.join(ROOT, '.cache', 'class-frames');
 const rel = (f) => path.relative(ROOT, f);
@@ -109,7 +109,7 @@ async function buildCovers() {
       await sharp(src).resize({ width: w }).jpeg({ quality: 82, mozjpeg: true }).toFile(path.join(dir, `${book}-cover-${w}.jpg`));
     }
     await sharp(src).resize({ width: 1200 }).jpeg({ quality: 82, mozjpeg: true }).toFile(path.join(dir, `${book}-cover-1200.jpg`));
-    console.log(`wrote public/images/books/${book}-cover-{400,800}.{webp,jpg} and -1200.jpg`);
+    console.log(`wrote docs/images/books/${book}-cover-{400,800}.{webp,jpg} and -1200.jpg`);
   }
 }
 
@@ -166,7 +166,7 @@ async function buildClassFrames() {
       await sharp(master).resize({ width: w }).webp({ quality: 72, effort: 6 }).toFile(path.join(dir, `${v.id}-${w}.webp`));
     }
   }
-  console.log(`wrote public/images/classes/<id>-{400,800}.webp`);
+  console.log(`wrote docs/images/classes/<id>-{400,800}.webp`);
 }
 
 // ---- Demonstration video posters (book pages) -------------------------------------------
@@ -201,7 +201,7 @@ async function buildDemoPosters() {
       await sharp(master).resize({ width: w }).webp({ quality: 72, effort: 6 }).toFile(path.join(dir, `${id}-${w}.webp`));
     }
   }
-  console.log('wrote public/images/demos/<id>-{320,640}.webp');
+  console.log('wrote docs/images/demos/<id>-{320,640}.webp');
 }
 
 // ---- Blog thumbnails --------------------------------------------------------------------
@@ -219,7 +219,7 @@ async function buildBlogImages() {
       await sharp(master).resize({ width: w }).webp({ quality: 74, effort: 6 }).toFile(path.join(dir, `${slug}-${w}.webp`));
     }
   }
-  console.log('wrote public/images/blog/<slug>-{320,480}.webp');
+  console.log('wrote docs/images/blog/<slug>-{320,480}.webp');
 }
 
 // ---- Wordmark, icons, favicon ---------------------------------------------------------------
@@ -237,7 +237,7 @@ async function buildBrand() {
   const logo = path.join(IMG, 'Bwglogo2.png');
   await (await tint(logo, [20, 20, 20], 360)).toFile(path.join(dir, 'logo-ink.png'));
   await (await tint(logo, [243, 241, 236], 360)).toFile(path.join(dir, 'logo-paper.png'));
-  console.log('wrote public/images/brand/logo-{ink,paper}.png');
+  console.log('wrote docs/images/brand/logo-{ink,paper}.png');
 
   // App icons: the ring mark in orange on the page black.
   const ring = path.join(IMG, 'ringLogo.png');
@@ -251,7 +251,7 @@ async function buildBrand() {
       .png()
       .toFile(file);
   }
-  console.log('wrote public/icons/*');
+  console.log('wrote docs/icons/*');
 }
 
 // `npm run images` builds everything; `node scripts/build-images.js demos photos` only those steps.

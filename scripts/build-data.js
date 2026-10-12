@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// Generates the derived JSON files the static site fetches from public/data/:
+// Generates the derived JSON files the static site fetches from docs/data/:
 //   categories.json  - unique video categories (from videos.json)
 //   instructors.json - unique video instructors (from videos.json)
-//   blogs.json       - blog index (from public/blogs/<slug>/*.md)
+//   blogs.json       - blog index (from docs/blogs/<slug>/*.md)
 //
-// public/data/videos.json is hand-maintained and is the source of truth for videos.
+// docs/data/videos.json is hand-maintained and is the source of truth for videos.
 // If YOUTUBE_API_KEY is set, each video's `views` is refreshed from YouTube first
 // (videos still marked youtubeId "TODO" keep their stored count).
 // Run via `npm run build`. Uses only Node built-ins (Node 18+ for fetch).
@@ -13,13 +13,13 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const DATA_DIR = path.join(ROOT, 'public', 'data');
-const BLOGS_DIR = path.join(ROOT, 'public', 'blogs');
+const DATA_DIR = path.join(ROOT, 'docs', 'data');
+const BLOGS_DIR = path.join(ROOT, 'docs', 'blogs');
 const BLOG_META = path.join(__dirname, 'blog-meta.json');
 
 function writeJson(name, value) {
   fs.writeFileSync(path.join(DATA_DIR, name), JSON.stringify(value, null, 2) + '\n');
-  console.log(`wrote public/data/${name} (${Array.isArray(value) ? value.length : 1} entries)`);
+  console.log(`wrote docs/data/${name} (${Array.isArray(value) ? value.length : 1} entries)`);
 }
 
 // ---- YouTube view counts ----
@@ -119,7 +119,7 @@ function buildBlogData() {
   for (const slug of Object.keys(meta)) {
     const dir = path.join(BLOGS_DIR, slug);
     const mdFile = fs.existsSync(dir) && fs.readdirSync(dir).find((f) => f.endsWith('.md'));
-    if (!mdFile) throw new Error(`blog-meta.json lists "${slug}" but public/blogs/${slug}/ has no .md file`);
+    if (!mdFile) throw new Error(`blog-meta.json lists "${slug}" but docs/blogs/${slug}/ has no .md file`);
 
     const md = fs.readFileSync(path.join(dir, mdFile), 'utf8');
     const title = (md.match(/^#\s+(.+)$/m) || [])[1];
@@ -144,7 +144,7 @@ function buildBlogData() {
 
   for (const dir of fs.readdirSync(BLOGS_DIR)) {
     if (!(dir in meta) && fs.readdirSync(path.join(BLOGS_DIR, dir)).some((f) => f.endsWith('.md'))) {
-      console.warn(`warning: public/blogs/${dir} has markdown but is not in scripts/blog-meta.json; skipped`);
+      console.warn(`warning: docs/blogs/${dir} has markdown but is not in scripts/blog-meta.json; skipped`);
     }
   }
 

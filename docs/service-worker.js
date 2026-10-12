@@ -4,9 +4,9 @@ const CACHE_NAME = 'bodyweight-gym-v5';
 
 // Shell cached on install; everything else is fetched from the network.
 const STATIC_ASSETS = [
-  '/',
-  '/offline.html',
-  '/manifest.json'
+  './',
+  'offline.html',
+  'manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
@@ -42,7 +42,7 @@ self.addEventListener('fetch', (event) => {
       .catch(async () => {
         const cached = await caches.match(request);
         if (cached) return cached;
-        if (request.destination === 'document') return caches.match('/offline.html');
+        if (request.destination === 'document') return caches.match('offline.html');
         return Response.error();
       })
   );

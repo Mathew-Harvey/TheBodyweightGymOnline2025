@@ -13,7 +13,7 @@
     const clock = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
     function classRow(v) {
-        const img = `/images/classes/${v.id}`;
+        const img = bwgUrl(`/images/classes/${v.id}`);
         return `<li class="row class-row" data-reveal>
             <a class="row__link" href="${BWG.videoUrl(v.id)}">
                 <span class="class-row__thumb"><img src="${img}-400.webp" srcset="${img}-400.webp 400w, ${img}-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
@@ -32,8 +32,8 @@
 
     function cover(book) {
         return `<picture>
-            <source type="image/webp" srcset="${book.cover}-400.webp">
-            <img src="${book.cover}-400.jpg" width="400" height="640" alt="${esc(book.alt)}" loading="lazy" decoding="async">
+            <source type="image/webp" srcset="${bwgUrl(book.cover)}-400.webp">
+            <img src="${bwgUrl(book.cover)}-400.jpg" width="400" height="640" alt="${esc(book.alt)}" loading="lazy" decoding="async">
         </picture>`;
     }
 
@@ -43,7 +43,7 @@
             : /muscle ?up|ring|pull/i.test(text) ? [BOOKS.muscleup]
             : [BOOKS.handstand, BOOKS.muscleup];
         const one = picks.length === 1 ? picks[0] : null;
-        const href = one ? one.url : '/books';
+        const href = bwgUrl(one ? one.url : '/books');
         const box = $('video-book');
         box.className = `video-book ruled${one ? ` book--${one.tone}` : ''}`;
         box.innerHTML = `
@@ -84,7 +84,7 @@
         $('player').innerHTML = `<div class="facade facade--empty"><p class="label facade__note">${esc(title)}</p></div>`;
         $('video-label').textContent = 'Free classes';
         $('video-title').textContent = title;
-        $('video-desc').innerHTML = `${esc(text)} <a href="/classes">See all classes</a>.`;
+        $('video-desc').innerHTML = `${esc(text)} <a href="${bwgUrl('/classes')}">See all classes</a>.`;
     }
 
     async function load() {
@@ -110,12 +110,12 @@
 
         if (!BWG.hasYoutubeId(v)) {
             $('player').innerHTML = '<div class="facade facade--empty"><p class="label facade__note">Not on YouTube yet</p></div>';
-            $('video-desc').innerHTML = 'This class has not been uploaded yet. <a href="/classes">See the classes you can watch now</a>.';
+            $('video-desc').innerHTML = `This class has not been uploaded yet. <a href="${bwgUrl('/classes')}">See the classes you can watch now</a>.`;
             renderBook(v);
             return;
         }
 
-        const img = `/images/classes/${v.id}`;
+        const img = bwgUrl(`/images/classes/${v.id}`);
         $('player').innerHTML = `
             <button class="facade" type="button" data-yt="${esc(v.youtubeId)}" data-start="${Math.floor(v.startTime || 0)}" data-title="${esc(title)}">
                 <img src="${img}-800.webp" srcset="${img}-400.webp 400w, ${img}-800.webp 800w" sizes="(max-width: 1248px) 100vw, 1200px" width="800" height="450" alt="" fetchpriority="high">

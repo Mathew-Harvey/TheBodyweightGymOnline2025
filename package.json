@@ -5,7 +5,7 @@
   "main": "scripts/build-data.js",
   "scripts": {
     "build": "node scripts/build-data.js && node scripts/build-pages.js",
-    "start": "npx serve public",
+    "start": "npx serve docs",
     "thumbnails": "node generate-thumbnails.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "images": "node scripts/build-images.js"

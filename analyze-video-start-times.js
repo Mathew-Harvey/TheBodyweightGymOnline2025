@@ -21,7 +21,7 @@ console.log('✅ FFmpeg and FFprobe found');
 
 // Function to discover all video files
 function discoverVideoFiles() {
-    const videosDir = path.join(__dirname, 'public', 'videos');
+    const videosDir = path.join(__dirname, 'docs', 'videos');
     const videoFiles = [];
     
     if (!fs.existsSync(videosDir)) {
@@ -234,7 +234,7 @@ function formatTime(seconds) {
 
 // Main analysis function
 async function analyzeVideo(video, index, total) {
-    const videoPath = path.join(__dirname, 'public', 'videos', video.filename);
+    const videoPath = path.join(__dirname, 'docs', 'videos', video.filename);
     
     console.log(`\n📹 Analyzing video ${index}/${total}: ${video.title}`);
     console.log(`   File: ${video.filename}`);
