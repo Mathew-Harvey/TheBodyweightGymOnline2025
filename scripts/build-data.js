@@ -5,7 +5,9 @@
 //   blogs.json       - blog index (from public/blogs/<slug>/*.md)
 //
 // public/data/videos.json is hand-maintained and is the source of truth for videos.
-// Run via `npm run build`. Uses only Node built-ins.
+// If YOUTUBE_API_KEY is set, each video's `views` is refreshed from YouTube first
+// (videos still marked youtubeId "TODO" keep their stored count).
+// Run via `npm run build`. Uses only Node built-ins (Node 18+ for fetch).
 
 const fs = require('fs');
 const path = require('path');
@@ -20,6 +22,41 @@ function writeJson(name, value) {
   console.log(`wrote public/data/${name} (${Array.isArray(value) ? value.length : 1} entries)`);
 }
 
+// ---- YouTube view counts ----
+async function refreshYoutubeViews() {
+  const key = process.env.YOUTUBE_API_KEY;
+  if (!key) {
+    console.log('YOUTUBE_API_KEY not set; keeping stored view counts');
+    return;
+  }
+  const file = path.join(DATA_DIR, 'videos.json');
+  const videos = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const withIds = videos.filter((v) => /^[\w-]{11}$/.test(v.youtubeId || ''));
+
+  let updated = 0;
+  try {
+    for (let i = 0; i < withIds.length; i += 50) {
+      const batch = withIds.slice(i, i + 50);
+      const url = 'https://www.googleapis.com/youtube/v3/videos?part=statistics'
+        + `&id=${batch.map((v) => v.youtubeId).join(',')}&key=${encodeURIComponent(key)}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`YouTube API HTTP ${res.status}`);
+      const { items = [] } = await res.json();
+      for (const item of items) {
+        const count = Number(item.statistics && item.statistics.viewCount);
+        if (!Number.isFinite(count)) continue;
+        for (const v of batch) if (v.youtubeId === item.id) { v.views = count; updated++; }
+      }
+    }
+  } catch (err) {
+    // A failed refresh should not block a deploy; the stored counts are still valid.
+    console.warn(`warning: could not refresh YouTube view counts (${err.message}); keeping stored counts`);
+    return;
+  }
+  fs.writeFileSync(file, JSON.stringify(videos, null, 2) + '\n');
+  console.log(`refreshed YouTube view counts for ${updated}/${videos.length} videos`);
+}
+
 // ---- Videos -> categories + instructors ----
 function buildVideoData() {
   const videos = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'videos.json'), 'utf8'));
@@ -28,6 +65,9 @@ function buildVideoData() {
   for (const v of videos) {
     if (ids.has(v.id)) throw new Error(`videos.json: duplicate id ${v.id}`);
     ids.add(v.id);
+    if (!Number.isInteger(v.views) || v.views < 0) {
+      throw new Error(`videos.json: video ${v.id} needs a whole-number "views" (use 0 if unknown)`);
+    }
     if (v.youtubeId !== 'TODO' && !/^[\w-]{11}$/.test(v.youtubeId || '')) {
       throw new Error(`videos.json: video ${v.id} has an invalid youtubeId "${v.youtubeId}"`);
     }
@@ -101,6 +141,14 @@ function buildBlogData() {
   writeJson('blogs.json', blogs);
 }
 
-fs.mkdirSync(DATA_DIR, { recursive: true });
-buildVideoData();
-buildBlogData();
+async function main() {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+  await refreshYoutubeViews();
+  buildVideoData();
+  buildBlogData();
+}
+
+main().catch((err) => {
+  console.error(err.message);
+  process.exit(1);
+});

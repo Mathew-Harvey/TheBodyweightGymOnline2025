@@ -12,7 +12,7 @@ A fully static site (no backend) hosted on GitHub Pages at <https://thebodyweigh
 | Blog posts (markdown, rendered in the browser with `marked`) | `public/blogs/<slug>/*.md` |
 | Blog publish list + card extras (author, category, image, ...) | `scripts/blog-meta.json` |
 | Favourites | the visitor's `localStorage` (`bwg:favourites`) |
-| Search, filters, stats | computed in the browser from the JSON files |
+| Search, filters, sorting, stats | computed in the browser from the JSON files |
 
 `npm run build` regenerates the files under `public/data/` (`scripts/build-data.js`, Node built-ins only). The generated files are committed so a fresh checkout previews without a build, and CI rebuilds them on every deploy.
 
@@ -28,6 +28,12 @@ npm start       # npx serve public  ->  http://localhost:3000
 - **A video:** add an entry to `public/data/videos.json` with a unique `id`, a `thumbnail` under `public/images/thumbnails/`, and its `youtubeId` (the 11-character ID from the YouTube URL). `"youtubeId": "TODO"` is allowed; that video's page shows "being added" until you fill it in. `npm run build` warns while any TODO remain and fails on malformed IDs or duplicate `id`s.
 - **A blog post:** add `public/blogs/<slug>/<file>.md`, then add a `<slug>` entry to `scripts/blog-meta.json` (order there is the display order; folders not listed are skipped). Title, date and excerpt are read from the markdown (`# Title`, `*Published: Month D, YYYY*`, first paragraph) unless overridden in the meta file.
 - Run `npm run build` and commit the regenerated `public/data/*.json`.
+
+## View counts
+
+Each video has a `views` number used for the "Most viewed" sort. The site can't count views itself, so `npm run build` fetches each video's YouTube view count when the `YOUTUBE_API_KEY` environment variable is set. Videos still marked `TODO` keep their stored count. If the API call fails, the build still succeeds and uses the stored counts.
+
+To turn this on for deploys, create a YouTube Data API v3 key in Google Cloud (free quota is plenty; restrict the key to the YouTube Data API) and add it as a repository secret named `YOUTUBE_API_KEY` (Settings → Secrets and variables → Actions). The deploy workflow passes it to the build. Counts refresh on each deploy; they are not written back to the repo.
 
 ## Deploying to GitHub Pages
 

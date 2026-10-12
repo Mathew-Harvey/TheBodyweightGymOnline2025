@@ -317,6 +317,7 @@
                     <span>👤 ${esc(video.instructor)}</span>
                     <span>⏱️ ${esc(video.duration)}</span>
                     <span>📊 ${esc(video.level)}</span>
+                    ${video.views > 0 ? `<span>👁️ ${video.views.toLocaleString('en-US')} views</span>` : ''}
                     ${video.startTimeFormatted ? `<span>⏰ Starts at ${esc(video.startTimeFormatted)}</span>` : ''}
                 </div>
                 <div class="video-description">${esc(video.description)}</div>

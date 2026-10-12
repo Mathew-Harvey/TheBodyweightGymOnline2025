@@ -4,6 +4,7 @@
 let workouts = [];
 let currentFilter = 'all';
 let currentSearch = '';
+let currentSort = 'default';
 const INITIAL_WORKOUTS_SHOWN = 6;
 let workoutsLoaded = INITIAL_WORKOUTS_SHOWN;
 
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeVideoPlayer();
     initializeFilters();
     initializeSearch();
+    initializeSort();
     loadWorkouts();
     loadHomeBlogPosts();
     animateStats();
@@ -154,6 +156,15 @@ function initializeSearch() {
     });
 }
 
+// ===== Sort =====
+function initializeSort() {
+    const select = document.getElementById('sortSelect');
+    select?.addEventListener('change', () => {
+        currentSort = select.value;
+        filterWorkouts();
+    });
+}
+
 // ===== Load Workouts =====
 async function loadWorkouts() {
     try {
@@ -237,12 +248,17 @@ function createWorkoutCard(workout) {
                 <div class="workout-meta">
                     <span class="workout-instructor">${workout.instructor}</span>
                     <span class="workout-level level-${levelClass}">${workout.level}</span>
+                    ${workout.views > 0 ? `<span class="workout-views">${formatViews(workout.views)}</span>` : ''}
                     ${workout.startTimeFormatted ? `<span class="workout-start-time">⏰ ${workout.startTimeFormatted}</span>` : ''}
                 </div>
                 <p class="workout-description">${workout.description || 'Transform your body with this powerful workout.'}</p>
             </div>
         </div>
     `;
+}
+
+function formatViews(views) {
+    return `${Number(views).toLocaleString('en-US')} view${views === 1 ? '' : 's'}`;
 }
 
 function getFilteredWorkouts() {
@@ -276,6 +292,13 @@ function getFilteredWorkouts() {
         );
     }
     
+    // Apply sort (stable, so ties keep the featured order)
+    if (currentSort === 'rating') {
+        filtered.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+    } else if (currentSort === 'views') {
+        filtered.sort((a, b) => (b.views || 0) - (a.views || 0));
+    }
+
     return filtered;
 }
 
@@ -491,6 +514,30 @@ const workoutStyles = `
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+}
+
+.sort-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.sort-select {
+    min-height: 44px;
+    padding: 0 0.75rem;
+    background: #161d2f;
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font: inherit;
+}
+
+.workout-views {
+    font-size: 0.75rem;
+    color: #94a3b8;
 }
 
 .workout-fav {

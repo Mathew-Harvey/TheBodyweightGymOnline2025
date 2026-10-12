@@ -26,6 +26,9 @@ jobs:
         with:
           node-version: 20
       - run: npm run build
+        env:
+          # Optional repo secret; without it the stored view counts are used.
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

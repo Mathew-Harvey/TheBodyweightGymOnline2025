@@ -31,11 +31,11 @@ Each entry in `public/data/videos.json`:
 ```javascript
 {
   id, title, instructor, duration, level, category, equipment,
-  description, thumbnail, filename, youtubeId, rating,
+  description, thumbnail, filename, youtubeId, views, rating,
   startTime, startTimeFormatted
 }
 ```
-`youtubeId` is the 11-character YouTube ID (`"TODO"` until known). View counts were dropped. `startTime` (seconds) is passed to the embed to skip intros; it comes from `analyze-video-start-times.js` (FFmpeg scene/audio analysis, needs local video files) and is merged in by `update-video-database.js`.
+`youtubeId` is the 11-character YouTube ID (`"TODO"` until known). `views` is refreshed from YouTube by `npm run build` when `YOUTUBE_API_KEY` is set (otherwise the stored count is kept); the home page can sort by `rating` or `views`. `startTime` (seconds) is passed to the embed to skip intros; it comes from `analyze-video-start-times.js` (FFmpeg scene/audio analysis, needs local video files) and is merged in by `update-video-database.js`.
 
 ## Adding New Videos
 1. Add an entry to `public/data/videos.json` with the `youtubeId`.
