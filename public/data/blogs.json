@@ -1,0 +1,67 @@
+[
+  {
+    "slug": "buildingfoundations",
+    "file": "/blogs/buildingfoundations/buildingfoundations.md",
+    "title": "Building Your Foundation",
+    "date": "2018-07-09",
+    "excerpt": "Basic motor patterns lay the foundations of all physical performance and health. Developing sound basic movement patterns takes persistence and often a temporary reduction in intensity.",
+    "readTime": "8 min",
+    "author": "Mat Harvey",
+    "category": "Training",
+    "image": "/images/blog/buildingfoundations"
+  },
+  {
+    "slug": "firstmu",
+    "file": "/blogs/firstmu/firstmu.md",
+    "title": "The Road to My First Ring Muscle Up",
+    "date": "2018-08-08",
+    "excerpt": "I didn't do gymnastics as a child, I learned all this stuff as an adult. Now I can complete a ring muscle up, cold, anytime. The process takes dedication, consistency and patience.",
+    "readTime": "11 min",
+    "author": "Mat Harvey",
+    "category": "Skills",
+    "image": "/images/blog/firstmu"
+  },
+  {
+    "slug": "trainingandpain",
+    "file": "/blogs/trainingandpain/trainingandpain.md",
+    "title": "Training and Pain",
+    "date": "2018-08-12",
+    "excerpt": "Training should not hurt. Nope, not ever. Training should certainly be uncomfortable, often. But training should not ever cause acute or chronic pain.",
+    "readTime": "6 min",
+    "author": "Mat Harvey",
+    "category": "Recovery"
+  },
+  {
+    "slug": "strengthtrainingandrecovery",
+    "file": "/blogs/strengthtrainingandrecovery/strengthtrainingandrecover.md",
+    "title": "Strength Training and Recovery",
+    "date": "2018-08-26",
+    "excerpt": "You don't get strong in the gym. You get strong while you are in bed, asleep with a full stomach, otherwise known as recovery.",
+    "readTime": "9 min",
+    "author": "Mat Harvey",
+    "category": "Recovery",
+    "image": "/images/blog/strengthtrainingandrecovery"
+  },
+  {
+    "slug": "goalsetting",
+    "file": "/blogs/goalsetting/goalsetting.md",
+    "title": "8 Tips for Healthy Goal Setting",
+    "date": "2019-07-28",
+    "excerpt": "Do you work out to get high? Does that progress towards your goals? Many people enjoy the runner's high but this style of training must align with your goals.",
+    "readTime": "3 min",
+    "author": "Mat Harvey",
+    "category": "Philosophy",
+    "image": "/images/blog/goalsetting"
+  },
+  {
+    "slug": "fiveprinicipalsofstrengthtraining",
+    "file": "/blogs/fiveprinicipalsofstrengthtraining/fiveprincipalsofstrenghttraining.md",
+    "title": "5 Principles of Strength Training",
+    "date": "2019-10-14",
+    "excerpt": "Bodyweight strength training is a noble pursuit, it requires patience, understanding of your own body and mental fortitude.",
+    "readTime": "4 min",
+    "author": "Mat Harvey",
+    "category": "Training",
+    "image": "/images/blog/fiveprinicipalsofstrengthtraining"
+  }
+]

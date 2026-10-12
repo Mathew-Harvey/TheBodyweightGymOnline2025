@@ -1,390 +1,89 @@
-# Home Server Video Streaming Setup Guide
+# The Bodyweight Gym Online
 
-This guide will help you set up your home server to stream 30+ hours of workout videos for The Bodyweight Gym Online.
+A fully static site (no backend) hosted on GitHub Pages at <https://thebodyweightgym.org>. It sells the two Bodyweight Skills books by Mat Harvey (Amazon links) and gives away the gym's 2020 live-streamed classes as YouTube embeds (`youtube-nocookie.com`). The design rules are in `docs/DESIGN_BRIEF.md`.
 
-## 🖥️ Server Requirements
+## How it works
 
-### Hardware
-- **CPU**: Minimum dual-core processor (quad-core recommended)
-- **RAM**: 4GB minimum (8GB recommended)
-- **Storage**: 100GB+ for video files
-- **Network**: Stable broadband connection (50 Mbps upload recommended)
+| Piece | Where |
+| --- | --- |
+| Site root (what gets deployed) | `public/` |
+| Video list (hand-edited source of truth) | `public/data/videos.json` |
+| Generated: categories, instructors, blog index | `public/data/{categories,instructors,blogs}.json` |
+| Blog posts (markdown, rendered in the browser with `marked`) | `public/blogs/<slug>/*.md` |
+| Blog publish list + card extras (author, category, image, ...) | `scripts/blog-meta.json` |
+| Shared head, nav and footer | `src/partials/*.html`, written into every page by `scripts/build-pages.js` |
+| Class lists, blog lists, numbers in the copy | pre-rendered into the pages by `scripts/build-pages.js` |
+| Styles | `public/css/brand.css` (the only stylesheet) |
+| Saved classes | the visitor's `localStorage` (`bwg:favourites`) |
+| Filters, search, sorting on `/classes` | `public/js/classes.js`, on the pre-rendered rows |
+| Photos, covers, class frames, icons | built by `npm run images` from `assets/` and YouTube frames |
 
-### Software
-- Linux (Ubuntu 20.04+ recommended) or Windows Server
-- Node.js 14+ and npm
-- Nginx (for reverse proxy and caching)
-- FFmpeg (for video processing)
-- PM2 (for process management)
+`npm run build` regenerates the files under `public/data/` (`scripts/build-data.js`) and the generated regions of every page (`scripts/build-pages.js`, between `<!-- build:NAME -->` markers). Both use Node built-ins only. The output is committed so a fresh checkout previews without a build, and CI rebuilds it on every deploy.
 
-## 📁 Video File Preparation
-
-### 1. Video Format Optimization
-
-Convert your videos to web-optimized format:
-
-```bash
-# Install FFmpeg
-sudo apt-get update
-sudo apt-get install ffmpeg
-
-# Convert videos to H.264 with web optimization
-for file in *.mp4; do
-    ffmpeg -i "$file" -c:v libx264 -preset slow -crf 22 -c:a aac -b:a 128k -movflags +faststart "optimized_$file"
-done
-```
-
-### 2. Generate Multiple Quality Versions (Optional)
-
-For adaptive streaming:
+## Local preview
 
 ```bash
-# 1080p version
-ffmpeg -i input.mp4 -c:v libx264 -crf 22 -preset slow -s 1920x1080 -c:a aac -b:a 128k output_1080p.mp4
-
-# 720p version
-ffmpeg -i input.mp4 -c:v libx264 -crf 22 -preset slow -s 1280x720 -c:a aac -b:a 96k output_720p.mp4
-
-# 480p version
-ffmpeg -i input.mp4 -c:v libx264 -crf 22 -preset slow -s 854x480 -c:a aac -b:a 64k output_480p.mp4
+npm run build   # regenerate public/data/*.json and the generated page regions
+npm start       # npx serve public  ->  http://localhost:3000
 ```
 
-### 3. Generate Thumbnails
-
-```bash
-# Generate thumbnail at 10 seconds
-ffmpeg -i video.mp4 -ss 00:00:10 -vframes 1 -q:v 2 thumbnail.jpg
-```
-
-## 🚀 Server Setup
-
-### 1. Install Node.js Application
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/the-bodyweight-gym-online.git
-cd the-bodyweight-gym-online
-
-# Install dependencies
-npm install
-
-# Create video directories
-mkdir -p videos
-mkdir -p public/images/thumbnails
-```
-
-### 2. Configure Nginx
-
-Install Nginx:
-```bash
-sudo apt-get install nginx
-```
-
-Create Nginx configuration (`/etc/nginx/sites-available/bodyweightgym`):
-
-```nginx
-server {
-    listen 80;
-    server_name yourdomain.com;
-
-    # Redirect to HTTPS
-    return 301 https://$server_name$request_uri;
-}
-
-server {
-    listen 443 ssl http2;
-    server_name yourdomain.com;
-
-    # SSL Configuration
-    ssl_certificate /path/to/ssl/cert.pem;
-    ssl_certificate_key /path/to/ssl/key.pem;
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
-
-    # Proxy settings
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Video streaming with caching
-    location /api/stream/ {
-        proxy_pass http://localhost:3000;
-        proxy_cache video_cache;
-        proxy_cache_valid 200 206 1h;
-        proxy_cache_key $uri$is_args$args$slice_range;
-        proxy_set_header Range $slice_range;
-        
-        # Enable video seeking
-        proxy_force_ranges on;
-        proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        
-        # Bandwidth optimization
-        limit_rate_after 1m;
-        limit_rate 500k;
-    }
-
-    # Static file caching
-    location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {
-        proxy_pass http://localhost:3000;
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-}
-
-# Cache configuration
-proxy_cache_path /var/cache/nginx/videos levels=1:2 keys_zone=video_cache:100m max_size=10g inactive=7d use_temp_path=off;
-```
-
-Enable the site:
-```bash
-sudo ln -s /etc/nginx/sites-available/bodyweightgym /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx
-```
+## Adding or editing content
 
-### 3. Setup PM2 Process Manager
+- **A video:** add an entry to `public/data/videos.json` with a unique `id` and its `youtubeId` (the 11-character ID from the YouTube URL), then run `node scripts/build-images.js classes` to fetch and grade its frame (check it is clear of the stream overlays). `"youtubeId": "TODO"` is allowed; the video is left out of the lists until you fill it in. `npm run build` warns while any TODO remain and fails on malformed IDs or duplicate `id`s. Only Mat Harvey is named on the site, so the "Coach X - " part of a title is not shown.
+- **A blog post:** add `public/blogs/<slug>/<file>.md`, then add a `<slug>` entry to `scripts/blog-meta.json` (order there is the display order; folders not listed are skipped). Title, date and excerpt are read from the markdown (`# Title`, `*Published: Month D, YYYY*`, first paragraph) unless overridden in the meta file.
+- Run `npm run build` and commit the regenerated `public/data/*.json`.
 
-```bash
-# Install PM2 globally
-npm install -g pm2
+## View counts
 
-# Start the application
-pm2 start server.js --name bodyweight-gym
+Each video has a `views` number used for the "Most viewed" sort. The site can't count views itself, so `npm run build` fetches each video's YouTube view count when the `YOUTUBE_API_KEY` environment variable is set. Videos still marked `TODO` keep their stored count. If the API call fails, the build still succeeds and uses the stored counts.
 
-# Save PM2 configuration
-pm2 save
+To turn this on for deploys, create a YouTube Data API v3 key in Google Cloud (free quota is plenty; restrict the key to the YouTube Data API) and add it as a repository secret named `YOUTUBE_API_KEY` (Settings → Secrets and variables → Actions). The deploy workflow passes it to the build. Counts refresh on each deploy; they are not written back to the repo.
 
-# Setup startup script
-pm2 startup
+## Books (Amazon)
 
-# Monitor the application
-pm2 monit
-```
+The two Bodyweight Skills books are sold on Amazon; the site only links to them.
 
-### 4. Configure Firewall
+- **Links and signup:** edit `public/js/books-config.js`. Paste each Amazon URL in place of `TODO_AMAZON_URL` (optional `_AU` variants are used for Australian visitors). Until a URL is set, its button shows a disabled "coming soon on Amazon" state. Only `https://www.amazon.<store>/...` URLs become links; shorteners are ignored.
+- **Email signup:** `SIGNUP_MODE = 'mailto'` with `SIGNUP_EMAIL` set shows an "Email me about new books" button (nothing stored by the site). `'formspree'` with `FORMSPREE_ID` set shows a form posting to Formspree's free tier. While the needed value is TODO, a "coming soon" note shows. GitHub Pages sends no Content-Security-Policy, so neither option needs a CSP change; if you add one later, Formspree needs `form-action https://formspree.io`.
+- **Pages:** `public/books/index.html`, `public/books/handstand.html`, `public/books/ring-muscle-up.html` (static HTML with Book JSON-LD for SEO), behaviour in `public/js/books.js`. `/ebook` redirects to `/books`.
+- **Covers:** the 1600x2560 Kindle covers live in `assets/covers/`. After replacing one, run `npm install` once, then `npm run images` and commit the generated files (400/800px WebP + JPG, and a 1200px JPG used as the Open Graph image).
+- Do not add book text, PDFs or EPUBs to the site (Amazon KDP terms).
 
-```bash
-# Allow SSH
-sudo ufw allow 22
+## Images
 
-# Allow HTTP and HTTPS
-sudo ufw allow 80
-sudo ufw allow 443
+`npm run images` (`scripts/build-images.js`; run `npm install` once for sharp) builds every image the site uses and the outputs are committed:
 
-# Enable firewall
-sudo ufw enable
-```
+- **Photos** from `assets/photos/`, colour graded by `scripts/lib/grade.js` so they read as one set.
+- **Class frames** from YouTube's automatic frames of each stream, cropped clear of the stream overlays and graded. Per-class crop and frame choices are in `FRAME_CROP_FOR` and `FRAME_PICK`.
+- **Demonstration posters**, **blog photos** (black and white), the **logo** in ink and paper, and the **app icons**.
 
-## 🔒 Security Configuration
+`node scripts/build-images.js classes demos` runs single steps (brand, photos, covers, classes, demos, blog). YouTube frames are cached in `.cache/` (not committed).
 
-### 1. SSL Certificate with Let's Encrypt
+## Deploying to GitHub Pages
 
-```bash
-# Install Certbot
-sudo apt-get install certbot python3-certbot-nginx
+One-time setup:
 
-# Get SSL certificate
-sudo certbot --nginx -d yourdomain.com
+1. Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. Repo **Settings → Pages → Custom domain:** `thebodyweightgym.org`, and tick **Enforce HTTPS** once the certificate is issued.
+3. DNS for `thebodyweightgym.org`: `A` records for `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (and optionally the matching `AAAA` records), plus `CNAME www -> <owner>.github.io`.
 
-# Auto-renewal
-sudo systemctl enable certbot.timer
-```
+After that, every push to `main` runs `.github/workflows/pages.yml`, which runs `npm run build` and publishes `public/`. `public/CNAME` keeps the custom domain and `public/.nojekyll` stops Jekyll from processing the site. You can also run the workflow manually from the Actions tab.
 
-### 2. Basic DDoS Protection
+## URLs
 
-Add to Nginx configuration:
+| URL | File |
+| --- | --- |
+| `/` | `public/index.html` |
+| `/classes` (`?filter=saved` and the category names work as links) | `public/classes.html` |
+| `/video?id=<id>` | `public/video.html` |
+| `/blog` | `public/blog/index.html` |
+| `/blog/post?slug=<slug>` | `public/blog/post.html` |
+| `/blog/<slug>` (old links) | `public/404.html` redirects to the URL above |
+| `/books`, `/books/handstand`, `/books/ring-muscle-up` | `public/books/*.html` |
+| `/ebook` (old) | `public/ebook.html` redirects to `/books` |
 
-```nginx
-# Rate limiting
-limit_req_zone $binary_remote_addr zone=general:10m rate=10r/s;
-limit_req_zone $binary_remote_addr zone=video:10m rate=3r/s;
+## Maintenance scripts (need FFmpeg and local video files)
 
-server {
-    # Apply rate limiting
-    location / {
-        limit_req zone=general burst=20 nodelay;
-    }
-    
-    location /api/stream/ {
-        limit_req zone=video burst=5;
-    }
-}
-```
-
-### 3. Environment Variables
-
-Create `.env` file:
-
-```env
-NODE_ENV=production
-PORT=3000
-VIDEO_PATH=/home/user/videos
-MAX_CONCURRENT_STREAMS=50
-CACHE_DURATION=3600
-ALLOWED_ORIGINS=https://your-tunnel-domain.example
-```
-
-Notes:
-- Separate multiple origins with commas in `ALLOWED_ORIGINS`.
-- Ensure your tunnel/reverse proxy forwards `X-Forwarded-Proto` so HTTP requests are correctly redirected to HTTPS.
-
-## 📊 Monitoring Setup
-
-### 1. System Monitoring
-
-Install monitoring tools:
-
-```bash
-# Install htop for system monitoring
-sudo apt-get install htop
-
-# Install nethogs for network monitoring
-sudo apt-get install nethogs
-
-# Install iotop for disk I/O monitoring
-sudo apt-get install iotop
-```
-
-### 2. Application Monitoring
-
-Add monitoring endpoint to `server.js`:
-
-```javascript
-app.get('/api/health', (req, res) => {
-  const usage = process.memoryUsage();
-  res.json({
-    status: 'healthy',
-    uptime: process.uptime(),
-    memory: {
-      rss: `${Math.round(usage.rss / 1024 / 1024)} MB`,
-      heapTotal: `${Math.round(usage.heapTotal / 1024 / 1024)} MB`,
-      heapUsed: `${Math.round(usage.heapUsed / 1024 / 1024)} MB`
-    },
-    nodeVersion: process.version,
-    timestamp: new Date().toISOString()
-  });
-});
-```
-
-### 3. Log Management
-
-Setup log rotation:
-
-```bash
-# Create log directory
-mkdir -p /var/log/bodyweightgym
-
-# Configure PM2 logs
-pm2 set pm2-logrotate:max_size 10M
-pm2 set pm2-logrotate:retain 7
-pm2 set pm2-logrotate:compress true
-```
-
-## 🌐 Network Optimization
-
-### 1. Enable Compression
-
-Already configured in the Node.js app, but ensure gzip is enabled in Nginx:
-
-```nginx
-gzip on;
-gzip_vary on;
-gzip_min_length 1024;
-gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml+rss application/json application/javascript;
-```
-
-### 2. Configure CDN (Optional)
-
-For better global performance, consider using Cloudflare:
-
-1. Sign up for Cloudflare
-2. Add your domain
-3. Update nameservers
-4. Enable caching and optimization features
-
-### 3. Bandwidth Management
-
-Monitor and limit bandwidth usage:
-
-```bash
-# Install bandwidth monitoring
-sudo apt-get install vnstat
-
-# Initialize vnstat
-sudo vnstat -u -i eth0
-
-# View bandwidth usage
-vnstat -d
-```
-
-## 📱 Mobile Optimization
-
-Ensure videos work well on mobile:
-
-1. Use appropriate video dimensions
-2. Enable CORS headers for cross-origin requests
-3. Test on various devices and networks
-
-## 🔧 Troubleshooting
-
-### Common Issues
-
-1. **Videos not playing**: Check file permissions and paths
-2. **Slow streaming**: Optimize video bitrate and enable caching
-3. **High CPU usage**: Consider video transcoding to H.264
-4. **Connection drops**: Increase Nginx timeouts
-
-### Debug Commands
-
-```bash
-# Check Node.js logs
-pm2 logs bodyweight-gym
-
-# Check Nginx errors
-sudo tail -f /var/log/nginx/error.log
-
-# Monitor system resources
-htop
-
-# Check network connections
-netstat -an | grep :3000
-```
-
-## 📈 Scaling Considerations
-
-As your platform grows:
-
-1. **Multiple Servers**: Use load balancing with Nginx
-2. **Video CDN**: Offload video delivery to specialized CDN
-3. **Database**: Move from in-memory to MongoDB/PostgreSQL
-4. **Caching**: Implement Redis for session management
-5. **Monitoring**: Add comprehensive monitoring with Grafana
-
-## 🎯 Performance Benchmarks
-
-Target performance metrics:
-
-- Page load time: < 2 seconds
-- Video start time: < 3 seconds
-- Concurrent users: 100+ per server
-- Uptime: 99.9%
-
----
-
-## Support
-
-For additional help:
-- Check PM2 documentation: `pm2.keymetrics.io`
-- Nginx documentation: `nginx.org/en/docs/`
-- Node.js best practices: `nodejs.org/en/docs/guides/`
-
-Remember to regularly update your server software and monitor for security vulnerabilities!
+- `npm run thumbnails` - generate thumbnails (see `THUMBNAIL_GENERATION.md`)
+- `node analyze-video-start-times.js` - detect where each workout really starts
+- `node update-video-database.js` - merge `video-start-times.json` into `public/data/videos.json`
