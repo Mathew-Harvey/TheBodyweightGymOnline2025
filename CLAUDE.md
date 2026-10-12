@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Redesign in progress
+
+Before changing any frontend file, read `docs/DESIGN_BRIEF.md`. It is the agreed direction for the rebuild (branch `redesign`) and overrides the current markup and CSS where they differ. The current home page is a first pass that the brief replaces.
+
 ## Project Overview
 
 The Bodyweight Gym Online is a fully static site (hosted on GitHub Pages at thebodyweightgym.org) offering bodyweight workout videos as YouTube embeds, with filtering, search, favourites, a blog and a PWA shell. There is no backend; see `README.md` for deploy steps.
