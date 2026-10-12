@@ -1,4 +1,4 @@
-/* The Bodyweight Gym — Unified Brand Styles */
+/* The Bodyweight Gym - Unified Brand Styles */
 /* Design system aligned with landing pages (handstand / muscle-up) */
 
 /* ===== CSS Variables ===== */
@@ -1888,6 +1888,11 @@ section { padding: 6rem 2rem; position: relative; }
     font-size: 0.9em;
     color: var(--accent2);
 }
+/* Code blocks scroll inside themselves instead of widening the page on phones */
+.blog-content-wrapper pre {
+    max-width: 100%;
+    overflow-x: auto;
+}
 
 /* Blog post header styling */
 .blog-post-header {
@@ -1895,3 +1900,9 @@ section { padding: 6rem 2rem; position: relative; }
     padding: 8rem 0 3rem;
     text-align: center;
 }
+
+/* Keep the decorative glow behind the books section from widening the page on phones */
+.guides-section { overflow-x: clip; }
+
+/* Pinned "Books" link in the nav and mobile menu */
+.nav-link-books { color: var(--warm) !important; }

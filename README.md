@@ -35,6 +35,16 @@ Each video has a `views` number used for the "Most viewed" sort. The site can't 
 
 To turn this on for deploys, create a YouTube Data API v3 key in Google Cloud (free quota is plenty; restrict the key to the YouTube Data API) and add it as a repository secret named `YOUTUBE_API_KEY` (Settings → Secrets and variables → Actions). The deploy workflow passes it to the build. Counts refresh on each deploy; they are not written back to the repo.
 
+## Books (Amazon)
+
+The two Bodyweight Skills books are sold on Amazon; the site only links to them.
+
+- **Links and signup:** edit `public/js/books-config.js`. Paste each Amazon URL in place of `TODO_AMAZON_URL` (optional `_AU` variants are used for Australian visitors). Until a URL is set, its button shows a disabled "coming soon on Amazon" state. Only `https://www.amazon.<store>/...` URLs become links; shorteners are ignored.
+- **Email signup:** `SIGNUP_MODE = 'mailto'` with `SIGNUP_EMAIL` set shows an "Email me about new books" button (nothing stored by the site). `'formspree'` with `FORMSPREE_ID` set shows a form posting to Formspree's free tier. While the needed value is TODO, a "coming soon" note shows. GitHub Pages sends no Content-Security-Policy, so neither option needs a CSP change; if you add one later, Formspree needs `form-action https://formspree.io`.
+- **Pages:** `public/books/index.html`, `public/books/handstand.html`, `public/books/ring-muscle-up.html` (static HTML for SEO), styled by `public/css/books.css`, behaviour in `public/js/books.js`. `/ebook` redirects to `/books`.
+- **Covers:** copy `handstand-kindle-cover-1600x2560.jpg` and `muscleup-kindle-cover-1600x2560.jpg` into `public/images/books/`, run `npm install` once, then `npm run images` and commit the generated files (400/800px WebP + JPG, and a 1200px JPG used as the Open Graph image). Until then the pages show a plain text cover.
+- Do not add book text, PDFs or EPUBs to the site (Amazon KDP terms).
+
 ## Deploying to GitHub Pages
 
 One-time setup:
@@ -54,7 +64,8 @@ After that, every push to `main` runs `.github/workflows/pages.yml`, which runs 
 | `/blog` | `public/blog/index.html` |
 | `/blog/post?slug=<slug>` | `public/blog/post.html` |
 | `/blog/<slug>` (old links) | `public/404.html` redirects to the URL above |
-| `/ebook` | `public/ebook.html` |
+| `/books`, `/books/handstand`, `/books/ring-muscle-up` | `public/books/*.html` |
+| `/ebook` (old) | `public/ebook.html` redirects to `/books` |
 
 ## Maintenance scripts (need FFmpeg and local video files)
 

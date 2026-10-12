@@ -7,7 +7,8 @@
     "build": "node scripts/build-data.js",
     "start": "npx serve public",
     "thumbnails": "node generate-thumbnails.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "images": "node scripts/build-images.js"
   },
   "keywords": [
     "fitness",
@@ -20,5 +21,8 @@
   "license": "MIT",
   "engines": {
     "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
   }
 }
