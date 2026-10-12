@@ -4,6 +4,7 @@
 (function () {
     if (!window.BWG) return;
     const esc = BWG.escapeHtml;
+    const url = BWG.url;
     const $ = (id) => document.getElementById(id);
     const id = new URLSearchParams(location.search).get('id');
 
@@ -13,7 +14,7 @@
     const clock = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
     function classRow(v) {
-        const img = `/images/classes/${v.id}`;
+        const img = url(`/images/classes/${v.id}`);
         return `<li class="row class-row" data-reveal>
             <a class="row__link" href="${BWG.videoUrl(v.id)}">
                 <span class="class-row__thumb"><img src="${img}-400.webp" srcset="${img}-400.webp 400w, ${img}-800.webp 800w" sizes="(max-width: 760px) 120px, 240px" width="400" height="225" alt="" loading="lazy" decoding="async"></span>
@@ -26,8 +27,8 @@
 
     // Point viewers of a class at the book for the matching skill.
     const BOOKS = {
-        handstand: { key: 'handstand', title: 'The Handstand', tone: 'orange', url: '/books/handstand', cover: '/images/books/handstand-cover', alt: 'Cover of The Handstand by Mat Harvey', line: 'Six levels to a 60 second freestanding handstand.' },
-        muscleup: { key: 'muscleup', title: 'The Ring Muscle Up', tone: 'teal', url: '/books/ring-muscle-up', cover: '/images/books/muscleup-cover', alt: 'Cover of The Ring Muscle Up by Mat Harvey', line: 'Six levels to a strict ring muscle up, with no kipping.' }
+        handstand: { key: 'handstand', title: 'The Handstand', tone: 'orange', url: url('/books/handstand'), cover: url('/images/books/handstand-cover'), alt: 'Cover of The Handstand by Mat Harvey', line: 'Six levels to a 60 second freestanding handstand.' },
+        muscleup: { key: 'muscleup', title: 'The Ring Muscle Up', tone: 'teal', url: url('/books/ring-muscle-up'), cover: url('/images/books/muscleup-cover'), alt: 'Cover of The Ring Muscle Up by Mat Harvey', line: 'Six levels to a strict ring muscle up, with no kipping.' }
     };
 
     function cover(book) {
@@ -43,7 +44,7 @@
             : /muscle ?up|ring|pull/i.test(text) ? [BOOKS.muscleup]
             : [BOOKS.handstand, BOOKS.muscleup];
         const one = picks.length === 1 ? picks[0] : null;
-        const href = one ? one.url : '/books';
+        const href = one ? one.url : url('/books');
         const box = $('video-book');
         box.className = `video-book ruled${one ? ` book--${one.tone}` : ''}`;
         box.innerHTML = `
@@ -84,7 +85,7 @@
         $('player').innerHTML = `<div class="facade facade--empty"><p class="label facade__note">${esc(title)}</p></div>`;
         $('video-label').textContent = 'Free classes';
         $('video-title').textContent = title;
-        $('video-desc').innerHTML = `${esc(text)} <a href="/classes">See all classes</a>.`;
+        $('video-desc').innerHTML = `${esc(text)} <a href="${url('/classes')}">See all classes</a>.`;
     }
 
     async function load() {
@@ -110,12 +111,12 @@
 
         if (!BWG.hasYoutubeId(v)) {
             $('player').innerHTML = '<div class="facade facade--empty"><p class="label facade__note">Not on YouTube yet</p></div>';
-            $('video-desc').innerHTML = 'This class has not been uploaded yet. <a href="/classes">See the classes you can watch now</a>.';
+            $('video-desc').innerHTML = `This class has not been uploaded yet. <a href="${url('/classes')}">See the classes you can watch now</a>.`;
             renderBook(v);
             return;
         }
 
-        const img = `/images/classes/${v.id}`;
+        const img = url(`/images/classes/${v.id}`);
         $('player').innerHTML = `
             <button class="facade" type="button" data-yt="${esc(v.youtubeId)}" data-start="${Math.floor(v.startTime || 0)}" data-title="${esc(title)}">
                 <img src="${img}-800.webp" srcset="${img}-400.webp 400w, ${img}-800.webp 800w" sizes="(max-width: 1248px) 100vw, 1200px" width="800" height="450" alt="" fetchpriority="high">

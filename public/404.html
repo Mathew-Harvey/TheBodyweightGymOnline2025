@@ -5,13 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Page not found | The Bodyweight Gym</title>
     <meta name="robots" content="noindex">
-    <script>
-        // Old server-rendered blog URLs (/blog/<slug>) now live at /blog/post?slug=<slug>.
-        (function () {
-            var m = location.pathname.match(/^\/blog\/([\w-]+)\/?$/);
-            if (m && m[1] !== 'post') location.replace('/blog/post?slug=' + m[1]);
-        })();
-    </script>
     <!-- build:head -->
     <link rel="preload" href="/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -20,8 +13,17 @@
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#F3F1EC">
-    <script>document.documentElement.classList.add('js')</script>
+    <script>document.documentElement.classList.add('js');window.BWG_BASE=''</script>
 <!-- /build:head -->
+    <script>
+        // Old server-rendered blog URLs (/blog/<slug>) now live at /blog/post?slug=<slug>.
+        (function () {
+            var base = window.BWG_BASE || '';
+            var path = location.pathname.indexOf(base) === 0 ? location.pathname.slice(base.length) : location.pathname;
+            var m = path.match(/^\/blog\/([\w-]+)\/?$/);
+            if (m && m[1] !== 'post') location.replace(base + '/blog/post?slug=' + m[1]);
+        })();
+    </script>
 </head>
 <body>
 <!-- build:nav -->

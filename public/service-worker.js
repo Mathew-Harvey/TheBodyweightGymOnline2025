@@ -2,11 +2,14 @@
 
 const CACHE_NAME = 'bodyweight-gym-v5';
 
+// The site root as this worker sees it: "/" on a custom domain, "/<repo>/" on a GitHub Pages project URL.
+const BASE = new URL('./', self.location.href).pathname;
+
 // Shell cached on install; everything else is fetched from the network.
 const STATIC_ASSETS = [
-  '/',
-  '/offline.html',
-  '/manifest.json'
+  BASE,
+  `${BASE}offline.html`,
+  `${BASE}manifest.json`
 ];
 
 self.addEventListener('install', (event) => {
@@ -42,7 +45,7 @@ self.addEventListener('fetch', (event) => {
       .catch(async () => {
         const cached = await caches.match(request);
         if (cached) return cached;
-        if (request.destination === 'document') return caches.match('/offline.html');
+        if (request.destination === 'document') return caches.match(`${BASE}offline.html`);
         return Response.error();
       })
   );

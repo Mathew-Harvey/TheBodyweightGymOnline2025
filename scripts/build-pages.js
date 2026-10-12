@@ -8,6 +8,7 @@
 //   <!-- build:footer -->      ... <!-- /build:footer -->     src/partials/footer.html
 //   <!-- build:featured -->    ... <!-- /build:featured -->   six classes, one per coach
 //   <!-- build:library -->     ... <!-- /build:library -->    every playable class (/classes)
+//   <!-- build:playable -->    ... <!-- /build:playable -->   window.BWG_PLAYABLE, the ids that have a poster (/video)
 //   <!-- build:notes -->       ... <!-- /build:notes -->      the three newest posts
 //   <!-- build:posts -->       ... <!-- /build:posts -->      every post (blog index)
 //   <span data-stat="classes">57</span>                       numbers from videos.json
@@ -122,6 +123,7 @@ function processPage(file) {
   html = region(html, 'footer', () => FOOTER);
   html = region(html, 'featured', () => '        ' + featured().map(classRow).join('\n        '));
   html = region(html, 'library', () => '        ' + [...playable].sort((a, b) => (b.views || 0) - (a.views || 0) || a.id - b.id).map(libraryRow).join('\n        '));
+  html = region(html, 'playable', () => `    <script>window.BWG_PLAYABLE=${JSON.stringify(playable.map((v) => v.id))}</script>`);
   html = region(html, 'notes', () => '        ' + newestFirst.slice(0, 3).map((b) => postRow(b, { compact: true })).join('\n        '));
   html = region(html, 'posts', () => '        ' + newestFirst.map((b) => postRow(b)).join('\n        '));
   html = html.replace(/(<span data-stat="([a-z]+)">)[^<]*(<\/span>)/g, (m, open, key, close) => {

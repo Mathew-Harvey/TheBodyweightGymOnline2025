@@ -417,6 +417,9 @@ The rebuild follows sections 1 to 9. These are the deliberate differences, plus 
 - Rendered drawings (`/images/guides/`) and emoji are stripped from posts at render time; `{#id}` heading anchors are kept so the tables of contents work.
 - The post bodies themselves are unedited. They still contain hype words, em dashes and an "About the Author" line with credentials the repo cannot back ("certified", "over 10 years", in `buildingfoundations.md`). They need Mat's edit; that is content work, outside this rebuild.
 
+**Deploy**
+- The workflow publishes `_site/`, made by `scripts/prepare-pages.js`, not `public/` directly. GitHub serves a project site one level below the domain root until the custom domain is set, and the pages use root-based URLs, so the deployed copy gets the base path GitHub reports (`configure-pages` `base_path`) as a prefix. HTML and CSS are rewritten at deploy; scripts use `BWG.url()`. On the custom domain the prefix is empty. After changing the custom domain, run the workflow again.
+
 **Not done, or left as it was**
 - No page registers `public/service-worker.js` (none did before either). Its cache name is bumped to v5 so it is ready if registration is added.
 - Assets still wanted from section 5.2: the photoshoot originals, the logo source, coach photos (not needed while only Mat is named).

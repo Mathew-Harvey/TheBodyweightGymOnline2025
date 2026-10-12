@@ -49,7 +49,7 @@
         document.title = `${title} | The Bodyweight Gym`;
         $('post-title').textContent = title;
         $('post-crumb').textContent = title;
-        $('post-body').innerHTML = `<p>${esc(text)} <a href="/blog">See all articles</a>.</p>`;
+        $('post-body').innerHTML = `<p>${esc(text)} <a href="${BWG.url('/blog')}">See all articles</a>.</p>`;
     }
 
     async function load() {
@@ -74,7 +74,8 @@
         $('post-meta').textContent = `${post.author} · ${post.readTime} read · ${fmtDate(post.date)}`;
         if (post.image) {
             const photo = $('post-photo');
-            photo.innerHTML = `<img src="${post.image}-480.webp" srcset="${post.image}-320.webp 320w, ${post.image}-480.webp 480w" sizes="(max-width: 860px) 100vw, 440px" width="480" height="320" alt="" decoding="async">`;
+            const image = BWG.url(post.image);
+            photo.innerHTML = `<img src="${image}-480.webp" srcset="${image}-320.webp 320w, ${image}-480.webp 480w" sizes="(max-width: 860px) 100vw, 440px" width="480" height="320" alt="" decoding="async">`;
             photo.hidden = false;
         }
 
@@ -87,7 +88,7 @@
         }
 
         try {
-            const res = await fetch(post.file);
+            const res = await fetch(BWG.url(post.file));
             if (!res.ok) throw new Error(`${post.file}: HTTP ${res.status}`);
             const md = await res.text();
             if (!window.marked) throw new Error('marked did not load');
@@ -118,6 +119,12 @@
                 if (p.children.length === 1 && !p.textContent.trim()) p.replaceWith(figure);
             });
             body.querySelectorAll('a[href^="http"]').forEach((a) => { a.rel = 'noopener'; });
+            // Site links inside an article follow the base path like everything else.
+            body.querySelectorAll('a[href^="/"], img[src^="/"]').forEach((el) => {
+                const attr = el.tagName === 'A' ? 'href' : 'src';
+                const value = el.getAttribute(attr);
+                if (!value.startsWith('//')) el.setAttribute(attr, BWG.url(value));
+            });
         } catch (error) {
             console.error('Could not load the article:', error);
             $('post-body').innerHTML = '<p>Could not load the article text. Check your connection and try again.</p>';

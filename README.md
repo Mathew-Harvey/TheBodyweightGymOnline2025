@@ -67,7 +67,15 @@ One-time setup:
 2. Repo **Settings → Pages → Custom domain:** `thebodyweightgym.org`, and tick **Enforce HTTPS** once the certificate is issued.
 3. DNS for `thebodyweightgym.org`: `A` records for `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (and optionally the matching `AAAA` records), plus `CNAME www -> <owner>.github.io`.
 
-After that, every push to `main` runs `.github/workflows/pages.yml`, which runs `npm run build` and publishes `public/`. `public/CNAME` keeps the custom domain and `public/.nojekyll` stops Jekyll from processing the site. You can also run the workflow manually from the Actions tab.
+After that, every push to `main` runs `.github/workflows/pages.yml`. It runs `npm run build`, then `scripts/prepare-pages.js`, and publishes the result (`_site/`, not committed). You can also run the workflow manually from the Actions tab.
+
+**Where the site is served from.** Until the custom domain is set in Settings → Pages, GitHub serves the site at <https://mathew-harvey.github.io/TheBodyweightGymOnline2025/>, one level below the domain root. The pages use root-based URLs (`/css/brand.css`), so `prepare-pages.js` copies `public/` and prefixes them with the base path GitHub reports (`/TheBodyweightGymOnline2025`). On the custom domain the prefix is empty and the copy is plain. The repo itself always keeps root-based URLs, so `npm start` and the custom domain need no special case.
+
+**After you set or change the custom domain**, run the workflow once more (Actions → Deploy to GitHub Pages → Run workflow) so the site is rebuilt for its new address. Until you do, the published copy still carries the old prefix. While a custom domain is set, GitHub redirects the github.io address to it, so point DNS at GitHub first.
+
+Rules for new code: HTML may use root-based URLs (`/images/...`, `/classes`). Scripts must build URLs with `BWG.url('/path')` (`public/js/data.js`), never a bare `'/path'` string.
+
+To try the prefixed copy locally: `node scripts/prepare-pages.js --base /TheBodyweightGymOnline2025 --out /tmp/site`, then serve `/tmp/site` under that path.
 
 ## URLs
 

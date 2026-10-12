@@ -64,18 +64,25 @@
         };
     }
 
+    // The site root: empty on a custom domain, "/<repo>" when GitHub Pages serves the site from
+    // <owner>.github.io/<repo>. The page head defines window.BWG_BASE and scripts/prepare-pages.js
+    // sets it at deploy. Every URL a script builds must go through url(), never a bare "/path".
+    const BASE = window.BWG_BASE || '';
+    const url = (path) => BASE + path;
+
     window.BWG = {
-        getVideos: () => loadJson('/data/videos.json'),
-        getCategories: () => loadJson('/data/categories.json'),
-        getInstructors: () => loadJson('/data/instructors.json'),
-        getBlogs: () => loadJson('/data/blogs.json'),
+        url,
+        getVideos: () => loadJson(url('/data/videos.json')),
+        getCategories: () => loadJson(url('/data/categories.json')),
+        getInstructors: () => loadJson(url('/data/instructors.json')),
+        getBlogs: () => loadJson(url('/data/blogs.json')),
         getFavourites,
         isFavourite,
         toggleFavourite,
         computeStats,
         escapeHtml,
-        videoUrl: (id) => `/video?id=${encodeURIComponent(id)}`,
-        blogUrl: (slug) => `/blog/post?slug=${encodeURIComponent(slug)}`,
+        videoUrl: (id) => url(`/video?id=${encodeURIComponent(id)}`),
+        blogUrl: (slug) => url(`/blog/post?slug=${encodeURIComponent(slug)}`),
         hasYoutubeId: (v) => /^[\w-]{11}$/.test(v.youtubeId || '')
     };
 })();
