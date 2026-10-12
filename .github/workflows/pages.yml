@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Safety net. While Pages is set to "Deploy from a branch", GitHub also builds the repo root (the README) after every
+  # push, and that build finishes after this deploy and replaces the site. Run again once it is done so this deploy is
+  # the last one. With Pages set to "GitHub Actions" that build never runs and this trigger does nothing.
+  workflow_run:
+    workflows: ["pages build and deployment", "pages-build-deployment"]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
@@ -16,6 +23,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
