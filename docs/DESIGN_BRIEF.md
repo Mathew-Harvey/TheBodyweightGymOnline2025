@@ -420,6 +420,14 @@ The rebuild follows sections 1 to 9. These are the deliberate differences, plus 
 **Deploy**
 - The workflow publishes `_site/`, made by `scripts/prepare-pages.js`, not `public/` directly. GitHub serves a project site one level below the domain root until the custom domain is set, and the pages use root-based URLs, so the deployed copy gets the base path GitHub reports (`configure-pages` `base_path`) as a prefix. HTML and CSS are rewritten at deploy; scripts use `BWG.url()`. On the custom domain the prefix is empty. After changing the custom domain, run the workflow again.
 
+**Final pass (Oct 2026)**
+- **Embeds checked.** YouTube's oEmbed endpoint confirms all 57 class videos and the 6 demonstration videos exist and allow embedding. YouTube blocks the other lookups from the build environment (watch pages and the player API), so class durations could not be checked against YouTube. Three class titles differed from the YouTube title of the video they play (ids 14, 50 and 62, paired by coach and class type because their local file names were short); their page titles now use the YouTube titles. Mat should spot-check those three, and any class whose title is shared by several streams (see section 8).
+- **Inside the YouTube player.** The embedded player shows the video's own title, with the coach's first name, in its title bar while paused. That is YouTube's interface and cannot be hidden. Retitling the videos on YouTube is the only way to remove the names there.
+- **Article appendices hidden.** When an article renders, `public/js/post.js` drops the "Video Resources" lists (they name videos that do not exist and have no links), the resource and reference lists with no sources, and the "About the Author" blurb (it claims a certification the repo cannot back). The markdown files are unchanged. Statistics quoted inside the article text ("studies show", "85%") have no sources either and are for Mat to review.
+- **Touch targets.** Every control is at least 44 pixels in both directions on phones (nav, Menu, filters, search and sort, footer links, breadcrumb).
+- **URLs.** `/books/` and `/blog/` are directory pages, so links, canonical URLs and the sitemap use the trailing slash. `sitemap.xml` and `robots.txt` are generated at build. Local scripts carry a content hash, like the stylesheet, so a deploy never pairs a new page with a cached old script.
+- **What is deployed.** The deployed copy leaves out the guide drawings, the old thumbnails and the unpublished posts, and serves a trimmed `videos.json` (no coach names, file names or placeholder ratings). It is about 6 MB instead of 64 MB.
+
 **Not done, or left as it was**
 - No page registers `public/service-worker.js` (none did before either). Its cache name is bumped to v5 so it is ready if registration is added.
 - Assets still wanted from section 5.2: the photoshoot originals, the logo source, coach photos (not needed while only Mat is named).

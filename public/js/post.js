@@ -12,9 +12,39 @@
     // "## Heading {#id}" anchors, so the tables of contents keep working: [heading text, id]
     let anchors = [];
 
+    // Appendices that point at nothing: lists of tutorial videos that do not exist, resource and
+    // reference lists with no sources, and an author blurb with credentials the site cannot back.
+    // They are hidden here; the markdown files are untouched.
+    const DROP = /^(video resources|video tutorial library|sleep optimization videos|resources and (further reading|references)|recommended resources|about the author)$/i;
+    const isRule = (line) => /^(\*{3,}|-{3,}|_{3,})\s*$/.test(line);
+
+    function dropSections(md) {
+        const out = [];
+        let skipLevel = 0;
+        for (const line of md.split('\n')) {
+            const heading = line.match(/^(#{1,6})\s+(.*?)\s*$/);
+            if (skipLevel) {
+                if (isRule(line)) skipLevel = 0;                                // a rule ends the appendix
+                else if (heading && heading[1].length <= skipLevel) skipLevel = 0; // so does the next heading of its level or higher
+                else continue;
+            }
+            if (heading && DROP.test(heading[2].replace(/[*_`:]/g, '').trim())) { skipLevel = heading[1].length; continue; }
+            if (isRule(line)) {                                                 // never two rules in a row
+                const previous = [...out].reverse().find((l) => l.trim());
+                if (previous && isRule(previous)) continue;
+            }
+            out.push(line);
+        }
+        let s = out.join('\n');
+        let before;
+        do { before = s; s = s.replace(/(?:\n|^)[ \t]*(?:\*{3,}|-{3,}|_{3,})[ \t]*(?:\n\s*)*$/, '\n'); } while (s !== before);  // no rule at the very end
+        return s;
+    }
+
     // The markdown came from the old Wix blog. Tidy it for this layout.
     function clean(md) {
         let s = md
+            .replace(/\r\n?/g, '\n')                                       // the files use Windows line endings
             .replace(/^\/\/\s*\.\.\..*/gm, '')                              // "// ..." editing notes
             .replace(/^---$/gm, '***')                                      // rules, not setext headings
             .replace(/!\[[^\]]*\]\(\/images\/guides\/[^)]*\)[ \t]*\n?/g, '') // drawings, not photographs (design brief 5.1)
@@ -26,9 +56,9 @@
         }).replace(/\{#[\w-]+\}/g, '');
         const h1 = s.match(/^#\s+.+$/m);                                    // the page shows the title already
         if (h1) s = s.replace(h1[0], '');
-        return s
+        return dropSections(s
             .replace(/^\*(?:By\s|Writer:|Published:|Reading Time:|Updated:|Last Updated:).+\*\s*$/gm, '')
-            .replace(/^\*\*?\d+\s*min\s*read\*\*?\s*$/gm, '');
+            .replace(/^\*\*?\d+\s*min\s*read\*\*?\s*$/gm, ''));
     }
 
     function postRow(b) {
@@ -49,7 +79,7 @@
         document.title = `${title} | The Bodyweight Gym`;
         $('post-title').textContent = title;
         $('post-crumb').textContent = title;
-        $('post-body').innerHTML = `<p>${esc(text)} <a href="${BWG.url('/blog')}">See all articles</a>.</p>`;
+        $('post-body').innerHTML = `<p>${esc(text)} <a href="${BWG.url('/blog/')}">See all articles</a>.</p>`;
     }
 
     async function load() {

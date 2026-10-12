@@ -39,7 +39,7 @@ const PHOTOS = [
   // The full handstand, head and hands in frame (the cover crop loses the head under the
   // title). Cropped inside the print border and clear of the "BAM" lettering.
   { name: 'handstand-full', src: 'assets/photos/mat-handstand-full.jpg',
-    crop: { left: 85, top: 255, width: 915, height: 982 }, widths: [480, 915], grade: { warmth: 0.2, saturation: 0.85 } },
+    crop: { left: 85, top: 255, width: 915, height: 982 }, widths: [480, 760, 915], grade: { warmth: 0.2, saturation: 0.85 } },
   { name: 'handstand-wall', src: 'assets/covers/handstand-kindle-cover-1600x2560.jpg',
     crop: { left: 0, top: 170, width: 1600, height: 1500 }, widths: [480, 960, 1440, 1600] },
   { name: 'rope', src: 'assets/covers/muscleup-kindle-cover-1600x2560.jpg',

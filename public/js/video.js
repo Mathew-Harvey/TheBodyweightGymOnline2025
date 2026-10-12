@@ -44,7 +44,7 @@
             : /muscle ?up|ring|pull/i.test(text) ? [BOOKS.muscleup]
             : [BOOKS.handstand, BOOKS.muscleup];
         const one = picks.length === 1 ? picks[0] : null;
-        const href = one ? one.url : url('/books');
+        const href = one ? one.url : url('/books/');
         const box = $('video-book');
         box.className = `video-book ruled${one ? ` book--${one.tone}` : ''}`;
         box.innerHTML = `

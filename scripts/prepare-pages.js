@@ -10,7 +10,11 @@
 // The repo keeps root-absolute URLs, so `npm start` and a custom domain work unchanged. Only the
 // deployed copy is rewritten: HTML attributes, CSS url(), manifest.json, and the
 // window.BWG_BASE value that scripts use (see BWG.url in public/js/data.js).
-// Uses only Node built-ins.
+//
+// It also leaves out what no page links to: the guide drawings (the brief bans them from the site),
+// the old thumbnails, and the markdown and photos of posts that are not published (they name other
+// coaches). It serves a trimmed videos.json with only the fields the pages use. That keeps the
+// deployed site to what is shown. Uses only Node built-ins.
 
 const fs = require('fs');
 const path = require('path');
@@ -63,8 +67,32 @@ function* files(dir) {
   }
 }
 
+// Only the markdown of published posts (data/blogs.json, written by build-data.js) is served.
+const publishedPosts = new Set(JSON.parse(fs.readFileSync(path.join(SRC, 'data', 'blogs.json'), 'utf8')).map((b) => b.file.replace(/^\//, '')));
+function leftOut(rel) {
+  const p = rel.split(path.sep).join('/');
+  if (p.startsWith('images/guides/') || p.startsWith('images/thumbnails/')) return true;
+  if (p === 'data/instructors.json') return true;                      // coach names; no page reads it
+  if (p.startsWith('blogs/')) return !publishedPosts.has(p);
+  return false;
+}
+
 fs.rmSync(OUT, { recursive: true, force: true });
-fs.cpSync(SRC, OUT, { recursive: true });
+let copied = 0, skipped = 0, skippedBytes = 0;
+for (const file of files(SRC)) {
+  const rel = path.relative(SRC, file);
+  if (leftOut(rel)) { skipped++; skippedBytes += fs.statSync(file).size; continue; }
+  fs.mkdirSync(path.dirname(path.join(OUT, rel)), { recursive: true });
+  fs.copyFileSync(file, path.join(OUT, rel));
+  copied++;
+}
+
+// videos.json for the browser: only what the pages use. No coach names (titles lose their "Coach X - " prefix,
+// which the pages strip anyway), no file names, and no `rating`, which is placeholder data.
+const PUBLIC_VIDEO_FIELDS = ['id', 'title', 'duration', 'level', 'category', 'description', 'youtubeId', 'views', 'startTime', 'startTimeFormatted'];
+const videosOut = path.join(OUT, 'data', 'videos.json');
+fs.writeFileSync(videosOut, `${JSON.stringify(JSON.parse(fs.readFileSync(videosOut, 'utf8')).map((v) => Object.fromEntries(
+  PUBLIC_VIDEO_FIELDS.filter((k) => k in v).map((k) => [k, k === 'title' ? v.title.replace(/^[^-]+ - /, '') : v[k]]))))}\n`);
 
 const counts = { html: 0, css: 0, manifest: 0 };
 if (BASE) {
@@ -94,4 +122,4 @@ if (BASE) {
   if (problems.length) throw new Error(`prepare-pages left root-absolute URLs behind:\n  ${problems.slice(0, 20).join('\n  ')}`);
 }
 
-console.log(`prepared ${path.relative(ROOT, OUT) || OUT} for base "${BASE || '/'}": ${BASE ? `${counts.html} pages, ${counts.css} stylesheet(s), ${counts.manifest} manifest rewritten` : 'plain copy'}`);
+console.log(`prepared ${path.relative(ROOT, OUT) || OUT} for base "${BASE || '/'}": ${copied} files copied, ${skipped} left out (${(skippedBytes / 1048576).toFixed(1)} MB); ${BASE ? `${counts.html} pages, ${counts.css} stylesheet(s), ${counts.manifest} manifest rewritten` : 'no URL rewriting'}`);

@@ -25,6 +25,6 @@
   "shortcuts": [
     { "name": "All classes", "short_name": "Classes", "url": "/classes", "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96", "type": "image/png" }] },
     { "name": "Saved classes", "short_name": "Saved", "url": "/classes?filter=saved", "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96", "type": "image/png" }] },
-    { "name": "The books", "short_name": "Books", "url": "/books", "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96", "type": "image/png" }] }
+    { "name": "The books", "short_name": "Books", "url": "/books/", "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96", "type": "image/png" }] }
   ]
 }

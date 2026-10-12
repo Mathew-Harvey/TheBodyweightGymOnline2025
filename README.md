@@ -13,6 +13,7 @@ A fully static site (no backend) hosted on GitHub Pages at <https://thebodyweigh
 | Blog publish list + card extras (author, category, image, ...) | `scripts/blog-meta.json` |
 | Shared head, nav and footer | `src/partials/*.html`, written into every page by `scripts/build-pages.js` |
 | Class lists, blog lists, numbers in the copy | pre-rendered into the pages by `scripts/build-pages.js` |
+| `sitemap.xml`, `robots.txt` | written by `scripts/build-pages.js` for `https://thebodyweightgym.org` (every page, class and post) |
 | Styles | `public/css/brand.css` (the only stylesheet) |
 | Saved classes | the visitor's `localStorage` (`bwg:favourites`) |
 | Filters, search, sorting on `/classes` | `public/js/classes.js`, on the pre-rendered rows |
@@ -73,7 +74,9 @@ After that, every push to `main` runs `.github/workflows/pages.yml`. It runs `np
 
 **After you set or change the custom domain**, run the workflow once more (Actions → Deploy to GitHub Pages → Run workflow) so the site is rebuilt for its new address. Until you do, the published copy still carries the old prefix. While a custom domain is set, GitHub redirects the github.io address to it, so point DNS at GitHub first.
 
-Rules for new code: HTML may use root-based URLs (`/images/...`, `/classes`). Scripts must build URLs with `BWG.url('/path')` (`public/js/data.js`), never a bare `'/path'` string.
+**What is deployed.** `prepare-pages.js` leaves out what no page links to: the guide drawings (`images/guides`), the old thumbnails, and the markdown and photos of posts that are not published (they name other coaches). It also serves a trimmed `data/videos.json` (no coach names, file names or placeholder ratings) and drops `data/instructors.json`. The source files in `public/` are untouched, so `npm start` shows the full data.
+
+Rules for new code: HTML may use root-based URLs (`/images/...`, `/classes`). Scripts must build URLs with `BWG.url('/path')` (`public/js/data.js`), never a bare `'/path'` string. `/books/` and `/blog/` are directory pages, so link to them with the trailing slash (GitHub Pages redirects the bare form).
 
 To try the prefixed copy locally: `node scripts/prepare-pages.js --base /TheBodyweightGymOnline2025 --out /tmp/site`, then serve `/tmp/site` under that path.
 
@@ -84,10 +87,10 @@ To try the prefixed copy locally: `node scripts/prepare-pages.js --base /TheBody
 | `/` | `public/index.html` |
 | `/classes` (`?filter=saved` and the category names work as links) | `public/classes.html` |
 | `/video?id=<id>` | `public/video.html` |
-| `/blog` | `public/blog/index.html` |
+| `/blog/` | `public/blog/index.html` |
 | `/blog/post?slug=<slug>` | `public/blog/post.html` |
 | `/blog/<slug>` (old links) | `public/404.html` redirects to the URL above |
-| `/books`, `/books/handstand`, `/books/ring-muscle-up` | `public/books/*.html` |
+| `/books/`, `/books/handstand`, `/books/ring-muscle-up` | `public/books/*.html` |
 | `/ebook` (old) | `public/ebook.html` redirects to `/books` |
 
 ## Maintenance scripts (need FFmpeg and local video files)

@@ -12,11 +12,16 @@
 //   <!-- build:notes -->       ... <!-- /build:notes -->      the three newest posts
 //   <!-- build:posts -->       ... <!-- /build:posts -->      every post (blog index)
 //   <span data-stat="classes">57</span>                       numbers from videos.json
+// It also puts a content hash on local script URLs (like the stylesheet) and writes
+// public/sitemap.xml and public/robots.txt for the custom domain.
 // Running it again rewrites the same regions, so the output is committed as is.
 
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+
+// The address the site is meant to live at: canonical URLs and the sitemap use it.
+const SITE = 'https://thebodyweightgym.org';
 
 const ROOT = path.join(__dirname, '..');
 const PUB = path.join(ROOT, 'public');
@@ -115,6 +120,10 @@ function renderNav({ current }) {
   return NAV.replace(/data-nav="([a-z]+)"/g, (m, key) => (key === current ? `${m} aria-current="page"` : m));
 }
 
+// A content hash on local scripts, like the stylesheet: a deploy never pairs a new page with a cached old script.
+const scriptHash = {};
+const scriptVersion = (name) => (scriptHash[name] ||= crypto.createHash('sha1').update(read(path.join(PUB, 'js', name))).digest('hex').slice(0, 8));
+
 function processPage(file) {
   const before = read(file);
   let html = before;
@@ -126,6 +135,7 @@ function processPage(file) {
   html = region(html, 'playable', () => `    <script>window.BWG_PLAYABLE=${JSON.stringify(playable.map((v) => v.id))}</script>`);
   html = region(html, 'notes', () => '        ' + newestFirst.slice(0, 3).map((b) => postRow(b, { compact: true })).join('\n        '));
   html = region(html, 'posts', () => '        ' + newestFirst.map((b) => postRow(b)).join('\n        '));
+  html = html.replace(/(<script\b[^>]*?\ssrc=")\/js\/([\w.-]+\.js)(?:\?v=[0-9a-f]+)?(")/g, (m, open, name, close) => `${open}/js/${name}?v=${scriptVersion(name)}${close}`);
   html = html.replace(/(<span data-stat="([a-z]+)">)[^<]*(<\/span>)/g, (m, open, key, close) => {
     if (!(key in STATS)) throw new Error(`${path.relative(ROOT, file)}: unknown data-stat "${key}"`);
     return `${open}${STATS[key]}${close}`;
@@ -145,4 +155,19 @@ function pages(dir) {
 }
 
 for (const file of pages(PUB)) processPage(file);
+
+function writeIfChanged(file, content) {
+  if (fs.existsSync(file) && read(file) === content) return;
+  fs.writeFileSync(file, content);
+  console.log(`updated ${path.relative(ROOT, file)}`);
+}
+// Every public page. /books/ and /blog/ are directory pages, so the slash is the real address.
+const sitemapPaths = [
+  '/', '/classes', '/books/', '/books/handstand', '/books/ring-muscle-up', '/blog/',
+  ...[...playable].sort((a, b) => a.id - b.id).map((v) => `/video?id=${v.id}`),
+  ...newestFirst.map((b) => `/blog/post?slug=${b.slug}`),
+];
+writeIfChanged(path.join(PUB, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPaths.map((p) => `  <url><loc>${esc(SITE + p)}</loc></url>`).join('\n')}\n</urlset>\n`);
+writeIfChanged(path.join(PUB, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
 console.log(`stats: ${STATS.classes} classes, about ${STATS.hours} hours, ${STATS.coaches} coaches`);
