@@ -56,7 +56,7 @@
         "name": "Quick Workout",
         "short_name": "Quick",
         "description": "Start a 20-minute workout",
-        "url": "/workouts?duration=20",
+        "url": "/#workouts",
         "icons": [
           {
             "src": "/icons/quick-workout-96x96.png",
@@ -69,7 +69,7 @@
         "name": "Beginner Workouts",
         "short_name": "Beginner",
         "description": "View all beginner-friendly workouts",
-        "url": "/workouts?level=beginner",
+        "url": "/?filter=beginner#workouts",
         "icons": [
           {
             "src": "/icons/beginner-96x96.png",
@@ -82,7 +82,7 @@
         "name": "My Favorites",
         "short_name": "Favorites",
         "description": "Access your favorite workouts",
-        "url": "/favorites",
+        "url": "/?filter=favourites#workouts",
         "icons": [
           {
             "src": "/icons/favorites-96x96.png",
@@ -102,21 +102,5 @@
     ],
     "edge_side_panel": {
       "preferred_width": 400
-    },
-    "share_target": {
-      "action": "/share-workout",
-      "method": "POST",
-      "enctype": "multipart/form-data",
-      "params": {
-        "title": "title",
-        "text": "text",
-        "url": "url"
-      }
-    },
-    "protocol_handlers": [
-      {
-        "protocol": "web+bodyweightgym",
-        "url": "/workout?id=%s"
-      }
-    ]
+    }
   }

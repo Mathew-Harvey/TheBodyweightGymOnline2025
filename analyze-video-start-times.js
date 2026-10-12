@@ -85,7 +85,6 @@ function discoverVideoFiles() {
                 description: description,
                 thumbnail: thumbnail,
                 filename: file,
-                views: 0,
                 rating: 4.5 + (Math.random() * 0.5),
                 startTime: 0,
                 startTimeFormatted: "00:00:00"

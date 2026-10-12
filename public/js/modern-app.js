@@ -157,37 +157,21 @@ function initializeSearch() {
 // ===== Load Workouts =====
 async function loadWorkouts() {
     try {
-        const response = await fetch('/api/videos');
-        workouts = await response.json();
+        workouts = await BWG.getVideos();
+        applyInitialFilterFromUrl();
         renderWorkouts();
     } catch (error) {
         console.error('Error loading workouts:', error);
-        // Fallback: Create sample workouts
-        workouts = generateSampleWorkouts();
-        renderWorkouts();
+        const grid = document.getElementById('workoutsGrid');
+        if (grid) grid.innerHTML = '<p class="workouts-error">Unable to load workouts. Please refresh the page.</p>';
     }
 }
 
-function generateSampleWorkouts() {
-    const categories = ['Strength', 'Mobility', 'Skills', 'Flexibility', 'Endurance'];
-    const levels = ['Beginner', 'Intermediate', 'Advanced', 'All Levels'];
-    const coaches = ['Coach Corey', 'Coach Maisie', 'Coach Kelvin', 'Coach Oscar', 'Coach Ray'];
-    const sampleWorkouts = [];
-    
-    for (let i = 1; i <= 30; i++) {
-        sampleWorkouts.push({
-            id: i,
-            title: `Workout ${i}: ${categories[i % categories.length]} Training`,
-            instructor: coaches[i % coaches.length],
-            category: categories[i % categories.length],
-            level: levels[i % levels.length],
-            duration: `${20 + Math.floor(Math.random() * 40)} min`,
-            thumbnail: `/images/thumbnails/placeholder.jpg`,
-            description: `A comprehensive ${categories[i % categories.length].toLowerCase()} workout suitable for ${levels[i % levels.length].toLowerCase()} practitioners.`
-        });
-    }
-    
-    return sampleWorkouts;
+// Supports links like /?filter=favourites#workouts (used by the PWA shortcuts)
+function applyInitialFilterFromUrl() {
+    const filter = new URLSearchParams(window.location.search).get('filter');
+    const pill = filter && document.querySelector(`.filter-pill[data-filter="${CSS.escape(filter)}"]`);
+    if (pill) pill.click();
 }
 
 function renderWorkouts() {
@@ -197,7 +181,11 @@ function renderWorkouts() {
     const filteredWorkouts = getFilteredWorkouts();
     const workoutsToShow = filteredWorkouts.slice(0, workoutsLoaded);
     
-    grid.innerHTML = workoutsToShow.map(workout => createWorkoutCard(workout)).join('');
+    grid.innerHTML = workoutsToShow.length
+        ? workoutsToShow.map(workout => createWorkoutCard(workout)).join('')
+        : `<p class="workouts-empty">${currentFilter === 'favourites' && !currentSearch
+            ? 'No favourites yet. Tap the heart on a workout to save it here.'
+            : 'No workouts match your search.'}</p>`;
     
     // Animate cards on load
     const cards = grid.querySelectorAll('.workout-card');
@@ -224,7 +212,7 @@ function renderWorkouts() {
 function createWorkoutCard(workout) {
     const levelClass = workout.level.toLowerCase().replace(' ', '-');
     const thumbnail = workout.thumbnail && !workout.thumbnail.includes('placeholder') 
-        ? `background-image: url('${workout.thumbnail}');`
+        ? `background-image: url('${encodeURI(workout.thumbnail).replace(/'/g, '%27')}');`
         : `background: linear-gradient(135deg, #0088CC 0%, #00C4FF 100%);`;
     
     return `
@@ -234,6 +222,10 @@ function createWorkoutCard(workout) {
                     ? `<div class="workout-initial">${workout.instructor.split(' ')[1]?.[0] || 'W'}</div>` 
                     : ''}
                 <div class="workout-duration">${workout.duration}</div>
+                <button type="button" class="workout-fav${BWG.isFavourite(workout.id) ? ' active' : ''}"
+                    onclick="toggleFavourite(event, ${workout.id})"
+                    aria-pressed="${BWG.isFavourite(workout.id)}"
+                    aria-label="${BWG.isFavourite(workout.id) ? 'Remove from favourites' : 'Add to favourites'}">${BWG.isFavourite(workout.id) ? '♥' : '♡'}</button>
                 <div class="workout-play">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <polygon points="5 3 19 12 5 21"></polygon>
@@ -258,7 +250,10 @@ function getFilteredWorkouts() {
     
     // Apply category filter
     if (currentFilter !== 'all') {
-        if (currentFilter === 'beginner') {
+        if (currentFilter === 'favourites') {
+            const favourites = BWG.getFavourites();
+            filtered = filtered.filter(w => favourites.includes(w.id));
+        } else if (currentFilter === 'beginner') {
             filtered = filtered.filter(w => 
                 w.level.toLowerCase().includes('beginner') || 
                 w.level.toLowerCase().includes('all levels')
@@ -296,7 +291,13 @@ function loadMoreWorkouts() {
 }
 
 function playWorkout(workoutId) {
-    window.location.href = `/video?id=${workoutId}`;
+    window.location.href = BWG.videoUrl(workoutId);
+}
+
+function toggleFavourite(event, workoutId) {
+    event.stopPropagation();
+    BWG.toggleFavourite(workoutId);
+    renderWorkouts();
 }
 
 // ===== Animate Stats =====
@@ -376,8 +377,7 @@ async function loadHomeBlogPosts() {
     if (!blogGrid) return;
 
     try {
-        const response = await fetch('/api/blogs?_=' + Date.now());
-        const blogs = await response.json();
+        const blogs = await BWG.getBlogs();
         
         // Show first 6 blog posts on homepage (or all if less than 6)
         const homeBlogPosts = blogs.slice(0, 6);
@@ -396,7 +396,7 @@ function renderHomeBlogPosts(blogs, totalCount) {
     const blogGrid = document.getElementById('homeBlogGrid');
     
     blogGrid.innerHTML = blogs.map((blog, index) => `
-        <article class="blog-card ${index === 0 ? 'featured' : ''}" onclick="window.location.href='/blog/${blog.id}'" style="animation-delay: ${index * 0.1}s">
+        <article class="blog-card ${index === 0 ? 'featured' : ''}" onclick="window.location.href='${BWG.blogUrl(blog.slug)}'" style="animation-delay: ${index * 0.1}s">
             <div class="blog-image">
                 <img src="${blog.image}" alt="${blog.title}" loading="lazy">
                 <div class="blog-category-badge">${blog.category}</div>
@@ -491,6 +491,33 @@ const workoutStyles = `
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+}
+
+.workout-fav {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.workout-fav.active {
+    color: #f87171;
+}
+
+.workouts-empty,
+.workouts-error {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #94a3b8;
+    padding: 2rem 0;
 }
 
 .workout-play {
@@ -611,3 +638,4 @@ window.playIntroVideo = playIntroVideo;
 window.scrollToWorkouts = scrollToWorkouts;
 window.loadMoreWorkouts = loadMoreWorkouts;
 window.playWorkout = playWorkout;
+window.toggleFavourite = toggleFavourite;

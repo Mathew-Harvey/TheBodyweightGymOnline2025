@@ -1,0 +1,110 @@
+[
+  {
+    "slug": "buildingfoundations",
+    "file": "/blogs/buildingfoundations/buildingfoundations.md",
+    "title": "Building Your Foundation",
+    "date": "2018-07-09",
+    "excerpt": "Basic motor patterns lay the foundations of all physical performance and health. Developing sound basic movement patterns takes persistence and often a temporary reduction in intensity.",
+    "author": "Mat Harvey",
+    "category": "Training",
+    "readTime": "3 min",
+    "featured": false,
+    "image": "/images/guides/muscleup/ringhang.png"
+  },
+  {
+    "slug": "firstmu",
+    "file": "/blogs/firstmu/firstmu.md",
+    "title": "The Road to My First Ring Muscle Up",
+    "date": "2018-08-08",
+    "excerpt": "I didn't do gymnastics as a child, I learned all this stuff as an adult. Now I can complete a ring muscle up, cold, anytime. The process takes dedication, consistency and patience.",
+    "author": "Mat Harvey",
+    "category": "Skills",
+    "readTime": "4 min",
+    "featured": true,
+    "image": "/images/guides/muscleup/ringmu1.png"
+  },
+  {
+    "slug": "trainingandpain",
+    "file": "/blogs/trainingandpain/trainingandpain.md",
+    "title": "Training and Pain",
+    "date": "2018-08-12",
+    "excerpt": "Training should not hurt. Nope, not ever. Training should certainly be uncomfortable, often. But training should not ever cause acute or chronic pain.",
+    "author": "Mat Harvey",
+    "category": "Recovery",
+    "readTime": "5 min",
+    "featured": false,
+    "image": "/images/guides/handstand/hang.png"
+  },
+  {
+    "slug": "strengthtrainingandrecovery",
+    "file": "/blogs/strengthtrainingandrecovery/strengthtrainingandrecover.md",
+    "title": "Strength Training and Recovery",
+    "date": "2018-08-26",
+    "excerpt": "You don't get strong in the gym. You get strong while you are in bed – asleep with a full stomach, otherwise known as recovery.",
+    "author": "Mat Harvey",
+    "category": "Recovery",
+    "readTime": "5 min",
+    "featured": false,
+    "image": "/images/guides/handstand/hollowbodyAdv.png"
+  },
+  {
+    "slug": "goalsetting",
+    "file": "/blogs/goalsetting/goalsetting.md",
+    "title": "8 Tips for Healthy Goal Setting",
+    "date": "2019-07-28",
+    "excerpt": "Do you work out to get high? Does that progress towards your goals? Many people enjoy the runner's high but this style of training must align with your goals.",
+    "author": "Mat Harvey",
+    "category": "Philosophy",
+    "readTime": "3 min",
+    "featured": false,
+    "image": "/images/guides/handstand/freestandinghandstand1.png"
+  },
+  {
+    "slug": "fiveprinicipalsofstrengthtraining",
+    "file": "/blogs/fiveprinicipalsofstrengthtraining/fiveprincipalsofstrenghttraining.md",
+    "title": "5 Principles of Strength Training",
+    "date": "2019-10-14",
+    "excerpt": "Bodyweight strength training is a noble pursuit, it requires patience, understanding of your own body and mental fortitude.",
+    "author": "Mat Harvey",
+    "category": "Training",
+    "readTime": "4 min",
+    "featured": false,
+    "image": "/images/guides/muscleup/ringpulluptop.png"
+  },
+  {
+    "slug": "weightliftingtokungfu",
+    "file": "/blogs/weightliftingtokungfu/weightliftingtokungfu.md",
+    "title": "From Weightlifting to Chinese Kungfu - A Dance with Corey",
+    "date": "2021-04-12",
+    "excerpt": "My training journey started at probably the age of 19. I started boxing, and the environment I was in, was one of a lot of young men punishing themselves.",
+    "author": "Corey",
+    "category": "Philosophy",
+    "readTime": "3 min",
+    "featured": false,
+    "image": "/images/guides/muscleup/ringfalsegrip.png"
+  },
+  {
+    "slug": "wellrested",
+    "file": "/blogs/wellrested/wellrested.md",
+    "title": "Well Rested on the Subject?",
+    "date": "2021-06-10",
+    "excerpt": "How well are we sleeping? How well rested are we? What compensations are we making due to lack of sleep, poor sleep quality, irregular routine?",
+    "author": "Corey",
+    "category": "Recovery",
+    "readTime": "4 min",
+    "featured": false,
+    "image": "/images/guides/handstand/chesttowallhandstand01.png"
+  },
+  {
+    "slug": "gettingoutofcomfort",
+    "file": "/blogs/gettingoutofcomfort/gettingoutofcomfort.md",
+    "title": "Getting Out of Your Comfort Zone",
+    "date": "2024-12-15",
+    "excerpt": "How do you get out of your comfort zone and keep growing? The answer: take the right direction and stay motivated.",
+    "author": "Coach Ana",
+    "category": "Philosophy",
+    "readTime": "3 min",
+    "featured": false,
+    "image": "/images/guides/muscleup/ringpullupscapdownmiddle.png"
+  }
+]

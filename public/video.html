@@ -111,15 +111,27 @@
         }
 
         .video-player {
-            width: 100%;
-            height: auto;
             display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 0;
             background: #000;
         }
 
-        /* Video controls styling */
-        .video-player::-webkit-media-controls-panel {
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        .fav-button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid rgba(45, 139, 201, 0.4);
+            border-radius: 8px;
+            color: var(--primary-light);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .fav-button.active {
+            color: #f87171;
+            border-color: rgba(248, 113, 113, 0.5);
         }
 
         .video-info {
@@ -237,11 +249,8 @@
         </header>
 
         <main class="video-container">
-            <div class="video-wrapper">
-                <video class="video-player" controls preload="metadata" playsinline>
-                    <source id="videoSource" src="" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <div class="video-wrapper" id="videoWrapper">
+                <div class="loading">Loading video...</div>
             </div>
 
             <div class="video-info" id="videoInfo">
@@ -250,60 +259,78 @@
         </main>
     </div>
 
-    <script src="video-play.js"></script>
+    <script src="/js/data.js"></script>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoId = urlParams.get('id');
+        const esc = BWG.escapeHtml;
+        const wrapper = document.getElementById('videoWrapper');
+        const videoId = new URLSearchParams(window.location.search).get('id');
 
-        if (!videoId) {
-            document.querySelector('.video-wrapper').innerHTML = 
-                '<div class="error">No video ID provided.<br><a href="/">Return to workouts</a></div>';
-        } else {
-            fetch(`/api/videos/${videoId}`)
-                .then(response => response.json())
-                .then(video => {
-                    if (video.error) {
-                        throw new Error('Video not found');
-                    }
-                    
-                    const videoElement = document.querySelector('.video-player');
-                    const videoSource = document.getElementById('videoSource');
-                    videoSource.src = `/api/stream/${videoId}`;
-                    videoElement.dataset.videoId = videoId;
-                    videoElement.load();
-                    
-                    // Set the start time if available
-                    if (video.startTime && video.startTime > 0) {
-                        videoElement.addEventListener('loadedmetadata', function() {
-                            videoElement.currentTime = video.startTime;
-                        });
-                    }
-                    
-                    document.title = `${video.title} - The Bodyweight Gym`;
-                    
-                    document.getElementById('videoInfo').innerHTML = `
-                        <h1 class="video-title">${video.title}</h1>
-                        <div class="video-meta">
-                            <span>👤 ${video.instructor}</span>
-                            <span>⏱️ ${video.duration}</span>
-                            <span>📊 ${video.level}</span>
-                            <span>👁️ ${video.views.toLocaleString()} views</span>
-                            ${video.startTimeFormatted ? `<span>⏰ Starts at ${video.startTimeFormatted}</span>` : ''}
-                        </div>
-                        <div class="video-description">${video.description}</div>
-                        ${video.startTimeFormatted ? `<div class="video-start-info">⏰ Video starts at ${video.startTimeFormatted} to skip intro</div>` : ''}
-                    `;
-                    
-                    fetch(`/api/videos/${videoId}/view`, { method: 'POST' });
-                })
-                .catch(error => {
-                    console.error('Error loading video:', error);
-                    document.querySelector('.video-wrapper').innerHTML = 
-                        '<div class="error">Video not found.<br><a href="/">Return to workouts</a></div>';
-                    document.getElementById('videoInfo').innerHTML = 
-                        '<div class="error">Unable to load video information</div>';
-                });
+        function showError(message) {
+            wrapper.innerHTML = `<div class="error">${message}<br><a href="/">Return to workouts</a></div>`;
         }
+
+        function renderFavouriteButton(id) {
+            const btn = document.getElementById('favButton');
+            const on = BWG.isFavourite(id);
+            btn.classList.toggle('active', on);
+            btn.setAttribute('aria-pressed', on);
+            btn.textContent = on ? '♥ In your favourites' : '♡ Add to favourites';
+        }
+
+        async function loadVideo() {
+            if (!videoId) {
+                showError('No video ID provided.');
+                return;
+            }
+
+            let video;
+            try {
+                const videos = await BWG.getVideos();
+                video = videos.find(v => String(v.id) === videoId);
+            } catch (error) {
+                console.error('Error loading video:', error);
+                showError('Unable to load video information.');
+                return;
+            }
+            if (!video) {
+                showError('Video not found.');
+                return;
+            }
+
+            document.title = `${video.title} - The Bodyweight Gym`;
+
+            if (BWG.hasYoutubeId(video)) {
+                const params = new URLSearchParams({ rel: '0' });
+                if (video.startTime > 0) params.set('start', Math.floor(video.startTime));
+                wrapper.innerHTML = `<iframe class="video-player"
+                    src="https://www.youtube-nocookie.com/embed/${video.youtubeId}?${params}"
+                    title="${esc(video.title)}"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+            } else {
+                showError('This workout\'s video is being added. Check back soon!');
+            }
+
+            document.getElementById('videoInfo').innerHTML = `
+                <h1 class="video-title">${esc(video.title)}</h1>
+                <div class="video-meta">
+                    <span>👤 ${esc(video.instructor)}</span>
+                    <span>⏱️ ${esc(video.duration)}</span>
+                    <span>📊 ${esc(video.level)}</span>
+                    ${video.startTimeFormatted ? `<span>⏰ Starts at ${esc(video.startTimeFormatted)}</span>` : ''}
+                </div>
+                <div class="video-description">${esc(video.description)}</div>
+                ${video.startTimeFormatted ? `<div class="video-start-info">⏰ Video starts at ${esc(video.startTimeFormatted)} to skip intro</div>` : ''}
+                <div><button type="button" class="fav-button" id="favButton"></button></div>
+            `;
+            renderFavouriteButton(video.id);
+            document.getElementById('favButton').addEventListener('click', () => {
+                BWG.toggleFavourite(video.id);
+                renderFavouriteButton(video.id);
+            });
+        }
+
+        loadVideo();
     </script>
 </body>
 </html>

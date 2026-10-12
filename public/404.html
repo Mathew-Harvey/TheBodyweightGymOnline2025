@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page not found - The Bodyweight Gym</title>
+    <link rel="icon" type="image/png" href="/images/ringLogo.png">
+    <script>
+        // Old server-rendered blog URLs (/blog/<slug>) now live at /blog/post?slug=<slug>.
+        (function () {
+            var m = location.pathname.match(/^\/blog\/([\w-]+)\/?$/);
+            if (m && m[1] !== 'post') location.replace('/blog/post?slug=' + m[1]);
+        })();
+    </script>
+    <style>
+        body { font-family: system-ui, sans-serif; background: #0f1524; color: #e2e8f0; display: flex; min-height: 100vh; align-items: center; justify-content: center; margin: 0; text-align: center; }
+        a { color: #2d8bc9; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Page not found</h1>
+        <p><a href="/">Back to the workouts</a> or <a href="/blog">read the blog</a>.</p>
+    </main>
+</body>
+</html>
