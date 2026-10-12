@@ -86,9 +86,9 @@ Each video now includes:
 - `server.js` - Updated video database with start times
 
 ### Frontend Updates
-- `public/video.html` - Enhanced video player with start time
-- `public/js/modern-app.js` - Updated workout card display
-- `public/css/modern-style.css` - Added start time styling
+- `public/js/video.js` - passes `startTime` to the player (`data-start`) and says where playback starts
+- `public/js/site.js` - adds `start=` to the youtube-nocookie embed when the poster is pressed
+- (The 2025 versions of these changes lived in `modern-app.js` and `modern-style.css`, both removed in the Oct 2026 redesign.)
 
 ### Generated Files
 - `video-start-times.json` - Analysis results

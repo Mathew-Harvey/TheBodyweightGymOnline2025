@@ -378,3 +378,50 @@ Checklist before the branch is handed back:
 - Keep from the WIP commit on `redesign`: cleaned titles and coach names in `videos.json` (6 coaches), `npm run images` (covers, art crops, real PWA icons, compressed blog images), async font loading pattern, contrast fixes, the video-page book link logic, the sticky buy bar logic.
 - Replace: the home page layout, `brand.css` (hero/proof/steps/cta-band), the brand layer at the end of `books.css`, the book-page "photo" slots, the blog card images.
 - Open questions for Mat are in section 5.2 and the opening year in 6.2.
+
+---
+
+## 12. As built (Oct 2026): where the build differs from this brief, and why
+
+The rebuild follows sections 1 to 9. These are the deliberate differences, plus the facts Mat confirmed after the brief was written.
+
+**Facts confirmed by Mat**
+- The gym opened in **2016** (not 2017). The Sunday Times Magazine cover is dated **10 April 2016** ("WA's most unusual new gym"); the scan is `assets/photos/stm-cover-2016-04-10.jpg`.
+- **Only Mat Harvey is named on the site.** Coach names are stripped from class titles in the UI (`displayTitle()` in `scripts/build-pages.js` and `public/js/video.js`), are not in any description, and the stream lower-thirds that carried them are cropped out of every class frame. "More from Coach X" became "More strength classes". The three guest posts (`weightliftingtokungfu`, `wellrested`, `gettingoutofcomfort`) are unpublished in `scripts/blog-meta.json`; their markdown stays in the repo.
+- Client photos may be used (members signed a waiver), so the coaching photo is in the story section.
+
+**Numbers**
+- Only classes with a YouTube upload are listed or counted: **57 classes, about 60 hours, six coaches** (computed at build into `<span data-stat>`). The 9 without an upload (ids 4, 49, 53, 58, 60, 61, 63, 64, 65) stay in `videos.json`; `/video?id=` explains they are not uploaded yet.
+- The "Highest rated" sort is gone: the `rating` values were placeholders, not ratings. Sorts are Most viewed (real YouTube counts), Shortest first, Longest first.
+- Read times are computed from word count at build (230 words a minute).
+
+**Build and markup**
+- Shared nav, head and footer live in `src/partials/` and are written into every page by `scripts/build-pages.js` (Node built-ins only, part of `npm run build`), instead of being copied by hand. The same step pre-renders the featured classes, the full class library on `/classes`, and the blog lists, so those pages work without JavaScript and do not shift when scripts run.
+- Fonts are self-hosted (`public/fonts/`, latin subset, OFL licences alongside) rather than loaded from Google Fonts: one fewer origin, and both files are preloaded. Local fallbacks are size-matched to Archivo (measured against Arial) so nothing moves when the web font arrives.
+- `modern-app.js`, `modern-style.css` and `books.css` are replaced by `public/js/classes.js`, `video.js`, `post.js`, `site.js` and the single `public/css/brand.css`. The `books.js` contracts (TODO URL stays disabled, AU store switch, signup modes, buy bar) are unchanged; click-to-play moved to `site.js` so the class page uses it too.
+
+**Colour and accessibility**
+- Orange and teal fail 4.5:1 as text on paper, so text uses darker ink versions (`--orange-ink #A84D17`, `--teal-ink #1B766F`); the bright values are kept for black bands, rules and fills.
+- Focus rings are ink on paper and orange on black. Orange on paper is too faint for a focus ring.
+- The "fade to black" on hero photos is a CSS mask on the photo (section 6.2 asks for it). There are no visible colour gradients anywhere.
+
+**Photography**
+- Every photo goes through one grade in `scripts/lib/grade.js` (run by `npm run images`): warm hues keep their saturation while cool and magenta casts are pulled toward grey, an S-curve adds contrast, mid-tones are warmed, blacks map to `#121214` and whites to the paper colour, and seeded grain is added. The Wix-era interior shots are black and white with grain, as in 5.3.
+- Home hero: the full-figure handstand from Mat's photo set, shown at its own shape, so the frame always runs from feet to hands. The brief's cover crop cut the head off at common laptop sizes.
+- Book page heroes: the Book 1 cover photograph, and the rings photograph for Book 2 (more on-topic than the rope shot on the cover).
+- In the book rows the cover itself is shown flat, because the cover is the product people will see on Amazon. The photo crops lead the book pages.
+- Class thumbnails are self-hosted, graded crops of YouTube's automatic stream frames, chosen and cropped clear of the overlays (`FRAME_CROP`, `FRAME_CROP_FOR`, `FRAME_PICK` in `scripts/build-images.js`). Two demonstration videos had a logo title card as their thumbnail; they use a real frame instead (`DEMO_FRAME`).
+- The 404 page carries one photo (Mat in an L-sit by the sea) beside "Not here.".
+
+**Blog**
+- Rendered drawings (`/images/guides/`) and emoji are stripped from posts at render time; `{#id}` heading anchors are kept so the tables of contents work.
+- The post bodies themselves are unedited. They still contain hype words, em dashes and an "About the Author" line with credentials the repo cannot back ("certified", "over 10 years", in `buildingfoundations.md`). They need Mat's edit; that is content work, outside this rebuild.
+
+**Not done, or left as it was**
+- No page registers `public/service-worker.js` (none did before either). Its cache name is bumped to v5 so it is ready if registration is added.
+- Assets still wanted from section 5.2: the photoshoot originals, the logo source, coach photos (not needed while only Mat is named).
+
+**Checks run (Oct 2026)**
+- Lighthouse, mobile, local preview, before the last fixes: home 98 performance / 100 accessibility, `/classes` 99 / 100, `/books/handstand` 99 / 100, `/books/ring-muscle-up` 100 / 100, `/blog` 100 / 98 (heading order, since fixed), `/video?id=2` 82 / 100 (layout shift, since fixed). Best practices and SEO 100 on all six.
+- After the fixes, measured in Chromium on a throttled phone profile: layout shift under 0.03 on every page, one `h1` and no skipped heading levels, no horizontal scroll at 360, 768 and 1440. Page weight is 166 to 359 KB, CSS 34 KB, JS 12 to 31 KB including `marked` on posts.
+- The behaviour suite passes: filters, search, sort, show all, saved classes across reload, `?filter=` deep links, no-JS library, class page, demo playback, buy bar, disabled buy state, US and AU Amazon links, mailto and Formspree signup, blog rendering, old `/blog/<slug>` redirects and the mobile menu.

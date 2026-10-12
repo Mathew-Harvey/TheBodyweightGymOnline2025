@@ -123,8 +123,18 @@ function buildBlogData() {
 
     const md = fs.readFileSync(path.join(dir, mdFile), 'utf8');
     const title = (md.match(/^#\s+(.+)$/m) || [])[1];
-    const derived = { title: title && stripMarkdown(title), date: parseDate(md), excerpt: firstParagraph(md) };
-    const post = { slug, file: `/blogs/${slug}/${mdFile}`, ...derived, ...meta[slug] };
+    const words = stripMarkdown(md).split(/\s+/).filter(Boolean).length;
+    const derived = {
+      title: title && stripMarkdown(title),
+      date: parseDate(md),
+      excerpt: firstParagraph(md),
+      readTime: `${Math.max(1, Math.round(words / 230))} min`,
+    };
+    // imageSource is the original photo; scripts/build-images.js turns it into
+    // /images/blog/<slug>-{480,960}.webp. Only the web copy is published.
+    const { imageSource, ...rest } = meta[slug];
+    const post = { slug, file: `/blogs/${slug}/${mdFile}`, ...derived, ...rest };
+    if (imageSource) post.image = `/images/blog/${slug}`;
 
     for (const f of ['title', 'date', 'excerpt']) {
       if (!post[f]) throw new Error(`blog "${slug}": no ${f} (add it to scripts/blog-meta.json)`);

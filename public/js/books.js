@@ -1,5 +1,5 @@
-// Book page behaviour: Amazon buttons, click-to-load YouTube videos, email signup.
-// Settings live in /js/books-config.js (load it first).
+// Books behaviour: Amazon buttons, the email signup and the sticky buy bar on phones.
+// Settings live in /js/books-config.js (load it first). Click-to-play videos are in site.js.
 
 (function () {
     const config = window.BWG_BOOKS;
@@ -16,68 +16,58 @@
         return /-AU$/i.test(navigator.language || '');
     }
 
-    function amazonUrl(bookId, format) {
+    function amazonLink(bookId, format) {
         const urls = config.books[bookId]?.urls?.[format];
         if (!urls) return null;
-        if (isAustralia() && AMAZON_URL.test(urls.au)) return urls.au;
-        return AMAZON_URL.test(urls.us) ? urls.us : null;
+        if (isAustralia() && AMAZON_URL.test(urls.au)) return { url: urls.au, au: true };
+        return AMAZON_URL.test(urls.us) ? { url: urls.us, au: false } : null;
     }
 
-    // <span class="btn-buy is-disabled" data-buy="handstand:kindle" data-label="Get the Kindle ebook">...</span>
+    // <span class="label buy__soon" data-buy="handstand:kindle" data-class="btn"
+    //       data-label="Kindle US$4.99" data-label-au="Kindle A$7.99">Kindle US$4.99 · coming soon</span>
+    // becomes a real link once books-config.js has the Amazon URL. Until then it stays as is.
     function initBuyButtons() {
         document.querySelectorAll('[data-buy]').forEach((el) => {
             const [bookId, format] = el.dataset.buy.split(':');
-            const url = amazonUrl(bookId, format);
-            if (!url) return; // keep the static "coming soon" state
-            const link = document.createElement('a');
-            link.className = el.className.replace('is-disabled', '').trim();
-            link.href = url;
-            link.target = '_blank';
-            link.rel = 'noopener';
-            link.textContent = el.dataset.label;
-            el.replaceWith(link);
+            const link = amazonLink(bookId, format);
+            if (!link) return;
+            const a = document.createElement('a');
+            a.className = el.dataset.class || 'btn';
+            a.href = link.url;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            const text = document.createElement('span');
+            text.textContent = (link.au && el.dataset.labelAu) || el.dataset.label;
+            a.append(text);
+            el.replaceWith(a);
         });
     }
 
-    // <button class="yt-lite" data-yt="VIDEO_ID" aria-label="Play video: ...">thumbnail</button>
-    function initVideos() {
-        document.querySelectorAll('.yt-lite[data-yt]').forEach((btn) => {
-            btn.addEventListener('click', () => {
-                const id = btn.dataset.yt;
-                if (!/^[\w-]{11}$/.test(id)) return;
-                const iframe = document.createElement('iframe');
-                iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
-                iframe.title = btn.getAttribute('aria-label')?.replace(/^Play video: /, '') || 'YouTube video';
-                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-                iframe.allowFullscreen = true;
-                iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-                iframe.className = 'yt-lite-frame';
-                btn.replaceWith(iframe);
-            });
-        });
-    }
-
-    // <div class="signup" data-signup>static fallback</div>
+    // <div data-signup> ... <div class="signup-action">fallback note</div></div>
     function initSignup() {
         const { mode, email, formspreeId, subject } = config.signup || {};
         document.querySelectorAll('[data-signup]').forEach((box) => {
             const target = box.querySelector('.signup-action');
             if (!target) return;
+            const key = box.dataset.signup || 'signup';
 
             if (mode === 'formspree' && /^[A-Za-z0-9]+$/.test(formspreeId || '') && formspreeId !== 'TODO') {
                 target.innerHTML = `
                     <form class="signup-form" action="https://formspree.io/f/${formspreeId}" method="POST">
                         <input type="hidden" name="_subject" value="">
-                        <label class="visually-hidden" for="signup-email-${box.dataset.signup || 'x'}">Email address</label>
-                        <input class="signup-input" id="signup-email-${box.dataset.signup || 'x'}" type="email" name="email" required placeholder="you@example.com" autocomplete="email">
-                        <button class="btn-primary signup-button" type="submit">Tell me about new books</button>
+                        <label class="field">
+                            <span class="visually-hidden">Email address</span>
+                            <input id="signup-email-${key}" type="email" name="email" required placeholder="Your email" autocomplete="email">
+                        </label>
+                        <button class="btn" type="submit">Tell me</button>
                     </form>`;
                 target.querySelector('input[name="_subject"]').value = subject;
             } else if (mode === 'mailto' && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email || '')) {
-                const href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
-                target.innerHTML = '<a class="btn-primary signup-button"></a>';
-                target.firstChild.href = href;
-                target.firstChild.textContent = 'Email me about new books';
+                const a = document.createElement('a');
+                a.className = 'btn';
+                a.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+                a.textContent = 'Email me about new books';
+                target.replaceChildren(a);
             }
             // otherwise keep the static "coming soon" note
         });
@@ -88,14 +78,14 @@
         const bar = document.querySelector('.buy-bar');
         const target = document.getElementById('buy');
         if (!bar || !target || !('IntersectionObserver' in window)) return;
+        const link = bar.querySelector('a');
         new IntersectionObserver(([entry]) => {
-            const below = entry.boundingClientRect.top < 0;
-            const show = !entry.isIntersecting && below;
+            const show = !entry.isIntersecting && entry.boundingClientRect.top < 0;
             bar.classList.toggle('is-visible', show);
             bar.setAttribute('aria-hidden', String(!show));
-            bar.querySelector('a')?.setAttribute('tabindex', show ? '0' : '-1');
+            link?.setAttribute('tabindex', show ? '0' : '-1');
         }).observe(target);
-        bar.querySelector('a')?.addEventListener('click', (e) => {
+        link?.addEventListener('click', (e) => {
             e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
@@ -104,7 +94,6 @@
     function init() {
         initBuyBar();
         initBuyButtons();
-        initVideos();
         initSignup();
     }
 

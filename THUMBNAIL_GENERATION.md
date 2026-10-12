@@ -1,5 +1,7 @@
 # Thumbnail Generation Guide
 
+> Since the Oct 2026 redesign the site does not show these thumbnails. Class images are graded frames from each class's YouTube stream, built by `node scripts/build-images.js classes` (see `README.md`, Images). The local thumbnails below are kept as a fallback in `videos.json`.
+
 This guide explains how to generate thumbnails from the workout videos in The Bodyweight Gym Online.
 
 ## Prerequisites

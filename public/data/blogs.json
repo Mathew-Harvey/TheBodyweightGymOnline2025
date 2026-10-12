@@ -5,12 +5,10 @@
     "title": "Building Your Foundation",
     "date": "2018-07-09",
     "excerpt": "Basic motor patterns lay the foundations of all physical performance and health. Developing sound basic movement patterns takes persistence and often a temporary reduction in intensity.",
+    "readTime": "8 min",
     "author": "Mat Harvey",
     "category": "Training",
-    "readTime": "3 min",
-    "featured": false,
-    "image": "/images/blog/buildingfoundations-800.webp",
-    "imageSource": "/images/guides/muscleup/ringhang.png"
+    "image": "/images/blog/buildingfoundations"
   },
   {
     "slug": "firstmu",
@@ -18,12 +16,10 @@
     "title": "The Road to My First Ring Muscle Up",
     "date": "2018-08-08",
     "excerpt": "I didn't do gymnastics as a child, I learned all this stuff as an adult. Now I can complete a ring muscle up, cold, anytime. The process takes dedication, consistency and patience.",
+    "readTime": "11 min",
     "author": "Mat Harvey",
     "category": "Skills",
-    "readTime": "4 min",
-    "featured": true,
-    "image": "/images/blog/firstmu-800.webp",
-    "imageSource": "/images/guides/muscleup/ringmu1.png"
+    "image": "/images/blog/firstmu"
   },
   {
     "slug": "trainingandpain",
@@ -31,25 +27,20 @@
     "title": "Training and Pain",
     "date": "2018-08-12",
     "excerpt": "Training should not hurt. Nope, not ever. Training should certainly be uncomfortable, often. But training should not ever cause acute or chronic pain.",
+    "readTime": "6 min",
     "author": "Mat Harvey",
-    "category": "Recovery",
-    "readTime": "5 min",
-    "featured": false,
-    "image": "/images/blog/trainingandpain-800.webp",
-    "imageSource": "/images/guides/handstand/hang.png"
+    "category": "Recovery"
   },
   {
     "slug": "strengthtrainingandrecovery",
     "file": "/blogs/strengthtrainingandrecovery/strengthtrainingandrecover.md",
     "title": "Strength Training and Recovery",
     "date": "2018-08-26",
-    "excerpt": "You don't get strong in the gym. You get strong while you are in bed – asleep with a full stomach, otherwise known as recovery.",
+    "excerpt": "You don't get strong in the gym. You get strong while you are in bed, asleep with a full stomach, otherwise known as recovery.",
+    "readTime": "9 min",
     "author": "Mat Harvey",
     "category": "Recovery",
-    "readTime": "5 min",
-    "featured": false,
-    "image": "/images/blog/strengthtrainingandrecovery-800.webp",
-    "imageSource": "/images/guides/handstand/hollowbodyAdv.png"
+    "image": "/images/blog/strengthtrainingandrecovery"
   },
   {
     "slug": "goalsetting",
@@ -57,12 +48,10 @@
     "title": "8 Tips for Healthy Goal Setting",
     "date": "2019-07-28",
     "excerpt": "Do you work out to get high? Does that progress towards your goals? Many people enjoy the runner's high but this style of training must align with your goals.",
+    "readTime": "3 min",
     "author": "Mat Harvey",
     "category": "Philosophy",
-    "readTime": "3 min",
-    "featured": false,
-    "image": "/images/blog/goalsetting-800.webp",
-    "imageSource": "/images/guides/handstand/freestandinghandstand1.png"
+    "image": "/images/blog/goalsetting"
   },
   {
     "slug": "fiveprinicipalsofstrengthtraining",
@@ -70,50 +59,9 @@
     "title": "5 Principles of Strength Training",
     "date": "2019-10-14",
     "excerpt": "Bodyweight strength training is a noble pursuit, it requires patience, understanding of your own body and mental fortitude.",
+    "readTime": "4 min",
     "author": "Mat Harvey",
     "category": "Training",
-    "readTime": "4 min",
-    "featured": false,
-    "image": "/images/blog/fiveprinicipalsofstrengthtraining-800.webp",
-    "imageSource": "/images/guides/muscleup/ringpulluptop.png"
-  },
-  {
-    "slug": "weightliftingtokungfu",
-    "file": "/blogs/weightliftingtokungfu/weightliftingtokungfu.md",
-    "title": "From Weightlifting to Chinese Kungfu - A Dance with Corey",
-    "date": "2021-04-12",
-    "excerpt": "My training journey started at probably the age of 19. I started boxing, and the environment I was in, was one of a lot of young men punishing themselves.",
-    "author": "Corey",
-    "category": "Philosophy",
-    "readTime": "3 min",
-    "featured": false,
-    "image": "/images/blog/weightliftingtokungfu-800.webp",
-    "imageSource": "/images/guides/muscleup/ringfalsegrip.png"
-  },
-  {
-    "slug": "wellrested",
-    "file": "/blogs/wellrested/wellrested.md",
-    "title": "Well Rested on the Subject?",
-    "date": "2021-06-10",
-    "excerpt": "How well are we sleeping? How well rested are we? What compensations are we making due to lack of sleep, poor sleep quality, irregular routine?",
-    "author": "Corey",
-    "category": "Recovery",
-    "readTime": "4 min",
-    "featured": false,
-    "image": "/images/blog/wellrested-800.webp",
-    "imageSource": "/images/guides/handstand/chesttowallhandstand01.png"
-  },
-  {
-    "slug": "gettingoutofcomfort",
-    "file": "/blogs/gettingoutofcomfort/gettingoutofcomfort.md",
-    "title": "Getting Out of Your Comfort Zone",
-    "date": "2024-12-15",
-    "excerpt": "How do you get out of your comfort zone and keep growing? The answer: take the right direction and stay motivated.",
-    "author": "Coach Ana",
-    "category": "Philosophy",
-    "readTime": "3 min",
-    "featured": false,
-    "image": "/images/blog/gettingoutofcomfort-800.webp",
-    "imageSource": "/images/guides/muscleup/ringpullupscapdownmiddle.png"
+    "image": "/images/blog/fiveprinicipalsofstrengthtraining"
   }
 ]

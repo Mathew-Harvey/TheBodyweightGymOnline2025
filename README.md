@@ -1,6 +1,6 @@
 # The Bodyweight Gym Online
 
-A fully static site (no backend) hosted on GitHub Pages at <https://thebodyweightgym.org>. Workout videos are YouTube embeds (`youtube-nocookie.com`); nothing is self-hosted.
+A fully static site (no backend) hosted on GitHub Pages at <https://thebodyweightgym.org>. It sells the two Bodyweight Skills books by Mat Harvey (Amazon links) and gives away the gym's 2020 live-streamed classes as YouTube embeds (`youtube-nocookie.com`). The design rules are in `docs/DESIGN_BRIEF.md`.
 
 ## How it works
 
@@ -11,21 +11,25 @@ A fully static site (no backend) hosted on GitHub Pages at <https://thebodyweigh
 | Generated: categories, instructors, blog index | `public/data/{categories,instructors,blogs}.json` |
 | Blog posts (markdown, rendered in the browser with `marked`) | `public/blogs/<slug>/*.md` |
 | Blog publish list + card extras (author, category, image, ...) | `scripts/blog-meta.json` |
-| Favourites | the visitor's `localStorage` (`bwg:favourites`) |
-| Search, filters, sorting, stats | computed in the browser from the JSON files |
+| Shared head, nav and footer | `src/partials/*.html`, written into every page by `scripts/build-pages.js` |
+| Class lists, blog lists, numbers in the copy | pre-rendered into the pages by `scripts/build-pages.js` |
+| Styles | `public/css/brand.css` (the only stylesheet) |
+| Saved classes | the visitor's `localStorage` (`bwg:favourites`) |
+| Filters, search, sorting on `/classes` | `public/js/classes.js`, on the pre-rendered rows |
+| Photos, covers, class frames, icons | built by `npm run images` from `assets/` and YouTube frames |
 
-`npm run build` regenerates the files under `public/data/` (`scripts/build-data.js`, Node built-ins only). The generated files are committed so a fresh checkout previews without a build, and CI rebuilds them on every deploy.
+`npm run build` regenerates the files under `public/data/` (`scripts/build-data.js`) and the generated regions of every page (`scripts/build-pages.js`, between `<!-- build:NAME -->` markers). Both use Node built-ins only. The output is committed so a fresh checkout previews without a build, and CI rebuilds it on every deploy.
 
 ## Local preview
 
 ```bash
-npm run build   # regenerate public/data/*.json
+npm run build   # regenerate public/data/*.json and the generated page regions
 npm start       # npx serve public  ->  http://localhost:3000
 ```
 
 ## Adding or editing content
 
-- **A video:** add an entry to `public/data/videos.json` with a unique `id`, a `thumbnail` under `public/images/thumbnails/`, and its `youtubeId` (the 11-character ID from the YouTube URL). `"youtubeId": "TODO"` is allowed; that video's page shows "being added" until you fill it in. `npm run build` warns while any TODO remain and fails on malformed IDs or duplicate `id`s.
+- **A video:** add an entry to `public/data/videos.json` with a unique `id` and its `youtubeId` (the 11-character ID from the YouTube URL), then run `node scripts/build-images.js classes` to fetch and grade its frame (check it is clear of the stream overlays). `"youtubeId": "TODO"` is allowed; the video is left out of the lists until you fill it in. `npm run build` warns while any TODO remain and fails on malformed IDs or duplicate `id`s. Only Mat Harvey is named on the site, so the "Coach X - " part of a title is not shown.
 - **A blog post:** add `public/blogs/<slug>/<file>.md`, then add a `<slug>` entry to `scripts/blog-meta.json` (order there is the display order; folders not listed are skipped). Title, date and excerpt are read from the markdown (`# Title`, `*Published: Month D, YYYY*`, first paragraph) unless overridden in the meta file.
 - Run `npm run build` and commit the regenerated `public/data/*.json`.
 
@@ -41,9 +45,19 @@ The two Bodyweight Skills books are sold on Amazon; the site only links to them.
 
 - **Links and signup:** edit `public/js/books-config.js`. Paste each Amazon URL in place of `TODO_AMAZON_URL` (optional `_AU` variants are used for Australian visitors). Until a URL is set, its button shows a disabled "coming soon on Amazon" state. Only `https://www.amazon.<store>/...` URLs become links; shorteners are ignored.
 - **Email signup:** `SIGNUP_MODE = 'mailto'` with `SIGNUP_EMAIL` set shows an "Email me about new books" button (nothing stored by the site). `'formspree'` with `FORMSPREE_ID` set shows a form posting to Formspree's free tier. While the needed value is TODO, a "coming soon" note shows. GitHub Pages sends no Content-Security-Policy, so neither option needs a CSP change; if you add one later, Formspree needs `form-action https://formspree.io`.
-- **Pages:** `public/books/index.html`, `public/books/handstand.html`, `public/books/ring-muscle-up.html` (static HTML for SEO), styled by `public/css/books.css`, behaviour in `public/js/books.js`. `/ebook` redirects to `/books`.
-- **Covers:** copy `handstand-kindle-cover-1600x2560.jpg` and `muscleup-kindle-cover-1600x2560.jpg` into `public/images/books/`, run `npm install` once, then `npm run images` and commit the generated files (400/800px WebP + JPG, and a 1200px JPG used as the Open Graph image). Until then the pages show a plain text cover.
+- **Pages:** `public/books/index.html`, `public/books/handstand.html`, `public/books/ring-muscle-up.html` (static HTML with Book JSON-LD for SEO), behaviour in `public/js/books.js`. `/ebook` redirects to `/books`.
+- **Covers:** the 1600x2560 Kindle covers live in `assets/covers/`. After replacing one, run `npm install` once, then `npm run images` and commit the generated files (400/800px WebP + JPG, and a 1200px JPG used as the Open Graph image).
 - Do not add book text, PDFs or EPUBs to the site (Amazon KDP terms).
+
+## Images
+
+`npm run images` (`scripts/build-images.js`; run `npm install` once for sharp) builds every image the site uses and the outputs are committed:
+
+- **Photos** from `assets/photos/`, colour graded by `scripts/lib/grade.js` so they read as one set.
+- **Class frames** from YouTube's automatic frames of each stream, cropped clear of the stream overlays and graded. Per-class crop and frame choices are in `FRAME_CROP_FOR` and `FRAME_PICK`.
+- **Demonstration posters**, **blog photos** (black and white), the **logo** in ink and paper, and the **app icons**.
+
+`node scripts/build-images.js classes demos` runs single steps (brand, photos, covers, classes, demos, blog). YouTube frames are cached in `.cache/` (not committed).
 
 ## Deploying to GitHub Pages
 
@@ -60,6 +74,7 @@ After that, every push to `main` runs `.github/workflows/pages.yml`, which runs 
 | URL | File |
 | --- | --- |
 | `/` | `public/index.html` |
+| `/classes` (`?filter=saved` and the category names work as links) | `public/classes.html` |
 | `/video?id=<id>` | `public/video.html` |
 | `/blog` | `public/blog/index.html` |
 | `/blog/post?slug=<slug>` | `public/blog/post.html` |

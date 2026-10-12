@@ -1,10 +1,10 @@
 {
   "name": "the-bodyweight-gym-online",
   "version": "1.0.0",
-  "description": "Free online virtual gym with 30+ hours of bodyweight workout videos (static site for GitHub Pages)",
+  "description": "The Bodyweight Gym: free classes from the gym and the Bodyweight Skills books by Mat Harvey (static site for GitHub Pages)",
   "main": "scripts/build-data.js",
   "scripts": {
-    "build": "node scripts/build-data.js",
+    "build": "node scripts/build-data.js && node scripts/build-pages.js",
     "start": "npx serve public",
     "thumbnails": "node generate-thumbnails.js",
     "test": "echo \"Error: no test specified\" && exit 1",

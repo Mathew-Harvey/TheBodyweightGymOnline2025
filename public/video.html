@@ -1,403 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player - The Bodyweight Gym</title>
-    <link rel="icon" type="image/png" href="/images/ringLogo.png">
-    <link rel="stylesheet" href="/css/modern-style.css">
-    <link rel="stylesheet" href="/css/brand.css?v=1">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600&amp;display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Barlow:wght@400;500;600&amp;display=swap"></noscript>
-    <style>
-        :root {
-            --navy: #111214;
-            --dark: #16171b;
-            --card: #1c1d22;
-            --primary: #e87727;
-            --primary-light: #f39a55;
-            --text: #f2f2f0;
-            --sub: #a9adb4;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: var(--navy);
-            color: var(--text);
-            font-family: var(--font-body);
-            min-height: 100vh;
-        }
-
-        .video-page {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: var(--navy);
-        }
-
-        .header {
-            padding: 1rem 2rem;
-            background: rgba(17, 18, 20, 0.95);
-            backdrop-filter: blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(232, 119, 39, 0.2);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo-small {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
-
-        .logo-small img {
-            height: 36px;
-            width: auto;
-        }
-
-        .header-content .nav-link-books {
-            margin-left: auto;
-            margin-right: 1.5rem;
-        }
-
-        .back-link {
-            color: var(--primary-light);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            background: rgba(232, 119, 39, 0.1);
-            border: 1px solid rgba(232, 119, 39, 0.3);
-            transition: all 0.2s;
-        }
-
-        .back-link:hover {
-            background: rgba(232, 119, 39, 0.2);
-            color: var(--primary-light);
-        }
-
-        .video-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .video-wrapper {
-            width: 100%;
-            max-width: 900px;
-            background: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(232, 119, 39, 0.2);
-        }
-
-        .video-player {
-            display: block;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border: 0;
-            background: #000;
-        }
-
-        .video-upsell {
-            margin-top: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1.25rem;
-            padding: 1.25rem;
-            background: var(--card);
-            border-left: 3px solid var(--primary);
-        }
-
-        .video-upsell-covers { display: flex; gap: 0.6rem; }
-        .video-upsell-covers img { width: 64px; height: auto; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); }
-
-        .video-upsell-text { flex: 1 1 240px; }
-
-        .video-upsell-text strong {
-            display: block;
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            color: var(--text);
-            line-height: 1;
-            margin-bottom: 0.35rem;
-        }
-
-        .video-upsell-text p { margin: 0; color: var(--sub); }
-
-        .fav-button {
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: transparent;
-            border: 1px solid rgba(232, 119, 39, 0.4);
-            border-radius: 8px;
-            color: var(--primary-light);
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        .fav-button.active {
-            color: #f87171;
-            border-color: rgba(248, 113, 113, 0.5);
-        }
-
-        .video-info {
-            margin-top: 2rem;
-            max-width: 900px;
-            width: 100%;
-        }
-
-        .video-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-            color: var(--text);
-            line-height: 1;
-        }
-
-        .video-meta {
-            color: var(--sub);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .video-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.25rem 0.75rem;
-            background: var(--card);
-            border-radius: 20px;
-            font-size: 0.85rem;
-        }
-
-        .video-description {
-            color: var(--sub);
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-        
-        .video-start-info {
-            margin-top: 1rem;
-            padding: 0.75rem 1rem;
-            background: rgba(232, 119, 39, 0.15);
-            border: 1px solid rgba(232, 119, 39, 0.4);
-            border-radius: 8px;
-            color: var(--primary-light);
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 400px;
-            color: var(--sub);
-            font-size: 1.1rem;
-        }
-
-        .error {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 400px;
-            color: #ef4444;
-            text-align: center;
-            gap: 1rem;
-        }
-
-        .error a {
-            color: var(--primary-light);
-            text-decoration: none;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 0.75rem 1rem;
-            }
-            
-            .video-container {
-                padding: 1rem;
-            }
-            
-            .video-title {
-                font-size: 1.25rem;
-            }
-
-            .video-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Free class | The Bodyweight Gym</title>
+    <meta name="description" content="A full-length bodyweight class streamed live from The Bodyweight Gym, Perth, in 2020. Free, no account, no ads.">
+    <meta property="og:type" content="video.other">
+    <meta property="og:site_name" content="The Bodyweight Gym">
+    <meta property="og:title" content="Free class | The Bodyweight Gym">
+    <meta property="og:image" content="https://thebodyweightgym.org/images/photos/stream-set-1008.jpg">
+    <script>
+        // Start loading this class's poster before the class list arrives.
+        (function () {
+            var id = new URLSearchParams(location.search).get('id');
+            if (!/^\d{1,3}$/.test(id || '')) return;
+            var l = document.createElement('link');
+            l.rel = 'preload'; l.as = 'image'; l.type = 'image/webp';
+            l.setAttribute('imagesrcset', '/images/classes/' + id + '-400.webp 400w, /images/classes/' + id + '-800.webp 800w');
+            l.setAttribute('imagesizes', '(max-width: 1248px) 100vw, 1200px');
+            document.head.appendChild(l);
+        })();
+    </script>
+    <!-- build:head -->
+    <link rel="preload" href="/fonts/archivo-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/ibm-plex-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/brand.css?v=fd962ab4">
+    <link rel="icon" href="/icons/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#F3F1EC">
+    <script>document.documentElement.classList.add('js')</script>
+<!-- /build:head -->
 </head>
 <body>
-    <div class="video-page">
-        <header class="header">
-            <div class="header-content">
-                <a href="/" class="logo-small">
-                    <img src="/images/Bwglogo2.png" alt="The Bodyweight Gym">
-                </a>
-                <a href="/books" class="back-link nav-link-books">Books</a>
-                <a href="/" class="back-link">
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M15 10H5M10 5L5 10L10 15"/>
-                    </svg>
-                    All Workouts
-                </a>
-            </div>
-        </header>
+<!-- build:nav current="classes" -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__logo" href="/" aria-label="The Bodyweight Gym, home">
+      <img src="/images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
+    </a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="/classes" data-nav="classes" aria-current="page">Classes</a>
+      <a href="/books" data-nav="books">Books</a>
+      <a href="/#story" data-nav="story">Story</a>
+      <a href="/blog" data-nav="blog">Blog</a>
+    </nav>
+    <a class="btn nav__cta" href="/books">Get the books</a>
+    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+<div class="menu" id="menu" hidden>
+  <div class="menu__top">
+    <a class="nav__logo" href="/" aria-label="The Bodyweight Gym, home">
+      <img src="/images/brand/logo-ink.png" width="126" height="34" alt="The Bodyweight Gym">
+    </a>
+    <button class="nav__menu" type="button" data-menu-close>Close</button>
+  </div>
+  <nav aria-label="Menu">
+    <ul class="menu__links">
+      <li><a class="display" href="/classes">Classes</a></li>
+      <li><a class="display" href="/books">Books</a></li>
+      <li><a class="display" href="/#story">Story</a></li>
+      <li><a class="display" href="/blog">Blog</a></li>
+    </ul>
+  </nav>
+  <a class="btn menu__cta" href="/books">Get the books</a>
+</div>
+<!-- /build:nav -->
 
-        <main class="video-container">
-            <div class="video-wrapper" id="videoWrapper">
-                <div class="loading">Loading video...</div>
-            </div>
+<main id="main" class="band">
+    <div class="wrap video-page">
+        <div class="player" id="player">
+            <div class="facade facade--empty" aria-hidden="true"></div>
+        </div>
 
-            <div class="video-info" id="videoInfo">
-                <div class="loading">Loading video...</div>
+        <div class="video-meta ruled" id="video-meta">
+            <p class="label muted" id="video-label">Free class</p>
+            <h1 class="display t-h2 video-meta__title" id="video-title">Loading the class</h1>
+            <p class="video-meta__desc" id="video-desc"></p>
+            <noscript><p class="video-meta__desc">This page needs JavaScript to load the class. <a href="/classes">See all classes</a>.</p></noscript>
+            <button class="toggle label" type="button" id="video-save" aria-pressed="false" hidden>Save this class</button>
+        </div>
+
+        <section class="video-more" id="video-more" aria-labelledby="more-title" hidden>
+            <h2 class="label section-label" id="more-title">More like this</h2>
+            <ol class="rows" id="more-rows"></ol>
+            <div class="actions after-list">
+                <a class="arrow" href="/classes"><span>All classes</span></a>
             </div>
-        </main>
+        </section>
+
+        <aside class="video-book ruled" id="video-book" aria-labelledby="book-title" hidden></aside>
     </div>
+</main>
 
-    <script src="/js/data.js"></script>
-    <script>
-        const esc = BWG.escapeHtml;
-        const wrapper = document.getElementById('videoWrapper');
-        const videoId = new URLSearchParams(window.location.search).get('id');
+<!-- build:footer -->
+<footer class="footer band">
+  <div class="wrap">
+    <div class="split footer__signup" data-signup="footer">
+      <div>
+        <h2 class="label">New books first</h2>
+        <p class="statement">Hear when the next Bodyweight Skills book comes out.</p>
+      </div>
+      <div class="footer__signup-action signup-action">
+        <p class="label muted">Email updates are coming soon.</p>
+      </div>
+    </div>
+    <div class="footer__cols">
+      <div>
+        <h2 class="label">Explore</h2>
+        <ul>
+          <li><a href="/classes">Classes</a></li>
+          <li><a href="/books">Books</a></li>
+          <li><a href="/#story">Story</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="label">Books</h2>
+        <ul>
+          <li><a href="/books/handstand">The Handstand</a></li>
+          <li><a href="/books/ring-muscle-up">The Ring Muscle Up</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="label">Connect</h2>
+        <ul>
+          <li><a href="https://www.youtube.com/@thebodyweightgym8512" rel="noopener">YouTube</a></li>
+          <li><a href="https://www.instagram.com/the_bodyweight_gym/" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/thebodyweightgym.com.au/" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="label">About</h2>
+        <p>The Bodyweight Gym, Perth, Western Australia. Free classes forever.</p>
+      </div>
+    </div>
+    <p class="footer__note label">Train within your limits. The books and videos are general training information, not medical advice.</p>
+    <div class="footer__base">
+      <div class="also-by">
+        <span class="label">Also by Mat Harvey</span>
+        <a href="https://my-app-hub.com/" rel="noopener" aria-label="AppHub"><img src="/images/also-by/apphub.png" width="98" height="66" alt="AppHub" loading="lazy" decoding="async"></a>
+        <a href="https://webfpv.org/" rel="noopener" aria-label="webfpv"><span class="also-by__mark">web<span>fpv</span></span></a>
+      </div>
+      <p class="label">&copy; 2026 The Bodyweight Gym</p>
+    </div>
+  </div>
+</footer>
+<!-- /build:footer -->
 
-        function showError(message) {
-            wrapper.innerHTML = `<div class="error">${message}<br><a href="/">Return to workouts</a></div>`;
-        }
-
-        function renderFavouriteButton(id) {
-            const btn = document.getElementById('favButton');
-            const on = BWG.isFavourite(id);
-            btn.classList.toggle('active', on);
-            btn.setAttribute('aria-pressed', on);
-            btn.textContent = on ? '♥ In your favourites' : '♡ Add to favourites';
-        }
-
-        // Point viewers of a free class at the book for the matching skill.
-        const BOOKS = {
-            handstand: { title: 'The Handstand', cover: '/images/books/handstand-cover-400.jpg', url: '/books/handstand' },
-            muscleup: { title: 'The Ring Muscle Up', cover: '/images/books/muscleup-cover-400.jpg', url: '/books/ring-muscle-up' }
-        };
-
-        function renderBookUpsell(video) {
-            const text = `${video.title} ${video.category}`;
-            const picks = /handstand/i.test(text) ? [BOOKS.handstand]
-                : /muscle ?up|ring|pull/i.test(text) ? [BOOKS.muscleup]
-                : [BOOKS.handstand, BOOKS.muscleup];
-            const href = picks.length === 1 ? picks[0].url : '/books';
-            const aside = document.createElement('aside');
-            aside.className = 'video-upsell';
-            aside.innerHTML = `
-                <a class="video-upsell-covers" href="${href}">
-                    ${picks.map(b => `<img src="${b.cover}" width="400" height="640" alt="${esc(b.title)} book cover" loading="lazy">`).join('')}
-                </a>
-                <div class="video-upsell-text">
-                    <strong>${picks.length === 1 ? `Want the full plan? ${esc(picks[0].title)}` : 'Want a step by step plan?'}</strong>
-                    <p>${picks.length === 1 ? 'Six levels, each with a workout, photos, demo videos and a graduation test.' : 'The Bodyweight Skills books take one skill at a time through six levels.'}</p>
-                </div>
-                <a class="btn-primary" href="${href}">See the book${picks.length === 1 ? '' : 's'}</a>`;
-            document.getElementById('videoInfo').appendChild(aside);
-        }
-
-        async function loadVideo() {
-            if (!videoId) {
-                showError('No video ID provided.');
-                return;
-            }
-
-            let video;
-            try {
-                const videos = await BWG.getVideos();
-                video = videos.find(v => String(v.id) === videoId);
-            } catch (error) {
-                console.error('Error loading video:', error);
-                showError('Unable to load video information.');
-                return;
-            }
-            if (!video) {
-                showError('Video not found.');
-                return;
-            }
-
-            document.title = `${video.title} - The Bodyweight Gym`;
-
-            if (BWG.hasYoutubeId(video)) {
-                const params = new URLSearchParams({ rel: '0' });
-                if (video.startTime > 0) params.set('start', Math.floor(video.startTime));
-                wrapper.innerHTML = `<iframe class="video-player"
-                    src="https://www.youtube-nocookie.com/embed/${video.youtubeId}?${params}"
-                    title="${esc(video.title)}"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
-            } else {
-                showError('This workout\'s video is being added. Check back soon!');
-            }
-
-            document.getElementById('videoInfo').innerHTML = `
-                <h1 class="video-title">${esc(video.title)}</h1>
-                <div class="video-meta">
-                    <span>👤 ${esc(video.instructor)}</span>
-                    <span>⏱️ ${esc(video.duration)}</span>
-                    <span>📊 ${esc(video.level)}</span>
-                    ${video.views > 0 ? `<span>👁️ ${video.views.toLocaleString('en-US')} views</span>` : ''}
-                    ${video.startTimeFormatted ? `<span>⏰ Starts at ${esc(video.startTimeFormatted)}</span>` : ''}
-                </div>
-                <div class="video-description">${esc(video.description)}</div>
-                ${video.startTimeFormatted ? `<div class="video-start-info">⏰ Video starts at ${esc(video.startTimeFormatted)} to skip intro</div>` : ''}
-                <div><button type="button" class="fav-button" id="favButton"></button></div>
-            `;
-            renderBookUpsell(video);
-            renderFavouriteButton(video.id);
-            document.getElementById('favButton').addEventListener('click', () => {
-                BWG.toggleFavourite(video.id);
-                renderBookUpsell(video);
-            renderFavouriteButton(video.id);
-            });
-        }
-
-        loadVideo();
-    </script>
+<script src="/js/site.js" defer></script>
+<script src="/js/data.js" defer></script>
+<script src="/js/video.js" defer></script>
 </body>
 </html>
