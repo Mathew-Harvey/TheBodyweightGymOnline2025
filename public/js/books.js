@@ -26,18 +26,26 @@
     // <span class="label buy__soon" data-buy="handstand:kindle" data-class="btn"
     //       data-label="Kindle US$4.99" data-label-au="Kindle A$7.99">Kindle US$4.99 · coming soon</span>
     // becomes a real link once books-config.js has the Amazon URL. Until then it stays as is.
+    // scripts/build-pages.js already writes the amazon.com link into the page when the URL is
+    // set, so here that only changes for Australian visitors (amazon.com.au, A$ label).
     function initBuyButtons() {
         document.querySelectorAll('[data-buy]').forEach((el) => {
             const [bookId, format] = el.dataset.buy.split(':');
             const link = amazonLink(bookId, format);
             if (!link) return;
+            const label = (link.au && el.dataset.labelAu) || el.dataset.label;
+            if (el.tagName === 'A') {                       // already a link: just point it at the right store
+                el.href = link.url;
+                (el.querySelector('span') || el).textContent = label;
+                return;
+            }
             const a = document.createElement('a');
             a.className = el.dataset.class || 'btn';
             a.href = link.url;
             a.target = '_blank';
             a.rel = 'noopener';
             const text = document.createElement('span');
-            text.textContent = (link.au && el.dataset.labelAu) || el.dataset.label;
+            text.textContent = label;
             a.append(text);
             el.replaceWith(a);
         });

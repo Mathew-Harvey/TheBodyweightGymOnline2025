@@ -12,6 +12,7 @@
 //   <!-- build:notes -->       ... <!-- /build:notes -->      the three newest posts
 //   <!-- build:posts -->       ... <!-- /build:posts -->      every post (blog index)
 //   <span data-stat="classes">57</span>                       numbers from videos.json
+//   <a data-buy="handstand:kindle" ...> / <span data-buy=...>  Amazon buy buttons from books-config.js
 // It also puts a content hash on local script URLs (like the stylesheet) and writes
 // public/sitemap.xml and public/robots.txt for the custom domain.
 // Running it again rewrites the same regions, so the output is committed as is.
@@ -19,6 +20,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const vm = require('vm');
 
 // The address the site is meant to live at: canonical URLs and the sitemap use it.
 const SITE = 'https://thebodyweightgym.org';
@@ -101,6 +103,27 @@ function featured() {
 
 const newestFirst = [...blogs].sort((a, b) => b.date.localeCompare(a.date));
 
+// ---- buy buttons ----
+// The Amazon URLs live in public/js/books-config.js (a browser script, so it is run in a
+// sandbox here). A button whose amazon.com URL is set is written into the page as a real
+// link, so it works without JavaScript and for crawlers; books.js then only swaps in the
+// amazon.com.au link for Australian visitors. A TODO URL keeps the "coming soon" label.
+const sandbox = { window: {} };
+vm.runInNewContext(read(path.join(PUB, 'js', 'books-config.js')), sandbox);
+const BOOKS = sandbox.window.BWG_BOOKS?.books || {};
+const AMAZON_URL = /^https:\/\/(www\.)?amazon\.(com|com\.au|co\.uk|ca|de|fr|es|it|nl|co\.jp|in|com\.mx|com\.br)\//;  // same test as books.js
+
+function buyButton(attrs, key) {
+  const attr = (name) => (attrs.match(new RegExp(`\\s${name}="([^"]*)"`)) || [])[1] || '';
+  const [bookId, format] = key.split(':');
+  const cls = attr('data-class') || 'btn';
+  const label = attr('data-label');
+  const data = `data-buy="${key}" data-class="${cls}" data-label="${label}" data-label-au="${attr('data-label-au')}"`;
+  const us = BOOKS[bookId]?.urls?.[format]?.us || '';
+  if (AMAZON_URL.test(us)) return `<a class="${cls}" href="${esc(us)}" target="_blank" rel="noopener" ${data}><span>${label}</span></a>`;
+  return `<span class="label buy__soon" ${data}>${label} · coming soon${cls === 'btn' ? ' on Amazon' : ''}</span>`;
+}
+
 // ---- partials ----
 const cssVersion = crypto.createHash('sha1').update(read(path.join(PUB, 'css', 'brand.css'))).digest('hex').slice(0, 8);
 const partial = (name) => read(path.join(PARTIALS, `${name}.html`)).trimEnd();
@@ -139,6 +162,11 @@ function processPage(file) {
   html = html.replace(/(<span data-stat="([a-z]+)">)[^<]*(<\/span>)/g, (m, open, key, close) => {
     if (!(key in STATS)) throw new Error(`${path.relative(ROOT, file)}: unknown data-stat "${key}"`);
     return `${open}${STATS[key]}${close}`;
+  });
+  html = html.replace(/<(span|a)\b([^>]*\sdata-buy="([^"]+)"[^>]*)>[\s\S]*?<\/\1>/g, (m, tag, attrs, key) => {
+    const [bookId, format] = key.split(':');
+    if (!BOOKS[bookId]?.urls?.[format]) throw new Error(`${path.relative(ROOT, file)}: unknown data-buy "${key}"`);
+    return buyButton(attrs, key);
   });
   if (html !== before) {
     fs.writeFileSync(file, html);

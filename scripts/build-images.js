@@ -120,7 +120,7 @@ const FRAME_CROP = { left: 190, top: 150, width: 800, height: 450 };
 // Per-class windows where the default one catches an overlay: larger caption boxes at the
 // top (2, 10, 13, 43), a caption at the bottom (14), a timer at the bottom (15).
 const at = (top) => ({ ...FRAME_CROP, top });
-const FRAME_CROP_FOR = { 2: at(215), 10: at(222), 13: at(226), 14: at(100), 15: at(96), 43: at(184) };
+const FRAME_CROP_FOR = { 2: at(216), 10: at(222), 13: at(226), 14: at(100), 15: at(96), 43: at(184) };
 // YouTube's auto frames: 2 = halfway, 3 = three quarters, 1 = a quarter in (often the
 // title card). Override where the halfway frame is a close-up or a joke.
 const FRAME_PICK = { 15: 3, 42: 1, 45: 1, 51: 2, 59: 1 };

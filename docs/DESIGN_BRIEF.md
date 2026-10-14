@@ -429,6 +429,14 @@ The rebuild follows sections 1 to 9. These are the deliberate differences, plus 
 - **Pages source.** On 12 Oct the custom domain showed the README because Pages was switched back to "Deploy from a branch" while setting the domain (GitHub then commits a root `CNAME` and runs a Jekyll build of the repo root after every push, which finishes after our deploy and replaces it). Source must be "GitHub Actions". The deploy workflow also re-runs after GitHub's branch build (`workflow_run`), so a wrong setting costs about a minute after each push instead of breaking the site.
 - **What is deployed.** The deployed copy leaves out the guide drawings, the old thumbnails and the unpublished posts, and serves a trimmed `videos.json` (no coach names, file names or placeholder ratings). It is about 6 MB instead of 64 MB.
 
+**Review pass (14 Oct 2026), after the books went on sale**
+- **Buy buttons are real links in the HTML.** `scripts/build-pages.js` reads `public/js/books-config.js` (in a `vm` sandbox) and writes each button whose amazon.com URL is set as an `<a>` with the US label, so the links work without JavaScript, for crawlers and in link previews. `books.js` then only repoints the link at amazon.com.au (and the A$ label) for Australian visitors. A `TODO_AMAZON_URL` still renders the "coming soon" label, so the file's contract is unchanged.
+- **Tablet heroes.** Between 600 and 860px the stacked hero photo was capped at 56svh, which cropped the feet off the nearly square handstand photographs (home and Book 1). The cap is 92svh there; phones keep 56svh.
+- **Book hero price line.** The separators are generated after each item (`span:not(:last-child)::after`), so a wrapped line ends with the dot instead of starting with one; max width 42em so it sits on two lines at desktop.
+- **Articles.** Fenced blocks in the markdown are workout plans, not code: they wrap (`white-space: pre-wrap`) instead of scrolling sideways on phones. Long inline code wraps too.
+- **Class 2 poster.** Its crop window started two pixels inside the caption box's border; the window is rows 216 to 665 now (`FRAME_CROP_FOR`), the only 450 rows between the caption box and the bottom bar.
+- `ebook.html`'s canonical URL now carries the trailing slash like every other link to `/books/`.
+
 **Not done, or left as it was**
 - No page registers `public/service-worker.js` (none did before either). Its cache name is bumped to v5 so it is ready if registration is added.
 - Assets still wanted from section 5.2: the photoshoot originals, the logo source, coach photos (not needed while only Mat is named).

@@ -419,6 +419,9 @@ button { font: inherit; color: inherit; }
 @media (max-width: 860px) {
   .hero { display: block; min-height: 0; }
   .hero__photo { position: relative; width: 100%; height: auto; max-width: none; max-height: 56svh; }
+  /* tablets: the stacked photo is nearly square, so a 56svh cap would crop the feet (or the
+     wall-handstand's legs); let it stand at its own height, feet to hands */
+  @media (min-width: 600px) { .hero__photo { max-height: 92svh; } }
   .hero__photo img {
     object-position: 50% 100%;
     -webkit-mask-image: linear-gradient(to bottom, #000 74%, transparent 100%);
@@ -694,8 +697,9 @@ main.band + .footer .footer__signup { border-top: 1px solid var(--line); padding
 .prose table { width: 100%; border-collapse: collapse; font-size: 16px; display: block; overflow-x: auto; }
 .prose th, .prose td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
 .prose th { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
-.prose pre { overflow-x: auto; padding: 16px; background: rgba(20, 20, 20, .05); font-size: 15px; }
-.prose code { font-family: var(--mono); font-size: .9em; }
+/* the articles' "code" blocks are workout plans, so lines wrap instead of scrolling sideways on phones */
+.prose pre { overflow-x: auto; padding: 16px; background: rgba(20, 20, 20, .05); font-size: 15px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.prose code { font-family: var(--mono); font-size: .9em; overflow-wrap: anywhere; }   /* long inline code must not widen a phone */
 .post-foot { margin-top: clamp(48px, 6vw, 80px); }
 /* the article arrives after first paint: hold the space so the footer does not jump */
 .prose[aria-busy="true"] { min-height: 100svh; }
@@ -735,9 +739,12 @@ main.band + .footer .footer__signup { border-top: 1px solid var(--line); padding
 .book-hero--rings { --photo-ratio: 1080 / 721; --photo-max: 86%; --photo-pos: 70% 50%; --photo-fade: 46%; }
 .book-hero__title { max-width: 5.6em; }
 .book-hero__lead { margin-bottom: 0; }
-.book-hero__prices { margin-top: 24px; max-width: 34em; }
+.book-hero__prices { margin-top: 24px; max-width: 42em; }
+/* the separators belong to the item before them, so a line never starts with a dot */
+.book-hero__prices span:not(:last-child)::after { content: ' ·'; }
 @media (max-width: 860px) {
   .book-hero__photo { position: relative; width: 100%; height: auto; max-width: none; max-height: 56svh; }
+  @media (min-width: 600px) { .book-hero__photo { max-height: 92svh; } }
   .book-hero__photo img {
     -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
