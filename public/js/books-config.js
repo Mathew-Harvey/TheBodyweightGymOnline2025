@@ -4,13 +4,13 @@
 // its button shows a disabled "Coming soon on Amazon" state (never a dead link).
 // Visitors in Australia get the amazon.com.au link when one is set, otherwise the amazon.com link.
 
-const HANDSTAND_KINDLE_URL = 'TODO_AMAZON_URL';
+const HANDSTAND_KINDLE_URL = 'https://www.amazon.com/dp/B0HMZJD7DX';
 const HANDSTAND_PAPERBACK_URL = 'TODO_AMAZON_URL';
 const MUSCLEUP_KINDLE_URL = 'TODO_AMAZON_URL';
 const MUSCLEUP_PAPERBACK_URL = 'TODO_AMAZON_URL';
 
 // Optional amazon.com.au links for Australian visitors.
-const HANDSTAND_KINDLE_URL_AU = 'TODO_AMAZON_URL';
+const HANDSTAND_KINDLE_URL_AU = 'https://www.amazon.com.au/dp/B0HMZJD7DX';
 const HANDSTAND_PAPERBACK_URL_AU = 'TODO_AMAZON_URL';
 const MUSCLEUP_KINDLE_URL_AU = 'TODO_AMAZON_URL';
 const MUSCLEUP_PAPERBACK_URL_AU = 'TODO_AMAZON_URL';
