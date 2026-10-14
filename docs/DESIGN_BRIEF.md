@@ -325,7 +325,7 @@ Rules (Mat's, plus mine):
 - No em dashes. Use a full stop, comma or colon.
 - No hype words, no "journey", no "not X, it's Y", no exclamation marks, no emoji.
 - No invented testimonials, ratings, review counts, member counts, "trusted by", credentials or medical promises. The only health note is the existing line: `Train within your limits. The books and videos are general training information, not medical advice.`
-- Numbers must come from data: 66 classes, about 69 hours (sum of durations in `videos.json`), 6 coaches, 36 pages, US$4.99 / US$9.99 (£3.99 / £7.99, A$7.99 / A$14.99). The old "47+ hours" and "79 classes" are wrong and must go.
+- Numbers must come from data: 66 classes, about 69 hours (sum of durations in `videos.json`), 6 coaches, 36 pages, US$4.99 / US$9.99 (£3.99 / £7.99, A$7.99 / A$16.49; amazon.com.au shows the paperback with GST, A$14.99 + 10%). The old "47+ hours" and "79 classes" are wrong and must go.
 - Gym facts: Osborne Park, Perth; closed in 2020; the classes were streamed live from the gym during the 2020 lockdown; the announcement video has 58K views on YouTube (public count, may be quoted as "58,000 people watched"); founder Mat Harvey, former scientist, broke his back and rebuilt. Opening year to be confirmed.
 
 ---
