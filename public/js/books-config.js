@@ -6,13 +6,13 @@
 
 const HANDSTAND_KINDLE_URL = 'https://www.amazon.com/dp/B0HMZJD7DX';
 const HANDSTAND_PAPERBACK_URL = 'TODO_AMAZON_URL';
-const MUSCLEUP_KINDLE_URL = 'TODO_AMAZON_URL';
+const MUSCLEUP_KINDLE_URL = 'https://www.amazon.com/dp/B0HMZ4LXDS';
 const MUSCLEUP_PAPERBACK_URL = 'TODO_AMAZON_URL';
 
 // Optional amazon.com.au links for Australian visitors.
 const HANDSTAND_KINDLE_URL_AU = 'https://www.amazon.com.au/dp/B0HMZJD7DX';
 const HANDSTAND_PAPERBACK_URL_AU = 'TODO_AMAZON_URL';
-const MUSCLEUP_KINDLE_URL_AU = 'TODO_AMAZON_URL';
+const MUSCLEUP_KINDLE_URL_AU = 'https://www.amazon.com.au/dp/B0HMZ4LXDS';
 const MUSCLEUP_PAPERBACK_URL_AU = 'TODO_AMAZON_URL';
 
 // Email signup ("Tell me about new books").
